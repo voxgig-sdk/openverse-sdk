@@ -1,0 +1,7 @@
+# Flows
+
+@"BasicAudioFlow.jsonic"
+@"BasicImageFlow.jsonic"
+@"BasicOAuth2ApplicationFlow.jsonic"
+@"BasicOAuth2KeyInfoFlow.jsonic"
+@"BasicOAuth2TokenFlow.jsonic"

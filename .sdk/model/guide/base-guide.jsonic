@@ -1,0 +1,85 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 5
+  metrics: count: path: 17
+  metrics: count: method: 17
+
+  entity: audio: {
+    path: "/v1/audio/": {
+      op: list: method: *GET
+    }
+    path: "/v1/audio/stats/": {
+      action: "stat": {}
+      op: list: method: *GET
+    }
+    path: "/v1/audio/{identifier}/": {
+      rename: param: "identifier": *"id"
+      op: load: method: *GET
+    }
+    path: "/v1/audio/{identifier}/related/": {
+      action: "related": {}
+      op: list: method: *GET
+    }
+    path: "/v1/audio/{identifier}/report/": {
+      action: "report": {}
+      op: create: method: *POST
+    }
+    path: "/v1/audio/{identifier}/thumb/": {
+      action: "thumb": {}
+      op: load: method: *GET
+    }
+    path: "/v1/audio/{identifier}/waveform/": {
+      action: "waveform": {}
+      op: list: method: *GET
+    }
+    path: "/v1/images/{identifier}/thumb/": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: image: {
+    path: "/v1/images/": {
+      op: list: method: *GET
+    }
+    path: "/v1/images/oembed/": {
+      action: "oembed": {}
+      op: load: method: *GET
+    }
+    path: "/v1/images/stats/": {
+      action: "stat": {}
+      op: list: method: *GET
+    }
+    path: "/v1/images/{identifier}/": {
+      rename: param: "identifier": *"id"
+      op: load: method: *GET
+    }
+    path: "/v1/images/{identifier}/related/": {
+      action: "related": {}
+      op: list: method: *GET
+    }
+    path: "/v1/images/{identifier}/report/": {
+      action: "report": {}
+      op: create: method: *POST
+    }
+  }
+
+  entity: o_auth2_application: {
+    path: "/v1/auth_tokens/register/": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: o_auth2_key_info: {
+    path: "/v1/rate_limit/": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: o_auth2_token: {
+    path: "/v1/auth_tokens/token/": {
+      op: create: method: *POST
+    }
+  }
+
+}

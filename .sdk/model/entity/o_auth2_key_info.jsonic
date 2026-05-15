@@ -1,0 +1,53 @@
+# Entity: o_auth2_key_info
+
+main: kit: entity: o_auth2_key_info: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "rate_limit_model"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "requests_this_minute"
+      req: true
+      type: "`$INTEGER`"
+    }
+    {
+      name: "requests_today"
+      req: true
+      type: "`$INTEGER`"
+    }
+    {
+      name: "verified"
+      req: true
+      type: "`$BOOLEAN`"
+    }
+  ]
+
+  name: "o_auth2_key_info"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          method: "GET"
+          orig: "/v1/rate_limit/"
+          parts: [
+            "v1"
+            "rate_limit"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

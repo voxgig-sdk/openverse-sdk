@@ -1,0 +1,28 @@
+# BasicOAuth2KeyInfoFlow
+
+main: kit: flow: BasicOAuth2KeyInfoFlow:
+{
+  entity: "o_auth2_key_info",
+  kind: "basic",
+  name: "BasicOAuth2KeyInfoFlow",
+  step: [
+    {
+      input: {
+        ref: "o_auth2_key_info_ref01",
+        srcdatavar: "o_auth2_key_info_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-o_auth2_key_info_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicOAuth2KeyInfoFlow"
+}

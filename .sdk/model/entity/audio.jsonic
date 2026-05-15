@@ -1,0 +1,698 @@
+# Entity: audio
+
+main: kit: entity: audio: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "alt_file"
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "attribution"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "audio_set"
+      req: true
+      type: "`$ANY`"
+    }
+    {
+      name: "bit_rate"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "category"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "creator"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "creator_url"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "description"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "detail_url"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "display_name"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "duration"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "fields_matched"
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "filesize"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "filetype"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "foreign_landing_url"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "genre"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "id"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "identifier"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "indexed_on"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "len"
+      req: true
+      type: "`$INTEGER`"
+    }
+    {
+      name: "license_url"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "license_version"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "licenses"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "logo_url"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "mature"
+      req: true
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "media_count"
+      req: true
+      type: "`$INTEGER`"
+    }
+    {
+      name: "point"
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "provider"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "reason"
+      req: true
+      type: "`$ANY`"
+    }
+    {
+      name: "related_url"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "sample_rate"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "source"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "source_name"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "source_url"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "tag"
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "thumbnail"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "title"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "url"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "waveform"
+      req: true
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "audio"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "identifier"
+                orig: "identifier"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "POST"
+          orig: "/v1/audio/{identifier}/report/"
+          parts: [
+            "v1"
+            "audio"
+            "{identifier}"
+            "report"
+          ]
+          select: {
+            "$action": "report"
+            exist: [
+              "identifier"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "category"
+                orig: "category"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "creator"
+                orig: "creator"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "excluded_source"
+                orig: "excluded_source"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "extension"
+                orig: "extension"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: true
+                kind: "query"
+                name: "filter_dead"
+                orig: "filter_dead"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                kind: "query"
+                name: "length"
+                orig: "length"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "license_type"
+                orig: "license_type"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "licenses"
+                orig: "licenses"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: false
+                kind: "query"
+                name: "mature"
+                orig: "mature"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                example: 1
+                kind: "query"
+                name: "page"
+                orig: "page"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: 20
+                kind: "query"
+                name: "page_size"
+                orig: "page_size"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: false
+                kind: "query"
+                name: "peak"
+                orig: "peak"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                kind: "query"
+                name: "q"
+                orig: "q"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "source"
+                orig: "source"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "tag"
+                orig: "tag"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "title"
+                orig: "title"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: false
+                kind: "query"
+                name: "unstable_authority"
+                orig: "unstable_authority"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                example: 1
+                kind: "query"
+                name: "unstable_authority_boost"
+                orig: "unstable_authority_boost"
+                reqd: false
+                type: "`$NUMBER`"
+              }
+              {
+                kind: "query"
+                name: "unstable_collection"
+                orig: "unstable_collection"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: false
+                kind: "query"
+                name: "unstable_include_sensitive_result"
+                orig: "unstable_include_sensitive_result"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                example: "relevance"
+                kind: "query"
+                name: "unstable_sort_by"
+                orig: "unstable_sort_by"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "desc"
+                kind: "query"
+                name: "unstable_sort_dir"
+                orig: "unstable_sort_dir"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "unstable_tag"
+                orig: "unstable_tag"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/v1/audio/"
+          parts: [
+            "v1"
+            "audio"
+          ]
+          select: {
+            exist: [
+              "category"
+              "creator"
+              "excluded_source"
+              "extension"
+              "filter_dead"
+              "length"
+              "license_type"
+              "licenses"
+              "mature"
+              "page"
+              "page_size"
+              "peak"
+              "q"
+              "source"
+              "tag"
+              "title"
+              "unstable_authority"
+              "unstable_authority_boost"
+              "unstable_collection"
+              "unstable_include_sensitive_result"
+              "unstable_sort_by"
+              "unstable_sort_dir"
+              "unstable_tag"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "identifier"
+                orig: "identifier"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/v1/audio/{identifier}/related/"
+          parts: [
+            "v1"
+            "audio"
+            "{identifier}"
+            "related"
+          ]
+          select: {
+            "$action": "related"
+            exist: [
+              "identifier"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "identifier"
+                orig: "identifier"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/v1/audio/{identifier}/waveform/"
+          parts: [
+            "v1"
+            "audio"
+            "{identifier}"
+            "waveform"
+          ]
+          select: {
+            "$action": "waveform"
+            exist: [
+              "identifier"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/v1/audio/stats/"
+          parts: [
+            "v1"
+            "audio"
+            "stats"
+          ]
+          select: {
+            "$action": "stat"
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "identifier"
+                orig: "identifier"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "compressed"
+                orig: "compressed"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                example: false
+                kind: "query"
+                name: "full_size"
+                orig: "full_size"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/v1/audio/{identifier}/thumb/"
+          parts: [
+            "v1"
+            "audio"
+            "{identifier}"
+            "thumb"
+          ]
+          select: {
+            "$action": "thumb"
+            exist: [
+              "compressed"
+              "full_size"
+              "identifier"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "identifier"
+                orig: "identifier"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "compressed"
+                orig: "compressed"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                example: false
+                kind: "query"
+                name: "full_size"
+                orig: "full_size"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/v1/images/{identifier}/thumb/"
+          parts: [
+            "v1"
+            "images"
+            "{identifier}"
+            "thumb"
+          ]
+          select: {
+            exist: [
+              "compressed"
+              "full_size"
+              "identifier"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "identifier"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/v1/audio/{identifier}/"
+          parts: [
+            "v1"
+            "audio"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              identifier: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "audio"
+      ]
+      [
+        "image"
+      ]
+    ]
+  }
+
+
+
+}

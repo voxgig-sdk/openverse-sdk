@@ -1,0 +1,34 @@
+{
+  "existing": {
+    "o_auth2_token": {
+      "O_AUTH2_TOKEN00": {
+        "access_token": "s28",
+        "expires_in": "s29",
+        "scope": "s2a",
+        "token_type": "s2b"
+      },
+      "O_AUTH2_TOKEN01": {
+        "access_token": "s50",
+        "expires_in": "s51",
+        "scope": "s52",
+        "token_type": "s53"
+      },
+      "O_AUTH2_TOKEN02": {
+        "access_token": "s78",
+        "expires_in": "s79",
+        "scope": "s7a",
+        "token_type": "s7b"
+      }
+    }
+  },
+  "new": {
+    "o_auth2_token": {
+      "o_auth2_token_ref01": {
+        "access_token": "sa0",
+        "expires_in": "sa1",
+        "scope": "sa2",
+        "token_type": "sa3"
+      }
+    }
+  }
+}

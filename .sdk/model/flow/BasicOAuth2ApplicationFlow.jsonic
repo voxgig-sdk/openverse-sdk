@@ -1,0 +1,18 @@
+# BasicOAuth2ApplicationFlow
+
+main: kit: flow: BasicOAuth2ApplicationFlow:
+{
+  entity: "o_auth2_application",
+  kind: "basic",
+  name: "BasicOAuth2ApplicationFlow",
+  step: [
+    {
+      input: {
+        ref: "o_auth2_application_ref01"
+      }
+
+      op: "create"
+    }
+  ],
+  "key$": "BasicOAuth2ApplicationFlow"
+}

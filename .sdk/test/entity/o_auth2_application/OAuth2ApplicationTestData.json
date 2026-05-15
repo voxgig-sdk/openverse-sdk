@@ -1,0 +1,30 @@
+{
+  "existing": {
+    "o_auth2_application": {
+      "O_AUTH2_APPLICATION00": {
+        "description": "s1e",
+        "email": "s1f",
+        "name": "s20"
+      },
+      "O_AUTH2_APPLICATION01": {
+        "description": "s3c",
+        "email": "s3d",
+        "name": "s3e"
+      },
+      "O_AUTH2_APPLICATION02": {
+        "description": "s5a",
+        "email": "s5b",
+        "name": "s5c"
+      }
+    }
+  },
+  "new": {
+    "o_auth2_application": {
+      "o_auth2_application_ref01": {
+        "description": "s78",
+        "email": "s79",
+        "name": "s7a"
+      }
+    }
+  }
+}

@@ -1,0 +1,56 @@
+# BasicAudioFlow
+
+main: kit: flow: BasicAudioFlow:
+{
+  entity: "audio",
+  kind: "basic",
+  name: "BasicAudioFlow",
+  step: [
+    {
+      input: {
+        ref: "audio_ref01"
+      }
+
+      match: {
+        identifier: "identifier01"
+      }
+
+      op: "create"
+    }
+
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "audio_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "audio_ref01",
+        srcdatavar: "audio_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "audio01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-audio_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicAudioFlow"
+}
