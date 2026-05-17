@@ -5,19 +5,22 @@
         "rate_limit_model": "s28",
         "requests_this_minute": "s29",
         "requests_today": "s2a",
-        "verified": false
+        "verified": false,
+        "id": "O_AUTH2_KEY_INFO00"
       },
       "O_AUTH2_KEY_INFO01": {
         "rate_limit_model": "s50",
         "requests_this_minute": "s51",
         "requests_today": "s52",
-        "verified": false
+        "verified": false,
+        "id": "O_AUTH2_KEY_INFO01"
       },
       "O_AUTH2_KEY_INFO02": {
         "rate_limit_model": "s78",
         "requests_this_minute": "s79",
         "requests_today": "s7a",
-        "verified": false
+        "verified": false,
+        "id": "O_AUTH2_KEY_INFO02"
       }
     }
   },

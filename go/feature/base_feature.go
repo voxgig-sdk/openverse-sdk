@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/openverse-sdk/core"
+	"github.com/voxgig-sdk/openverse-sdk/go/core"
 )
 
 type BaseFeature struct {

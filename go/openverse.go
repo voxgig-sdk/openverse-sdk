@@ -1,10 +1,10 @@
 package voxgigopenversesdk
 
 import (
-	"github.com/voxgig-sdk/openverse-sdk/core"
-	"github.com/voxgig-sdk/openverse-sdk/entity"
-	"github.com/voxgig-sdk/openverse-sdk/feature"
-	_ "github.com/voxgig-sdk/openverse-sdk/utility"
+	"github.com/voxgig-sdk/openverse-sdk/go/core"
+	"github.com/voxgig-sdk/openverse-sdk/go/entity"
+	"github.com/voxgig-sdk/openverse-sdk/go/feature"
+	_ "github.com/voxgig-sdk/openverse-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

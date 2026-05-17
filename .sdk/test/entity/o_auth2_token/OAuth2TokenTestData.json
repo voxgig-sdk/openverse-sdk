@@ -5,19 +5,22 @@
         "access_token": "s28",
         "expires_in": "s29",
         "scope": "s2a",
-        "token_type": "s2b"
+        "token_type": "s2b",
+        "id": "O_AUTH2_TOKEN00"
       },
       "O_AUTH2_TOKEN01": {
         "access_token": "s50",
         "expires_in": "s51",
         "scope": "s52",
-        "token_type": "s53"
+        "token_type": "s53",
+        "id": "O_AUTH2_TOKEN01"
       },
       "O_AUTH2_TOKEN02": {
         "access_token": "s78",
         "expires_in": "s79",
         "scope": "s7a",
-        "token_type": "s7b"
+        "token_type": "s7b",
+        "id": "O_AUTH2_TOKEN02"
       }
     }
   },

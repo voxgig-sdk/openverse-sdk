@@ -124,9 +124,9 @@ audio = client.Audio()
 | `identifier` | ``$STRING`` | Yes |  |
 | `indexed_on` | ``$STRING`` | Yes |  |
 | `len` | ``$INTEGER`` | Yes |  |
+| `license` | ``$STRING`` | Yes |  |
 | `license_url` | ``$STRING`` | Yes |  |
 | `license_version` | ``$STRING`` | No |  |
-| `licenses` | ``$STRING`` | Yes |  |
 | `logo_url` | ``$STRING`` | Yes |  |
 | `mature` | ``$BOOLEAN`` | Yes |  |
 | `media_count` | ``$INTEGER`` | Yes |  |
@@ -161,8 +161,8 @@ result, err = client.Audio().create({
     "identifier": # `$STRING`,
     "indexed_on": # `$STRING`,
     "len": # `$INTEGER`,
+    "license": # `$STRING`,
     "license_url": # `$STRING`,
-    "licenses": # `$STRING`,
     "logo_url": # `$STRING`,
     "mature": # `$BOOLEAN`,
     "media_count": # `$INTEGER`,
@@ -249,9 +249,9 @@ image = client.Image()
 | `id` | ``$STRING`` | Yes |  |
 | `identifier` | ``$STRING`` | Yes |  |
 | `indexed_on` | ``$STRING`` | Yes |  |
+| `license` | ``$STRING`` | Yes |  |
 | `license_url` | ``$STRING`` | Yes |  |
 | `license_version` | ``$STRING`` | No |  |
-| `licenses` | ``$STRING`` | Yes |  |
 | `logo_url` | ``$STRING`` | Yes |  |
 | `mature` | ``$BOOLEAN`` | Yes |  |
 | `media_count` | ``$INTEGER`` | Yes |  |
@@ -290,9 +290,9 @@ image = client.Image()
 | `id` | - | - | - | - | - |
 | `identifier` | - | - | - | - | - |
 | `indexed_on` | - | - | - | - | - |
+| `license` | - | - | - | - | - |
 | `license_url` | - | - | - | - | - |
 | `license_version` | - | - | - | - | - |
-| `licenses` | - | - | - | - | - |
 | `logo_url` | - | - | - | - | - |
 | `mature` | - | - | - | - | - |
 | `media_count` | - | - | - | - | - |
@@ -326,8 +326,8 @@ result, err = client.Image().create({
     "fields_matched": # `$ARRAY`,
     "identifier": # `$STRING`,
     "indexed_on": # `$STRING`,
+    "license": # `$STRING`,
     "license_url": # `$STRING`,
-    "licenses": # `$STRING`,
     "logo_url": # `$STRING`,
     "mature": # `$BOOLEAN`,
     "media_count": # `$INTEGER`,

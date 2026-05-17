@@ -5,14 +5,14 @@ The Golang SDK for the Openverse API. Provides an entity-oriented interface usin
 
 ## Install
 ```bash
-go get github.com/voxgig-sdk/openverse-sdk
+go get github.com/voxgig-sdk/openverse-sdk/go
 ```
 
 If the module is not yet published to a registry, use a `replace` directive
 in your `go.mod` to point to a local checkout:
 
 ```bash
-go mod edit -replace github.com/voxgig-sdk/openverse-sdk=../path/to/github.com/voxgig-sdk/openverse-sdk
+go mod edit -replace github.com/voxgig-sdk/openverse-sdk/go=../path/to/github.com/voxgig-sdk/openverse-sdk/go
 ```
 
 
@@ -30,8 +30,8 @@ import (
     "fmt"
     "os"
 
-    sdk "github.com/voxgig-sdk/openverse-sdk"
-    "github.com/voxgig-sdk/openverse-sdk/core"
+    sdk "github.com/voxgig-sdk/openverse-sdk/go"
+    "github.com/voxgig-sdk/openverse-sdk/go/core"
 )
 
 func main() {
@@ -277,9 +277,9 @@ On error, `"ok"` is `false` and `"err"` contains the error value.
 | `"identifier"` |  |
 | `"indexed_on"` |  |
 | `"len"` |  |
+| `"license"` |  |
 | `"license_url"` |  |
 | `"license_version"` |  |
-| `"licenses"` |  |
 | `"logo_url"` |  |
 | `"mature"` |  |
 | `"media_count"` |  |
@@ -322,9 +322,9 @@ API path: `/v1/audio/{identifier}/report/`
 | `"id"` |  |
 | `"identifier"` |  |
 | `"indexed_on"` |  |
+| `"license"` |  |
 | `"license_url"` |  |
 | `"license_version"` |  |
-| `"licenses"` |  |
 | `"logo_url"` |  |
 | `"mature"` |  |
 | `"media_count"` |  |
@@ -425,9 +425,9 @@ Create an instance: `audio := client.Audio(nil)`
 | `identifier` | ``$STRING`` |  |
 | `indexed_on` | ``$STRING`` |  |
 | `len` | ``$INTEGER`` |  |
+| `license` | ``$STRING`` |  |
 | `license_url` | ``$STRING`` |  |
 | `license_version` | ``$STRING`` |  |
-| `licenses` | ``$STRING`` |  |
 | `logo_url` | ``$STRING`` |  |
 | `mature` | ``$BOOLEAN`` |  |
 | `media_count` | ``$INTEGER`` |  |
@@ -470,8 +470,8 @@ result, err := client.Audio(nil).Create(map[string]any{
     "identifier": /* `$STRING` */,
     "indexed_on": /* `$STRING` */,
     "len": /* `$INTEGER` */,
+    "license": /* `$STRING` */,
     "license_url": /* `$STRING` */,
-    "licenses": /* `$STRING` */,
     "logo_url": /* `$STRING` */,
     "mature": /* `$BOOLEAN` */,
     "media_count": /* `$INTEGER` */,
@@ -520,9 +520,9 @@ Create an instance: `image := client.Image(nil)`
 | `id` | ``$STRING`` |  |
 | `identifier` | ``$STRING`` |  |
 | `indexed_on` | ``$STRING`` |  |
+| `license` | ``$STRING`` |  |
 | `license_url` | ``$STRING`` |  |
 | `license_version` | ``$STRING`` |  |
-| `licenses` | ``$STRING`` |  |
 | `logo_url` | ``$STRING`` |  |
 | `mature` | ``$BOOLEAN`` |  |
 | `media_count` | ``$INTEGER`` |  |
@@ -564,8 +564,8 @@ result, err := client.Image(nil).Create(map[string]any{
     "fields_matched": /* `$ARRAY` */,
     "identifier": /* `$STRING` */,
     "indexed_on": /* `$STRING` */,
+    "license": /* `$STRING` */,
     "license_url": /* `$STRING` */,
-    "licenses": /* `$STRING` */,
     "logo_url": /* `$STRING` */,
     "mature": /* `$BOOLEAN` */,
     "media_count": /* `$INTEGER` */,
@@ -717,7 +717,7 @@ Use `core.ToMapAny()` to safely cast results and nested data.
 ### Package structure
 
 ```
-github.com/voxgig-sdk/openverse-sdk/
+github.com/voxgig-sdk/openverse-sdk/go/
 ├── openverse.go        # Root package — type aliases and constructors
 ├── core/               # SDK core — client, types, pipeline
 ├── entity/             # Entity implementations
@@ -726,7 +726,7 @@ github.com/voxgig-sdk/openverse-sdk/
 └── test/               # Test suites
 ```
 
-The root package (`github.com/voxgig-sdk/openverse-sdk`) re-exports everything needed
+The root package (`github.com/voxgig-sdk/openverse-sdk/go`) re-exports everything needed
 for normal use. Import sub-packages only when you need specific types
 like `core.ToMapAny`.
 

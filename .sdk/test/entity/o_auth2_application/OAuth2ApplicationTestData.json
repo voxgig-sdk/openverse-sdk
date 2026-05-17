@@ -4,17 +4,20 @@
       "O_AUTH2_APPLICATION00": {
         "description": "s1e",
         "email": "s1f",
-        "name": "s20"
+        "name": "s20",
+        "id": "O_AUTH2_APPLICATION00"
       },
       "O_AUTH2_APPLICATION01": {
         "description": "s3c",
         "email": "s3d",
-        "name": "s3e"
+        "name": "s3e",
+        "id": "O_AUTH2_APPLICATION01"
       },
       "O_AUTH2_APPLICATION02": {
         "description": "s5a",
         "email": "s5b",
-        "name": "s5c"
+        "name": "s5c",
+        "id": "O_AUTH2_APPLICATION02"
       }
     }
   },

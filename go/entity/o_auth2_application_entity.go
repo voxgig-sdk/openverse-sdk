@@ -1,9 +1,9 @@
 package entity
 
 import (
-	"github.com/voxgig-sdk/openverse-sdk/core"
+	"github.com/voxgig-sdk/openverse-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/openverse-sdk/go/utility/struct"
 )
 
 type OAuth2ApplicationEntity struct {

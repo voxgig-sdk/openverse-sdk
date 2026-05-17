@@ -211,22 +211,22 @@ class Config {
           "index$": 19
         },
         {
-          "name": "license_url",
+          "name": "license",
           "req": true,
           "type": "`$STRING`",
           "active": true,
           "index$": 20
         },
         {
-          "name": "license_version",
-          "req": false,
+          "name": "license_url",
+          "req": true,
           "type": "`$STRING`",
           "active": true,
           "index$": 21
         },
         {
-          "name": "licenses",
-          "req": true,
+          "name": "license_version",
+          "req": false,
           "type": "`$STRING`",
           "active": true,
           "index$": 22
@@ -444,16 +444,16 @@ class Config {
                   },
                   {
                     "kind": "query",
-                    "name": "license_type",
-                    "orig": "license_type",
+                    "name": "license",
+                    "orig": "license",
                     "reqd": false,
                     "type": "`$STRING`",
                     "active": true
                   },
                   {
                     "kind": "query",
-                    "name": "licenses",
-                    "orig": "licenses",
+                    "name": "license_type",
+                    "orig": "license_type",
                     "reqd": false,
                     "type": "`$STRING`",
                     "active": true
@@ -603,8 +603,8 @@ class Config {
                   "extension",
                   "filter_dead",
                   "length",
+                  "license",
                   "license_type",
-                  "licenses",
                   "mature",
                   "page",
                   "page_size",
@@ -1013,22 +1013,22 @@ class Config {
           "index$": 16
         },
         {
-          "name": "license_url",
+          "name": "license",
           "req": true,
           "type": "`$STRING`",
           "active": true,
           "index$": 17
         },
         {
-          "name": "license_version",
-          "req": false,
+          "name": "license_url",
+          "req": true,
           "type": "`$STRING`",
           "active": true,
           "index$": 18
         },
         {
-          "name": "licenses",
-          "req": true,
+          "name": "license_version",
+          "req": false,
           "type": "`$STRING`",
           "active": true,
           "index$": 19
@@ -1252,16 +1252,16 @@ class Config {
                   },
                   {
                     "kind": "query",
-                    "name": "license_type",
-                    "orig": "license_type",
+                    "name": "license",
+                    "orig": "license",
                     "reqd": false,
                     "type": "`$STRING`",
                     "active": true
                   },
                   {
                     "kind": "query",
-                    "name": "licenses",
-                    "orig": "licenses",
+                    "name": "license_type",
+                    "orig": "license_type",
                     "reqd": false,
                     "type": "`$STRING`",
                     "active": true
@@ -1410,8 +1410,8 @@ class Config {
                   "excluded_source",
                   "extension",
                   "filter_dead",
+                  "license",
                   "license_type",
-                  "licenses",
                   "mature",
                   "page",
                   "page_size",

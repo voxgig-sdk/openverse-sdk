@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/openverse-sdk"
-	"github.com/voxgig-sdk/openverse-sdk/core"
+	sdk "github.com/voxgig-sdk/openverse-sdk/go"
+	"github.com/voxgig-sdk/openverse-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/openverse-sdk/go/utility/struct"
 )
 
 func TestOAuth2ApplicationEntity(t *testing.T) {

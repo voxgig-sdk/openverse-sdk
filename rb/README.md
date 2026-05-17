@@ -254,9 +254,9 @@ On error, `ok` is `false` and `err` contains the error value.
 | `identifier` |  |
 | `indexed_on` |  |
 | `len` |  |
+| `license` |  |
 | `license_url` |  |
 | `license_version` |  |
-| `licenses` |  |
 | `logo_url` |  |
 | `mature` |  |
 | `media_count` |  |
@@ -299,9 +299,9 @@ API path: `/v1/audio/{identifier}/report/`
 | `id` |  |
 | `identifier` |  |
 | `indexed_on` |  |
+| `license` |  |
 | `license_url` |  |
 | `license_version` |  |
-| `licenses` |  |
 | `logo_url` |  |
 | `mature` |  |
 | `media_count` |  |
@@ -402,9 +402,9 @@ Create an instance: `const audio = client.Audio()`
 | `identifier` | ``$STRING`` |  |
 | `indexed_on` | ``$STRING`` |  |
 | `len` | ``$INTEGER`` |  |
+| `license` | ``$STRING`` |  |
 | `license_url` | ``$STRING`` |  |
 | `license_version` | ``$STRING`` |  |
-| `licenses` | ``$STRING`` |  |
 | `logo_url` | ``$STRING`` |  |
 | `mature` | ``$BOOLEAN`` |  |
 | `media_count` | ``$INTEGER`` |  |
@@ -447,8 +447,8 @@ const audio = await client.Audio().create({
   identifier: /* `$STRING` */,
   indexed_on: /* `$STRING` */,
   len: /* `$INTEGER` */,
+  license: /* `$STRING` */,
   license_url: /* `$STRING` */,
-  licenses: /* `$STRING` */,
   logo_url: /* `$STRING` */,
   mature: /* `$BOOLEAN` */,
   media_count: /* `$INTEGER` */,
@@ -497,9 +497,9 @@ Create an instance: `const image = client.Image()`
 | `id` | ``$STRING`` |  |
 | `identifier` | ``$STRING`` |  |
 | `indexed_on` | ``$STRING`` |  |
+| `license` | ``$STRING`` |  |
 | `license_url` | ``$STRING`` |  |
 | `license_version` | ``$STRING`` |  |
-| `licenses` | ``$STRING`` |  |
 | `logo_url` | ``$STRING`` |  |
 | `mature` | ``$BOOLEAN`` |  |
 | `media_count` | ``$INTEGER`` |  |
@@ -541,8 +541,8 @@ const image = await client.Image().create({
   fields_matched: /* `$ARRAY` */,
   identifier: /* `$STRING` */,
   indexed_on: /* `$STRING` */,
+  license: /* `$STRING` */,
   license_url: /* `$STRING` */,
-  licenses: /* `$STRING` */,
   logo_url: /* `$STRING` */,
   mature: /* `$BOOLEAN` */,
   media_count: /* `$INTEGER` */,

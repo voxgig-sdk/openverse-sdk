@@ -97,6 +97,11 @@ main: kit: entity: image: {
       type: "`$STRING`"
     }
     {
+      name: "license"
+      req: true
+      type: "`$STRING`"
+    }
+    {
       name: "license_url"
       req: true
       type: "`$STRING`"
@@ -104,11 +109,6 @@ main: kit: entity: image: {
     {
       name: "license_version"
       req: false
-      type: "`$STRING`"
-    }
-    {
-      name: "licenses"
-      req: true
       type: "`$STRING`"
     }
     {
@@ -293,15 +293,15 @@ main: kit: entity: image: {
               }
               {
                 kind: "query"
-                name: "license_type"
-                orig: "license_type"
+                name: "license"
+                orig: "license"
                 reqd: false
                 type: "`$STRING`"
               }
               {
                 kind: "query"
-                name: "licenses"
-                orig: "licenses"
+                name: "license_type"
+                orig: "license_type"
                 reqd: false
                 type: "`$STRING`"
               }
@@ -434,8 +434,8 @@ main: kit: entity: image: {
               "excluded_source"
               "extension"
               "filter_dead"
+              "license"
               "license_type"
-              "licenses"
               "mature"
               "page"
               "page_size"

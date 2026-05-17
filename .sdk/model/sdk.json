@@ -162,6 +162,12 @@
               "active": true
             },
             {
+              "name": "license",
+              "req": true,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
               "name": "license_url",
               "req": true,
               "type": "`$STRING`",
@@ -170,12 +176,6 @@
             {
               "name": "license_version",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
-            },
-            {
-              "name": "licenses",
-              "req": true,
               "type": "`$STRING`",
               "active": true
             },
@@ -378,16 +378,16 @@
                       },
                       {
                         "kind": "query",
-                        "name": "license_type",
-                        "orig": "license_type",
+                        "name": "license",
+                        "orig": "license",
                         "reqd": false,
                         "type": "`$STRING`",
                         "active": true
                       },
                       {
                         "kind": "query",
-                        "name": "licenses",
-                        "orig": "licenses",
+                        "name": "license_type",
+                        "orig": "license_type",
                         "reqd": false,
                         "type": "`$STRING`",
                         "active": true
@@ -537,8 +537,8 @@
                       "extension",
                       "filter_dead",
                       "length",
+                      "license",
                       "license_type",
-                      "licenses",
                       "mature",
                       "page",
                       "page_size",
@@ -925,6 +925,12 @@
               "active": true
             },
             {
+              "name": "license",
+              "req": true,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
               "name": "license_url",
               "req": true,
               "type": "`$STRING`",
@@ -933,12 +939,6 @@
             {
               "name": "license_version",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
-            },
-            {
-              "name": "licenses",
-              "req": true,
               "type": "`$STRING`",
               "active": true
             },
@@ -1147,16 +1147,16 @@
                       },
                       {
                         "kind": "query",
-                        "name": "license_type",
-                        "orig": "license_type",
+                        "name": "license",
+                        "orig": "license",
                         "reqd": false,
                         "type": "`$STRING`",
                         "active": true
                       },
                       {
                         "kind": "query",
-                        "name": "licenses",
-                        "orig": "licenses",
+                        "name": "license_type",
+                        "orig": "license_type",
                         "reqd": false,
                         "type": "`$STRING`",
                         "active": true
@@ -1305,8 +1305,8 @@
                       "excluded_source",
                       "extension",
                       "filter_dead",
+                      "license",
                       "license_type",
-                      "licenses",
                       "mature",
                       "page",
                       "page_size",
@@ -1723,6 +1723,9 @@
             },
             "rb": {
               "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
             }
           }
         }
@@ -1922,6 +1925,33 @@
         }
       },
       "target": {
+        "go-cli": {
+          "title": "Go CLI",
+          "ext": "go",
+          "comment": {
+            "line": "//"
+          },
+          "module": {
+            "name": "openverse"
+          },
+          "phase": {
+            "entity": {
+              "active": false
+            },
+            "feature": {
+              "active": false
+            },
+            "readme": {
+              "active": false
+            },
+            "test": {
+              "active": false
+            }
+          },
+          "deps": {},
+          "name": "go-cli",
+          "active": true
+        },
         "ts": {
           "title": "TypeScript",
           "ext": "ts",
@@ -1962,14 +1992,7 @@
             "name": "openverse"
           },
           "srcfeature": false,
-          "deps": {
-            "github.com/voxgig/struct": {
-              "active": true,
-              "version": "v0.0.0",
-              "replace": "./utility/struct",
-              "kind": "prod"
-            }
-          },
+          "deps": {},
           "name": "go",
           "active": true
         },
@@ -2057,15 +2080,6 @@
     },
     "def": {
       "desc": ""
-    },
-    "api": {
-      "guide": {},
-      "entity": {}
     }
-  },
-  "name__orig": "openverse",
-  "Name": "Openverse",
-  "name_": "openverse",
-  "name-": "openverse",
-  "NAME": "OPENVERSE"
+  }
 }
