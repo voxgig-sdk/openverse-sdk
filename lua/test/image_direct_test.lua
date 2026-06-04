@@ -117,14 +117,12 @@ function image_direct_setup(mockres)
   local env = runner.env_override({
     ["OPENVERSE_TEST_IMAGE_ENTID"] = {},
     ["OPENVERSE_TEST_LIVE"] = "FALSE",
-    ["OPENVERSE_APIKEY"] = "NONE",
   })
 
   local live = env["OPENVERSE_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
-      apikey = env["OPENVERSE_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

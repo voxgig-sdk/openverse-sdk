@@ -109,14 +109,12 @@ def _audio_direct_setup(mockres):
     env = runner.env_override({
         "OPENVERSE_TEST_AUDIO_ENTID": {},
         "OPENVERSE_TEST_LIVE": "FALSE",
-        "OPENVERSE_APIKEY": "NONE",
     })
 
     live = env.get("OPENVERSE_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("OPENVERSE_APIKEY"),
         }
         client = OpenverseSDK(merged_opts)
         return {

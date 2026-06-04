@@ -38,10 +38,6 @@ class Config {
   options = {
     base: 'https://api.openverse.org',
 
-    auth: {
-      prefix: 'Bearer',
-    },
-
     headers: {
       "content-type": "application/json"
     },

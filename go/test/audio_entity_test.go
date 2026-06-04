@@ -147,7 +147,6 @@ func audioBasicSetup(extra map[string]any) *entityTestSetup {
 		"OPENVERSE_TEST_AUDIO_ENTID": idmap,
 		"OPENVERSE_TEST_LIVE":      "FALSE",
 		"OPENVERSE_TEST_EXPLAIN":   "FALSE",
-		"OPENVERSE_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["OPENVERSE_TEST_AUDIO_ENTID"])
@@ -158,7 +157,6 @@ func audioBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["OPENVERSE_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["OPENVERSE_APIKEY"],
 			},
 			extra,
 		})

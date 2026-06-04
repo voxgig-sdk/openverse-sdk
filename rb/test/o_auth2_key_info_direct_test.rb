@@ -61,14 +61,12 @@ def o_auth2_key_info_direct_setup(mockres)
   env = Runner.env_override({
     "OPENVERSE_TEST_O_AUTH__KEY_INFO_ENTID" => {},
     "OPENVERSE_TEST_LIVE" => "FALSE",
-    "OPENVERSE_APIKEY" => "NONE",
   })
 
   live = env["OPENVERSE_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
-      "apikey" => env["OPENVERSE_APIKEY"],
     }
     client = OpenverseSDK.new(merged_opts)
     return {

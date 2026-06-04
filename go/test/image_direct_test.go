@@ -194,14 +194,12 @@ func imageDirectSetup(mockres any) *imageDirectSetupResult {
 	env := envOverride(map[string]any{
 		"OPENVERSE_TEST_IMAGE_ENTID": map[string]any{},
 		"OPENVERSE_TEST_LIVE":    "FALSE",
-		"OPENVERSE_APIKEY":       "NONE",
 	})
 
 	live := env["OPENVERSE_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["OPENVERSE_APIKEY"],
 		}
 		client := sdk.NewOpenverseSDK(mergedOpts)
 

@@ -136,14 +136,12 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'OPENVERSE_TEST_IMAGE_ENTID': {},
     'OPENVERSE_TEST_LIVE': 'FALSE',
-    'OPENVERSE_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.OPENVERSE_TEST_LIVE
 
   if (live) {
     const client = new OpenverseSDK({
-      apikey: env.OPENVERSE_APIKEY,
     })
 
     let idmap: any = env['OPENVERSE_TEST_IMAGE_ENTID']

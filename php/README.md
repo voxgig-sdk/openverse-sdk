@@ -20,9 +20,7 @@ loading a specific record.
 <?php
 require_once 'openverse_sdk.php';
 
-$client = new OpenverseSDK([
-    "apikey" => getenv("OPENVERSE_APIKEY"),
-]);
+$client = new OpenverseSDK([]);
 ```
 
 ### 2. List audios
@@ -135,7 +133,6 @@ Create a `.env.local` file at the project root:
 
 ```
 OPENVERSE_TEST_LIVE=TRUE
-OPENVERSE_APIKEY=<your-key>
 ```
 
 Then run:
@@ -158,7 +155,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |

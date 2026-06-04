@@ -86,7 +86,6 @@ function o_auth2_token_basic_setup(extra)
     ["OPENVERSE_TEST_O_AUTH__TOKEN_ENTID"] = idmap,
     ["OPENVERSE_TEST_LIVE"] = "FALSE",
     ["OPENVERSE_TEST_EXPLAIN"] = "FALSE",
-    ["OPENVERSE_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -98,7 +97,6 @@ function o_auth2_token_basic_setup(extra)
   if env["OPENVERSE_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
-        apikey = env["OPENVERSE_APIKEY"],
       },
       extra or {},
     })

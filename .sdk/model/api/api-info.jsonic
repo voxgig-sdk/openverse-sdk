@@ -36,8 +36,32 @@ in our docs.
         backgroundColor: "#fafafa"
         url: "https://raw.githubusercontent.com/WordPress/openverse/HEAD/documentation/meta/brand/logo.svg"
       }
+      tagline: "Search openly-licensed images and audio across many providers from a single API"
+      homepage: "https://openverse.org"
+      docs_url: "https://api.openverse.org/v1/"
+      license_short: "API client code under MIT; indexed media carries its own Creative Commons or public-domain licence per item."
+      license_md: `- This SDK is distributed under the MIT License.
+- Openverse itself is a [WordPress](https://wordpress.org) project and the API is open-source.
+- Media returned by the API is **not** MIT-licensed: each result carries its own Creative Commons licence or public-domain dedication, which you must respect (attribution, share-alike, etc.).
+- Always check the \`license\` and \`license_url\` fields on each result before reusing media.`
+      about_md: `[Openverse](https://openverse.org) is a search engine for openly-licensed media maintained as a [WordPress](https://wordpress.org) project (originally launched by Creative Commons as CC Search). It aggregates hundreds of millions of images and audio tracks from sources such as Flickr, Wikimedia Commons, museum collections, Jamendo and Freesound, all under Creative Commons licences or in the public domain.
+
+What you get from the API:
+
+- Full-text and faceted search across images (\`GET /v1/images/\`) and audio (\`GET /v1/audio/\`).
+- Per-item detail, related results, thumbnails and (for audio) waveform data.
+- Filtering by licence type, source provider, file type, dimensions and more.
+- OAuth2 application registration for higher rate limits.
+
+The API is served from \`https://api.openverse.org\` and documented at [api.openverse.org/v1/](https://api.openverse.org/v1/). Anonymous use is rate-limited; registering an OAuth2 application and using a bearer token raises the limits. See the docs for current throttling tiers and required headers.`
+      entity_desc: {
+        audio: "Openly-licensed audio tracks (music, sound effects, spoken word) aggregated from providers such as Jamendo and Freesound; served under `/v1/audio/`."
+        image: "Openly-licensed still images aggregated from providers such as Flickr, Wikimedia Commons and museum collections; served under `/v1/images/`."
+        o_auth2_application: "An OAuth2 client application registered against the Openverse API in order to obtain credentials for authenticated, higher-throttle access."
+        o_auth2_key_info: "Metadata about a registered OAuth2 key, including its current rate-limit tier and verification status."
+        o_auth2_token: "A bearer access token issued to a registered OAuth2 application and used to authenticate subsequent API requests."
+      }
+      auth: false
     }
   }
-}
-
 }
