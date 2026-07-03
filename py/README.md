@@ -10,7 +10,7 @@ The Python SDK for the Openverse API — an entity-oriented client following Pyt
 
 ## Install
 ```bash
-pip install openverse-sdk
+pip install voxgig-sdk-openverse
 ```
 
 Or install from source:

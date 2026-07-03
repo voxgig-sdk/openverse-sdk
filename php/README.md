@@ -10,7 +10,7 @@ The PHP SDK for the Openverse API — an entity-oriented client using PHP conven
 
 ## Install
 ```bash
-composer require voxgig/openverse-sdk
+composer require voxgig-sdk/openverse
 ```
 
 

@@ -10,13 +10,13 @@ The Ruby SDK for the Openverse API — an entity-oriented client using idiomatic
 
 ## Install
 ```bash
-gem install openverse-sdk
+gem install voxgig-sdk-openverse
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "openverse-sdk"
+gem "voxgig-sdk-openverse"
 ```
 
 Then run:

@@ -10,7 +10,7 @@ The TypeScript SDK for the Openverse API — a type-safe, entity-oriented client
 
 ## Install
 ```bash
-npm install openverse
+npm install @voxgig-sdk/openverse
 ```
 ## Tutorial: your first API call
 
