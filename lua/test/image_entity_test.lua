@@ -110,6 +110,7 @@ function image_basic_setup(extra)
     ["OPENVERSE_TEST_IMAGE_ENTID"] = idmap,
     ["OPENVERSE_TEST_LIVE"] = "FALSE",
     ["OPENVERSE_TEST_EXPLAIN"] = "FALSE",
+    ["OPENVERSE_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -121,6 +122,7 @@ function image_basic_setup(extra)
   if env["OPENVERSE_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
+        apikey = env["OPENVERSE_APIKEY"],
       },
       extra or {},
     })

@@ -1,21 +1,8 @@
 # Openverse SDK
 
-Search openly-licensed images and audio across many providers from a single API
+Openverse API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Openverse API
-
-[Openverse](https://openverse.org) is a search engine for openly-licensed media maintained as a [WordPress](https://wordpress.org) project (originally launched by Creative Commons as CC Search). It aggregates hundreds of millions of images and audio tracks from sources such as Flickr, Wikimedia Commons, museum collections, Jamendo and Freesound, all under Creative Commons licences or in the public domain.
-
-What you get from the API:
-
-- Full-text and faceted search across images (`GET /v1/images/`) and audio (`GET /v1/audio/`).
-- Per-item detail, related results, thumbnails and (for audio) waveform data.
-- Filtering by licence type, source provider, file type, dimensions and more.
-- OAuth2 application registration for higher rate limits.
-
-The API is served from `https://api.openverse.org` and documented at [api.openverse.org/v1/](https://api.openverse.org/v1/). Anonymous use is rate-limited; registering an OAuth2 application and using a bearer token raises the limits. See the docs for current throttling tiers and required headers.
 
 ## Try it
 
@@ -49,29 +36,31 @@ gem install openverse-sdk
 luarocks install openverse-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { OpenverseSDK } from 'openverse'
 
-const client = new OpenverseSDK({})
+const client = new OpenverseSDK({
+  apikey: process.env.OPENVERSE_APIKEY,
+})
 
 // List all audios
 const audios = await client.Audio().list()
+console.log(audios.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -101,11 +90,11 @@ The API exposes 5 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Audio** | Openly-licensed audio tracks (music, sound effects, spoken word) aggregated from providers such as Jamendo and Freesound; served under `/v1/audio/`. | `/v1/audio/{identifier}/report/` |
-| **Image** | Openly-licensed still images aggregated from providers such as Flickr, Wikimedia Commons and museum collections; served under `/v1/images/`. | `/v1/images/{identifier}/report/` |
-| **OAuth2Application** | An OAuth2 client application registered against the Openverse API in order to obtain credentials for authenticated, higher-throttle access. | `/v1/auth_tokens/register/` |
-| **OAuth2KeyInfo** | Metadata about a registered OAuth2 key, including its current rate-limit tier and verification status. | `/v1/rate_limit/` |
-| **OAuth2Token** | A bearer access token issued to a registered OAuth2 application and used to authenticate subsequent API requests. | `/v1/auth_tokens/token/` |
+| **Audio** |  | `/v1/audio/{identifier}/report/` |
+| **Image** |  | `/v1/images/{identifier}/report/` |
+| **OAuth2Application** |  | `/v1/auth_tokens/register/` |
+| **OAuth2KeyInfo** |  | `/v1/rate_limit/` |
+| **OAuth2Token** |  | `/v1/auth_tokens/token/` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -115,17 +104,20 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from openverse_sdk import OpenverseSDK
 
-client = OpenverseSDK({})
+client = OpenverseSDK({
+    "apikey": os.environ.get("OPENVERSE_APIKEY"),
+})
 
 # List all audios
-audios, err = client.Audio(None).list(None, None)
+audios, err = client.Audio().list()
+print(audios)
 
 # Load a specific audio
-audio, err = client.Audio(None).load(
-    {"id": "example_id"}, None
-)
+audio, err = client.Audio().load({"id": "example_id"})
+print(audio)
 ```
 
 ### PHP
@@ -134,15 +126,17 @@ audio, err = client.Audio(None).load(
 <?php
 require_once 'openverse_sdk.php';
 
-$client = new OpenverseSDK([]);
+$client = new OpenverseSDK([
+    "apikey" => getenv("OPENVERSE_APIKEY"),
+]);
 
 // List all audios
-[$audios, $err] = $client->Audio(null)->list(null, null);
+[$audios, $err] = $client->Audio()->list();
+print_r($audios);
 
 // Load a specific audio
-[$audio, $err] = $client->Audio(null)->load(
-    ["id" => "example_id"], null
-);
+[$audio, $err] = $client->Audio()->load(["id" => "example_id"]);
+print_r($audio);
 ```
 
 ### Golang
@@ -150,10 +144,13 @@ $client = new OpenverseSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/openverse-sdk/go"
 
-client := sdk.NewOpenverseSDK(map[string]any{})
+client := sdk.NewOpenverseSDK(map[string]any{
+    "apikey": os.Getenv("OPENVERSE_APIKEY"),
+})
 
 // List all audios
 audios, err := client.Audio(nil).List(nil, nil)
+fmt.Println(audios)
 ```
 
 ### Ruby
@@ -161,15 +158,17 @@ audios, err := client.Audio(nil).List(nil, nil)
 ```ruby
 require_relative "Openverse_sdk"
 
-client = OpenverseSDK.new({})
+client = OpenverseSDK.new({
+  "apikey" => ENV["OPENVERSE_APIKEY"],
+})
 
 # List all audios
-audios, err = client.Audio(nil).list(nil, nil)
+audios, err = client.Audio().list
+puts audios
 
 # Load a specific audio
-audio, err = client.Audio(nil).load(
-  { "id" => "example_id" }, nil
-)
+audio, err = client.Audio().load({ "id" => "example_id" })
+puts audio
 ```
 
 ### Lua
@@ -177,15 +176,17 @@ audio, err = client.Audio(nil).load(
 ```lua
 local sdk = require("openverse_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("OPENVERSE_APIKEY"),
+})
 
 -- List all audios
-local audios, err = client:Audio(nil):list(nil, nil)
+local audios, err = client:Audio():list()
+print(audios)
 
 -- Load a specific audio
-local audio, err = client:Audio(nil):load(
-  { id = "example_id" }, nil
-)
+local audio, err = client:Audio():load({ id = "example_id" })
+print(audio)
 ```
 
 ## Unit testing in offline mode
@@ -204,25 +205,21 @@ const result = await client.Audio().load({ id: 'test01' })
 ### Python
 
 ```python
-client = OpenverseSDK.test(None, None)
-result, err = client.Audio(None).load(
-    {"id": "test01"}, None
-)
+client = OpenverseSDK.test()
+result, err = client.Audio().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = OpenverseSDK::test(null, null);
-[$result, $err] = $client->Audio(null)->load(
-    ["id" => "test01"], null
-);
+$client = OpenverseSDK::test();
+[$result, $err] = $client->Audio()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Audio(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -231,19 +228,15 @@ result, err := client.Audio(nil).Load(
 ### Ruby
 
 ```ruby
-client = OpenverseSDK.test(nil, nil)
-result, err = client.Audio(nil).load(
-  { "id" => "test01" }, nil
-)
+client = OpenverseSDK.test
+result, err = client.Audio().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Audio(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Audio():load({ id = "test01" })
 ```
 
 ## How it works
@@ -347,16 +340,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Openverse API
-
-- Upstream: [https://openverse.org](https://openverse.org)
-- API docs: [https://api.openverse.org/v1/](https://api.openverse.org/v1/)
-
-- This SDK is distributed under the MIT License.
-- Openverse itself is a [WordPress](https://wordpress.org) project and the API is open-source.
-- Media returned by the API is **not** MIT-licensed: each result carries its own Creative Commons licence or public-domain dedication, which you must respect (attribution, share-alike, etc.).
-- Always check the `license` and `license_url` fields on each result before reusing media.
 
 ---
 

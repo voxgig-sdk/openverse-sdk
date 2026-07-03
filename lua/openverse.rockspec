@@ -1,7 +1,11 @@
 package = "voxgig-sdk-openverse"
-version = "0.0-1"
+version = "0.0.1-1"
 source = {
-  url = "git://github.com/voxgig-sdk/openverse-sdk.git"
+  -- git+https (GitHub dropped git:// in 2022); pin the install to the release
+  -- tag pushed by `make publish`, and point at the lua/ subdir of the monorepo.
+  url = "git+https://github.com/voxgig-sdk/openverse-sdk.git",
+  tag = "lua/v0.0.1",
+  dir = "openverse-sdk/lua"
 }
 description = {
   summary = "Openverse SDK for Lua",

@@ -104,6 +104,7 @@ function image_basic_setup($extra)
         "OPENVERSE_TEST_IMAGE_ENTID" => $idmap,
         "OPENVERSE_TEST_LIVE" => "FALSE",
         "OPENVERSE_TEST_EXPLAIN" => "FALSE",
+        "OPENVERSE_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -115,6 +116,7 @@ function image_basic_setup($extra)
     if ($env["OPENVERSE_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
+                "apikey" => $env["OPENVERSE_APIKEY"],
             ],
             $extra ?? [],
         ]);

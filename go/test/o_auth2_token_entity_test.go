@@ -110,6 +110,7 @@ func o_auth2_tokenBasicSetup(extra map[string]any) *entityTestSetup {
 		"OPENVERSE_TEST_O_AUTH__TOKEN_ENTID": idmap,
 		"OPENVERSE_TEST_LIVE":      "FALSE",
 		"OPENVERSE_TEST_EXPLAIN":   "FALSE",
+		"OPENVERSE_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["OPENVERSE_TEST_O_AUTH__TOKEN_ENTID"])
@@ -120,6 +121,7 @@ func o_auth2_tokenBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["OPENVERSE_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
+				"apikey": env["OPENVERSE_APIKEY"],
 			},
 			extra,
 		})

@@ -30,12 +30,12 @@ Create a new SDK client instance.
 
 ### Static Methods
 
-#### `sdk.test(testopts, sdkopts)`
+#### `sdk.test(testopts?, sdkopts?)`
 
-Create a test client with mock features active. Both arguments may be `nil`.
+Create a test client with mock features active. Both arguments are optional.
 
 ```lua
-local client = sdk.test(nil, nil)
+local client = sdk.test()
 ```
 
 
@@ -154,7 +154,7 @@ local audio = client:Audio(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:Audio(nil):create({
+local result, err = client:Audio():create({
   alt_file = --[[ `$ARRAY` ]],
   attribution = --[[ `$STRING` ]],
   audio_set = --[[ `$ANY` ]],
@@ -177,7 +177,7 @@ local result, err = client:Audio(nil):create({
   tag = --[[ `$ARRAY` ]],
   thumbnail = --[[ `$STRING` ]],
   waveform = --[[ `$STRING` ]],
-}, nil)
+})
 ```
 
 #### `list(reqmatch, ctrl) -> any, err`
@@ -185,7 +185,7 @@ local result, err = client:Audio(nil):create({
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Audio(nil):list(nil, nil)
+local results, err = client:Audio():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -193,7 +193,7 @@ local results, err = client:Audio(nil):list(nil, nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Audio(nil):load({ id = "audio_id" }, nil)
+local result, err = client:Audio():load({ id = "audio_id" })
 ```
 
 ### Common Methods
@@ -321,7 +321,7 @@ local image = client:Image(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:Image(nil):create({
+local result, err = client:Image():create({
   attribution = --[[ `$STRING` ]],
   author_name = --[[ `$STRING` ]],
   author_url = --[[ `$STRING` ]],
@@ -343,7 +343,7 @@ local result, err = client:Image(nil):create({
   thumbnail = --[[ `$STRING` ]],
   type = --[[ `$ANY` ]],
   version = --[[ `$ANY` ]],
-}, nil)
+})
 ```
 
 #### `list(reqmatch, ctrl) -> any, err`
@@ -351,7 +351,7 @@ local result, err = client:Image(nil):create({
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Image(nil):list(nil, nil)
+local results, err = client:Image():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -359,7 +359,7 @@ local results, err = client:Image(nil):list(nil, nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Image(nil):load({ id = "image_id" }, nil)
+local result, err = client:Image():load({ id = "image_id" })
 ```
 
 ### Common Methods
@@ -413,11 +413,11 @@ local o_auth2_application = client:OAuth2Application(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:OAuth2Application(nil):create({
+local result, err = client:OAuth2Application():create({
   description = --[[ `$STRING` ]],
   email = --[[ `$STRING` ]],
   name = --[[ `$STRING` ]],
-}, nil)
+})
 ```
 
 ### Common Methods
@@ -472,7 +472,7 @@ local o_auth2_key_info = client:OAuth2KeyInfo(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:OAuth2KeyInfo(nil):load({ id = "o_auth2_key_info_id" }, nil)
+local result, err = client:OAuth2KeyInfo():load({ id = "o_auth2_key_info_id" })
 ```
 
 ### Common Methods
@@ -527,12 +527,12 @@ local o_auth2_token = client:OAuth2Token(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:OAuth2Token(nil):create({
+local result, err = client:OAuth2Token():create({
   access_token = --[[ `$STRING` ]],
   expires_in = --[[ `$INTEGER` ]],
   scope = --[[ `$STRING` ]],
   token_type = --[[ `$STRING` ]],
-}, nil)
+})
 ```
 
 ### Common Methods

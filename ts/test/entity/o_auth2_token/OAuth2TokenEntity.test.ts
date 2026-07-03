@@ -113,6 +113,7 @@ function basicSetup(extra?: any) {
     'OPENVERSE_TEST_O_AUTH__TOKEN_ENTID': idmap,
     'OPENVERSE_TEST_LIVE': 'FALSE',
     'OPENVERSE_TEST_EXPLAIN': 'FALSE',
+    'OPENVERSE_APIKEY': 'NONE',
   })
 
   idmap = env['OPENVERSE_TEST_O_AUTH__TOKEN_ENTID']
@@ -122,6 +123,7 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new OpenverseSDK(merge([
       {
+        apikey: env.OPENVERSE_APIKEY,
       },
       extra
     ]))
