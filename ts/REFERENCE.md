@@ -158,7 +158,7 @@ Alias for `OpenverseSDK.test()`.
 ## AudioEntity
 
 ```ts
-const audio = client.audio
+const audio = client.Audio()
 ```
 
 ### Fields
@@ -212,7 +212,7 @@ const audio = client.audio
 Create a new entity with the given data.
 
 ```ts
-const result = await client.audio.create({
+const result = await client.Audio().create({
   alt_file: /* `$ARRAY` */,
   attribution: /* `$STRING` */,
   audio_set: /* `$ANY` */,
@@ -243,7 +243,7 @@ const result = await client.audio.create({
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.audio.list()
+const results = await client.Audio().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -251,7 +251,7 @@ const results = await client.audio.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.audio.load({ id: 'audio_id' })
+const result = await client.Audio().load({ id: 'audio_id' })
 ```
 
 ### Common Methods
@@ -285,7 +285,7 @@ Return a copy of the entity options.
 ## ImageEntity
 
 ```ts
-const image = client.image
+const image = client.Image()
 ```
 
 ### Fields
@@ -377,7 +377,7 @@ const image = client.image
 Create a new entity with the given data.
 
 ```ts
-const result = await client.image.create({
+const result = await client.Image().create({
   attribution: /* `$STRING` */,
   author_name: /* `$STRING` */,
   author_url: /* `$STRING` */,
@@ -407,7 +407,7 @@ const result = await client.image.create({
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.image.list()
+const results = await client.Image().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -415,7 +415,7 @@ const results = await client.image.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.image.load({ id: 'image_id' })
+const result = await client.Image().load({ id: 'image_id' })
 ```
 
 ### Common Methods
@@ -449,7 +449,7 @@ Return a copy of the entity options.
 ## OAuth2ApplicationEntity
 
 ```ts
-const o_auth2_application = client.o_auth2_application
+const o_auth2_application = client.OAuth2Application()
 ```
 
 ### Fields
@@ -467,7 +467,7 @@ const o_auth2_application = client.o_auth2_application
 Create a new entity with the given data.
 
 ```ts
-const result = await client.o_auth2_application.create({
+const result = await client.OAuth2Application().create({
   description: /* `$STRING` */,
   email: /* `$STRING` */,
   name: /* `$STRING` */,
@@ -505,7 +505,7 @@ Return a copy of the entity options.
 ## OAuth2KeyInfoEntity
 
 ```ts
-const o_auth2_key_info = client.o_auth2_key_info
+const o_auth2_key_info = client.OAuth2KeyInfo()
 ```
 
 ### Fields
@@ -524,7 +524,7 @@ const o_auth2_key_info = client.o_auth2_key_info
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.o_auth2_key_info.load({ id: 'o_auth2_key_info_id' })
+const result = await client.OAuth2KeyInfo().load({ id: 'o_auth2_key_info_id' })
 ```
 
 ### Common Methods
@@ -558,7 +558,7 @@ Return a copy of the entity options.
 ## OAuth2TokenEntity
 
 ```ts
-const o_auth2_token = client.o_auth2_token
+const o_auth2_token = client.OAuth2Token()
 ```
 
 ### Fields
@@ -577,7 +577,7 @@ const o_auth2_token = client.o_auth2_token
 Create a new entity with the given data.
 
 ```ts
-const result = await client.o_auth2_token.create({
+const result = await client.OAuth2Token().create({
   access_token: /* `$STRING` */,
   expires_in: /* `$INTEGER` */,
   scope: /* `$STRING` */,

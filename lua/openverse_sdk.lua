@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:audio():list() / client:audio():load({ id = ... })
-function OpenverseSDK:audio(data)
+-- Idiomatic facade: client:Audio():list() / client:Audio():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function OpenverseSDK:Audio(data)
   local EntityMod = require("entity.audio_entity")
   if data == nil then
     if self._audio == nil then
@@ -256,15 +257,10 @@ function OpenverseSDK:audio(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:audio() instead.
-function OpenverseSDK:Audio(data)
-  local EntityMod = require("entity.audio_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:image():list() / client:image():load({ id = ... })
-function OpenverseSDK:image(data)
+-- Idiomatic facade: client:Image():list() / client:Image():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function OpenverseSDK:Image(data)
   local EntityMod = require("entity.image_entity")
   if data == nil then
     if self._image == nil then
@@ -275,15 +271,10 @@ function OpenverseSDK:image(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:image() instead.
-function OpenverseSDK:Image(data)
-  local EntityMod = require("entity.image_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:o_auth2_application():list() / client:o_auth2_application():load({ id = ... })
-function OpenverseSDK:o_auth2_application(data)
+-- Idiomatic facade: client:OAuth2Application():list() / client:OAuth2Application():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function OpenverseSDK:OAuth2Application(data)
   local EntityMod = require("entity.o_auth2_application_entity")
   if data == nil then
     if self._o_auth2_application == nil then
@@ -294,15 +285,10 @@ function OpenverseSDK:o_auth2_application(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:o_auth2_application() instead.
-function OpenverseSDK:OAuth2Application(data)
-  local EntityMod = require("entity.o_auth2_application_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:o_auth2_key_info():list() / client:o_auth2_key_info():load({ id = ... })
-function OpenverseSDK:o_auth2_key_info(data)
+-- Idiomatic facade: client:OAuth2KeyInfo():list() / client:OAuth2KeyInfo():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function OpenverseSDK:OAuth2KeyInfo(data)
   local EntityMod = require("entity.o_auth2_key_info_entity")
   if data == nil then
     if self._o_auth2_key_info == nil then
@@ -313,15 +299,10 @@ function OpenverseSDK:o_auth2_key_info(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:o_auth2_key_info() instead.
-function OpenverseSDK:OAuth2KeyInfo(data)
-  local EntityMod = require("entity.o_auth2_key_info_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:o_auth2_token():list() / client:o_auth2_token():load({ id = ... })
-function OpenverseSDK:o_auth2_token(data)
+-- Idiomatic facade: client:OAuth2Token():list() / client:OAuth2Token():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function OpenverseSDK:OAuth2Token(data)
   local EntityMod = require("entity.o_auth2_token_entity")
   if data == nil then
     if self._o_auth2_token == nil then
@@ -329,12 +310,6 @@ function OpenverseSDK:o_auth2_token(data)
     end
     return self._o_auth2_token
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:o_auth2_token() instead.
-function OpenverseSDK:OAuth2Token(data)
-  local EntityMod = require("entity.o_auth2_token_entity")
   return EntityMod.new(self, data)
 end
 

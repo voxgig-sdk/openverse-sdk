@@ -34,24 +34,28 @@ client = OpenverseSDK({
 })
 ```
 
-### 2. List audios
+### 2. List audio records
+
+`list()` returns a `list` of records (each a `dict`) and raises on
+error — iterate it directly.
 
 ```python
 try:
-    result = client.audio.list()
-    for item in result:
-        d = item.data_get()
-        print(d["id"], d["name"])
+    audios = client.Audio().list({})
+    for audio in audios:
+        print(audio)
 except Exception as err:
     print(f"list failed: {err}")
 ```
 
 ### 3. Load an audio
 
+`load()` returns the bare record (a `dict`) and raises on error.
+
 ```python
 try:
-    result = client.audio.load({"id": "example_id"})
-    print(result)
+    audio = client.Audio().load({"id": "example_id"})
+    print(audio)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -59,8 +63,8 @@ except Exception as err:
 ### 4. Create, update, and remove
 
 ```python
-# Create
-created = client.audio.create({"name": "Example"})
+# Create — returns the bare created record (a dict)
+created = client.Audio().create({"name": "Example"})
 
 ```
 
@@ -107,8 +111,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = OpenverseSDK.test()
 
-result = client.audio.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+audio = client.Audio().load({"id": "test01"})
+# audio contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -186,11 +191,11 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> dict` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> dict` | Build and send an HTTP request. Returns a result dict (branch on `ok`). |
-| `Audio` | `(data) -> AudioEntity` | Create a Audio entity instance. |
-| `Image` | `(data) -> ImageEntity` | Create a Image entity instance. |
-| `OAuth2Application` | `(data) -> OAuth2ApplicationEntity` | Create a OAuth2Application entity instance. |
-| `OAuth2KeyInfo` | `(data) -> OAuth2KeyInfoEntity` | Create a OAuth2KeyInfo entity instance. |
-| `OAuth2Token` | `(data) -> OAuth2TokenEntity` | Create a OAuth2Token entity instance. |
+| `Audio` | `(data) -> AudioEntity` | Create an Audio entity instance. |
+| `Image` | `(data) -> ImageEntity` | Create an Image entity instance. |
+| `OAuth2Application` | `(data) -> OAuth2ApplicationEntity` | Create an OAuth2Application entity instance. |
+| `OAuth2KeyInfo` | `(data) -> OAuth2KeyInfoEntity` | Create an OAuth2KeyInfo entity instance. |
+| `OAuth2Token` | `(data) -> OAuth2TokenEntity` | Create an OAuth2Token entity instance. |
 
 ### Entity interface
 
@@ -368,7 +373,7 @@ API path: `/v1/auth_tokens/token/`
 
 ### Audio
 
-Create an instance: `const audio = client.audio`
+Create an instance: `audio = client.Audio()`
 
 #### Operations
 
@@ -424,49 +429,49 @@ Create an instance: `const audio = client.audio`
 
 #### Example: Load
 
-```ts
-const audio = await client.audio.load({ id: 'audio_id' })
+```python
+audio = client.Audio().load({"id": "audio_id"})
 ```
 
 #### Example: List
 
-```ts
-const audios = await client.audio.list()
+```python
+audios = client.Audio().list({})
 ```
 
 #### Example: Create
 
-```ts
-const audio = await client.audio.create({
-  alt_file: /* `$ARRAY` */,
-  attribution: /* `$STRING` */,
-  audio_set: /* `$ANY` */,
-  detail_url: /* `$STRING` */,
-  display_name: /* `$STRING` */,
-  fields_matched: /* `$ARRAY` */,
-  identifier: /* `$STRING` */,
-  indexed_on: /* `$STRING` */,
-  len: /* `$INTEGER` */,
-  license: /* `$STRING` */,
-  license_url: /* `$STRING` */,
-  logo_url: /* `$STRING` */,
-  mature: /* `$BOOLEAN` */,
-  media_count: /* `$INTEGER` */,
-  point: /* `$ARRAY` */,
-  reason: /* `$ANY` */,
-  related_url: /* `$STRING` */,
-  source_name: /* `$STRING` */,
-  source_url: /* `$STRING` */,
-  tag: /* `$ARRAY` */,
-  thumbnail: /* `$STRING` */,
-  waveform: /* `$STRING` */,
+```python
+audio = client.Audio().create({
+    "alt_file": ...,  # `$ARRAY`
+    "attribution": ...,  # `$STRING`
+    "audio_set": ...,  # `$ANY`
+    "detail_url": ...,  # `$STRING`
+    "display_name": ...,  # `$STRING`
+    "fields_matched": ...,  # `$ARRAY`
+    "identifier": ...,  # `$STRING`
+    "indexed_on": ...,  # `$STRING`
+    "len": ...,  # `$INTEGER`
+    "license": ...,  # `$STRING`
+    "license_url": ...,  # `$STRING`
+    "logo_url": ...,  # `$STRING`
+    "mature": ...,  # `$BOOLEAN`
+    "media_count": ...,  # `$INTEGER`
+    "point": ...,  # `$ARRAY`
+    "reason": ...,  # `$ANY`
+    "related_url": ...,  # `$STRING`
+    "source_name": ...,  # `$STRING`
+    "source_url": ...,  # `$STRING`
+    "tag": ...,  # `$ARRAY`
+    "thumbnail": ...,  # `$STRING`
+    "waveform": ...,  # `$STRING`
 })
 ```
 
 
 ### Image
 
-Create an instance: `const image = client.image`
+Create an instance: `image = client.Image()`
 
 #### Operations
 
@@ -519,48 +524,48 @@ Create an instance: `const image = client.image`
 
 #### Example: Load
 
-```ts
-const image = await client.image.load({ id: 'image_id' })
+```python
+image = client.Image().load({"id": "image_id"})
 ```
 
 #### Example: List
 
-```ts
-const images = await client.image.list()
+```python
+images = client.Image().list({})
 ```
 
 #### Example: Create
 
-```ts
-const image = await client.image.create({
-  attribution: /* `$STRING` */,
-  author_name: /* `$STRING` */,
-  author_url: /* `$STRING` */,
-  detail_url: /* `$STRING` */,
-  display_name: /* `$STRING` */,
-  fields_matched: /* `$ARRAY` */,
-  identifier: /* `$STRING` */,
-  indexed_on: /* `$STRING` */,
-  license: /* `$STRING` */,
-  license_url: /* `$STRING` */,
-  logo_url: /* `$STRING` */,
-  mature: /* `$BOOLEAN` */,
-  media_count: /* `$INTEGER` */,
-  reason: /* `$ANY` */,
-  related_url: /* `$STRING` */,
-  source_name: /* `$STRING` */,
-  source_url: /* `$STRING` */,
-  tag: /* `$ARRAY` */,
-  thumbnail: /* `$STRING` */,
-  type: /* `$ANY` */,
-  version: /* `$ANY` */,
+```python
+image = client.Image().create({
+    "attribution": ...,  # `$STRING`
+    "author_name": ...,  # `$STRING`
+    "author_url": ...,  # `$STRING`
+    "detail_url": ...,  # `$STRING`
+    "display_name": ...,  # `$STRING`
+    "fields_matched": ...,  # `$ARRAY`
+    "identifier": ...,  # `$STRING`
+    "indexed_on": ...,  # `$STRING`
+    "license": ...,  # `$STRING`
+    "license_url": ...,  # `$STRING`
+    "logo_url": ...,  # `$STRING`
+    "mature": ...,  # `$BOOLEAN`
+    "media_count": ...,  # `$INTEGER`
+    "reason": ...,  # `$ANY`
+    "related_url": ...,  # `$STRING`
+    "source_name": ...,  # `$STRING`
+    "source_url": ...,  # `$STRING`
+    "tag": ...,  # `$ARRAY`
+    "thumbnail": ...,  # `$STRING`
+    "type": ...,  # `$ANY`
+    "version": ...,  # `$ANY`
 })
 ```
 
 
 ### OAuth2Application
 
-Create an instance: `const o_auth2_application = client.o_auth2_application`
+Create an instance: `o_auth2_application = client.OAuth2Application()`
 
 #### Operations
 
@@ -578,18 +583,18 @@ Create an instance: `const o_auth2_application = client.o_auth2_application`
 
 #### Example: Create
 
-```ts
-const o_auth2_application = await client.o_auth2_application.create({
-  description: /* `$STRING` */,
-  email: /* `$STRING` */,
-  name: /* `$STRING` */,
+```python
+o_auth2_application = client.OAuth2Application().create({
+    "description": ...,  # `$STRING`
+    "email": ...,  # `$STRING`
+    "name": ...,  # `$STRING`
 })
 ```
 
 
 ### OAuth2KeyInfo
 
-Create an instance: `const o_auth2_key_info = client.o_auth2_key_info`
+Create an instance: `o_auth2_key_info = client.OAuth2KeyInfo()`
 
 #### Operations
 
@@ -608,14 +613,14 @@ Create an instance: `const o_auth2_key_info = client.o_auth2_key_info`
 
 #### Example: Load
 
-```ts
-const o_auth2_key_info = await client.o_auth2_key_info.load({ id: 'o_auth2_key_info_id' })
+```python
+o_auth2_key_info = client.OAuth2KeyInfo().load({"id": "o_auth2_key_info_id"})
 ```
 
 
 ### OAuth2Token
 
-Create an instance: `const o_auth2_token = client.o_auth2_token`
+Create an instance: `o_auth2_token = client.OAuth2Token()`
 
 #### Operations
 
@@ -634,12 +639,12 @@ Create an instance: `const o_auth2_token = client.o_auth2_token`
 
 #### Example: Create
 
-```ts
-const o_auth2_token = await client.o_auth2_token.create({
-  access_token: /* `$STRING` */,
-  expires_in: /* `$INTEGER` */,
-  scope: /* `$STRING` */,
-  token_type: /* `$STRING` */,
+```python
+o_auth2_token = client.OAuth2Token().create({
+    "access_token": ...,  # `$STRING`
+    "expires_in": ...,  # `$INTEGER`
+    "scope": ...,  # `$STRING`
+    "token_type": ...,  # `$STRING`
 })
 ```
 
@@ -714,7 +719,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-audio = client.audio
+audio = client.Audio()
 audio.load({"id": "example_id"})
 
 # audio.data_get() now returns the loaded audio data

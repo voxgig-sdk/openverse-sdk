@@ -28,9 +28,11 @@ const client = new OpenverseSDK({
   apikey: process.env.OPENVERSE_APIKEY,
 })
 
-// List all audios
-const audios = await client.audio.list()
-console.log(audios.data)
+// List all audios (returns Audio[])
+const audios = await client.Audio().list()
+for (const audio of audios) {
+  console.log(audio)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -92,12 +94,13 @@ client = OpenverseSDK({
     "apikey": os.environ.get("OPENVERSE_APIKEY"),
 })
 
-# List all audios
-audios = client.audio.list()
-print(audios)
+# List all audios (returns a list, raises on error)
+audios = client.Audio().list({})
+for audio in audios:
+    print(audio)
 
-# Load a specific audio
-audio = client.audio.load({"id": "example_id"})
+# Load a specific audio (returns the record, raises on error)
+audio = client.Audio().load({"id": "example_id"})
 print(audio)
 ```
 
@@ -111,12 +114,12 @@ $client = new OpenverseSDK([
     "apikey" => getenv("OPENVERSE_APIKEY"),
 ]);
 
-// List all audios (throws on error)
-$audios = $client->audio()->list();
+// List all audios (returns an array; throws on error)
+$audios = $client->Audio()->list();
 print_r($audios);
 
-// Load a specific audio
-$audio = $client->audio()->load(["id" => "example_id"]);
+// Load a specific audio (returns the bare record; throws on error)
+$audio = $client->Audio()->load(["id" => "example_id"]);
 print_r($audio);
 ```
 
@@ -143,12 +146,12 @@ client = OpenverseSDK.new({
   "apikey" => ENV["OPENVERSE_APIKEY"],
 })
 
-# List all audios
-audios = client.audio.list
+# List all audios (returns an Array; raises on error)
+audios = client.Audio.list
 puts audios
 
-# Load a specific audio
-audio = client.audio.load({ "id" => "example_id" })
+# Load a specific audio (returns the bare record; raises on error)
+audio = client.Audio.load({ "id" => "example_id" })
 puts audio
 ```
 
@@ -162,11 +165,11 @@ local client = sdk.new({
 })
 
 -- List all audios
-local audios, err = client:audio():list()
+local audios, err = client:Audio():list()
 print(audios)
 
 -- Load a specific audio
-local audio, err = client:audio():load({ id = "example_id" })
+local audio, err = client:Audio():load({ id = "example_id" })
 print(audio)
 ```
 
@@ -179,22 +182,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = OpenverseSDK.test()
-const result = await client.audio.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const audio = await client.Audio().load({ id: 'test01' })
+// audio is a bare Audio populated with mock data
+console.log(audio)
 ```
 
 ### Python
 
 ```python
 client = OpenverseSDK.test()
-result = client.audio.load({"id": "test01"})
+audio = client.Audio().load({"id": "test01"})
+print(audio)
 ```
 
 ### PHP
 
 ```php
-$client = OpenverseSDK::test();
-$result = $client->audio()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = OpenverseSDK::test([
+    "entity" => ["audio" => ["test01" => ["id" => "test01"]]],
+]);
+$audio = $client->Audio()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -209,15 +217,18 @@ result, err := client.Audio(nil).Load(
 ### Ruby
 
 ```ruby
-client = OpenverseSDK.test
-result = client.audio.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = OpenverseSDK.test({
+  "entity" => { "audio" => { "test01" => { "id" => "test01" } } },
+})
+audio = client.Audio.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:audio():load({ id = "test01" })
+local result, err = client:Audio():load({ id = "test01" })
 ```
 
 ## How it works
@@ -265,6 +276,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

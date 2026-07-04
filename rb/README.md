@@ -30,16 +30,14 @@ client = OpenverseSDK.new({
 })
 ```
 
-### 2. List audios
+### 2. List audio records
 
 ```ruby
 begin
-  result = client.audio.list
-  if result.is_a?(Array)
-    result.each do |item|
-      d = item.data_get
-      puts "#{d["id"]} #{d["name"]}"
-    end
+  # list returns an Array of Audio records — iterate directly.
+  audios = client.Audio.list
+  audios.each do |item|
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -50,8 +48,9 @@ end
 
 ```ruby
 begin
-  result = client.audio.load({ "id" => "example_id" })
-  puts result
+  # load returns the bare Audio record (raises on error).
+  audio = client.Audio.load({ "id" => "example_id" })
+  puts audio
 rescue => err
   warn "load failed: #{err}"
 end
@@ -60,8 +59,8 @@ end
 ### 4. Create, update, and remove
 
 ```ruby
-# Create
-created = client.audio.create({ "name" => "Example" })
+# create returns the bare created Audio record.
+created = client.Audio.create({ "name" => "Example" })
 
 ```
 
@@ -106,13 +105,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = OpenverseSDK.test
+client = OpenverseSDK.test({
+  "entity" => { "audio" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.audio.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+audio = client.Audio.load({ "id" => "test01" })
+puts audio
 ```
 
 ### Use a custom fetch function
@@ -190,11 +193,11 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> Hash` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> Hash` | Build and send an HTTP request. Returns a result hash (`result["ok"]`); does not raise. |
-| `Audio` | `(data) -> AudioEntity` | Create a Audio entity instance. |
-| `Image` | `(data) -> ImageEntity` | Create a Image entity instance. |
-| `OAuth2Application` | `(data) -> OAuth2ApplicationEntity` | Create a OAuth2Application entity instance. |
-| `OAuth2KeyInfo` | `(data) -> OAuth2KeyInfoEntity` | Create a OAuth2KeyInfo entity instance. |
-| `OAuth2Token` | `(data) -> OAuth2TokenEntity` | Create a OAuth2Token entity instance. |
+| `Audio` | `(data) -> AudioEntity` | Create an Audio entity instance. |
+| `Image` | `(data) -> ImageEntity` | Create an Image entity instance. |
+| `OAuth2Application` | `(data) -> OAuth2ApplicationEntity` | Create an OAuth2Application entity instance. |
+| `OAuth2KeyInfo` | `(data) -> OAuth2KeyInfoEntity` | Create an OAuth2KeyInfo entity instance. |
+| `OAuth2Token` | `(data) -> OAuth2TokenEntity` | Create an OAuth2Token entity instance. |
 
 ### Entity interface
 
@@ -371,7 +374,7 @@ API path: `/v1/auth_tokens/token/`
 
 ### Audio
 
-Create an instance: `const audio = client.audio`
+Create an instance: `audio = client.Audio`
 
 #### Operations
 
@@ -427,49 +430,51 @@ Create an instance: `const audio = client.audio`
 
 #### Example: Load
 
-```ts
-const audio = await client.audio.load({ id: 'audio_id' })
+```ruby
+# load returns the bare Audio record (raises on error).
+audio = client.Audio.load({ "id" => "audio_id" })
 ```
 
 #### Example: List
 
-```ts
-const audios = await client.audio.list()
+```ruby
+# list returns an Array of Audio records (raises on error).
+audios = client.Audio.list
 ```
 
 #### Example: Create
 
-```ts
-const audio = await client.audio.create({
-  alt_file: /* `$ARRAY` */,
-  attribution: /* `$STRING` */,
-  audio_set: /* `$ANY` */,
-  detail_url: /* `$STRING` */,
-  display_name: /* `$STRING` */,
-  fields_matched: /* `$ARRAY` */,
-  identifier: /* `$STRING` */,
-  indexed_on: /* `$STRING` */,
-  len: /* `$INTEGER` */,
-  license: /* `$STRING` */,
-  license_url: /* `$STRING` */,
-  logo_url: /* `$STRING` */,
-  mature: /* `$BOOLEAN` */,
-  media_count: /* `$INTEGER` */,
-  point: /* `$ARRAY` */,
-  reason: /* `$ANY` */,
-  related_url: /* `$STRING` */,
-  source_name: /* `$STRING` */,
-  source_url: /* `$STRING` */,
-  tag: /* `$ARRAY` */,
-  thumbnail: /* `$STRING` */,
-  waveform: /* `$STRING` */,
+```ruby
+audio = client.Audio.create({
+  "alt_file" => nil, # `$ARRAY`
+  "attribution" => nil, # `$STRING`
+  "audio_set" => nil, # `$ANY`
+  "detail_url" => nil, # `$STRING`
+  "display_name" => nil, # `$STRING`
+  "fields_matched" => nil, # `$ARRAY`
+  "identifier" => nil, # `$STRING`
+  "indexed_on" => nil, # `$STRING`
+  "len" => nil, # `$INTEGER`
+  "license" => nil, # `$STRING`
+  "license_url" => nil, # `$STRING`
+  "logo_url" => nil, # `$STRING`
+  "mature" => nil, # `$BOOLEAN`
+  "media_count" => nil, # `$INTEGER`
+  "point" => nil, # `$ARRAY`
+  "reason" => nil, # `$ANY`
+  "related_url" => nil, # `$STRING`
+  "source_name" => nil, # `$STRING`
+  "source_url" => nil, # `$STRING`
+  "tag" => nil, # `$ARRAY`
+  "thumbnail" => nil, # `$STRING`
+  "waveform" => nil, # `$STRING`
 })
 ```
 
 
 ### Image
 
-Create an instance: `const image = client.image`
+Create an instance: `image = client.Image`
 
 #### Operations
 
@@ -522,48 +527,50 @@ Create an instance: `const image = client.image`
 
 #### Example: Load
 
-```ts
-const image = await client.image.load({ id: 'image_id' })
+```ruby
+# load returns the bare Image record (raises on error).
+image = client.Image.load({ "id" => "image_id" })
 ```
 
 #### Example: List
 
-```ts
-const images = await client.image.list()
+```ruby
+# list returns an Array of Image records (raises on error).
+images = client.Image.list
 ```
 
 #### Example: Create
 
-```ts
-const image = await client.image.create({
-  attribution: /* `$STRING` */,
-  author_name: /* `$STRING` */,
-  author_url: /* `$STRING` */,
-  detail_url: /* `$STRING` */,
-  display_name: /* `$STRING` */,
-  fields_matched: /* `$ARRAY` */,
-  identifier: /* `$STRING` */,
-  indexed_on: /* `$STRING` */,
-  license: /* `$STRING` */,
-  license_url: /* `$STRING` */,
-  logo_url: /* `$STRING` */,
-  mature: /* `$BOOLEAN` */,
-  media_count: /* `$INTEGER` */,
-  reason: /* `$ANY` */,
-  related_url: /* `$STRING` */,
-  source_name: /* `$STRING` */,
-  source_url: /* `$STRING` */,
-  tag: /* `$ARRAY` */,
-  thumbnail: /* `$STRING` */,
-  type: /* `$ANY` */,
-  version: /* `$ANY` */,
+```ruby
+image = client.Image.create({
+  "attribution" => nil, # `$STRING`
+  "author_name" => nil, # `$STRING`
+  "author_url" => nil, # `$STRING`
+  "detail_url" => nil, # `$STRING`
+  "display_name" => nil, # `$STRING`
+  "fields_matched" => nil, # `$ARRAY`
+  "identifier" => nil, # `$STRING`
+  "indexed_on" => nil, # `$STRING`
+  "license" => nil, # `$STRING`
+  "license_url" => nil, # `$STRING`
+  "logo_url" => nil, # `$STRING`
+  "mature" => nil, # `$BOOLEAN`
+  "media_count" => nil, # `$INTEGER`
+  "reason" => nil, # `$ANY`
+  "related_url" => nil, # `$STRING`
+  "source_name" => nil, # `$STRING`
+  "source_url" => nil, # `$STRING`
+  "tag" => nil, # `$ARRAY`
+  "thumbnail" => nil, # `$STRING`
+  "type" => nil, # `$ANY`
+  "version" => nil, # `$ANY`
 })
 ```
 
 
 ### OAuth2Application
 
-Create an instance: `const o_auth2_application = client.o_auth2_application`
+Create an instance: `o_auth2_application = client.OAuth2Application`
 
 #### Operations
 
@@ -581,18 +588,18 @@ Create an instance: `const o_auth2_application = client.o_auth2_application`
 
 #### Example: Create
 
-```ts
-const o_auth2_application = await client.o_auth2_application.create({
-  description: /* `$STRING` */,
-  email: /* `$STRING` */,
-  name: /* `$STRING` */,
+```ruby
+o_auth2_application = client.OAuth2Application.create({
+  "description" => nil, # `$STRING`
+  "email" => nil, # `$STRING`
+  "name" => nil, # `$STRING`
 })
 ```
 
 
 ### OAuth2KeyInfo
 
-Create an instance: `const o_auth2_key_info = client.o_auth2_key_info`
+Create an instance: `o_auth2_key_info = client.OAuth2KeyInfo`
 
 #### Operations
 
@@ -611,14 +618,15 @@ Create an instance: `const o_auth2_key_info = client.o_auth2_key_info`
 
 #### Example: Load
 
-```ts
-const o_auth2_key_info = await client.o_auth2_key_info.load({ id: 'o_auth2_key_info_id' })
+```ruby
+# load returns the bare OAuth2KeyInfo record (raises on error).
+o_auth2_key_info = client.OAuth2KeyInfo.load({ "id" => "o_auth2_key_info_id" })
 ```
 
 
 ### OAuth2Token
 
-Create an instance: `const o_auth2_token = client.o_auth2_token`
+Create an instance: `o_auth2_token = client.OAuth2Token`
 
 #### Operations
 
@@ -637,12 +645,12 @@ Create an instance: `const o_auth2_token = client.o_auth2_token`
 
 #### Example: Create
 
-```ts
-const o_auth2_token = await client.o_auth2_token.create({
-  access_token: /* `$STRING` */,
-  expires_in: /* `$INTEGER` */,
-  scope: /* `$STRING` */,
-  token_type: /* `$STRING` */,
+```ruby
+o_auth2_token = client.OAuth2Token.create({
+  "access_token" => nil, # `$STRING`
+  "expires_in" => nil, # `$INTEGER`
+  "scope" => nil, # `$STRING`
+  "token_type" => nil, # `$STRING`
 })
 ```
 
@@ -718,7 +726,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-audio = client.audio
+audio = client.Audio
 audio.load({ "id" => "example_id" })
 
 # audio.data_get now returns the loaded audio data

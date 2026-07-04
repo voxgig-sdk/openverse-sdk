@@ -33,33 +33,34 @@ local client = sdk.new({
 })
 ```
 
-### 2. List audios
+### 2. List audio records
+
+Entity operations return `(value, err)`. For `list`, `value` is the
+array of records itself — iterate it directly (there is no wrapper).
 
 ```lua
-local result, err = client:audio():list()
+local audios, err = client:Audio():list()
 if err then error(err) end
 
-if type(result) == "table" then
-  for _, item in ipairs(result) do
-    local d = item:data_get()
-    print(d["id"], d["name"])
-  end
+for _, item in ipairs(audios) do
+  print(item["id"], item["name"])
 end
 ```
 
 ### 3. Load an audio
 
 ```lua
-local result, err = client:audio():load({ id = "example_id" })
+local audio, err = client:Audio():load({ id = "example_id" })
 if err then error(err) end
-print(result)
+print(audio)
 ```
 
 ### 4. Create, update, and remove
 
 ```lua
 -- Create
-local created, _ = client:audio():create({ name = "Example" })
+local created, err = client:Audio():create({ name = "Example" })
+if err then error(err) end
 
 ```
 
@@ -106,8 +107,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:audio():load({ id = "test01" })
--- result contains mock response data
+local result, err = client:Audio():load({ id = "test01" })
+-- result is the loaded data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -187,11 +188,11 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> table, err` | Build an HTTP request definition without sending. |
 | `direct` | `(fetchargs) -> table, err` | Build and send an HTTP request. |
-| `Audio` | `(data) -> AudioEntity` | Create a Audio entity instance. |
-| `Image` | `(data) -> ImageEntity` | Create a Image entity instance. |
-| `OAuth2Application` | `(data) -> OAuth2ApplicationEntity` | Create a OAuth2Application entity instance. |
-| `OAuth2KeyInfo` | `(data) -> OAuth2KeyInfoEntity` | Create a OAuth2KeyInfo entity instance. |
-| `OAuth2Token` | `(data) -> OAuth2TokenEntity` | Create a OAuth2Token entity instance. |
+| `Audio` | `(data) -> AudioEntity` | Create an Audio entity instance. |
+| `Image` | `(data) -> ImageEntity` | Create an Image entity instance. |
+| `OAuth2Application` | `(data) -> OAuth2ApplicationEntity` | Create an OAuth2Application entity instance. |
+| `OAuth2KeyInfo` | `(data) -> OAuth2KeyInfoEntity` | Create an OAuth2KeyInfo entity instance. |
+| `OAuth2Token` | `(data) -> OAuth2TokenEntity` | Create an OAuth2Token entity instance. |
 
 ### Entity interface
 
@@ -213,17 +214,22 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`table` with these keys:
+Entity operations return `(value, err)`. The `value` is the operation's
+data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `ok` | `boolean` | `true` if the HTTP status is 2xx. |
-| `status` | `number` | HTTP status code. |
-| `headers` | `table` | Response headers. |
-| `data` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `list` | an array (`table`) of entity records |
 
-On error, `ok` is `false` and `err` contains the error value.
+Check `err` first (it is non-`nil` on failure), then use `value`:
+
+    local audio, err = client:Audio():load({ id = "example_id" })
+    if err then error(err) end
+    -- audio is the loaded record
+
+Only `direct()` returns a response envelope — a `table` with `ok`,
+`status`, `headers`, and `data` keys.
 
 ### Entities
 
@@ -365,7 +371,7 @@ API path: `/v1/auth_tokens/token/`
 
 ### Audio
 
-Create an instance: `const audio = client.audio`
+Create an instance: `local audio = client:Audio(nil)`
 
 #### Operations
 
@@ -421,49 +427,49 @@ Create an instance: `const audio = client.audio`
 
 #### Example: Load
 
-```ts
-const audio = await client.audio.load({ id: 'audio_id' })
+```lua
+local audio, err = client:Audio():load({ id = "audio_id" })
 ```
 
 #### Example: List
 
-```ts
-const audios = await client.audio.list()
+```lua
+local audios, err = client:Audio():list()
 ```
 
 #### Example: Create
 
-```ts
-const audio = await client.audio.create({
-  alt_file: /* `$ARRAY` */,
-  attribution: /* `$STRING` */,
-  audio_set: /* `$ANY` */,
-  detail_url: /* `$STRING` */,
-  display_name: /* `$STRING` */,
-  fields_matched: /* `$ARRAY` */,
-  identifier: /* `$STRING` */,
-  indexed_on: /* `$STRING` */,
-  len: /* `$INTEGER` */,
-  license: /* `$STRING` */,
-  license_url: /* `$STRING` */,
-  logo_url: /* `$STRING` */,
-  mature: /* `$BOOLEAN` */,
-  media_count: /* `$INTEGER` */,
-  point: /* `$ARRAY` */,
-  reason: /* `$ANY` */,
-  related_url: /* `$STRING` */,
-  source_name: /* `$STRING` */,
-  source_url: /* `$STRING` */,
-  tag: /* `$ARRAY` */,
-  thumbnail: /* `$STRING` */,
-  waveform: /* `$STRING` */,
+```lua
+local audio, err = client:Audio():create({
+  alt_file = nil, -- `$ARRAY`
+  attribution = nil, -- `$STRING`
+  audio_set = nil, -- `$ANY`
+  detail_url = nil, -- `$STRING`
+  display_name = nil, -- `$STRING`
+  fields_matched = nil, -- `$ARRAY`
+  identifier = nil, -- `$STRING`
+  indexed_on = nil, -- `$STRING`
+  len = nil, -- `$INTEGER`
+  license = nil, -- `$STRING`
+  license_url = nil, -- `$STRING`
+  logo_url = nil, -- `$STRING`
+  mature = nil, -- `$BOOLEAN`
+  media_count = nil, -- `$INTEGER`
+  point = nil, -- `$ARRAY`
+  reason = nil, -- `$ANY`
+  related_url = nil, -- `$STRING`
+  source_name = nil, -- `$STRING`
+  source_url = nil, -- `$STRING`
+  tag = nil, -- `$ARRAY`
+  thumbnail = nil, -- `$STRING`
+  waveform = nil, -- `$STRING`
 })
 ```
 
 
 ### Image
 
-Create an instance: `const image = client.image`
+Create an instance: `local image = client:Image(nil)`
 
 #### Operations
 
@@ -516,48 +522,48 @@ Create an instance: `const image = client.image`
 
 #### Example: Load
 
-```ts
-const image = await client.image.load({ id: 'image_id' })
+```lua
+local image, err = client:Image():load({ id = "image_id" })
 ```
 
 #### Example: List
 
-```ts
-const images = await client.image.list()
+```lua
+local images, err = client:Image():list()
 ```
 
 #### Example: Create
 
-```ts
-const image = await client.image.create({
-  attribution: /* `$STRING` */,
-  author_name: /* `$STRING` */,
-  author_url: /* `$STRING` */,
-  detail_url: /* `$STRING` */,
-  display_name: /* `$STRING` */,
-  fields_matched: /* `$ARRAY` */,
-  identifier: /* `$STRING` */,
-  indexed_on: /* `$STRING` */,
-  license: /* `$STRING` */,
-  license_url: /* `$STRING` */,
-  logo_url: /* `$STRING` */,
-  mature: /* `$BOOLEAN` */,
-  media_count: /* `$INTEGER` */,
-  reason: /* `$ANY` */,
-  related_url: /* `$STRING` */,
-  source_name: /* `$STRING` */,
-  source_url: /* `$STRING` */,
-  tag: /* `$ARRAY` */,
-  thumbnail: /* `$STRING` */,
-  type: /* `$ANY` */,
-  version: /* `$ANY` */,
+```lua
+local image, err = client:Image():create({
+  attribution = nil, -- `$STRING`
+  author_name = nil, -- `$STRING`
+  author_url = nil, -- `$STRING`
+  detail_url = nil, -- `$STRING`
+  display_name = nil, -- `$STRING`
+  fields_matched = nil, -- `$ARRAY`
+  identifier = nil, -- `$STRING`
+  indexed_on = nil, -- `$STRING`
+  license = nil, -- `$STRING`
+  license_url = nil, -- `$STRING`
+  logo_url = nil, -- `$STRING`
+  mature = nil, -- `$BOOLEAN`
+  media_count = nil, -- `$INTEGER`
+  reason = nil, -- `$ANY`
+  related_url = nil, -- `$STRING`
+  source_name = nil, -- `$STRING`
+  source_url = nil, -- `$STRING`
+  tag = nil, -- `$ARRAY`
+  thumbnail = nil, -- `$STRING`
+  type = nil, -- `$ANY`
+  version = nil, -- `$ANY`
 })
 ```
 
 
 ### OAuth2Application
 
-Create an instance: `const o_auth2_application = client.o_auth2_application`
+Create an instance: `local o_auth2_application = client:OAuth2Application(nil)`
 
 #### Operations
 
@@ -575,18 +581,18 @@ Create an instance: `const o_auth2_application = client.o_auth2_application`
 
 #### Example: Create
 
-```ts
-const o_auth2_application = await client.o_auth2_application.create({
-  description: /* `$STRING` */,
-  email: /* `$STRING` */,
-  name: /* `$STRING` */,
+```lua
+local o_auth2_application, err = client:OAuth2Application():create({
+  description = nil, -- `$STRING`
+  email = nil, -- `$STRING`
+  name = nil, -- `$STRING`
 })
 ```
 
 
 ### OAuth2KeyInfo
 
-Create an instance: `const o_auth2_key_info = client.o_auth2_key_info`
+Create an instance: `local o_auth2_key_info = client:OAuth2KeyInfo(nil)`
 
 #### Operations
 
@@ -605,14 +611,14 @@ Create an instance: `const o_auth2_key_info = client.o_auth2_key_info`
 
 #### Example: Load
 
-```ts
-const o_auth2_key_info = await client.o_auth2_key_info.load({ id: 'o_auth2_key_info_id' })
+```lua
+local o_auth2_key_info, err = client:OAuth2KeyInfo():load({ id = "o_auth2_key_info_id" })
 ```
 
 
 ### OAuth2Token
 
-Create an instance: `const o_auth2_token = client.o_auth2_token`
+Create an instance: `local o_auth2_token = client:OAuth2Token(nil)`
 
 #### Operations
 
@@ -631,12 +637,12 @@ Create an instance: `const o_auth2_token = client.o_auth2_token`
 
 #### Example: Create
 
-```ts
-const o_auth2_token = await client.o_auth2_token.create({
-  access_token: /* `$STRING` */,
-  expires_in: /* `$INTEGER` */,
-  scope: /* `$STRING` */,
-  token_type: /* `$STRING` */,
+```lua
+local o_auth2_token, err = client:OAuth2Token():create({
+  access_token = nil, -- `$STRING`
+  expires_in = nil, -- `$INTEGER`
+  scope = nil, -- `$STRING`
+  token_type = nil, -- `$STRING`
 })
 ```
 
@@ -712,7 +718,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local audio = client:audio()
+local audio = client:Audio()
 audio:load({ id = "example_id" })
 
 -- audio:data_get() now returns the loaded audio data

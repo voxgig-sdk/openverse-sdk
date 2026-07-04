@@ -100,7 +100,7 @@ same parameters as `direct()`.
 ## AudioEntity
 
 ```lua
-local audio = client:audio(nil)
+local audio = client:Audio(nil)
 ```
 
 ### Fields
@@ -154,7 +154,7 @@ local audio = client:audio(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:audio():create({
+local result, err = client:Audio():create({
   alt_file = --[[ `$ARRAY` ]],
   attribution = --[[ `$STRING` ]],
   audio_set = --[[ `$ANY` ]],
@@ -185,7 +185,7 @@ local result, err = client:audio():create({
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:audio():list()
+local results, err = client:Audio():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -193,7 +193,7 @@ local results, err = client:audio():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:audio():load({ id = "audio_id" })
+local result, err = client:Audio():load({ id = "audio_id" })
 ```
 
 ### Common Methods
@@ -229,7 +229,7 @@ Return the entity name.
 ## ImageEntity
 
 ```lua
-local image = client:image(nil)
+local image = client:Image(nil)
 ```
 
 ### Fields
@@ -321,7 +321,7 @@ local image = client:image(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:image():create({
+local result, err = client:Image():create({
   attribution = --[[ `$STRING` ]],
   author_name = --[[ `$STRING` ]],
   author_url = --[[ `$STRING` ]],
@@ -351,7 +351,7 @@ local result, err = client:image():create({
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:image():list()
+local results, err = client:Image():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -359,7 +359,7 @@ local results, err = client:image():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:image():load({ id = "image_id" })
+local result, err = client:Image():load({ id = "image_id" })
 ```
 
 ### Common Methods
@@ -395,7 +395,7 @@ Return the entity name.
 ## OAuth2ApplicationEntity
 
 ```lua
-local o_auth2_application = client:o_auth2_application(nil)
+local o_auth2_application = client:OAuth2Application(nil)
 ```
 
 ### Fields
@@ -413,7 +413,7 @@ local o_auth2_application = client:o_auth2_application(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:o_auth2_application():create({
+local result, err = client:OAuth2Application():create({
   description = --[[ `$STRING` ]],
   email = --[[ `$STRING` ]],
   name = --[[ `$STRING` ]],
@@ -453,7 +453,7 @@ Return the entity name.
 ## OAuth2KeyInfoEntity
 
 ```lua
-local o_auth2_key_info = client:o_auth2_key_info(nil)
+local o_auth2_key_info = client:OAuth2KeyInfo(nil)
 ```
 
 ### Fields
@@ -472,7 +472,7 @@ local o_auth2_key_info = client:o_auth2_key_info(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:o_auth2_key_info():load({ id = "o_auth2_key_info_id" })
+local result, err = client:OAuth2KeyInfo():load({ id = "o_auth2_key_info_id" })
 ```
 
 ### Common Methods
@@ -508,7 +508,7 @@ Return the entity name.
 ## OAuth2TokenEntity
 
 ```lua
-local o_auth2_token = client:o_auth2_token(nil)
+local o_auth2_token = client:OAuth2Token(nil)
 ```
 
 ### Fields
@@ -527,7 +527,7 @@ local o_auth2_token = client:o_auth2_token(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:o_auth2_token():create({
+local result, err = client:OAuth2Token():create({
   access_token = --[[ `$STRING` ]],
   expires_in = --[[ `$INTEGER` ]],
   scope = --[[ `$STRING` ]],

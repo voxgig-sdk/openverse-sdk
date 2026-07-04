@@ -97,7 +97,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## AudioEntity
 
 ```python
-audio = client.audio
+audio = client.Audio()
 ```
 
 ### Fields
@@ -151,29 +151,29 @@ audio = client.audio
 Create a new entity with the given data. Returns the created entity data and raises on error.
 
 ```python
-result = client.audio.create({
-    "alt_file": # `$ARRAY`,
-    "attribution": # `$STRING`,
-    "audio_set": # `$ANY`,
-    "detail_url": # `$STRING`,
-    "display_name": # `$STRING`,
-    "fields_matched": # `$ARRAY`,
-    "identifier": # `$STRING`,
-    "indexed_on": # `$STRING`,
-    "len": # `$INTEGER`,
-    "license": # `$STRING`,
-    "license_url": # `$STRING`,
-    "logo_url": # `$STRING`,
-    "mature": # `$BOOLEAN`,
-    "media_count": # `$INTEGER`,
-    "point": # `$ARRAY`,
-    "reason": # `$ANY`,
-    "related_url": # `$STRING`,
-    "source_name": # `$STRING`,
-    "source_url": # `$STRING`,
-    "tag": # `$ARRAY`,
-    "thumbnail": # `$STRING`,
-    "waveform": # `$STRING`,
+result = client.Audio().create({
+    "alt_file": ...,  # `$ARRAY`
+    "attribution": ...,  # `$STRING`
+    "audio_set": ...,  # `$ANY`
+    "detail_url": ...,  # `$STRING`
+    "display_name": ...,  # `$STRING`
+    "fields_matched": ...,  # `$ARRAY`
+    "identifier": ...,  # `$STRING`
+    "indexed_on": ...,  # `$STRING`
+    "len": ...,  # `$INTEGER`
+    "license": ...,  # `$STRING`
+    "license_url": ...,  # `$STRING`
+    "logo_url": ...,  # `$STRING`
+    "mature": ...,  # `$BOOLEAN`
+    "media_count": ...,  # `$INTEGER`
+    "point": ...,  # `$ARRAY`
+    "reason": ...,  # `$ANY`
+    "related_url": ...,  # `$STRING`
+    "source_name": ...,  # `$STRING`
+    "source_url": ...,  # `$STRING`
+    "tag": ...,  # `$ARRAY`
+    "thumbnail": ...,  # `$STRING`
+    "waveform": ...,  # `$STRING`
 })
 ```
 
@@ -182,7 +182,9 @@ result = client.audio.create({
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.audio.list({})
+results = client.Audio().list({})
+for audio in results:
+    print(audio)
 ```
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -190,7 +192,7 @@ results = client.audio.list({})
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.audio.load({"id": "audio_id"})
+result = client.Audio().load({"id": "audio_id"})
 ```
 
 ### Common Methods
@@ -225,7 +227,7 @@ Return the entity name.
 ## ImageEntity
 
 ```python
-image = client.image
+image = client.Image()
 ```
 
 ### Fields
@@ -317,28 +319,28 @@ image = client.image
 Create a new entity with the given data. Returns the created entity data and raises on error.
 
 ```python
-result = client.image.create({
-    "attribution": # `$STRING`,
-    "author_name": # `$STRING`,
-    "author_url": # `$STRING`,
-    "detail_url": # `$STRING`,
-    "display_name": # `$STRING`,
-    "fields_matched": # `$ARRAY`,
-    "identifier": # `$STRING`,
-    "indexed_on": # `$STRING`,
-    "license": # `$STRING`,
-    "license_url": # `$STRING`,
-    "logo_url": # `$STRING`,
-    "mature": # `$BOOLEAN`,
-    "media_count": # `$INTEGER`,
-    "reason": # `$ANY`,
-    "related_url": # `$STRING`,
-    "source_name": # `$STRING`,
-    "source_url": # `$STRING`,
-    "tag": # `$ARRAY`,
-    "thumbnail": # `$STRING`,
-    "type": # `$ANY`,
-    "version": # `$ANY`,
+result = client.Image().create({
+    "attribution": ...,  # `$STRING`
+    "author_name": ...,  # `$STRING`
+    "author_url": ...,  # `$STRING`
+    "detail_url": ...,  # `$STRING`
+    "display_name": ...,  # `$STRING`
+    "fields_matched": ...,  # `$ARRAY`
+    "identifier": ...,  # `$STRING`
+    "indexed_on": ...,  # `$STRING`
+    "license": ...,  # `$STRING`
+    "license_url": ...,  # `$STRING`
+    "logo_url": ...,  # `$STRING`
+    "mature": ...,  # `$BOOLEAN`
+    "media_count": ...,  # `$INTEGER`
+    "reason": ...,  # `$ANY`
+    "related_url": ...,  # `$STRING`
+    "source_name": ...,  # `$STRING`
+    "source_url": ...,  # `$STRING`
+    "tag": ...,  # `$ARRAY`
+    "thumbnail": ...,  # `$STRING`
+    "type": ...,  # `$ANY`
+    "version": ...,  # `$ANY`
 })
 ```
 
@@ -347,7 +349,9 @@ result = client.image.create({
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.image.list({})
+results = client.Image().list({})
+for image in results:
+    print(image)
 ```
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -355,7 +359,7 @@ results = client.image.list({})
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.image.load({"id": "image_id"})
+result = client.Image().load({"id": "image_id"})
 ```
 
 ### Common Methods
@@ -390,7 +394,7 @@ Return the entity name.
 ## OAuth2ApplicationEntity
 
 ```python
-o_auth2_application = client.o_auth2_application
+o_auth2_application = client.OAuth2Application()
 ```
 
 ### Fields
@@ -408,10 +412,10 @@ o_auth2_application = client.o_auth2_application
 Create a new entity with the given data. Returns the created entity data and raises on error.
 
 ```python
-result = client.o_auth2_application.create({
-    "description": # `$STRING`,
-    "email": # `$STRING`,
-    "name": # `$STRING`,
+result = client.OAuth2Application().create({
+    "description": ...,  # `$STRING`
+    "email": ...,  # `$STRING`
+    "name": ...,  # `$STRING`
 })
 ```
 
@@ -447,7 +451,7 @@ Return the entity name.
 ## OAuth2KeyInfoEntity
 
 ```python
-o_auth2_key_info = client.o_auth2_key_info
+o_auth2_key_info = client.OAuth2KeyInfo()
 ```
 
 ### Fields
@@ -466,7 +470,7 @@ o_auth2_key_info = client.o_auth2_key_info
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.o_auth2_key_info.load({"id": "o_auth2_key_info_id"})
+result = client.OAuth2KeyInfo().load({"id": "o_auth2_key_info_id"})
 ```
 
 ### Common Methods
@@ -501,7 +505,7 @@ Return the entity name.
 ## OAuth2TokenEntity
 
 ```python
-o_auth2_token = client.o_auth2_token
+o_auth2_token = client.OAuth2Token()
 ```
 
 ### Fields
@@ -520,11 +524,11 @@ o_auth2_token = client.o_auth2_token
 Create a new entity with the given data. Returns the created entity data and raises on error.
 
 ```python
-result = client.o_auth2_token.create({
-    "access_token": # `$STRING`,
-    "expires_in": # `$INTEGER`,
-    "scope": # `$STRING`,
-    "token_type": # `$STRING`,
+result = client.OAuth2Token().create({
+    "access_token": ...,  # `$STRING`
+    "expires_in": ...,  # `$INTEGER`
+    "scope": ...,  # `$STRING`
+    "token_type": ...,  # `$STRING`
 })
 ```
 

@@ -220,89 +220,39 @@ class OpenverseSDK:
         }
 
 
-    @property
-    def audio(self):
-        """Idiomatic facade: client.audio.list() / client.audio.load({"id": ...})."""
-        from entity.audio_entity import AudioEntity
-        cached = getattr(self, "_audio", None)
-        if cached is None:
-            cached = AudioEntity(self, None)
-            self._audio = cached
-        return cached
-
-    def Audio(self, data=None):
-        # Deprecated: use client.audio instead.
+    def Audio(self, data=None) -> "AudioEntity":
+        """Entity factory: client.Audio().list({}) / client.Audio().load({"id": ...})."""
         from entity.audio_entity import AudioEntity
         return AudioEntity(self, data)
 
 
-    @property
-    def image(self):
-        """Idiomatic facade: client.image.list() / client.image.load({"id": ...})."""
-        from entity.image_entity import ImageEntity
-        cached = getattr(self, "_image", None)
-        if cached is None:
-            cached = ImageEntity(self, None)
-            self._image = cached
-        return cached
-
-    def Image(self, data=None):
-        # Deprecated: use client.image instead.
+    def Image(self, data=None) -> "ImageEntity":
+        """Entity factory: client.Image().list({}) / client.Image().load({"id": ...})."""
         from entity.image_entity import ImageEntity
         return ImageEntity(self, data)
 
 
-    @property
-    def o_auth2_application(self):
-        """Idiomatic facade: client.o_auth2_application.list() / client.o_auth2_application.load({"id": ...})."""
-        from entity.o_auth2_application_entity import OAuth2ApplicationEntity
-        cached = getattr(self, "_o_auth2_application", None)
-        if cached is None:
-            cached = OAuth2ApplicationEntity(self, None)
-            self._o_auth2_application = cached
-        return cached
-
-    def OAuth2Application(self, data=None):
-        # Deprecated: use client.o_auth2_application instead.
+    def OAuth2Application(self, data=None) -> "OAuth2ApplicationEntity":
+        """Entity factory: client.OAuth2Application().list({}) / client.OAuth2Application().load({"id": ...})."""
         from entity.o_auth2_application_entity import OAuth2ApplicationEntity
         return OAuth2ApplicationEntity(self, data)
 
 
-    @property
-    def o_auth2_key_info(self):
-        """Idiomatic facade: client.o_auth2_key_info.list() / client.o_auth2_key_info.load({"id": ...})."""
-        from entity.o_auth2_key_info_entity import OAuth2KeyInfoEntity
-        cached = getattr(self, "_o_auth2_key_info", None)
-        if cached is None:
-            cached = OAuth2KeyInfoEntity(self, None)
-            self._o_auth2_key_info = cached
-        return cached
-
-    def OAuth2KeyInfo(self, data=None):
-        # Deprecated: use client.o_auth2_key_info instead.
+    def OAuth2KeyInfo(self, data=None) -> "OAuth2KeyInfoEntity":
+        """Entity factory: client.OAuth2KeyInfo().list({}) / client.OAuth2KeyInfo().load({"id": ...})."""
         from entity.o_auth2_key_info_entity import OAuth2KeyInfoEntity
         return OAuth2KeyInfoEntity(self, data)
 
 
-    @property
-    def o_auth2_token(self):
-        """Idiomatic facade: client.o_auth2_token.list() / client.o_auth2_token.load({"id": ...})."""
-        from entity.o_auth2_token_entity import OAuth2TokenEntity
-        cached = getattr(self, "_o_auth2_token", None)
-        if cached is None:
-            cached = OAuth2TokenEntity(self, None)
-            self._o_auth2_token = cached
-        return cached
-
-    def OAuth2Token(self, data=None):
-        # Deprecated: use client.o_auth2_token instead.
+    def OAuth2Token(self, data=None) -> "OAuth2TokenEntity":
+        """Entity factory: client.OAuth2Token().list({}) / client.OAuth2Token().load({"id": ...})."""
         from entity.o_auth2_token_entity import OAuth2TokenEntity
         return OAuth2TokenEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "OpenverseSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -322,3 +272,13 @@ class OpenverseSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.audio_entity import AudioEntity
+    from entity.image_entity import ImageEntity
+    from entity.o_auth2_application_entity import OAuth2ApplicationEntity
+    from entity.o_auth2_key_info_entity import OAuth2KeyInfoEntity
+    from entity.o_auth2_token_entity import OAuth2TokenEntity

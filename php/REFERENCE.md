@@ -102,7 +102,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## AudioEntity
 
 ```php
-$audio = $client->audio();
+$audio = $client->Audio();
 ```
 
 ### Fields
@@ -156,7 +156,7 @@ $audio = $client->audio();
 Create a new entity with the given data. Throws on error.
 
 ```php
-$result = $client->audio()->create([
+$result = $client->Audio()->create([
   "alt_file" => /* `$ARRAY` */,
   "attribution" => /* `$STRING` */,
   "audio_set" => /* `$ANY` */,
@@ -187,7 +187,7 @@ $result = $client->audio()->create([
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->audio()->list([]);
+$results = $client->Audio()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -195,7 +195,7 @@ $results = $client->audio()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->audio()->load(["id" => "audio_id"]);
+$result = $client->Audio()->load(["id" => "audio_id"]);
 ```
 
 ### Common Methods
@@ -231,7 +231,7 @@ Return the entity name.
 ## ImageEntity
 
 ```php
-$image = $client->image();
+$image = $client->Image();
 ```
 
 ### Fields
@@ -323,7 +323,7 @@ $image = $client->image();
 Create a new entity with the given data. Throws on error.
 
 ```php
-$result = $client->image()->create([
+$result = $client->Image()->create([
   "attribution" => /* `$STRING` */,
   "author_name" => /* `$STRING` */,
   "author_url" => /* `$STRING` */,
@@ -353,7 +353,7 @@ $result = $client->image()->create([
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->image()->list([]);
+$results = $client->Image()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -361,7 +361,7 @@ $results = $client->image()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->image()->load(["id" => "image_id"]);
+$result = $client->Image()->load(["id" => "image_id"]);
 ```
 
 ### Common Methods
@@ -397,7 +397,7 @@ Return the entity name.
 ## OAuth2ApplicationEntity
 
 ```php
-$o_auth2_application = $client->o_auth2_application();
+$o_auth2_application = $client->OAuth2Application();
 ```
 
 ### Fields
@@ -415,7 +415,7 @@ $o_auth2_application = $client->o_auth2_application();
 Create a new entity with the given data. Throws on error.
 
 ```php
-$result = $client->o_auth2_application()->create([
+$result = $client->OAuth2Application()->create([
   "description" => /* `$STRING` */,
   "email" => /* `$STRING` */,
   "name" => /* `$STRING` */,
@@ -455,7 +455,7 @@ Return the entity name.
 ## OAuth2KeyInfoEntity
 
 ```php
-$o_auth2_key_info = $client->o_auth2_key_info();
+$o_auth2_key_info = $client->OAuth2KeyInfo();
 ```
 
 ### Fields
@@ -474,7 +474,7 @@ $o_auth2_key_info = $client->o_auth2_key_info();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->o_auth2_key_info()->load(["id" => "o_auth2_key_info_id"]);
+$result = $client->OAuth2KeyInfo()->load(["id" => "o_auth2_key_info_id"]);
 ```
 
 ### Common Methods
@@ -510,7 +510,7 @@ Return the entity name.
 ## OAuth2TokenEntity
 
 ```php
-$o_auth2_token = $client->o_auth2_token();
+$o_auth2_token = $client->OAuth2Token();
 ```
 
 ### Fields
@@ -529,7 +529,7 @@ $o_auth2_token = $client->o_auth2_token();
 Create a new entity with the given data. Throws on error.
 
 ```php
-$result = $client->o_auth2_token()->create([
+$result = $client->OAuth2Token()->create([
   "access_token" => /* `$STRING` */,
   "expires_in" => /* `$INTEGER` */,
   "scope" => /* `$STRING` */,

@@ -4,15 +4,19 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class Audio:
+class AudioRequired(TypedDict):
     alt_file: list
     attribution: str
     audio_set: Any
@@ -36,42 +40,41 @@ class Audio:
     tag: list
     thumbnail: str
     waveform: str
-    bit_rate: Optional[int] = None
-    category: Optional[str] = None
-    creator: Optional[str] = None
-    creator_url: Optional[str] = None
-    description: Optional[str] = None
-    duration: Optional[int] = None
-    filesize: Optional[int] = None
-    filetype: Optional[str] = None
-    foreign_landing_url: Optional[str] = None
-    genre: Optional[list] = None
-    license_version: Optional[str] = None
-    provider: Optional[str] = None
-    sample_rate: Optional[int] = None
-    source: Optional[str] = None
-    title: Optional[str] = None
-    url: Optional[str] = None
 
 
-@dataclass
-class AudioLoadMatch:
+class Audio(AudioRequired, total=False):
+    bit_rate: int
+    category: str
+    creator: str
+    creator_url: str
+    description: str
+    duration: int
+    filesize: int
+    filetype: str
+    foreign_landing_url: str
+    genre: list
+    license_version: str
+    provider: str
+    sample_rate: int
+    source: str
+    title: str
+    url: str
+
+
+class AudioLoadMatch(TypedDict):
     identifier: str
     id: str
 
 
-@dataclass
-class AudioListMatch:
+class AudioListMatch(TypedDict):
     identifier: str
 
 
-@dataclass
-class AudioCreateData:
+class AudioCreateData(TypedDict):
     identifier: str
 
 
-@dataclass
-class Image:
+class ImageRequired(TypedDict):
     attribution: str
     author_name: str
     author_url: str
@@ -94,79 +97,72 @@ class Image:
     thumbnail: str
     type: Any
     version: Any
-    category: Optional[str] = None
-    creator: Optional[str] = None
-    creator_url: Optional[str] = None
-    description: Optional[str] = None
-    filesize: Optional[int] = None
-    filetype: Optional[str] = None
-    foreign_landing_url: Optional[str] = None
-    height: Optional[int] = None
-    license_version: Optional[str] = None
-    provider: Optional[str] = None
-    source: Optional[str] = None
-    title: Optional[str] = None
-    url: Optional[str] = None
-    width: Optional[int] = None
 
 
-@dataclass
-class ImageLoadMatch:
+class Image(ImageRequired, total=False):
+    category: str
+    creator: str
+    creator_url: str
+    description: str
+    filesize: int
+    filetype: str
+    foreign_landing_url: str
+    height: int
+    license_version: str
+    provider: str
+    source: str
+    title: str
+    url: str
+    width: int
+
+
+class ImageLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class ImageListMatch:
+class ImageListMatch(TypedDict):
     identifier: str
 
 
-@dataclass
-class ImageCreateData:
+class ImageCreateData(TypedDict):
     identifier: str
 
 
-@dataclass
-class OAuth2Application:
+class OAuth2Application(TypedDict):
     description: str
     email: str
     name: str
 
 
-@dataclass
-class OAuth2ApplicationCreateData:
-    description: Optional[str] = None
-    email: Optional[str] = None
-    name: Optional[str] = None
+class OAuth2ApplicationCreateData(TypedDict, total=False):
+    description: str
+    email: str
+    name: str
 
 
-@dataclass
-class OAuth2KeyInfo:
+class OAuth2KeyInfo(TypedDict):
     rate_limit_model: str
     requests_this_minute: int
     requests_today: int
     verified: bool
 
 
-@dataclass
-class OAuth2KeyInfoLoadMatch:
-    rate_limit_model: Optional[str] = None
-    requests_this_minute: Optional[int] = None
-    requests_today: Optional[int] = None
-    verified: Optional[bool] = None
+class OAuth2KeyInfoLoadMatch(TypedDict, total=False):
+    rate_limit_model: str
+    requests_this_minute: int
+    requests_today: int
+    verified: bool
 
 
-@dataclass
-class OAuth2Token:
+class OAuth2Token(TypedDict):
     access_token: str
     expires_in: int
     scope: str
     token_type: str
 
 
-@dataclass
-class OAuth2TokenCreateData:
-    access_token: Optional[str] = None
-    expires_in: Optional[int] = None
-    scope: Optional[str] = None
-    token_type: Optional[str] = None
-
+class OAuth2TokenCreateData(TypedDict, total=False):
+    access_token: str
+    expires_in: int
+    scope: str
+    token_type: str

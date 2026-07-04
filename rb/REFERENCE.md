@@ -103,7 +103,7 @@ same parameters as `direct()`. Raises on error.
 ## AudioEntity
 
 ```ruby
-audio = client.audio
+audio = client.Audio
 ```
 
 ### Fields
@@ -157,7 +157,7 @@ audio = client.audio
 Create a new entity with the given data. Raises on error.
 
 ```ruby
-result = client.audio.create({
+result = client.Audio.create({
   "alt_file" => # `$ARRAY`,
   "attribution" => # `$STRING`,
   "audio_set" => # `$ANY`,
@@ -188,7 +188,7 @@ result = client.audio.create({
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.audio.list(nil)
+results = client.Audio.list(nil)
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -196,7 +196,7 @@ results = client.audio.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.audio.load({ "id" => "audio_id" })
+result = client.Audio.load({ "id" => "audio_id" })
 ```
 
 ### Common Methods
@@ -232,7 +232,7 @@ Return the entity name.
 ## ImageEntity
 
 ```ruby
-image = client.image
+image = client.Image
 ```
 
 ### Fields
@@ -324,7 +324,7 @@ image = client.image
 Create a new entity with the given data. Raises on error.
 
 ```ruby
-result = client.image.create({
+result = client.Image.create({
   "attribution" => # `$STRING`,
   "author_name" => # `$STRING`,
   "author_url" => # `$STRING`,
@@ -354,7 +354,7 @@ result = client.image.create({
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.image.list(nil)
+results = client.Image.list(nil)
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -362,7 +362,7 @@ results = client.image.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.image.load({ "id" => "image_id" })
+result = client.Image.load({ "id" => "image_id" })
 ```
 
 ### Common Methods
@@ -398,7 +398,7 @@ Return the entity name.
 ## OAuth2ApplicationEntity
 
 ```ruby
-o_auth2_application = client.o_auth2_application
+o_auth2_application = client.OAuth2Application
 ```
 
 ### Fields
@@ -416,7 +416,7 @@ o_auth2_application = client.o_auth2_application
 Create a new entity with the given data. Raises on error.
 
 ```ruby
-result = client.o_auth2_application.create({
+result = client.OAuth2Application.create({
   "description" => # `$STRING`,
   "email" => # `$STRING`,
   "name" => # `$STRING`,
@@ -456,7 +456,7 @@ Return the entity name.
 ## OAuth2KeyInfoEntity
 
 ```ruby
-o_auth2_key_info = client.o_auth2_key_info
+o_auth2_key_info = client.OAuth2KeyInfo
 ```
 
 ### Fields
@@ -475,7 +475,7 @@ o_auth2_key_info = client.o_auth2_key_info
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.o_auth2_key_info.load({ "id" => "o_auth2_key_info_id" })
+result = client.OAuth2KeyInfo.load({ "id" => "o_auth2_key_info_id" })
 ```
 
 ### Common Methods
@@ -511,7 +511,7 @@ Return the entity name.
 ## OAuth2TokenEntity
 
 ```ruby
-o_auth2_token = client.o_auth2_token
+o_auth2_token = client.OAuth2Token
 ```
 
 ### Fields
@@ -530,7 +530,7 @@ o_auth2_token = client.o_auth2_token
 Create a new entity with the given data. Raises on error.
 
 ```ruby
-result = client.o_auth2_token.create({
+result = client.OAuth2Token.create({
   "access_token" => # `$STRING`,
   "expires_in" => # `$INTEGER`,
   "scope" => # `$STRING`,

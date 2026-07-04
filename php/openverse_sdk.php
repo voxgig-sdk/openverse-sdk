@@ -233,10 +233,10 @@ class OpenverseSDK
 
     private $_audio = null;
 
-    // Idiomatic facade: $client->audio()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Audio() (PHP method
-    // names are case-insensitive).
-    public function audio($data = null)
+    // Canonical facade: $client->Audio()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->audio()
+    // resolves here too.
+    public function Audio($data = null)
     {
         require_once __DIR__ . '/entity/audio_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class OpenverseSDK
 
     private $_image = null;
 
-    // Idiomatic facade: $client->image()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Image() (PHP method
-    // names are case-insensitive).
-    public function image($data = null)
+    // Canonical facade: $client->Image()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->image()
+    // resolves here too.
+    public function Image($data = null)
     {
         require_once __DIR__ . '/entity/image_entity.php';
         if ($data === null) {
@@ -269,10 +269,10 @@ class OpenverseSDK
 
     private $_o_auth2_application = null;
 
-    // Idiomatic facade: $client->o_auth2_application()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias OAuth2Application() (PHP method
-    // names are case-insensitive).
-    public function o_auth2_application($data = null)
+    // Canonical facade: $client->OAuth2Application()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->o_auth2_application()
+    // resolves here too.
+    public function OAuth2Application($data = null)
     {
         require_once __DIR__ . '/entity/o_auth2_application_entity.php';
         if ($data === null) {
@@ -287,10 +287,10 @@ class OpenverseSDK
 
     private $_o_auth2_key_info = null;
 
-    // Idiomatic facade: $client->o_auth2_key_info()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias OAuth2KeyInfo() (PHP method
-    // names are case-insensitive).
-    public function o_auth2_key_info($data = null)
+    // Canonical facade: $client->OAuth2KeyInfo()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->o_auth2_key_info()
+    // resolves here too.
+    public function OAuth2KeyInfo($data = null)
     {
         require_once __DIR__ . '/entity/o_auth2_key_info_entity.php';
         if ($data === null) {
@@ -305,10 +305,10 @@ class OpenverseSDK
 
     private $_o_auth2_token = null;
 
-    // Idiomatic facade: $client->o_auth2_token()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias OAuth2Token() (PHP method
-    // names are case-insensitive).
-    public function o_auth2_token($data = null)
+    // Canonical facade: $client->OAuth2Token()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->o_auth2_token()
+    // resolves here too.
+    public function OAuth2Token($data = null)
     {
         require_once __DIR__ . '/entity/o_auth2_token_entity.php';
         if ($data === null) {

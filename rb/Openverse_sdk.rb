@@ -208,65 +208,35 @@ class OpenverseSDK
   end
 
 
-  # Idiomatic facade: client.audio.list / client.audio.load({ "id" => ... })
-  def audio
-    require_relative 'entity/audio_entity'
-    @audio ||= AudioEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.audio instead.
+  # Canonical facade: client.Audio.list / client.Audio.load({ "id" => ... })
   def Audio(data = nil)
     require_relative 'entity/audio_entity'
     AudioEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.image.list / client.image.load({ "id" => ... })
-  def image
-    require_relative 'entity/image_entity'
-    @image ||= ImageEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.image instead.
+  # Canonical facade: client.Image.list / client.Image.load({ "id" => ... })
   def Image(data = nil)
     require_relative 'entity/image_entity'
     ImageEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.o_auth2_application.list / client.o_auth2_application.load({ "id" => ... })
-  def o_auth2_application
-    require_relative 'entity/o_auth2_application_entity'
-    @o_auth2_application ||= OAuth2ApplicationEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.o_auth2_application instead.
+  # Canonical facade: client.OAuth2Application.list / client.OAuth2Application.load({ "id" => ... })
   def OAuth2Application(data = nil)
     require_relative 'entity/o_auth2_application_entity'
     OAuth2ApplicationEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.o_auth2_key_info.list / client.o_auth2_key_info.load({ "id" => ... })
-  def o_auth2_key_info
-    require_relative 'entity/o_auth2_key_info_entity'
-    @o_auth2_key_info ||= OAuth2KeyInfoEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.o_auth2_key_info instead.
+  # Canonical facade: client.OAuth2KeyInfo.list / client.OAuth2KeyInfo.load({ "id" => ... })
   def OAuth2KeyInfo(data = nil)
     require_relative 'entity/o_auth2_key_info_entity'
     OAuth2KeyInfoEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.o_auth2_token.list / client.o_auth2_token.load({ "id" => ... })
-  def o_auth2_token
-    require_relative 'entity/o_auth2_token_entity'
-    @o_auth2_token ||= OAuth2TokenEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.o_auth2_token instead.
+  # Canonical facade: client.OAuth2Token.list / client.OAuth2Token.load({ "id" => ... })
   def OAuth2Token(data = nil)
     require_relative 'entity/o_auth2_token_entity'
     OAuth2TokenEntity.new(self, data)

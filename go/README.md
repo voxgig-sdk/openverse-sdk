@@ -30,7 +30,12 @@ go mod edit -replace github.com/voxgig-sdk/openverse-sdk/go=../openverse-sdk/go
 This tutorial walks through creating a client, listing entities, and
 loading a specific record.
 
-### 1. Create a client
+### Quickstart
+
+A complete program: create a client, then call the entity operations.
+Each operation returns `(value, error)` — the value is the data itself
+(there is no `{ok, data}` wrapper), so check `err` and use the value
+directly.
 
 ```go
 package main
@@ -38,61 +43,37 @@ package main
 import (
     "fmt"
     "os"
-
     sdk "github.com/voxgig-sdk/openverse-sdk/go"
-    "github.com/voxgig-sdk/openverse-sdk/go/core"
 )
 
 func main() {
     client := sdk.NewOpenverseSDK(map[string]any{
         "apikey": os.Getenv("OPENVERSE_APIKEY"),
     })
-```
 
-### 2. List audios
-
-```go
-    result, err := client.Audio(nil).List(nil, nil)
+    // List audio records — the value is the array of records itself.
+    audios, err := client.Audio(nil).List(nil, nil)
     if err != nil {
         panic(err)
     }
-
-    rm := core.ToMapAny(result)
-    if rm["ok"] == true {
-        for _, item := range rm["data"].([]any) {
-            p := core.ToMapAny(item)
-            fmt.Println(p["id"], p["name"])
-        }
+    for _, item := range audios.([]any) {
+        fmt.Println(item)
     }
-```
 
-### 3. Load an audio
-
-```go
-    result, err = client.Audio(nil).Load(
-        map[string]any{"id": "example_id"}, nil,
-    )
+    // Load a single audio — the value is the loaded record.
+    audio, err := client.Audio(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }
+    fmt.Println(audio)
 
-    rm = core.ToMapAny(result)
-    if rm["ok"] == true {
-        fmt.Println(rm["data"])
+    // Create a audio.
+    created, err := client.Audio(nil).Create(map[string]any{"name": "Example"}, nil)
+    if err != nil {
+        panic(err)
     }
+    fmt.Println(created)
 }
-```
-
-### 4. Create, update, and remove
-
-```go
-// Create
-created, _ := client.Audio(nil).Create(
-    map[string]any{"name": "Example"}, nil,
-)
-cm := core.ToMapAny(created)
-newID := core.ToMapAny(cm["data"])["id"]
-
 ```
 
 
@@ -142,10 +123,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-result, err := client.Audio(nil).Load(
+audio, err := client.Audio(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
-// result contains mock response data
+if err != nil {
+    panic(err)
+}
+fmt.Println(audio) // the loaded mock data
 ```
 
 ### Use a custom fetch function
@@ -224,11 +208,11 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `GetUtility` | `() *Utility` | Copy of the SDK utility object. |
 | `Prepare` | `(fetchargs map[string]any) (map[string]any, error)` | Build an HTTP request definition without sending. |
 | `Direct` | `(fetchargs map[string]any) (map[string]any, error)` | Build and send an HTTP request. |
-| `Audio` | `(data map[string]any) OpenverseEntity` | Create a Audio entity instance. |
-| `Image` | `(data map[string]any) OpenverseEntity` | Create a Image entity instance. |
-| `OAuth2Application` | `(data map[string]any) OpenverseEntity` | Create a OAuth2Application entity instance. |
-| `OAuth2KeyInfo` | `(data map[string]any) OpenverseEntity` | Create a OAuth2KeyInfo entity instance. |
-| `OAuth2Token` | `(data map[string]any) OpenverseEntity` | Create a OAuth2Token entity instance. |
+| `Audio` | `(data map[string]any) OpenverseEntity` | Create an Audio entity instance. |
+| `Image` | `(data map[string]any) OpenverseEntity` | Create an Image entity instance. |
+| `OAuth2Application` | `(data map[string]any) OpenverseEntity` | Create an OAuth2Application entity instance. |
+| `OAuth2KeyInfo` | `(data map[string]any) OpenverseEntity` | Create an OAuth2KeyInfo entity instance. |
+| `OAuth2Token` | `(data map[string]any) OpenverseEntity` | Create an OAuth2Token entity instance. |
 
 ### Entity interface (OpenverseEntity)
 
@@ -248,17 +232,24 @@ All entities implement the `OpenverseEntity` interface.
 
 ### Result shape
 
-Entity operations return `(any, error)`. The `any` value is a
-`map[string]any` with these keys:
+Entity operations return `(value, error)`. The `value` is the
+operation's data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `"ok"` | `bool` | `true` if the HTTP status is 2xx. |
-| `"status"` | `int` | HTTP status code. |
-| `"headers"` | `map[string]any` | Response headers. |
-| `"data"` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `Load` / `Create` / `Update` / `Remove` | the entity record (`map[string]any`) |
+| `List` | a `[]any` of entity records |
 
-On error, `"ok"` is `false` and `"err"` contains the error value.
+Check `err` first, then use the value directly (or the typed
+`...Typed` variants, which return the entity's model struct and a typed
+slice):
+
+    audio, err := client.Audio(nil).Load(map[string]any{"id": "example_id"}, nil)
+    if err != nil { /* handle */ }
+    // audio is the loaded record
+
+Only `Direct()` returns a response envelope — a `map[string]any` with
+`"ok"`, `"status"`, `"headers"`, and `"data"` keys.
 
 ### Entities
 
@@ -457,13 +448,21 @@ Create an instance: `audio := client.Audio(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Audio(nil).Load(map[string]any{"id": "audio_id"}, nil)
+audio, err := client.Audio(nil).Load(map[string]any{"id": "audio_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(audio) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-results, err := client.Audio(nil).List(nil, nil)
+audios, err := client.Audio(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(audios) // the array of records
 ```
 
 #### Example: Create
@@ -552,13 +551,21 @@ Create an instance: `image := client.Image(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Image(nil).Load(map[string]any{"id": "image_id"}, nil)
+image, err := client.Image(nil).Load(map[string]any{"id": "image_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(image) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-results, err := client.Image(nil).List(nil, nil)
+images, err := client.Image(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(images) // the array of records
 ```
 
 #### Example: Create
@@ -641,7 +648,11 @@ Create an instance: `o_auth2_key_info := client.OAuth2KeyInfo(nil)`
 #### Example: Load
 
 ```go
-result, err := client.OAuth2KeyInfo(nil).Load(map[string]any{"id": "o_auth2_key_info_id"}, nil)
+o_auth2_key_info, err := client.OAuth2KeyInfo(nil).Load(map[string]any{"id": "o_auth2_key_info_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(o_auth2_key_info) // the loaded record
 ```
 
 

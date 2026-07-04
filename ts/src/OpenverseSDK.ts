@@ -208,70 +208,35 @@ class OpenverseSDK {
 
 
 
-  _audio?: AudioEntity
-
-  // Idiomatic facade: `client.audio.list()` / `client.audio.load({ id })`.
-  get audio(): AudioEntity {
-    return (this._audio ??= new AudioEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.audio` instead. */
+  // Entity access: `client.Audio().list()` / `client.Audio().load({ id })`.
   Audio(data?: any) {
     const self = this
     return new AudioEntity(self,data)
   }
 
 
-  _image?: ImageEntity
-
-  // Idiomatic facade: `client.image.list()` / `client.image.load({ id })`.
-  get image(): ImageEntity {
-    return (this._image ??= new ImageEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.image` instead. */
+  // Entity access: `client.Image().list()` / `client.Image().load({ id })`.
   Image(data?: any) {
     const self = this
     return new ImageEntity(self,data)
   }
 
 
-  _o_auth2_application?: OAuth2ApplicationEntity
-
-  // Idiomatic facade: `client.o_auth2_application.list()` / `client.o_auth2_application.load({ id })`.
-  get o_auth2_application(): OAuth2ApplicationEntity {
-    return (this._o_auth2_application ??= new OAuth2ApplicationEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.o_auth2_application` instead. */
+  // Entity access: `client.OAuth2Application().list()` / `client.OAuth2Application().load({ id })`.
   OAuth2Application(data?: any) {
     const self = this
     return new OAuth2ApplicationEntity(self,data)
   }
 
 
-  _o_auth2_key_info?: OAuth2KeyInfoEntity
-
-  // Idiomatic facade: `client.o_auth2_key_info.list()` / `client.o_auth2_key_info.load({ id })`.
-  get o_auth2_key_info(): OAuth2KeyInfoEntity {
-    return (this._o_auth2_key_info ??= new OAuth2KeyInfoEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.o_auth2_key_info` instead. */
+  // Entity access: `client.OAuth2KeyInfo().list()` / `client.OAuth2KeyInfo().load({ id })`.
   OAuth2KeyInfo(data?: any) {
     const self = this
     return new OAuth2KeyInfoEntity(self,data)
   }
 
 
-  _o_auth2_token?: OAuth2TokenEntity
-
-  // Idiomatic facade: `client.o_auth2_token.list()` / `client.o_auth2_token.load({ id })`.
-  get o_auth2_token(): OAuth2TokenEntity {
-    return (this._o_auth2_token ??= new OAuth2TokenEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.o_auth2_token` instead. */
+  // Entity access: `client.OAuth2Token().list()` / `client.OAuth2Token().load({ id })`.
   OAuth2Token(data?: any) {
     const self = this
     return new OAuth2TokenEntity(self,data)
