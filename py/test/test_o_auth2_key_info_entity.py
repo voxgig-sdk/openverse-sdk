@@ -49,8 +49,7 @@ class TestOAuth2KeyInfoEntity:
         # LOAD
         o_auth2_key_info_ref01_ent = client.OAuth2KeyInfo(None)
         o_auth2_key_info_ref01_match_dt0 = {}
-        o_auth2_key_info_ref01_data_dt0_loaded, err = o_auth2_key_info_ref01_ent.load(o_auth2_key_info_ref01_match_dt0, None)
-        assert err is None
+        o_auth2_key_info_ref01_data_dt0_loaded = o_auth2_key_info_ref01_ent.load(o_auth2_key_info_ref01_match_dt0, None)
         assert o_auth2_key_info_ref01_data_dt0_loaded is not None
 
 

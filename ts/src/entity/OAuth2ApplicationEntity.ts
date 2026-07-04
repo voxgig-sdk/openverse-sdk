@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  OAuth2Application,
+  OAuth2ApplicationCreateData,
+} from '../OpenverseTypes'
 
 // TODO: needs Entity superclass
-class OAuth2ApplicationEntity extends OpenverseEntityBase {
+class OAuth2ApplicationEntity extends OpenverseEntityBase<OAuth2Application> {
 
   constructor(client: OpenverseSDK, entopts: any) {
     super(client, entopts)
@@ -34,7 +38,7 @@ class OAuth2ApplicationEntity extends OpenverseEntityBase {
 
 
 
-  async create(this: any, reqdata?: any, ctrl?: Control) {
+  async create(this: any, reqdata?: OAuth2ApplicationCreateData, ctrl?: Control): Promise<OAuth2Application> {
 
     const utility = this._utility
     const {
@@ -133,7 +137,9 @@ class OAuth2ApplicationEntity extends OpenverseEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<OAuth2Application> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

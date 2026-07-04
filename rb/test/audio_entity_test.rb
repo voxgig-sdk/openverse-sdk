@@ -37,8 +37,7 @@ class AudioEntityTest < Minitest::Test
       Vs.getpath(setup[:data], "new.audio"), "audio_ref01"))
     audio_ref01_data["identifier"] = setup[:idmap]["identifier01"]
 
-    audio_ref01_data_result, err = audio_ref01_ent.create(audio_ref01_data, nil)
-    assert_nil err
+    audio_ref01_data_result = audio_ref01_ent.create(audio_ref01_data, nil)
     audio_ref01_data = Helpers.to_map(audio_ref01_data_result)
     assert !audio_ref01_data.nil?
     assert !audio_ref01_data["id"].nil?
@@ -46,8 +45,7 @@ class AudioEntityTest < Minitest::Test
     # LIST
     audio_ref01_match = {}
 
-    audio_ref01_list_result, err = audio_ref01_ent.list(audio_ref01_match, nil)
-    assert_nil err
+    audio_ref01_list_result = audio_ref01_ent.list(audio_ref01_match, nil)
     assert audio_ref01_list_result.is_a?(Array)
 
     found_item = Vs.select(
@@ -59,8 +57,7 @@ class AudioEntityTest < Minitest::Test
     audio_ref01_match_dt0 = {
       "id" => audio_ref01_data["id"],
     }
-    audio_ref01_data_dt0_loaded, err = audio_ref01_ent.load(audio_ref01_match_dt0, nil)
-    assert_nil err
+    audio_ref01_data_dt0_loaded = audio_ref01_ent.load(audio_ref01_match_dt0, nil)
     audio_ref01_data_dt0_load_result = Helpers.to_map(audio_ref01_data_dt0_loaded)
     assert !audio_ref01_data_dt0_load_result.nil?
     assert_equal audio_ref01_data_dt0_load_result["id"], audio_ref01_data["id"]

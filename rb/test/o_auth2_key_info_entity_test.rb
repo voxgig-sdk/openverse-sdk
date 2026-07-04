@@ -42,8 +42,7 @@ class OAuth2KeyInfoEntityTest < Minitest::Test
     # LOAD
     o_auth2_key_info_ref01_ent = client.OAuth2KeyInfo(nil)
     o_auth2_key_info_ref01_match_dt0 = {}
-    o_auth2_key_info_ref01_data_dt0_loaded, err = o_auth2_key_info_ref01_ent.load(o_auth2_key_info_ref01_match_dt0, nil)
-    assert_nil err
+    o_auth2_key_info_ref01_data_dt0_loaded = o_auth2_key_info_ref01_ent.load(o_auth2_key_info_ref01_match_dt0, nil)
     assert !o_auth2_key_info_ref01_data_dt0_loaded.nil?
 
   end

@@ -9,9 +9,10 @@ The PHP SDK for the Openverse API — an entity-oriented client using PHP conven
 
 
 ## Install
-```bash
-composer require voxgig-sdk/openverse
-```
+This package is not yet published to Packagist. Install it from the
+GitHub release tag (`php/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/openverse-sdk/releases](https://github.com/voxgig-sdk/openverse-sdk/releases)
 
 
 ## Tutorial: your first API call
@@ -33,30 +34,35 @@ $client = new OpenverseSDK([
 ### 2. List audios
 
 ```php
-[$result, $err] = $client->Audio()->list();
-if ($err) { throw new \Exception($err); }
-
-if (is_array($result)) {
-    foreach ($result as $item) {
-        $d = $item->data_get();
-        echo $d["id"] . " " . $d["name"] . "\n";
+try {
+    $result = $client->audio()->list();
+    if (is_array($result)) {
+        foreach ($result as $item) {
+            $d = $item->data_get();
+            echo $d["id"] . " " . $d["name"] . "\n";
+        }
     }
+} catch (\Exception $err) {
+    echo "Error: " . $err->getMessage();
 }
 ```
 
-### 3. Load a audio
+### 3. Load an audio
 
 ```php
-[$result, $err] = $client->Audio()->load(["id" => "example_id"]);
-if ($err) { throw new \Exception($err); }
-print_r($result);
+try {
+    $result = $client->audio()->load(["id" => "example_id"]);
+    print_r($result);
+} catch (\Exception $err) {
+    echo "Error: " . $err->getMessage();
+}
 ```
 
 ### 4. Create, update, and remove
 
 ```php
 // Create
-[$created, $_] = $client->Audio()->create(["name" => "Example"]);
+$created = $client->audio()->create(["name" => "Example"]);
 
 ```
 
@@ -68,28 +74,31 @@ print_r($result);
 For endpoints not covered by entity methods:
 
 ```php
-[$result, $err] = $client->direct([
+// direct() is the raw-HTTP escape hatch: it returns a result array
+// (it does not throw). Branch on $result["ok"].
+$result = $client->direct([
     "path" => "/api/resource/{id}",
     "method" => "GET",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
+} else {
+    echo "Error: " . $result["err"]->getMessage();
 }
 ```
 
 ### Prepare a request without sending it
 
 ```php
-[$fetchdef, $err] = $client->prepare([
+// prepare() throws on error and returns the fetch definition.
+$fetchdef = $client->prepare([
     "path" => "/api/resource/{id}",
     "method" => "DELETE",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 echo $fetchdef["url"];
 echo $fetchdef["method"];
@@ -103,7 +112,7 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = OpenverseSDK::test();
 
-[$result, $err] = $client->Openverse()->load(["id" => "test01"]);
+$result = $client->audio()->load(["id" => "test01"]);
 // $result contains mock response data
 ```
 
@@ -211,8 +220,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `[$result, $err]`. The first value is an
-`array` with these keys:
+Entity operations return the bare result data (an `array` for single-entity
+ops, a `list` for `list`) and throw on error. Wrap calls in
+`try`/`catch` to handle failures.
+
+The `direct()` escape hatch never throws — it returns a result `array`
+you branch on via `$result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -363,7 +376,7 @@ API path: `/v1/auth_tokens/token/`
 
 ### Audio
 
-Create an instance: `const audio = client.Audio()`
+Create an instance: `const audio = client.audio`
 
 #### Operations
 
@@ -420,19 +433,19 @@ Create an instance: `const audio = client.Audio()`
 #### Example: Load
 
 ```ts
-const audio = await client.Audio().load({ id: 'audio_id' })
+const audio = await client.audio.load({ id: 'audio_id' })
 ```
 
 #### Example: List
 
 ```ts
-const audios = await client.Audio().list()
+const audios = await client.audio.list()
 ```
 
 #### Example: Create
 
 ```ts
-const audio = await client.Audio().create({
+const audio = await client.audio.create({
   alt_file: /* `$ARRAY` */,
   attribution: /* `$STRING` */,
   audio_set: /* `$ANY` */,
@@ -461,7 +474,7 @@ const audio = await client.Audio().create({
 
 ### Image
 
-Create an instance: `const image = client.Image()`
+Create an instance: `const image = client.image`
 
 #### Operations
 
@@ -515,19 +528,19 @@ Create an instance: `const image = client.Image()`
 #### Example: Load
 
 ```ts
-const image = await client.Image().load({ id: 'image_id' })
+const image = await client.image.load({ id: 'image_id' })
 ```
 
 #### Example: List
 
 ```ts
-const images = await client.Image().list()
+const images = await client.image.list()
 ```
 
 #### Example: Create
 
 ```ts
-const image = await client.Image().create({
+const image = await client.image.create({
   attribution: /* `$STRING` */,
   author_name: /* `$STRING` */,
   author_url: /* `$STRING` */,
@@ -555,7 +568,7 @@ const image = await client.Image().create({
 
 ### OAuth2Application
 
-Create an instance: `const o_auth2_application = client.OAuth2Application()`
+Create an instance: `const o_auth2_application = client.o_auth2_application`
 
 #### Operations
 
@@ -574,7 +587,7 @@ Create an instance: `const o_auth2_application = client.OAuth2Application()`
 #### Example: Create
 
 ```ts
-const o_auth2_application = await client.OAuth2Application().create({
+const o_auth2_application = await client.o_auth2_application.create({
   description: /* `$STRING` */,
   email: /* `$STRING` */,
   name: /* `$STRING` */,
@@ -584,7 +597,7 @@ const o_auth2_application = await client.OAuth2Application().create({
 
 ### OAuth2KeyInfo
 
-Create an instance: `const o_auth2_key_info = client.OAuth2KeyInfo()`
+Create an instance: `const o_auth2_key_info = client.o_auth2_key_info`
 
 #### Operations
 
@@ -604,13 +617,13 @@ Create an instance: `const o_auth2_key_info = client.OAuth2KeyInfo()`
 #### Example: Load
 
 ```ts
-const o_auth2_key_info = await client.OAuth2KeyInfo().load({ id: 'o_auth2_key_info_id' })
+const o_auth2_key_info = await client.o_auth2_key_info.load({ id: 'o_auth2_key_info_id' })
 ```
 
 
 ### OAuth2Token
 
-Create an instance: `const o_auth2_token = client.OAuth2Token()`
+Create an instance: `const o_auth2_token = client.o_auth2_token`
 
 #### Operations
 
@@ -630,7 +643,7 @@ Create an instance: `const o_auth2_token = client.OAuth2Token()`
 #### Example: Create
 
 ```ts
-const o_auth2_token = await client.OAuth2Token().create({
+const o_auth2_token = await client.o_auth2_token.create({
   access_token: /* `$STRING` */,
   expires_in: /* `$INTEGER` */,
   scope: /* `$STRING` */,
@@ -710,11 +723,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$moon = $client->Moon();
-[$result, $err] = $moon->load(["planet_id" => "earth", "id" => "luna"]);
+$audio = $client->audio();
+$audio->load(["id" => "example_id"]);
 
-// $moon->dataGet() now returns the loaded moon data
-// $moon->matchGet() returns the last match criteria
+// $audio->dataGet() now returns the loaded audio data
+// $audio->matchGet() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

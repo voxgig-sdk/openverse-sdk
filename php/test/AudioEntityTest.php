@@ -44,8 +44,7 @@ class AudioEntityTest extends TestCase
             Vs::getpath($setup["data"], "new.audio"), "audio_ref01"));
         $audio_ref01_data["identifier"] = $setup["idmap"]["identifier01"];
 
-        [$audio_ref01_data_result, $err] = $audio_ref01_ent->create($audio_ref01_data, null);
-        $this->assertNull($err);
+        $audio_ref01_data_result = $audio_ref01_ent->create($audio_ref01_data, null);
         $audio_ref01_data = Helpers::to_map($audio_ref01_data_result);
         $this->assertNotNull($audio_ref01_data);
         $this->assertNotNull($audio_ref01_data["id"]);
@@ -53,8 +52,7 @@ class AudioEntityTest extends TestCase
         // LIST
         $audio_ref01_match = [];
 
-        [$audio_ref01_list_result, $err] = $audio_ref01_ent->list($audio_ref01_match, null);
-        $this->assertNull($err);
+        $audio_ref01_list_result = $audio_ref01_ent->list($audio_ref01_match, null);
         $this->assertIsArray($audio_ref01_list_result);
 
         $found_item = sdk_select(
@@ -66,8 +64,7 @@ class AudioEntityTest extends TestCase
         $audio_ref01_match_dt0 = [
             "id" => $audio_ref01_data["id"],
         ];
-        [$audio_ref01_data_dt0_loaded, $err] = $audio_ref01_ent->load($audio_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $audio_ref01_data_dt0_loaded = $audio_ref01_ent->load($audio_ref01_match_dt0, null);
         $audio_ref01_data_dt0_load_result = Helpers::to_map($audio_ref01_data_dt0_loaded);
         $this->assertNotNull($audio_ref01_data_dt0_load_result);
         $this->assertEquals($audio_ref01_data_dt0_load_result["id"], $audio_ref01_data["id"]);

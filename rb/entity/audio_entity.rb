@@ -45,6 +45,7 @@ class AudioEntity
     end
   end
 
+  # @return [Audio, Hash] the current Audio data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class AudioEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Audio fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single Audio.
+  #
+  # @param reqmatch [AudioLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Audio, Hash] the loaded Audio; raises OpenverseError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -86,6 +93,11 @@ class AudioEntity
 
 
   
+  # List Audio items matching the given filter.
+  #
+  # @param reqmatch [AudioListMatch, Hash, nil] match filter (any subset of Audio fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Audio>, Array] the matching Audio items; raises OpenverseError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -106,6 +118,11 @@ class AudioEntity
 
 
   
+  # Create a new Audio.
+  #
+  # @param reqdata [AudioCreateData, Hash, nil] body data
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Audio, Hash] the created Audio; raises OpenverseError on failure
   def create(reqdata, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

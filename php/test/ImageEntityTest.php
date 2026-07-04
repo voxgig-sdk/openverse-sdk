@@ -44,8 +44,7 @@ class ImageEntityTest extends TestCase
             Vs::getpath($setup["data"], "new.image"), "image_ref01"));
         $image_ref01_data["identifier"] = $setup["idmap"]["identifier01"];
 
-        [$image_ref01_data_result, $err] = $image_ref01_ent->create($image_ref01_data, null);
-        $this->assertNull($err);
+        $image_ref01_data_result = $image_ref01_ent->create($image_ref01_data, null);
         $image_ref01_data = Helpers::to_map($image_ref01_data_result);
         $this->assertNotNull($image_ref01_data);
         $this->assertNotNull($image_ref01_data["id"]);
@@ -53,8 +52,7 @@ class ImageEntityTest extends TestCase
         // LIST
         $image_ref01_match = [];
 
-        [$image_ref01_list_result, $err] = $image_ref01_ent->list($image_ref01_match, null);
-        $this->assertNull($err);
+        $image_ref01_list_result = $image_ref01_ent->list($image_ref01_match, null);
         $this->assertIsArray($image_ref01_list_result);
 
         $found_item = sdk_select(
@@ -66,8 +64,7 @@ class ImageEntityTest extends TestCase
         $image_ref01_match_dt0 = [
             "id" => $image_ref01_data["id"],
         ];
-        [$image_ref01_data_dt0_loaded, $err] = $image_ref01_ent->load($image_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $image_ref01_data_dt0_loaded = $image_ref01_ent->load($image_ref01_match_dt0, null);
         $image_ref01_data_dt0_load_result = Helpers::to_map($image_ref01_data_dt0_loaded);
         $this->assertNotNull($image_ref01_data_dt0_load_result);
         $this->assertEquals($image_ref01_data_dt0_load_result["id"], $image_ref01_data["id"]);

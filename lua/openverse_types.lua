@@ -1,0 +1,132 @@
+-- Typed models for the Openverse SDK (LuaLS annotations).
+--
+-- GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
+-- params (op.<name>.points[].args.params[]). Field/param types come from the
+-- canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
+-- @voxgig/apidef VALID_CANON). Annotations only — no runtime effect. Do not
+-- edit by hand.
+
+---@class Audio
+---@field alt_file table
+---@field attribution string
+---@field audio_set any
+---@field bit_rate? number
+---@field category? string
+---@field creator? string
+---@field creator_url? string
+---@field description? string
+---@field detail_url string
+---@field display_name string
+---@field duration? number
+---@field fields_matched table
+---@field filesize? number
+---@field filetype? string
+---@field foreign_landing_url? string
+---@field genre? table
+---@field id string
+---@field identifier string
+---@field indexed_on string
+---@field len number
+---@field license string
+---@field license_url string
+---@field license_version? string
+---@field logo_url string
+---@field mature boolean
+---@field media_count number
+---@field point table
+---@field provider? string
+---@field reason any
+---@field related_url string
+---@field sample_rate? number
+---@field source? string
+---@field source_name string
+---@field source_url string
+---@field tag table
+---@field thumbnail string
+---@field title? string
+---@field url? string
+---@field waveform string
+
+---@class AudioLoadMatch
+---@field identifier string
+---@field id string
+
+---@class AudioListMatch
+---@field identifier string
+
+---@class AudioCreateData
+---@field identifier string
+
+---@class Image
+---@field attribution string
+---@field author_name string
+---@field author_url string
+---@field category? string
+---@field creator? string
+---@field creator_url? string
+---@field description? string
+---@field detail_url string
+---@field display_name string
+---@field fields_matched table
+---@field filesize? number
+---@field filetype? string
+---@field foreign_landing_url? string
+---@field height? number
+---@field id string
+---@field identifier string
+---@field indexed_on string
+---@field license string
+---@field license_url string
+---@field license_version? string
+---@field logo_url string
+---@field mature boolean
+---@field media_count number
+---@field provider? string
+---@field reason any
+---@field related_url string
+---@field source? string
+---@field source_name string
+---@field source_url string
+---@field tag table
+---@field thumbnail string
+---@field title? string
+---@field type any
+---@field url? string
+---@field version any
+---@field width? number
+
+---@class ImageLoadMatch
+---@field id string
+
+---@class ImageListMatch
+---@field identifier string
+
+---@class ImageCreateData
+---@field identifier string
+
+---@class OAuth2Application
+---@field description string
+---@field email string
+---@field name string
+
+---@class OAuth2ApplicationCreateData
+
+---@class OAuth2KeyInfo
+---@field rate_limit_model string
+---@field requests_this_minute number
+---@field requests_today number
+---@field verified boolean
+
+---@class OAuth2KeyInfoLoadMatch
+
+---@class OAuth2Token
+---@field access_token string
+---@field expires_in number
+---@field scope string
+---@field token_type string
+
+---@class OAuth2TokenCreateData
+
+local M = {}
+
+return M

@@ -44,9 +44,7 @@ class TestOAuth2TokenEntity:
         o_auth2_token_ref01_data = helpers.to_map(vs.getprop(
             vs.getpath(setup["data"], "new.o_auth2_token"), "o_auth2_token_ref01"))
 
-        o_auth2_token_ref01_data_result, err = o_auth2_token_ref01_ent.create(o_auth2_token_ref01_data, None)
-        assert err is None
-        o_auth2_token_ref01_data = helpers.to_map(o_auth2_token_ref01_data_result)
+        o_auth2_token_ref01_data = helpers.to_map(o_auth2_token_ref01_ent.create(o_auth2_token_ref01_data, None))
         assert o_auth2_token_ref01_data is not None
 
 

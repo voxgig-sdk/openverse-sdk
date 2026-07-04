@@ -9,9 +9,12 @@ The TypeScript SDK for the Openverse API — a type-safe, entity-oriented client
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/openverse
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/openverse-sdk/releases](https://github.com/voxgig-sdk/openverse-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,7 +23,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { OpenverseSDK } from 'openverse'
+import { OpenverseSDK } from '@voxgig-sdk/openverse'
 
 const client = new OpenverseSDK({
   apikey: process.env.OPENVERSE_APIKEY,
@@ -30,7 +33,7 @@ const client = new OpenverseSDK({
 ### 2. List audios
 
 ```ts
-const result = await client.Audio().list()
+const result = await client.audio.list()
 
 if (result.ok) {
   for (const item of result.data) {
@@ -39,10 +42,10 @@ if (result.ok) {
 }
 ```
 
-### 3. Load a audio
+### 3. Load an audio
 
 ```ts
-const result = await client.Audio().load({ id: 'example_id' })
+const result = await client.audio.load({ id: 'example_id' })
 
 if (result.ok) {
   console.log(result.data)
@@ -53,7 +56,7 @@ if (result.ok) {
 
 ```ts
 // Create
-const created = await client.Audio().create({
+const created = await client.audio.create({
   name: 'Example',
 })
 
@@ -101,7 +104,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = OpenverseSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.audio.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -118,7 +121,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.audio
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -413,7 +416,7 @@ API path: `/v1/auth_tokens/token/`
 
 ### Audio
 
-Create an instance: `const audio = client.Audio()`
+Create an instance: `const audio = client.audio`
 
 #### Operations
 
@@ -470,19 +473,19 @@ Create an instance: `const audio = client.Audio()`
 #### Example: Load
 
 ```ts
-const audio = await client.Audio().load({ id: 'audio_id' })
+const audio = await client.audio.load({ id: 'audio_id' })
 ```
 
 #### Example: List
 
 ```ts
-const audios = await client.Audio().list()
+const audios = await client.audio.list()
 ```
 
 #### Example: Create
 
 ```ts
-const audio = await client.Audio().create({
+const audio = await client.audio.create({
   alt_file: /* `$ARRAY` */,
   attribution: /* `$STRING` */,
   audio_set: /* `$ANY` */,
@@ -511,7 +514,7 @@ const audio = await client.Audio().create({
 
 ### Image
 
-Create an instance: `const image = client.Image()`
+Create an instance: `const image = client.image`
 
 #### Operations
 
@@ -565,19 +568,19 @@ Create an instance: `const image = client.Image()`
 #### Example: Load
 
 ```ts
-const image = await client.Image().load({ id: 'image_id' })
+const image = await client.image.load({ id: 'image_id' })
 ```
 
 #### Example: List
 
 ```ts
-const images = await client.Image().list()
+const images = await client.image.list()
 ```
 
 #### Example: Create
 
 ```ts
-const image = await client.Image().create({
+const image = await client.image.create({
   attribution: /* `$STRING` */,
   author_name: /* `$STRING` */,
   author_url: /* `$STRING` */,
@@ -605,7 +608,7 @@ const image = await client.Image().create({
 
 ### OAuth2Application
 
-Create an instance: `const o_auth2_application = client.OAuth2Application()`
+Create an instance: `const o_auth2_application = client.o_auth2_application`
 
 #### Operations
 
@@ -624,7 +627,7 @@ Create an instance: `const o_auth2_application = client.OAuth2Application()`
 #### Example: Create
 
 ```ts
-const o_auth2_application = await client.OAuth2Application().create({
+const o_auth2_application = await client.o_auth2_application.create({
   description: /* `$STRING` */,
   email: /* `$STRING` */,
   name: /* `$STRING` */,
@@ -634,7 +637,7 @@ const o_auth2_application = await client.OAuth2Application().create({
 
 ### OAuth2KeyInfo
 
-Create an instance: `const o_auth2_key_info = client.OAuth2KeyInfo()`
+Create an instance: `const o_auth2_key_info = client.o_auth2_key_info`
 
 #### Operations
 
@@ -654,13 +657,13 @@ Create an instance: `const o_auth2_key_info = client.OAuth2KeyInfo()`
 #### Example: Load
 
 ```ts
-const o_auth2_key_info = await client.OAuth2KeyInfo().load({ id: 'o_auth2_key_info_id' })
+const o_auth2_key_info = await client.o_auth2_key_info.load({ id: 'o_auth2_key_info_id' })
 ```
 
 
 ### OAuth2Token
 
-Create an instance: `const o_auth2_token = client.OAuth2Token()`
+Create an instance: `const o_auth2_token = client.o_auth2_token`
 
 #### Operations
 
@@ -680,7 +683,7 @@ Create an instance: `const o_auth2_token = client.OAuth2Token()`
 #### Example: Create
 
 ```ts
-const o_auth2_token = await client.OAuth2Token().create({
+const o_auth2_token = await client.o_auth2_token.create({
   access_token: /* `$STRING` */,
   expires_in: /* `$INTEGER` */,
   scope: /* `$STRING` */,
@@ -746,7 +749,7 @@ openverse/
 Import the SDK from the package root:
 
 ```ts
-import { OpenverseSDK } from 'openverse'
+import { OpenverseSDK } from '@voxgig-sdk/openverse'
 ```
 
 ### Entity state
@@ -756,11 +759,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const audio = client.audio
+await audio.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// audio.data() now returns the loaded audio data
+// audio.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch AudioLoadMatch
+---@param ctrl? table
+---@return Audio
+---@return string? err
 function AudioEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch AudioListMatch
+---@param ctrl? table
+---@return Audio[]
+---@return string? err
 function AudioEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -126,6 +134,10 @@ end
 
 
 
+---@param reqdata AudioCreateData
+---@param ctrl? table
+---@return Audio
+---@return string? err
 function AudioEntity:create(reqdata, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

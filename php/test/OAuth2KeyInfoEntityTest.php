@@ -49,8 +49,7 @@ class OAuth2KeyInfoEntityTest extends TestCase
         // LOAD
         $o_auth2_key_info_ref01_ent = $client->OAuth2KeyInfo(null);
         $o_auth2_key_info_ref01_match_dt0 = [];
-        [$o_auth2_key_info_ref01_data_dt0_loaded, $err] = $o_auth2_key_info_ref01_ent->load($o_auth2_key_info_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $o_auth2_key_info_ref01_data_dt0_loaded = $o_auth2_key_info_ref01_ent->load($o_auth2_key_info_ref01_match_dt0, null);
         $this->assertNotNull($o_auth2_key_info_ref01_data_dt0_loaded);
 
     }

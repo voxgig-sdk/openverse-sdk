@@ -360,7 +360,8 @@ class Config {
                     "name": "identifier",
                     "orig": "identifier",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
@@ -640,7 +641,8 @@ class Config {
                     "name": "identifier",
                     "orig": "identifier",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
@@ -674,7 +676,8 @@ class Config {
                     "name": "identifier",
                     "orig": "identifier",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
@@ -734,7 +737,8 @@ class Config {
                     "name": "identifier",
                     "orig": "identifier",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ],
                 "query": [
@@ -789,7 +793,8 @@ class Config {
                     "name": "identifier",
                     "orig": "identifier",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ],
                 "query": [
@@ -843,7 +848,8 @@ class Config {
                     "name": "id",
                     "orig": "identifier",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
@@ -1168,7 +1174,8 @@ class Config {
                     "name": "identifier",
                     "orig": "identifier",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
@@ -1447,7 +1454,8 @@ class Config {
                     "name": "identifier",
                     "orig": "identifier",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
@@ -1507,7 +1515,8 @@ class Config {
                     "name": "id",
                     "orig": "identifier",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },

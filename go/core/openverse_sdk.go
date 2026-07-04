@@ -245,26 +245,41 @@ func (sdk *OpenverseSDK) Direct(fetchargs map[string]any) (map[string]any, error
 }
 
 
+// Audio returns a Audio entity bound to this client.
+// Idiomatic usage: client.Audio(nil).List(nil, nil) or
+// client.Audio(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *OpenverseSDK) Audio(data map[string]any) OpenverseEntity {
 	return NewAudioEntityFunc(sdk, data)
 }
 
 
+// Image returns a Image entity bound to this client.
+// Idiomatic usage: client.Image(nil).List(nil, nil) or
+// client.Image(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *OpenverseSDK) Image(data map[string]any) OpenverseEntity {
 	return NewImageEntityFunc(sdk, data)
 }
 
 
+// OAuth2Application returns a OAuth2Application entity bound to this client.
+// Idiomatic usage: client.OAuth2Application(nil).List(nil, nil) or
+// client.OAuth2Application(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *OpenverseSDK) OAuth2Application(data map[string]any) OpenverseEntity {
 	return NewOAuth2ApplicationEntityFunc(sdk, data)
 }
 
 
+// OAuth2KeyInfo returns a OAuth2KeyInfo entity bound to this client.
+// Idiomatic usage: client.OAuth2KeyInfo(nil).List(nil, nil) or
+// client.OAuth2KeyInfo(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *OpenverseSDK) OAuth2KeyInfo(data map[string]any) OpenverseEntity {
 	return NewOAuth2KeyInfoEntityFunc(sdk, data)
 }
 
 
+// OAuth2Token returns a OAuth2Token entity bound to this client.
+// Idiomatic usage: client.OAuth2Token(nil).List(nil, nil) or
+// client.OAuth2Token(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *OpenverseSDK) OAuth2Token(data map[string]any) OpenverseEntity {
 	return NewOAuth2TokenEntityFunc(sdk, data)
 }

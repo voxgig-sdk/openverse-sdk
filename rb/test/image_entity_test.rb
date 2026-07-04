@@ -37,8 +37,7 @@ class ImageEntityTest < Minitest::Test
       Vs.getpath(setup[:data], "new.image"), "image_ref01"))
     image_ref01_data["identifier"] = setup[:idmap]["identifier01"]
 
-    image_ref01_data_result, err = image_ref01_ent.create(image_ref01_data, nil)
-    assert_nil err
+    image_ref01_data_result = image_ref01_ent.create(image_ref01_data, nil)
     image_ref01_data = Helpers.to_map(image_ref01_data_result)
     assert !image_ref01_data.nil?
     assert !image_ref01_data["id"].nil?
@@ -46,8 +45,7 @@ class ImageEntityTest < Minitest::Test
     # LIST
     image_ref01_match = {}
 
-    image_ref01_list_result, err = image_ref01_ent.list(image_ref01_match, nil)
-    assert_nil err
+    image_ref01_list_result = image_ref01_ent.list(image_ref01_match, nil)
     assert image_ref01_list_result.is_a?(Array)
 
     found_item = Vs.select(
@@ -59,8 +57,7 @@ class ImageEntityTest < Minitest::Test
     image_ref01_match_dt0 = {
       "id" => image_ref01_data["id"],
     }
-    image_ref01_data_dt0_loaded, err = image_ref01_ent.load(image_ref01_match_dt0, nil)
-    assert_nil err
+    image_ref01_data_dt0_loaded = image_ref01_ent.load(image_ref01_match_dt0, nil)
     image_ref01_data_dt0_load_result = Helpers.to_map(image_ref01_data_dt0_loaded)
     assert !image_ref01_data_dt0_load_result.nil?
     assert_equal image_ref01_data_dt0_load_result["id"], image_ref01_data["id"]

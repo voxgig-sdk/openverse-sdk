@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  OAuth2KeyInfo,
+  OAuth2KeyInfoLoadMatch,
+} from '../OpenverseTypes'
 
 // TODO: needs Entity superclass
-class OAuth2KeyInfoEntity extends OpenverseEntityBase {
+class OAuth2KeyInfoEntity extends OpenverseEntityBase<OAuth2KeyInfo> {
 
   constructor(client: OpenverseSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class OAuth2KeyInfoEntity extends OpenverseEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: OAuth2KeyInfoLoadMatch, ctrl?: Control): Promise<OAuth2KeyInfo> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class OAuth2KeyInfoEntity extends OpenverseEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<OAuth2KeyInfo> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

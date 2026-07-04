@@ -9,12 +9,9 @@ The Lua SDK for the Openverse API — an entity-oriented client using Lua conven
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-openverse
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/openverse-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -39,7 +36,7 @@ local client = sdk.new({
 ### 2. List audios
 
 ```lua
-local result, err = client:Audio():list()
+local result, err = client:audio():list()
 if err then error(err) end
 
 if type(result) == "table" then
@@ -50,10 +47,10 @@ if type(result) == "table" then
 end
 ```
 
-### 3. Load a audio
+### 3. Load an audio
 
 ```lua
-local result, err = client:Audio():load({ id = "example_id" })
+local result, err = client:audio():load({ id = "example_id" })
 if err then error(err) end
 print(result)
 ```
@@ -62,7 +59,7 @@ print(result)
 
 ```lua
 -- Create
-local created, _ = client:Audio():create({ name = "Example" })
+local created, _ = client:audio():create({ name = "Example" })
 
 ```
 
@@ -109,7 +106,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Openverse():load({ id = "test01" })
+local result, err = client:audio():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -368,7 +365,7 @@ API path: `/v1/auth_tokens/token/`
 
 ### Audio
 
-Create an instance: `const audio = client.Audio()`
+Create an instance: `const audio = client.audio`
 
 #### Operations
 
@@ -425,19 +422,19 @@ Create an instance: `const audio = client.Audio()`
 #### Example: Load
 
 ```ts
-const audio = await client.Audio().load({ id: 'audio_id' })
+const audio = await client.audio.load({ id: 'audio_id' })
 ```
 
 #### Example: List
 
 ```ts
-const audios = await client.Audio().list()
+const audios = await client.audio.list()
 ```
 
 #### Example: Create
 
 ```ts
-const audio = await client.Audio().create({
+const audio = await client.audio.create({
   alt_file: /* `$ARRAY` */,
   attribution: /* `$STRING` */,
   audio_set: /* `$ANY` */,
@@ -466,7 +463,7 @@ const audio = await client.Audio().create({
 
 ### Image
 
-Create an instance: `const image = client.Image()`
+Create an instance: `const image = client.image`
 
 #### Operations
 
@@ -520,19 +517,19 @@ Create an instance: `const image = client.Image()`
 #### Example: Load
 
 ```ts
-const image = await client.Image().load({ id: 'image_id' })
+const image = await client.image.load({ id: 'image_id' })
 ```
 
 #### Example: List
 
 ```ts
-const images = await client.Image().list()
+const images = await client.image.list()
 ```
 
 #### Example: Create
 
 ```ts
-const image = await client.Image().create({
+const image = await client.image.create({
   attribution: /* `$STRING` */,
   author_name: /* `$STRING` */,
   author_url: /* `$STRING` */,
@@ -560,7 +557,7 @@ const image = await client.Image().create({
 
 ### OAuth2Application
 
-Create an instance: `const o_auth2_application = client.OAuth2Application()`
+Create an instance: `const o_auth2_application = client.o_auth2_application`
 
 #### Operations
 
@@ -579,7 +576,7 @@ Create an instance: `const o_auth2_application = client.OAuth2Application()`
 #### Example: Create
 
 ```ts
-const o_auth2_application = await client.OAuth2Application().create({
+const o_auth2_application = await client.o_auth2_application.create({
   description: /* `$STRING` */,
   email: /* `$STRING` */,
   name: /* `$STRING` */,
@@ -589,7 +586,7 @@ const o_auth2_application = await client.OAuth2Application().create({
 
 ### OAuth2KeyInfo
 
-Create an instance: `const o_auth2_key_info = client.OAuth2KeyInfo()`
+Create an instance: `const o_auth2_key_info = client.o_auth2_key_info`
 
 #### Operations
 
@@ -609,13 +606,13 @@ Create an instance: `const o_auth2_key_info = client.OAuth2KeyInfo()`
 #### Example: Load
 
 ```ts
-const o_auth2_key_info = await client.OAuth2KeyInfo().load({ id: 'o_auth2_key_info_id' })
+const o_auth2_key_info = await client.o_auth2_key_info.load({ id: 'o_auth2_key_info_id' })
 ```
 
 
 ### OAuth2Token
 
-Create an instance: `const o_auth2_token = client.OAuth2Token()`
+Create an instance: `const o_auth2_token = client.o_auth2_token`
 
 #### Operations
 
@@ -635,7 +632,7 @@ Create an instance: `const o_auth2_token = client.OAuth2Token()`
 #### Example: Create
 
 ```ts
-const o_auth2_token = await client.OAuth2Token().create({
+const o_auth2_token = await client.o_auth2_token.create({
   access_token: /* `$STRING` */,
   expires_in: /* `$INTEGER` */,
   scope: /* `$STRING` */,
@@ -715,11 +712,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local audio = client:audio()
+audio:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- audio:data_get() now returns the loaded audio data
+-- audio:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

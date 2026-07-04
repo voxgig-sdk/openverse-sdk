@@ -83,6 +83,10 @@ end
 
 
 
+---@param reqdata OAuth2ApplicationCreateData
+---@param ctrl? table
+---@return OAuth2Application
+---@return string? err
 function OAuth2ApplicationEntity:create(reqdata, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

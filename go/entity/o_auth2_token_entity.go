@@ -85,6 +85,27 @@ func (e *OAuth2TokenEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an OAuth2Token; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *OAuth2TokenEntity) DataTyped(data ...OAuth2Token) OAuth2Token {
+	if len(data) > 0 {
+		return typedFrom[OAuth2Token](e.Data(asMap(data[0])))
+	}
+	return typedFrom[OAuth2Token](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through OAuth2Token (all fields
+// optional at the wire level).
+func (e *OAuth2TokenEntity) MatchTyped(match ...OAuth2Token) OAuth2Token {
+	if len(match) > 0 {
+		return typedFrom[OAuth2Token](e.Match(asMap(match[0])))
+	}
+	return typedFrom[OAuth2Token](e.Match())
+}
+
 func (e *OAuth2TokenEntity) Load(_ map[string]any, _ map[string]any) (any, error) {
 	return core.UnsupportedOp("load", e.name)
 }
@@ -116,6 +137,17 @@ func (e *OAuth2TokenEntity) Create(reqdata map[string]any, ctrl map[string]any) 
 			}
 		}
 	})
+}
+
+// CreateTyped is the statically-typed variant of Create: it takes an
+// OAuth2TokenCreateData and returns an OAuth2Token. It delegates to the untyped
+// Create (identical runtime) and converts at the typed boundary.
+func (e *OAuth2TokenEntity) CreateTyped(reqdata OAuth2TokenCreateData, ctrl map[string]any) (OAuth2Token, error) {
+	res, err := e.Create(asMap(reqdata), ctrl)
+	if err != nil {
+		return OAuth2Token{}, err
+	}
+	return typedFrom[OAuth2Token](res), nil
 }
 
 

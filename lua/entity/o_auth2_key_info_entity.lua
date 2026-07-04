@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch OAuth2KeyInfoLoadMatch
+---@param ctrl? table
+---@return OAuth2KeyInfo
+---@return string? err
 function OAuth2KeyInfoEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

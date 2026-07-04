@@ -43,8 +43,7 @@ class OAuth2ApplicationEntityTest extends TestCase
         $o_auth2_application_ref01_data = Helpers::to_map(Vs::getprop(
             Vs::getpath($setup["data"], "new.o_auth2_application"), "o_auth2_application_ref01"));
 
-        [$o_auth2_application_ref01_data_result, $err] = $o_auth2_application_ref01_ent->create($o_auth2_application_ref01_data, null);
-        $this->assertNull($err);
+        $o_auth2_application_ref01_data_result = $o_auth2_application_ref01_ent->create($o_auth2_application_ref01_data, null);
         $o_auth2_application_ref01_data = Helpers::to_map($o_auth2_application_ref01_data_result);
         $this->assertNotNull($o_auth2_application_ref01_data);
 

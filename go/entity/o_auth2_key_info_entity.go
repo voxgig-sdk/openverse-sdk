@@ -85,6 +85,27 @@ func (e *OAuth2KeyInfoEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an OAuth2KeyInfo; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *OAuth2KeyInfoEntity) DataTyped(data ...OAuth2KeyInfo) OAuth2KeyInfo {
+	if len(data) > 0 {
+		return typedFrom[OAuth2KeyInfo](e.Data(asMap(data[0])))
+	}
+	return typedFrom[OAuth2KeyInfo](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through OAuth2KeyInfo (all fields
+// optional at the wire level).
+func (e *OAuth2KeyInfoEntity) MatchTyped(match ...OAuth2KeyInfo) OAuth2KeyInfo {
+	if len(match) > 0 {
+		return typedFrom[OAuth2KeyInfo](e.Match(asMap(match[0])))
+	}
+	return typedFrom[OAuth2KeyInfo](e.Match())
+}
+
 
 func (e *OAuth2KeyInfoEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -109,6 +130,17 @@ func (e *OAuth2KeyInfoEntity) Load(reqmatch map[string]any, ctrl map[string]any)
 			}
 		}
 	})
+}
+
+// LoadTyped is the statically-typed variant of Load: it takes an
+// OAuth2KeyInfoLoadMatch and returns an OAuth2KeyInfo. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *OAuth2KeyInfoEntity) LoadTyped(reqmatch OAuth2KeyInfoLoadMatch, ctrl map[string]any) (OAuth2KeyInfo, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return OAuth2KeyInfo{}, err
+	}
+	return typedFrom[OAuth2KeyInfo](res), nil
 }
 
 

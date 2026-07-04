@@ -70,9 +70,11 @@ Return a deep copy of the current SDK options.
 
 Return a copy of the SDK utility object.
 
-#### `direct(fetchargs = {}) -> Hash, err`
+#### `direct(fetchargs = {}) -> Hash`
 
-Make a direct HTTP request to any API endpoint.
+Make a direct HTTP request to any API endpoint. Returns a result hash
+(`{ "ok" => ..., "status" => ..., "data" => ..., "err" => ... }`); it
+does not raise — inspect `result["ok"]`.
 
 **Parameters:**
 
@@ -86,14 +88,14 @@ Make a direct HTTP request to any API endpoint.
 | `fetchargs["body"]` | `any` | Request body (hashes are JSON-serialized). |
 | `fetchargs["ctrl"]` | `Hash` | Control options (e.g. `{ "explain" => true }`). |
 
-**Returns:** `Hash, err`
+**Returns:** `Hash`
 
-#### `prepare(fetchargs = {}) -> Hash, err`
+#### `prepare(fetchargs = {}) -> Hash`
 
 Prepare a fetch definition without sending the request. Accepts the
-same parameters as `direct()`.
+same parameters as `direct()`. Raises on error.
 
-**Returns:** `Hash, err`
+**Returns:** `Hash` (the fetch definition; raises on error)
 
 
 ---
@@ -101,7 +103,7 @@ same parameters as `direct()`.
 ## AudioEntity
 
 ```ruby
-audio = client.Audio
+audio = client.audio
 ```
 
 ### Fields
@@ -150,12 +152,12 @@ audio = client.Audio
 
 ### Operations
 
-#### `create(reqdata, ctrl = nil) -> result, err`
+#### `create(reqdata, ctrl = nil) -> result`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Raises on error.
 
 ```ruby
-result, err = client.Audio.create({
+result = client.audio.create({
   "alt_file" => # `$ARRAY`,
   "attribution" => # `$STRING`,
   "audio_set" => # `$ANY`,
@@ -181,20 +183,20 @@ result, err = client.Audio.create({
 })
 ```
 
-#### `list(reqmatch, ctrl = nil) -> result, err`
+#### `list(reqmatch, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results, err = client.Audio.list(nil)
+results = client.audio.list(nil)
 ```
 
-#### `load(reqmatch, ctrl = nil) -> result, err`
+#### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result, err = client.Audio.load({ "id" => "audio_id" })
+result = client.audio.load({ "id" => "audio_id" })
 ```
 
 ### Common Methods
@@ -230,7 +232,7 @@ Return the entity name.
 ## ImageEntity
 
 ```ruby
-image = client.Image
+image = client.image
 ```
 
 ### Fields
@@ -317,12 +319,12 @@ image = client.Image
 
 ### Operations
 
-#### `create(reqdata, ctrl = nil) -> result, err`
+#### `create(reqdata, ctrl = nil) -> result`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Raises on error.
 
 ```ruby
-result, err = client.Image.create({
+result = client.image.create({
   "attribution" => # `$STRING`,
   "author_name" => # `$STRING`,
   "author_url" => # `$STRING`,
@@ -347,20 +349,20 @@ result, err = client.Image.create({
 })
 ```
 
-#### `list(reqmatch, ctrl = nil) -> result, err`
+#### `list(reqmatch, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results, err = client.Image.list(nil)
+results = client.image.list(nil)
 ```
 
-#### `load(reqmatch, ctrl = nil) -> result, err`
+#### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result, err = client.Image.load({ "id" => "image_id" })
+result = client.image.load({ "id" => "image_id" })
 ```
 
 ### Common Methods
@@ -396,7 +398,7 @@ Return the entity name.
 ## OAuth2ApplicationEntity
 
 ```ruby
-o_auth2_application = client.OAuth2Application
+o_auth2_application = client.o_auth2_application
 ```
 
 ### Fields
@@ -409,12 +411,12 @@ o_auth2_application = client.OAuth2Application
 
 ### Operations
 
-#### `create(reqdata, ctrl = nil) -> result, err`
+#### `create(reqdata, ctrl = nil) -> result`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Raises on error.
 
 ```ruby
-result, err = client.OAuth2Application.create({
+result = client.o_auth2_application.create({
   "description" => # `$STRING`,
   "email" => # `$STRING`,
   "name" => # `$STRING`,
@@ -454,7 +456,7 @@ Return the entity name.
 ## OAuth2KeyInfoEntity
 
 ```ruby
-o_auth2_key_info = client.OAuth2KeyInfo
+o_auth2_key_info = client.o_auth2_key_info
 ```
 
 ### Fields
@@ -468,12 +470,12 @@ o_auth2_key_info = client.OAuth2KeyInfo
 
 ### Operations
 
-#### `load(reqmatch, ctrl = nil) -> result, err`
+#### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result, err = client.OAuth2KeyInfo.load({ "id" => "o_auth2_key_info_id" })
+result = client.o_auth2_key_info.load({ "id" => "o_auth2_key_info_id" })
 ```
 
 ### Common Methods
@@ -509,7 +511,7 @@ Return the entity name.
 ## OAuth2TokenEntity
 
 ```ruby
-o_auth2_token = client.OAuth2Token
+o_auth2_token = client.o_auth2_token
 ```
 
 ### Fields
@@ -523,12 +525,12 @@ o_auth2_token = client.OAuth2Token
 
 ### Operations
 
-#### `create(reqdata, ctrl = nil) -> result, err`
+#### `create(reqdata, ctrl = nil) -> result`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Raises on error.
 
 ```ruby
-result, err = client.OAuth2Token.create({
+result = client.o_auth2_token.create({
   "access_token" => # `$STRING`,
   "expires_in" => # `$INTEGER`,
   "scope" => # `$STRING`,

@@ -36,8 +36,7 @@ class OAuth2ApplicationEntityTest < Minitest::Test
     o_auth2_application_ref01_data = Helpers.to_map(Vs.getprop(
       Vs.getpath(setup[:data], "new.o_auth2_application"), "o_auth2_application_ref01"))
 
-    o_auth2_application_ref01_data_result, err = o_auth2_application_ref01_ent.create(o_auth2_application_ref01_data, nil)
-    assert_nil err
+    o_auth2_application_ref01_data_result = o_auth2_application_ref01_ent.create(o_auth2_application_ref01_data, nil)
     o_auth2_application_ref01_data = Helpers.to_map(o_auth2_application_ref01_data_result)
     assert !o_auth2_application_ref01_data.nil?
 

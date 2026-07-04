@@ -45,17 +45,14 @@ class TestAudioEntity:
             vs.getpath(setup["data"], "new.audio"), "audio_ref01"))
         audio_ref01_data["identifier"] = setup["idmap"]["identifier01"]
 
-        audio_ref01_data_result, err = audio_ref01_ent.create(audio_ref01_data, None)
-        assert err is None
-        audio_ref01_data = helpers.to_map(audio_ref01_data_result)
+        audio_ref01_data = helpers.to_map(audio_ref01_ent.create(audio_ref01_data, None))
         assert audio_ref01_data is not None
         assert audio_ref01_data["id"] is not None
 
         # LIST
         audio_ref01_match = {}
 
-        audio_ref01_list_result, err = audio_ref01_ent.list(audio_ref01_match, None)
-        assert err is None
+        audio_ref01_list_result = audio_ref01_ent.list(audio_ref01_match, None)
         assert isinstance(audio_ref01_list_result, list)
 
         found_item = vs.select(
@@ -67,8 +64,7 @@ class TestAudioEntity:
         audio_ref01_match_dt0 = {
             "id": audio_ref01_data["id"],
         }
-        audio_ref01_data_dt0_loaded, err = audio_ref01_ent.load(audio_ref01_match_dt0, None)
-        assert err is None
+        audio_ref01_data_dt0_loaded = audio_ref01_ent.load(audio_ref01_match_dt0, None)
         audio_ref01_data_dt0_load_result = helpers.to_map(audio_ref01_data_dt0_loaded)
         assert audio_ref01_data_dt0_load_result is not None
         assert audio_ref01_data_dt0_load_result["id"] == audio_ref01_data["id"]

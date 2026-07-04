@@ -72,7 +72,10 @@ Return a copy of the SDK utility object.
 
 #### `direct(array $fetchargs = []): array`
 
-Make a direct HTTP request to any API endpoint. Returns `[$result, $err]`.
+Make a direct HTTP request to any API endpoint. This is the raw-HTTP escape
+hatch: it does **not** throw. It returns a result array
+`["ok" => bool, "status" => int, "headers" => array, "data" => mixed]`, or
+`["ok" => false, "err" => \Exception]` on failure. Branch on `$result["ok"]`.
 
 **Parameters:**
 
@@ -86,11 +89,12 @@ Make a direct HTTP request to any API endpoint. Returns `[$result, $err]`.
 | `$fetchargs["body"]` | `mixed` | Request body (arrays are JSON-serialized). |
 | `$fetchargs["ctrl"]` | `array` | Control options. |
 
-**Returns:** `array [$result, $err]`
+**Returns:** `array` — the result dict (see above); never throws.
 
-#### `prepare(array $fetchargs = []): array`
+#### `prepare(array $fetchargs = []): mixed`
 
-Prepare a fetch definition without sending the request. Returns `[$fetchdef, $err]`.
+Prepare a fetch definition without sending the request. Returns the
+`$fetchdef` array. Throws on error.
 
 
 ---
@@ -98,7 +102,7 @@ Prepare a fetch definition without sending the request. Returns `[$fetchdef, $er
 ## AudioEntity
 
 ```php
-$audio = $client->Audio();
+$audio = $client->audio();
 ```
 
 ### Fields
@@ -147,12 +151,12 @@ $audio = $client->Audio();
 
 ### Operations
 
-#### `create(array $reqdata, ?array $ctrl = null): array`
+#### `create(array $reqdata, ?array $ctrl = null): mixed`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Throws on error.
 
 ```php
-[$result, $err] = $client->Audio()->create([
+$result = $client->audio()->create([
   "alt_file" => /* `$ARRAY` */,
   "attribution" => /* `$STRING` */,
   "audio_set" => /* `$ANY` */,
@@ -178,20 +182,20 @@ Create a new entity with the given data.
 ]);
 ```
 
-#### `list(array $reqmatch, ?array $ctrl = null): array`
+#### `list(array $reqmatch, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-[$results, $err] = $client->Audio()->list([]);
+$results = $client->audio()->list([]);
 ```
 
-#### `load(array $reqmatch, ?array $ctrl = null): array`
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Throws on error.
 
 ```php
-[$result, $err] = $client->Audio()->load(["id" => "audio_id"]);
+$result = $client->audio()->load(["id" => "audio_id"]);
 ```
 
 ### Common Methods
@@ -227,7 +231,7 @@ Return the entity name.
 ## ImageEntity
 
 ```php
-$image = $client->Image();
+$image = $client->image();
 ```
 
 ### Fields
@@ -314,12 +318,12 @@ $image = $client->Image();
 
 ### Operations
 
-#### `create(array $reqdata, ?array $ctrl = null): array`
+#### `create(array $reqdata, ?array $ctrl = null): mixed`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Throws on error.
 
 ```php
-[$result, $err] = $client->Image()->create([
+$result = $client->image()->create([
   "attribution" => /* `$STRING` */,
   "author_name" => /* `$STRING` */,
   "author_url" => /* `$STRING` */,
@@ -344,20 +348,20 @@ Create a new entity with the given data.
 ]);
 ```
 
-#### `list(array $reqmatch, ?array $ctrl = null): array`
+#### `list(array $reqmatch, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-[$results, $err] = $client->Image()->list([]);
+$results = $client->image()->list([]);
 ```
 
-#### `load(array $reqmatch, ?array $ctrl = null): array`
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Throws on error.
 
 ```php
-[$result, $err] = $client->Image()->load(["id" => "image_id"]);
+$result = $client->image()->load(["id" => "image_id"]);
 ```
 
 ### Common Methods
@@ -393,7 +397,7 @@ Return the entity name.
 ## OAuth2ApplicationEntity
 
 ```php
-$o_auth2_application = $client->OAuth2Application();
+$o_auth2_application = $client->o_auth2_application();
 ```
 
 ### Fields
@@ -406,12 +410,12 @@ $o_auth2_application = $client->OAuth2Application();
 
 ### Operations
 
-#### `create(array $reqdata, ?array $ctrl = null): array`
+#### `create(array $reqdata, ?array $ctrl = null): mixed`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Throws on error.
 
 ```php
-[$result, $err] = $client->OAuth2Application()->create([
+$result = $client->o_auth2_application()->create([
   "description" => /* `$STRING` */,
   "email" => /* `$STRING` */,
   "name" => /* `$STRING` */,
@@ -451,7 +455,7 @@ Return the entity name.
 ## OAuth2KeyInfoEntity
 
 ```php
-$o_auth2_key_info = $client->OAuth2KeyInfo();
+$o_auth2_key_info = $client->o_auth2_key_info();
 ```
 
 ### Fields
@@ -465,12 +469,12 @@ $o_auth2_key_info = $client->OAuth2KeyInfo();
 
 ### Operations
 
-#### `load(array $reqmatch, ?array $ctrl = null): array`
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Throws on error.
 
 ```php
-[$result, $err] = $client->OAuth2KeyInfo()->load(["id" => "o_auth2_key_info_id"]);
+$result = $client->o_auth2_key_info()->load(["id" => "o_auth2_key_info_id"]);
 ```
 
 ### Common Methods
@@ -506,7 +510,7 @@ Return the entity name.
 ## OAuth2TokenEntity
 
 ```php
-$o_auth2_token = $client->OAuth2Token();
+$o_auth2_token = $client->o_auth2_token();
 ```
 
 ### Fields
@@ -520,12 +524,12 @@ $o_auth2_token = $client->OAuth2Token();
 
 ### Operations
 
-#### `create(array $reqdata, ?array $ctrl = null): array`
+#### `create(array $reqdata, ?array $ctrl = null): mixed`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Throws on error.
 
 ```php
-[$result, $err] = $client->OAuth2Token()->create([
+$result = $client->o_auth2_token()->create([
   "access_token" => /* `$STRING` */,
   "expires_in" => /* `$INTEGER` */,
   "scope" => /* `$STRING` */,

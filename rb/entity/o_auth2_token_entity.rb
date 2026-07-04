@@ -45,6 +45,7 @@ class OAuth2TokenEntity
     end
   end
 
+  # @return [OAuth2Token, Hash] the current OAuth2Token data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class OAuth2TokenEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of OAuth2Token fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -67,6 +69,11 @@ class OAuth2TokenEntity
   
 
   
+  # Create a new OAuth2Token.
+  #
+  # @param reqdata [OAuth2TokenCreateData, Hash, nil] body data
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [OAuth2Token, Hash] the created OAuth2Token; raises OpenverseError on failure
   def create(reqdata, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

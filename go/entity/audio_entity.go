@@ -85,6 +85,27 @@ func (e *AudioEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an Audio; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *AudioEntity) DataTyped(data ...Audio) Audio {
+	if len(data) > 0 {
+		return typedFrom[Audio](e.Data(asMap(data[0])))
+	}
+	return typedFrom[Audio](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through Audio (all fields
+// optional at the wire level).
+func (e *AudioEntity) MatchTyped(match ...Audio) Audio {
+	if len(match) > 0 {
+		return typedFrom[Audio](e.Match(asMap(match[0])))
+	}
+	return typedFrom[Audio](e.Match())
+}
+
 
 func (e *AudioEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -111,6 +132,17 @@ func (e *AudioEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, e
 	})
 }
 
+// LoadTyped is the statically-typed variant of Load: it takes an
+// AudioLoadMatch and returns an Audio. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *AudioEntity) LoadTyped(reqmatch AudioLoadMatch, ctrl map[string]any) (Audio, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return Audio{}, err
+	}
+	return typedFrom[Audio](res), nil
+}
+
 
 
 
@@ -131,6 +163,17 @@ func (e *AudioEntity) List(reqmatch map[string]any, ctrl map[string]any) (any, e
 			}
 		}
 	})
+}
+
+// ListTyped is the statically-typed variant of List: it takes an
+// AudioListMatch and returns []Audio. It delegates to the untyped
+// List (identical runtime) and converts at the typed boundary.
+func (e *AudioEntity) ListTyped(reqmatch AudioListMatch, ctrl map[string]any) ([]Audio, error) {
+	res, err := e.List(asMap(reqmatch), ctrl)
+	if err != nil {
+		return nil, err
+	}
+	return typedSliceFrom[Audio](res), nil
 }
 
 
@@ -156,6 +199,17 @@ func (e *AudioEntity) Create(reqdata map[string]any, ctrl map[string]any) (any, 
 			}
 		}
 	})
+}
+
+// CreateTyped is the statically-typed variant of Create: it takes an
+// AudioCreateData and returns an Audio. It delegates to the untyped
+// Create (identical runtime) and converts at the typed boundary.
+func (e *AudioEntity) CreateTyped(reqdata AudioCreateData, ctrl map[string]any) (Audio, error) {
+	res, err := e.Create(asMap(reqdata), ctrl)
+	if err != nil {
+		return Audio{}, err
+	}
+	return typedFrom[Audio](res), nil
 }
 
 

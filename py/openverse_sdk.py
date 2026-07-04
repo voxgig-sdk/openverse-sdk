@@ -144,16 +144,23 @@ class OpenverseSDK:
 
         _, err = utility.prepare_auth(ctx)
         if err is not None:
-            return None, err
+            raise err
 
-        return utility.make_fetch_def(ctx)
+        fetchdef, err = utility.make_fetch_def(ctx)
+        if err is not None:
+            raise err
+
+        return fetchdef
 
     def direct(self, fetchargs=None):
         utility = self._utility
 
-        fetchdef, err = self.prepare(fetchargs)
-        if err is not None:
-            return {"ok": False, "err": err}, None
+        try:
+            fetchdef = self.prepare(fetchargs)
+        except Exception as err:
+            # direct() is the raw-HTTP escape hatch: it never raises, it
+            # returns a result object callers branch on via result["ok"].
+            return {"ok": False, "err": err}
 
         if fetchargs is None:
             fetchargs = {}
@@ -170,13 +177,13 @@ class OpenverseSDK:
         fetched, fetch_err = utility.fetcher(ctx, url, fetchdef)
 
         if fetch_err is not None:
-            return {"ok": False, "err": fetch_err}, None
+            return {"ok": False, "err": fetch_err}
 
         if fetched is None:
             return {
                 "ok": False,
                 "err": ctx.make_error("direct_no_response", "response: undefined"),
-            }, None
+            }
 
         if isinstance(fetched, dict):
             status = helpers.to_int(vs.getprop(fetched, "status"))
@@ -205,35 +212,90 @@ class OpenverseSDK:
                 "status": status,
                 "headers": headers,
                 "data": json_data,
-            }, None
+            }
 
         return {
             "ok": False,
             "err": ctx.make_error("direct_invalid", "invalid response type"),
-        }, None
+        }
 
+
+    @property
+    def audio(self):
+        """Idiomatic facade: client.audio.list() / client.audio.load({"id": ...})."""
+        from entity.audio_entity import AudioEntity
+        cached = getattr(self, "_audio", None)
+        if cached is None:
+            cached = AudioEntity(self, None)
+            self._audio = cached
+        return cached
 
     def Audio(self, data=None):
+        # Deprecated: use client.audio instead.
         from entity.audio_entity import AudioEntity
         return AudioEntity(self, data)
 
 
+    @property
+    def image(self):
+        """Idiomatic facade: client.image.list() / client.image.load({"id": ...})."""
+        from entity.image_entity import ImageEntity
+        cached = getattr(self, "_image", None)
+        if cached is None:
+            cached = ImageEntity(self, None)
+            self._image = cached
+        return cached
+
     def Image(self, data=None):
+        # Deprecated: use client.image instead.
         from entity.image_entity import ImageEntity
         return ImageEntity(self, data)
 
 
+    @property
+    def o_auth2_application(self):
+        """Idiomatic facade: client.o_auth2_application.list() / client.o_auth2_application.load({"id": ...})."""
+        from entity.o_auth2_application_entity import OAuth2ApplicationEntity
+        cached = getattr(self, "_o_auth2_application", None)
+        if cached is None:
+            cached = OAuth2ApplicationEntity(self, None)
+            self._o_auth2_application = cached
+        return cached
+
     def OAuth2Application(self, data=None):
+        # Deprecated: use client.o_auth2_application instead.
         from entity.o_auth2_application_entity import OAuth2ApplicationEntity
         return OAuth2ApplicationEntity(self, data)
 
 
+    @property
+    def o_auth2_key_info(self):
+        """Idiomatic facade: client.o_auth2_key_info.list() / client.o_auth2_key_info.load({"id": ...})."""
+        from entity.o_auth2_key_info_entity import OAuth2KeyInfoEntity
+        cached = getattr(self, "_o_auth2_key_info", None)
+        if cached is None:
+            cached = OAuth2KeyInfoEntity(self, None)
+            self._o_auth2_key_info = cached
+        return cached
+
     def OAuth2KeyInfo(self, data=None):
+        # Deprecated: use client.o_auth2_key_info instead.
         from entity.o_auth2_key_info_entity import OAuth2KeyInfoEntity
         return OAuth2KeyInfoEntity(self, data)
 
 
+    @property
+    def o_auth2_token(self):
+        """Idiomatic facade: client.o_auth2_token.list() / client.o_auth2_token.load({"id": ...})."""
+        from entity.o_auth2_token_entity import OAuth2TokenEntity
+        cached = getattr(self, "_o_auth2_token", None)
+        if cached is None:
+            cached = OAuth2TokenEntity(self, None)
+            self._o_auth2_token = cached
+        return cached
+
     def OAuth2Token(self, data=None):
+        # Deprecated: use client.o_auth2_token instead.
         from entity.o_auth2_token_entity import OAuth2TokenEntity
         return OAuth2TokenEntity(self, data)
 

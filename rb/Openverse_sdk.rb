@@ -13,6 +13,9 @@ require_relative 'config'
 require_relative 'feature/base_feature'
 require_relative 'features'
 
+# Load typed models (Struct value objects).
+require_relative 'Openverse_types'
+
 
 class OpenverseSDK
   attr_accessor :mode, :features, :options
@@ -131,7 +134,7 @@ class OpenverseSDK
     end
 
     _, err = utility.prepare_auth.call(ctx)
-    return nil, err if err
+    raise err if err
 
     utility.make_fetch_def.call(ctx)
   end
@@ -139,8 +142,14 @@ class OpenverseSDK
   def direct(fetchargs = {})
     utility = @_utility
 
-    fetchdef, err = prepare(fetchargs)
-    return { "ok" => false, "err" => err }, nil if err
+    # direct() is the raw-HTTP escape hatch: it always returns a result hash
+    # ({ "ok" => ..., ... }) and never raises. prepare() raises on error, so
+    # trap that and surface it in the hash.
+    begin
+      fetchdef = prepare(fetchargs)
+    rescue OpenverseError => err
+      return { "ok" => false, "err" => err }
+    end
 
     fetchargs ||= {}
     ctrl = OpenverseHelpers.to_map(VoxgigStruct.getprop(fetchargs, "ctrl")) || {}
@@ -153,13 +162,13 @@ class OpenverseSDK
     url = fetchdef["url"] || ""
     fetched, fetch_err = utility.fetcher.call(ctx, url, fetchdef)
 
-    return { "ok" => false, "err" => fetch_err }, nil if fetch_err
+    return { "ok" => false, "err" => fetch_err } if fetch_err
 
     if fetched.nil?
       return {
         "ok" => false,
         "err" => ctx.make_error("direct_no_response", "response: undefined"),
-      }, nil
+      }
     end
 
     if fetched.is_a?(Hash)
@@ -189,40 +198,75 @@ class OpenverseSDK
         "status" => status,
         "headers" => headers,
         "data" => json_data,
-      }, nil
+      }
     end
 
     return {
       "ok" => false,
       "err" => ctx.make_error("direct_invalid", "invalid response type"),
-    }, nil
+    }
   end
 
 
+  # Idiomatic facade: client.audio.list / client.audio.load({ "id" => ... })
+  def audio
+    require_relative 'entity/audio_entity'
+    @audio ||= AudioEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.audio instead.
   def Audio(data = nil)
     require_relative 'entity/audio_entity'
     AudioEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.image.list / client.image.load({ "id" => ... })
+  def image
+    require_relative 'entity/image_entity'
+    @image ||= ImageEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.image instead.
   def Image(data = nil)
     require_relative 'entity/image_entity'
     ImageEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.o_auth2_application.list / client.o_auth2_application.load({ "id" => ... })
+  def o_auth2_application
+    require_relative 'entity/o_auth2_application_entity'
+    @o_auth2_application ||= OAuth2ApplicationEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.o_auth2_application instead.
   def OAuth2Application(data = nil)
     require_relative 'entity/o_auth2_application_entity'
     OAuth2ApplicationEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.o_auth2_key_info.list / client.o_auth2_key_info.load({ "id" => ... })
+  def o_auth2_key_info
+    require_relative 'entity/o_auth2_key_info_entity'
+    @o_auth2_key_info ||= OAuth2KeyInfoEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.o_auth2_key_info instead.
   def OAuth2KeyInfo(data = nil)
     require_relative 'entity/o_auth2_key_info_entity'
     OAuth2KeyInfoEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.o_auth2_token.list / client.o_auth2_token.load({ "id" => ... })
+  def o_auth2_token
+    require_relative 'entity/o_auth2_token_entity'
+    @o_auth2_token ||= OAuth2TokenEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.o_auth2_token instead.
   def OAuth2Token(data = nil)
     require_relative 'entity/o_auth2_token_entity'
     OAuth2TokenEntity.new(self, data)
