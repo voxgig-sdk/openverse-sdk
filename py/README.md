@@ -4,6 +4,11 @@
 
 The Python SDK for the Openverse API — an entity-oriented client following Pythonic conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `client.Audio()` — each
+carrying a small, uniform set of operations (`list`, `load`, `create`) instead of raw URL
+paths and query strings. You work with named resources and verbs, which
+keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -41,7 +46,7 @@ error — iterate it directly.
 
 ```python
 try:
-    audios = client.Audio().list({})
+    audios = client.Audio().list()
     for audio in audios:
         print(audio)
 except Exception as err:
@@ -64,8 +69,36 @@ except Exception as err:
 
 ```python
 # Create — returns the bare created record (a dict)
-created = client.Audio().create({"name": "Example"})
+created = client.Audio().create({"identifier": "example"})
 
+```
+
+
+## Error handling
+
+Entity operations raise on failure, so wrap them in `try` / `except`:
+
+```python
+try:
+    audios = client.Audio().list()
+    print(audios)
+except Exception as err:
+    print(f"list failed: {err}")
+```
+
+`direct()` does **not** raise — it returns the result envelope. Branch
+on `ok`; on failure `status` holds the HTTP status (for error responses)
+and `err` holds a transport error, so read both defensively:
+
+```python
+result = client.direct({
+    "path": "/api/resource/{id}",
+    "method": "GET",
+    "params": {"id": "example_id"},
+})
+
+if not result["ok"]:
+    print("request failed:", result.get("status"), result.get("err"))
 ```
 
 
@@ -86,7 +119,10 @@ if result["ok"]:
     print(result["status"])  # 200
     print(result["data"])    # response body
 else:
-    print(result["err"])     # error value
+    # A non-2xx response carries status + data (the error body); a
+    # transport-level failure carries err instead. Only one is present, so
+    # read both with .get() rather than indexing a key that may be absent.
+    print(result.get("status"), result.get("err"))
 ```
 
 ### Prepare a request without sending it
@@ -112,7 +148,7 @@ Create a mock client for unit testing — no server required:
 client = OpenverseSDK.test()
 
 # Entity ops return the bare record and raise on error.
-audio = client.Audio().load({"id": "test01"})
+audio = client.Audio().list()
 # audio contains the mock response record
 ```
 
@@ -206,8 +242,6 @@ All entities share the same interface.
 | `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
 | `list` | `(reqmatch, ctrl) -> list` | List entities matching the criteria. Raises on error. |
 | `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
-| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
-| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
 | `data_get` | `() -> dict` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> dict` | Get entity match criteria. |
@@ -380,52 +414,52 @@ Create an instance: `audio = client.Audio()`
 | Method | Description |
 | --- | --- |
 | `create(data)` | Create a new entity with the given data. |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_file` | ``$ARRAY`` |  |
-| `attribution` | ``$STRING`` |  |
-| `audio_set` | ``$ANY`` |  |
-| `bit_rate` | ``$INTEGER`` |  |
-| `category` | ``$STRING`` |  |
-| `creator` | ``$STRING`` |  |
-| `creator_url` | ``$STRING`` |  |
-| `description` | ``$STRING`` |  |
-| `detail_url` | ``$STRING`` |  |
-| `display_name` | ``$STRING`` |  |
-| `duration` | ``$INTEGER`` |  |
-| `fields_matched` | ``$ARRAY`` |  |
-| `filesize` | ``$INTEGER`` |  |
-| `filetype` | ``$STRING`` |  |
-| `foreign_landing_url` | ``$STRING`` |  |
-| `genre` | ``$ARRAY`` |  |
-| `id` | ``$STRING`` |  |
-| `identifier` | ``$STRING`` |  |
-| `indexed_on` | ``$STRING`` |  |
-| `len` | ``$INTEGER`` |  |
-| `license` | ``$STRING`` |  |
-| `license_url` | ``$STRING`` |  |
-| `license_version` | ``$STRING`` |  |
-| `logo_url` | ``$STRING`` |  |
-| `mature` | ``$BOOLEAN`` |  |
-| `media_count` | ``$INTEGER`` |  |
-| `point` | ``$ARRAY`` |  |
-| `provider` | ``$STRING`` |  |
-| `reason` | ``$ANY`` |  |
-| `related_url` | ``$STRING`` |  |
-| `sample_rate` | ``$INTEGER`` |  |
-| `source` | ``$STRING`` |  |
-| `source_name` | ``$STRING`` |  |
-| `source_url` | ``$STRING`` |  |
-| `tag` | ``$ARRAY`` |  |
-| `thumbnail` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
-| `waveform` | ``$STRING`` |  |
+| `alt_file` | `list` |  |
+| `attribution` | `str` |  |
+| `audio_set` | `Any` |  |
+| `bit_rate` | `int` |  |
+| `category` | `str` |  |
+| `creator` | `str` |  |
+| `creator_url` | `str` |  |
+| `description` | `str` |  |
+| `detail_url` | `str` |  |
+| `display_name` | `str` |  |
+| `duration` | `int` |  |
+| `fields_matched` | `list` |  |
+| `filesize` | `int` |  |
+| `filetype` | `str` |  |
+| `foreign_landing_url` | `str` |  |
+| `genre` | `list` |  |
+| `id` | `str` |  |
+| `identifier` | `str` |  |
+| `indexed_on` | `str` |  |
+| `len` | `int` |  |
+| `license` | `str` |  |
+| `license_url` | `str` |  |
+| `license_version` | `str` |  |
+| `logo_url` | `str` |  |
+| `mature` | `bool` |  |
+| `media_count` | `int` |  |
+| `point` | `list` |  |
+| `provider` | `str` |  |
+| `reason` | `Any` |  |
+| `related_url` | `str` |  |
+| `sample_rate` | `int` |  |
+| `source` | `str` |  |
+| `source_name` | `str` |  |
+| `source_url` | `str` |  |
+| `tag` | `list` |  |
+| `thumbnail` | `str` |  |
+| `title` | `str` |  |
+| `url` | `str` |  |
+| `waveform` | `str` |  |
 
 #### Example: Load
 
@@ -436,35 +470,35 @@ audio = client.Audio().load({"id": "audio_id"})
 #### Example: List
 
 ```python
-audios = client.Audio().list({})
+audios = client.Audio().list()
 ```
 
 #### Example: Create
 
 ```python
 audio = client.Audio().create({
-    "alt_file": ...,  # `$ARRAY`
-    "attribution": ...,  # `$STRING`
-    "audio_set": ...,  # `$ANY`
-    "detail_url": ...,  # `$STRING`
-    "display_name": ...,  # `$STRING`
-    "fields_matched": ...,  # `$ARRAY`
-    "identifier": ...,  # `$STRING`
-    "indexed_on": ...,  # `$STRING`
-    "len": ...,  # `$INTEGER`
-    "license": ...,  # `$STRING`
-    "license_url": ...,  # `$STRING`
-    "logo_url": ...,  # `$STRING`
-    "mature": ...,  # `$BOOLEAN`
-    "media_count": ...,  # `$INTEGER`
-    "point": ...,  # `$ARRAY`
-    "reason": ...,  # `$ANY`
-    "related_url": ...,  # `$STRING`
-    "source_name": ...,  # `$STRING`
-    "source_url": ...,  # `$STRING`
-    "tag": ...,  # `$ARRAY`
-    "thumbnail": ...,  # `$STRING`
-    "waveform": ...,  # `$STRING`
+    "alt_file": [],  # list
+    "attribution": "example",  # str
+    "audio_set": "example",  # Any
+    "detail_url": "example",  # str
+    "display_name": "example",  # str
+    "fields_matched": [],  # list
+    "identifier": "example",  # str
+    "indexed_on": "example",  # str
+    "len": 1,  # int
+    "license": "example",  # str
+    "license_url": "example",  # str
+    "logo_url": "example",  # str
+    "mature": True,  # bool
+    "media_count": 1,  # int
+    "point": [],  # list
+    "reason": "example",  # Any
+    "related_url": "example",  # str
+    "source_name": "example",  # str
+    "source_url": "example",  # str
+    "tag": [],  # list
+    "thumbnail": "example",  # str
+    "waveform": "example",  # str
 })
 ```
 
@@ -478,49 +512,49 @@ Create an instance: `image = client.Image()`
 | Method | Description |
 | --- | --- |
 | `create(data)` | Create a new entity with the given data. |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `attribution` | ``$STRING`` |  |
-| `author_name` | ``$STRING`` |  |
-| `author_url` | ``$STRING`` |  |
-| `category` | ``$STRING`` |  |
-| `creator` | ``$STRING`` |  |
-| `creator_url` | ``$STRING`` |  |
-| `description` | ``$STRING`` |  |
-| `detail_url` | ``$STRING`` |  |
-| `display_name` | ``$STRING`` |  |
-| `fields_matched` | ``$ARRAY`` |  |
-| `filesize` | ``$INTEGER`` |  |
-| `filetype` | ``$STRING`` |  |
-| `foreign_landing_url` | ``$STRING`` |  |
-| `height` | ``$INTEGER`` |  |
-| `id` | ``$STRING`` |  |
-| `identifier` | ``$STRING`` |  |
-| `indexed_on` | ``$STRING`` |  |
-| `license` | ``$STRING`` |  |
-| `license_url` | ``$STRING`` |  |
-| `license_version` | ``$STRING`` |  |
-| `logo_url` | ``$STRING`` |  |
-| `mature` | ``$BOOLEAN`` |  |
-| `media_count` | ``$INTEGER`` |  |
-| `provider` | ``$STRING`` |  |
-| `reason` | ``$ANY`` |  |
-| `related_url` | ``$STRING`` |  |
-| `source` | ``$STRING`` |  |
-| `source_name` | ``$STRING`` |  |
-| `source_url` | ``$STRING`` |  |
-| `tag` | ``$ARRAY`` |  |
-| `thumbnail` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
-| `type` | ``$ANY`` |  |
-| `url` | ``$STRING`` |  |
-| `version` | ``$ANY`` |  |
-| `width` | ``$INTEGER`` |  |
+| `attribution` | `str` |  |
+| `author_name` | `str` |  |
+| `author_url` | `str` |  |
+| `category` | `str` |  |
+| `creator` | `str` |  |
+| `creator_url` | `str` |  |
+| `description` | `str` |  |
+| `detail_url` | `str` |  |
+| `display_name` | `str` |  |
+| `fields_matched` | `list` |  |
+| `filesize` | `int` |  |
+| `filetype` | `str` |  |
+| `foreign_landing_url` | `str` |  |
+| `height` | `int` |  |
+| `id` | `str` |  |
+| `identifier` | `str` |  |
+| `indexed_on` | `str` |  |
+| `license` | `str` |  |
+| `license_url` | `str` |  |
+| `license_version` | `str` |  |
+| `logo_url` | `str` |  |
+| `mature` | `bool` |  |
+| `media_count` | `int` |  |
+| `provider` | `str` |  |
+| `reason` | `Any` |  |
+| `related_url` | `str` |  |
+| `source` | `str` |  |
+| `source_name` | `str` |  |
+| `source_url` | `str` |  |
+| `tag` | `list` |  |
+| `thumbnail` | `str` |  |
+| `title` | `str` |  |
+| `type` | `Any` |  |
+| `url` | `str` |  |
+| `version` | `Any` |  |
+| `width` | `int` |  |
 
 #### Example: Load
 
@@ -531,34 +565,34 @@ image = client.Image().load({"id": "image_id"})
 #### Example: List
 
 ```python
-images = client.Image().list({})
+images = client.Image().list()
 ```
 
 #### Example: Create
 
 ```python
 image = client.Image().create({
-    "attribution": ...,  # `$STRING`
-    "author_name": ...,  # `$STRING`
-    "author_url": ...,  # `$STRING`
-    "detail_url": ...,  # `$STRING`
-    "display_name": ...,  # `$STRING`
-    "fields_matched": ...,  # `$ARRAY`
-    "identifier": ...,  # `$STRING`
-    "indexed_on": ...,  # `$STRING`
-    "license": ...,  # `$STRING`
-    "license_url": ...,  # `$STRING`
-    "logo_url": ...,  # `$STRING`
-    "mature": ...,  # `$BOOLEAN`
-    "media_count": ...,  # `$INTEGER`
-    "reason": ...,  # `$ANY`
-    "related_url": ...,  # `$STRING`
-    "source_name": ...,  # `$STRING`
-    "source_url": ...,  # `$STRING`
-    "tag": ...,  # `$ARRAY`
-    "thumbnail": ...,  # `$STRING`
-    "type": ...,  # `$ANY`
-    "version": ...,  # `$ANY`
+    "attribution": "example",  # str
+    "author_name": "example",  # str
+    "author_url": "example",  # str
+    "detail_url": "example",  # str
+    "display_name": "example",  # str
+    "fields_matched": [],  # list
+    "identifier": "example",  # str
+    "indexed_on": "example",  # str
+    "license": "example",  # str
+    "license_url": "example",  # str
+    "logo_url": "example",  # str
+    "mature": True,  # bool
+    "media_count": 1,  # int
+    "reason": "example",  # Any
+    "related_url": "example",  # str
+    "source_name": "example",  # str
+    "source_url": "example",  # str
+    "tag": [],  # list
+    "thumbnail": "example",  # str
+    "type": "example",  # Any
+    "version": "example",  # Any
 })
 ```
 
@@ -577,17 +611,17 @@ Create an instance: `o_auth2_application = client.OAuth2Application()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | ``$STRING`` |  |
-| `email` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
+| `description` | `str` |  |
+| `email` | `str` |  |
+| `name` | `str` |  |
 
 #### Example: Create
 
 ```python
 o_auth2_application = client.OAuth2Application().create({
-    "description": ...,  # `$STRING`
-    "email": ...,  # `$STRING`
-    "name": ...,  # `$STRING`
+    "description": "example",  # str
+    "email": "example",  # str
+    "name": "example",  # str
 })
 ```
 
@@ -606,15 +640,15 @@ Create an instance: `o_auth2_key_info = client.OAuth2KeyInfo()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `rate_limit_model` | ``$STRING`` |  |
-| `requests_this_minute` | ``$INTEGER`` |  |
-| `requests_today` | ``$INTEGER`` |  |
-| `verified` | ``$BOOLEAN`` |  |
+| `rate_limit_model` | `str` |  |
+| `requests_this_minute` | `int` |  |
+| `requests_today` | `int` |  |
+| `verified` | `bool` |  |
 
 #### Example: Load
 
 ```python
-o_auth2_key_info = client.OAuth2KeyInfo().load({"id": "o_auth2_key_info_id"})
+o_auth2_key_info = client.OAuth2KeyInfo().load()
 ```
 
 
@@ -632,29 +666,33 @@ Create an instance: `o_auth2_token = client.OAuth2Token()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `access_token` | ``$STRING`` |  |
-| `expires_in` | ``$INTEGER`` |  |
-| `scope` | ``$STRING`` |  |
-| `token_type` | ``$STRING`` |  |
+| `access_token` | `str` |  |
+| `expires_in` | `int` |  |
+| `scope` | `str` |  |
+| `token_type` | `str` |  |
 
 #### Example: Create
 
 ```python
 o_auth2_token = client.OAuth2Token().create({
-    "access_token": ...,  # `$STRING`
-    "expires_in": ...,  # `$INTEGER`
-    "scope": ...,  # `$STRING`
-    "token_type": ...,  # `$STRING`
+    "access_token": "example",  # str
+    "expires_in": 1,  # int
+    "scope": "example",  # str
+    "token_type": "example",  # str
 })
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -671,8 +709,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as the second element in the return tuple.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -715,14 +754,14 @@ Import entity or utility modules directly only when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```python
 audio = client.Audio()
-audio.load({"id": "example_id"})
+audio.list()
 
-# audio.data_get() now returns the loaded audio data
+# audio.data_get() now returns the audio data from the last list
 # audio.match_get() returns the last match criteria
 ```
 

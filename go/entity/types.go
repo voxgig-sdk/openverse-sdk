@@ -129,12 +129,11 @@ type OAuth2Application struct {
 	Name string `json:"name"`
 }
 
-// OAuth2ApplicationCreateData mirrors the o_auth2_application fields as an all-optional match
-// filter (Go analog of Partial<OAuth2Application>).
+// OAuth2ApplicationCreateData is the typed request payload for OAuth2Application.CreateTyped.
 type OAuth2ApplicationCreateData struct {
-	Description *string `json:"description,omitempty"`
-	Email *string `json:"email,omitempty"`
-	Name *string `json:"name,omitempty"`
+	Description string `json:"description"`
+	Email string `json:"email"`
+	Name string `json:"name"`
 }
 
 // OAuth2KeyInfo is the typed data model for the o_auth2_key_info entity.
@@ -145,8 +144,7 @@ type OAuth2KeyInfo struct {
 	Verified bool `json:"verified"`
 }
 
-// OAuth2KeyInfoLoadMatch mirrors the o_auth2_key_info fields as an all-optional match
-// filter (Go analog of Partial<OAuth2KeyInfo>).
+// OAuth2KeyInfoLoadMatch is the typed request payload for OAuth2KeyInfo.LoadTyped.
 type OAuth2KeyInfoLoadMatch struct {
 	RateLimitModel *string `json:"rate_limit_model,omitempty"`
 	RequestsThisMinute *int `json:"requests_this_minute,omitempty"`
@@ -162,13 +160,12 @@ type OAuth2Token struct {
 	TokenType string `json:"token_type"`
 }
 
-// OAuth2TokenCreateData mirrors the o_auth2_token fields as an all-optional match
-// filter (Go analog of Partial<OAuth2Token>).
+// OAuth2TokenCreateData is the typed request payload for OAuth2Token.CreateTyped.
 type OAuth2TokenCreateData struct {
-	AccessToken *string `json:"access_token,omitempty"`
-	ExpiresIn *int `json:"expires_in,omitempty"`
-	Scope *string `json:"scope,omitempty"`
-	TokenType *string `json:"token_type,omitempty"`
+	AccessToken string `json:"access_token"`
+	ExpiresIn int `json:"expires_in"`
+	Scope string `json:"scope"`
+	TokenType string `json:"token_type"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

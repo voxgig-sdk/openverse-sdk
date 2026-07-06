@@ -4,6 +4,8 @@
 
 The Lua SDK for the Openverse API — an entity-oriented client using Lua conventions.
 
+It exposes the API as capitalised, semantic **Entities** — e.g. `client:Audio()` — each with the same small set of operations (`list`, `load`, `create`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -43,7 +45,7 @@ local audios, err = client:Audio():list()
 if err then error(err) end
 
 for _, item in ipairs(audios) do
-  print(item["id"], item["name"])
+  print(item["id"], item["attribution"])
 end
 ```
 
@@ -59,9 +61,31 @@ print(audio)
 
 ```lua
 -- Create
-local created, err = client:Audio():create({ name = "Example" })
+local created, err = client:Audio():create({ identifier = "example" })
 if err then error(err) end
 
+```
+
+
+## Error handling
+
+Entity operations return `(value, err)`. Check `err` before using
+the value:
+
+```lua
+local audios, err = client:Audio():list()
+if err then error(err) end
+```
+
+`direct` follows the same `(value, err)` convention:
+
+```lua
+local result, err = client:direct({
+  path = "/api/resource/{id}",
+  method = "GET",
+  params = { id = "example_id" },
+})
+if err then error(err) end
 ```
 
 
@@ -107,8 +131,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Audio():load({ id = "test01" })
--- result is the loaded data; err is set on failure
+local result, err = client:Audio():list()
+-- result is the returned data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -203,8 +227,6 @@ All entities share the same interface.
 | `load` | `(reqmatch, ctrl) -> any, err` | Load a single entity by match criteria. |
 | `list` | `(reqmatch, ctrl) -> any, err` | List entities matching the criteria. |
 | `create` | `(reqdata, ctrl) -> any, err` | Create a new entity. |
-| `update` | `(reqdata, ctrl) -> any, err` | Update an existing entity. |
-| `remove` | `(reqmatch, ctrl) -> any, err` | Remove an entity. |
 | `data_get` | `() -> table` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> table` | Get entity match criteria. |
@@ -219,7 +241,7 @@ data **directly** — there is no wrapper:
 
 | Operation | `value` |
 | --- | --- |
-| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `load` / `create` | the entity record (a `table`) |
 | `list` | an array (`table`) of entity records |
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
@@ -385,45 +407,45 @@ Create an instance: `local audio = client:Audio(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_file` | ``$ARRAY`` |  |
-| `attribution` | ``$STRING`` |  |
-| `audio_set` | ``$ANY`` |  |
-| `bit_rate` | ``$INTEGER`` |  |
-| `category` | ``$STRING`` |  |
-| `creator` | ``$STRING`` |  |
-| `creator_url` | ``$STRING`` |  |
-| `description` | ``$STRING`` |  |
-| `detail_url` | ``$STRING`` |  |
-| `display_name` | ``$STRING`` |  |
-| `duration` | ``$INTEGER`` |  |
-| `fields_matched` | ``$ARRAY`` |  |
-| `filesize` | ``$INTEGER`` |  |
-| `filetype` | ``$STRING`` |  |
-| `foreign_landing_url` | ``$STRING`` |  |
-| `genre` | ``$ARRAY`` |  |
-| `id` | ``$STRING`` |  |
-| `identifier` | ``$STRING`` |  |
-| `indexed_on` | ``$STRING`` |  |
-| `len` | ``$INTEGER`` |  |
-| `license` | ``$STRING`` |  |
-| `license_url` | ``$STRING`` |  |
-| `license_version` | ``$STRING`` |  |
-| `logo_url` | ``$STRING`` |  |
-| `mature` | ``$BOOLEAN`` |  |
-| `media_count` | ``$INTEGER`` |  |
-| `point` | ``$ARRAY`` |  |
-| `provider` | ``$STRING`` |  |
-| `reason` | ``$ANY`` |  |
-| `related_url` | ``$STRING`` |  |
-| `sample_rate` | ``$INTEGER`` |  |
-| `source` | ``$STRING`` |  |
-| `source_name` | ``$STRING`` |  |
-| `source_url` | ``$STRING`` |  |
-| `tag` | ``$ARRAY`` |  |
-| `thumbnail` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
-| `waveform` | ``$STRING`` |  |
+| `alt_file` | `table` |  |
+| `attribution` | `string` |  |
+| `audio_set` | `any` |  |
+| `bit_rate` | `number` |  |
+| `category` | `string` |  |
+| `creator` | `string` |  |
+| `creator_url` | `string` |  |
+| `description` | `string` |  |
+| `detail_url` | `string` |  |
+| `display_name` | `string` |  |
+| `duration` | `number` |  |
+| `fields_matched` | `table` |  |
+| `filesize` | `number` |  |
+| `filetype` | `string` |  |
+| `foreign_landing_url` | `string` |  |
+| `genre` | `table` |  |
+| `id` | `string` |  |
+| `identifier` | `string` |  |
+| `indexed_on` | `string` |  |
+| `len` | `number` |  |
+| `license` | `string` |  |
+| `license_url` | `string` |  |
+| `license_version` | `string` |  |
+| `logo_url` | `string` |  |
+| `mature` | `boolean` |  |
+| `media_count` | `number` |  |
+| `point` | `table` |  |
+| `provider` | `string` |  |
+| `reason` | `any` |  |
+| `related_url` | `string` |  |
+| `sample_rate` | `number` |  |
+| `source` | `string` |  |
+| `source_name` | `string` |  |
+| `source_url` | `string` |  |
+| `tag` | `table` |  |
+| `thumbnail` | `string` |  |
+| `title` | `string` |  |
+| `url` | `string` |  |
+| `waveform` | `string` |  |
 
 #### Example: Load
 
@@ -441,28 +463,28 @@ local audios, err = client:Audio():list()
 
 ```lua
 local audio, err = client:Audio():create({
-  alt_file = nil, -- `$ARRAY`
-  attribution = nil, -- `$STRING`
-  audio_set = nil, -- `$ANY`
-  detail_url = nil, -- `$STRING`
-  display_name = nil, -- `$STRING`
-  fields_matched = nil, -- `$ARRAY`
-  identifier = nil, -- `$STRING`
-  indexed_on = nil, -- `$STRING`
-  len = nil, -- `$INTEGER`
-  license = nil, -- `$STRING`
-  license_url = nil, -- `$STRING`
-  logo_url = nil, -- `$STRING`
-  mature = nil, -- `$BOOLEAN`
-  media_count = nil, -- `$INTEGER`
-  point = nil, -- `$ARRAY`
-  reason = nil, -- `$ANY`
-  related_url = nil, -- `$STRING`
-  source_name = nil, -- `$STRING`
-  source_url = nil, -- `$STRING`
-  tag = nil, -- `$ARRAY`
-  thumbnail = nil, -- `$STRING`
-  waveform = nil, -- `$STRING`
+  alt_file = nil, -- table
+  attribution = nil, -- string
+  audio_set = nil, -- any
+  detail_url = nil, -- string
+  display_name = nil, -- string
+  fields_matched = nil, -- table
+  identifier = nil, -- string
+  indexed_on = nil, -- string
+  len = nil, -- number
+  license = nil, -- string
+  license_url = nil, -- string
+  logo_url = nil, -- string
+  mature = nil, -- boolean
+  media_count = nil, -- number
+  point = nil, -- table
+  reason = nil, -- any
+  related_url = nil, -- string
+  source_name = nil, -- string
+  source_url = nil, -- string
+  tag = nil, -- table
+  thumbnail = nil, -- string
+  waveform = nil, -- string
 })
 ```
 
@@ -483,42 +505,42 @@ Create an instance: `local image = client:Image(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `attribution` | ``$STRING`` |  |
-| `author_name` | ``$STRING`` |  |
-| `author_url` | ``$STRING`` |  |
-| `category` | ``$STRING`` |  |
-| `creator` | ``$STRING`` |  |
-| `creator_url` | ``$STRING`` |  |
-| `description` | ``$STRING`` |  |
-| `detail_url` | ``$STRING`` |  |
-| `display_name` | ``$STRING`` |  |
-| `fields_matched` | ``$ARRAY`` |  |
-| `filesize` | ``$INTEGER`` |  |
-| `filetype` | ``$STRING`` |  |
-| `foreign_landing_url` | ``$STRING`` |  |
-| `height` | ``$INTEGER`` |  |
-| `id` | ``$STRING`` |  |
-| `identifier` | ``$STRING`` |  |
-| `indexed_on` | ``$STRING`` |  |
-| `license` | ``$STRING`` |  |
-| `license_url` | ``$STRING`` |  |
-| `license_version` | ``$STRING`` |  |
-| `logo_url` | ``$STRING`` |  |
-| `mature` | ``$BOOLEAN`` |  |
-| `media_count` | ``$INTEGER`` |  |
-| `provider` | ``$STRING`` |  |
-| `reason` | ``$ANY`` |  |
-| `related_url` | ``$STRING`` |  |
-| `source` | ``$STRING`` |  |
-| `source_name` | ``$STRING`` |  |
-| `source_url` | ``$STRING`` |  |
-| `tag` | ``$ARRAY`` |  |
-| `thumbnail` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
-| `type` | ``$ANY`` |  |
-| `url` | ``$STRING`` |  |
-| `version` | ``$ANY`` |  |
-| `width` | ``$INTEGER`` |  |
+| `attribution` | `string` |  |
+| `author_name` | `string` |  |
+| `author_url` | `string` |  |
+| `category` | `string` |  |
+| `creator` | `string` |  |
+| `creator_url` | `string` |  |
+| `description` | `string` |  |
+| `detail_url` | `string` |  |
+| `display_name` | `string` |  |
+| `fields_matched` | `table` |  |
+| `filesize` | `number` |  |
+| `filetype` | `string` |  |
+| `foreign_landing_url` | `string` |  |
+| `height` | `number` |  |
+| `id` | `string` |  |
+| `identifier` | `string` |  |
+| `indexed_on` | `string` |  |
+| `license` | `string` |  |
+| `license_url` | `string` |  |
+| `license_version` | `string` |  |
+| `logo_url` | `string` |  |
+| `mature` | `boolean` |  |
+| `media_count` | `number` |  |
+| `provider` | `string` |  |
+| `reason` | `any` |  |
+| `related_url` | `string` |  |
+| `source` | `string` |  |
+| `source_name` | `string` |  |
+| `source_url` | `string` |  |
+| `tag` | `table` |  |
+| `thumbnail` | `string` |  |
+| `title` | `string` |  |
+| `type` | `any` |  |
+| `url` | `string` |  |
+| `version` | `any` |  |
+| `width` | `number` |  |
 
 #### Example: Load
 
@@ -536,27 +558,27 @@ local images, err = client:Image():list()
 
 ```lua
 local image, err = client:Image():create({
-  attribution = nil, -- `$STRING`
-  author_name = nil, -- `$STRING`
-  author_url = nil, -- `$STRING`
-  detail_url = nil, -- `$STRING`
-  display_name = nil, -- `$STRING`
-  fields_matched = nil, -- `$ARRAY`
-  identifier = nil, -- `$STRING`
-  indexed_on = nil, -- `$STRING`
-  license = nil, -- `$STRING`
-  license_url = nil, -- `$STRING`
-  logo_url = nil, -- `$STRING`
-  mature = nil, -- `$BOOLEAN`
-  media_count = nil, -- `$INTEGER`
-  reason = nil, -- `$ANY`
-  related_url = nil, -- `$STRING`
-  source_name = nil, -- `$STRING`
-  source_url = nil, -- `$STRING`
-  tag = nil, -- `$ARRAY`
-  thumbnail = nil, -- `$STRING`
-  type = nil, -- `$ANY`
-  version = nil, -- `$ANY`
+  attribution = nil, -- string
+  author_name = nil, -- string
+  author_url = nil, -- string
+  detail_url = nil, -- string
+  display_name = nil, -- string
+  fields_matched = nil, -- table
+  identifier = nil, -- string
+  indexed_on = nil, -- string
+  license = nil, -- string
+  license_url = nil, -- string
+  logo_url = nil, -- string
+  mature = nil, -- boolean
+  media_count = nil, -- number
+  reason = nil, -- any
+  related_url = nil, -- string
+  source_name = nil, -- string
+  source_url = nil, -- string
+  tag = nil, -- table
+  thumbnail = nil, -- string
+  type = nil, -- any
+  version = nil, -- any
 })
 ```
 
@@ -575,17 +597,17 @@ Create an instance: `local o_auth2_application = client:OAuth2Application(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | ``$STRING`` |  |
-| `email` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
+| `description` | `string` |  |
+| `email` | `string` |  |
+| `name` | `string` |  |
 
 #### Example: Create
 
 ```lua
 local o_auth2_application, err = client:OAuth2Application():create({
-  description = nil, -- `$STRING`
-  email = nil, -- `$STRING`
-  name = nil, -- `$STRING`
+  description = nil, -- string
+  email = nil, -- string
+  name = nil, -- string
 })
 ```
 
@@ -604,15 +626,15 @@ Create an instance: `local o_auth2_key_info = client:OAuth2KeyInfo(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `rate_limit_model` | ``$STRING`` |  |
-| `requests_this_minute` | ``$INTEGER`` |  |
-| `requests_today` | ``$INTEGER`` |  |
-| `verified` | ``$BOOLEAN`` |  |
+| `rate_limit_model` | `string` |  |
+| `requests_this_minute` | `number` |  |
+| `requests_today` | `number` |  |
+| `verified` | `boolean` |  |
 
 #### Example: Load
 
 ```lua
-local o_auth2_key_info, err = client:OAuth2KeyInfo():load({ id = "o_auth2_key_info_id" })
+local o_auth2_key_info, err = client:OAuth2KeyInfo():load()
 ```
 
 
@@ -630,29 +652,33 @@ Create an instance: `local o_auth2_token = client:OAuth2Token(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `access_token` | ``$STRING`` |  |
-| `expires_in` | ``$INTEGER`` |  |
-| `scope` | ``$STRING`` |  |
-| `token_type` | ``$STRING`` |  |
+| `access_token` | `string` |  |
+| `expires_in` | `number` |  |
+| `scope` | `string` |  |
+| `token_type` | `string` |  |
 
 #### Example: Create
 
 ```lua
 local o_auth2_token, err = client:OAuth2Token():create({
-  access_token = nil, -- `$STRING`
-  expires_in = nil, -- `$INTEGER`
-  scope = nil, -- `$STRING`
-  token_type = nil, -- `$STRING`
+  access_token = nil, -- string
+  expires_in = nil, -- number
+  scope = nil, -- string
+  token_type = nil, -- string
 })
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -669,8 +695,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as a second return value.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -714,14 +741,14 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
 local audio = client:Audio()
-audio:load({ id = "example_id" })
+audio:list()
 
--- audio:data_get() now returns the loaded audio data
+-- audio:data_get() now returns the audio data from the last list
 -- audio:match_get() returns the last match criteria
 ```
 

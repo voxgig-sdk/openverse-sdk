@@ -165,45 +165,45 @@ const audio = client.Audio()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_file` | ``$ARRAY`` | Yes |  |
-| `attribution` | ``$STRING`` | Yes |  |
-| `audio_set` | ``$ANY`` | Yes |  |
-| `bit_rate` | ``$INTEGER`` | No |  |
-| `category` | ``$STRING`` | No |  |
-| `creator` | ``$STRING`` | No |  |
-| `creator_url` | ``$STRING`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `detail_url` | ``$STRING`` | Yes |  |
-| `display_name` | ``$STRING`` | Yes |  |
-| `duration` | ``$INTEGER`` | No |  |
-| `fields_matched` | ``$ARRAY`` | Yes |  |
-| `filesize` | ``$INTEGER`` | No |  |
-| `filetype` | ``$STRING`` | No |  |
-| `foreign_landing_url` | ``$STRING`` | No |  |
-| `genre` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | Yes |  |
-| `identifier` | ``$STRING`` | Yes |  |
-| `indexed_on` | ``$STRING`` | Yes |  |
-| `len` | ``$INTEGER`` | Yes |  |
-| `license` | ``$STRING`` | Yes |  |
-| `license_url` | ``$STRING`` | Yes |  |
-| `license_version` | ``$STRING`` | No |  |
-| `logo_url` | ``$STRING`` | Yes |  |
-| `mature` | ``$BOOLEAN`` | Yes |  |
-| `media_count` | ``$INTEGER`` | Yes |  |
-| `point` | ``$ARRAY`` | Yes |  |
-| `provider` | ``$STRING`` | No |  |
-| `reason` | ``$ANY`` | Yes |  |
-| `related_url` | ``$STRING`` | Yes |  |
-| `sample_rate` | ``$INTEGER`` | No |  |
-| `source` | ``$STRING`` | No |  |
-| `source_name` | ``$STRING`` | Yes |  |
-| `source_url` | ``$STRING`` | Yes |  |
-| `tag` | ``$ARRAY`` | Yes |  |
-| `thumbnail` | ``$STRING`` | Yes |  |
-| `title` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
-| `waveform` | ``$STRING`` | Yes |  |
+| `alt_file` | `any[]` | Yes |  |
+| `attribution` | `string` | Yes |  |
+| `audio_set` | `any` | Yes |  |
+| `bit_rate` | `number` | No |  |
+| `category` | `string` | No |  |
+| `creator` | `string` | No |  |
+| `creator_url` | `string` | No |  |
+| `description` | `string` | No |  |
+| `detail_url` | `string` | Yes |  |
+| `display_name` | `string` | Yes |  |
+| `duration` | `number` | No |  |
+| `fields_matched` | `any[]` | Yes |  |
+| `filesize` | `number` | No |  |
+| `filetype` | `string` | No |  |
+| `foreign_landing_url` | `string` | No |  |
+| `genre` | `any[]` | No |  |
+| `id` | `string` | Yes |  |
+| `identifier` | `string` | Yes |  |
+| `indexed_on` | `string` | Yes |  |
+| `len` | `number` | Yes |  |
+| `license` | `string` | Yes |  |
+| `license_url` | `string` | Yes |  |
+| `license_version` | `string` | No |  |
+| `logo_url` | `string` | Yes |  |
+| `mature` | `boolean` | Yes |  |
+| `media_count` | `number` | Yes |  |
+| `point` | `any[]` | Yes |  |
+| `provider` | `string` | No |  |
+| `reason` | `any` | Yes |  |
+| `related_url` | `string` | Yes |  |
+| `sample_rate` | `number` | No |  |
+| `source` | `string` | No |  |
+| `source_name` | `string` | Yes |  |
+| `source_url` | `string` | Yes |  |
+| `tag` | `any[]` | Yes |  |
+| `thumbnail` | `string` | Yes |  |
+| `title` | `string` | No |  |
+| `url` | `string` | No |  |
+| `waveform` | `string` | Yes |  |
 
 ### Operations
 
@@ -213,28 +213,28 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.Audio().create({
-  alt_file: /* `$ARRAY` */,
-  attribution: /* `$STRING` */,
-  audio_set: /* `$ANY` */,
-  detail_url: /* `$STRING` */,
-  display_name: /* `$STRING` */,
-  fields_matched: /* `$ARRAY` */,
-  identifier: /* `$STRING` */,
-  indexed_on: /* `$STRING` */,
-  len: /* `$INTEGER` */,
-  license: /* `$STRING` */,
-  license_url: /* `$STRING` */,
-  logo_url: /* `$STRING` */,
-  mature: /* `$BOOLEAN` */,
-  media_count: /* `$INTEGER` */,
-  point: /* `$ARRAY` */,
-  reason: /* `$ANY` */,
-  related_url: /* `$STRING` */,
-  source_name: /* `$STRING` */,
-  source_url: /* `$STRING` */,
-  tag: /* `$ARRAY` */,
-  thumbnail: /* `$STRING` */,
-  waveform: /* `$STRING` */,
+  alt_file: /* any[] */,
+  attribution: /* string */,
+  audio_set: /* any */,
+  detail_url: /* string */,
+  display_name: /* string */,
+  fields_matched: /* any[] */,
+  identifier: /* string */,
+  indexed_on: /* string */,
+  len: /* number */,
+  license: /* string */,
+  license_url: /* string */,
+  logo_url: /* string */,
+  mature: /* boolean */,
+  media_count: /* number */,
+  point: /* any[] */,
+  reason: /* any */,
+  related_url: /* string */,
+  source_name: /* string */,
+  source_url: /* string */,
+  tag: /* any[] */,
+  thumbnail: /* string */,
+  waveform: /* string */,
 })
 ```
 
@@ -292,83 +292,83 @@ const image = client.Image()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `attribution` | ``$STRING`` | Yes |  |
-| `author_name` | ``$STRING`` | Yes |  |
-| `author_url` | ``$STRING`` | Yes |  |
-| `category` | ``$STRING`` | No |  |
-| `creator` | ``$STRING`` | No |  |
-| `creator_url` | ``$STRING`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `detail_url` | ``$STRING`` | Yes |  |
-| `display_name` | ``$STRING`` | Yes |  |
-| `fields_matched` | ``$ARRAY`` | Yes |  |
-| `filesize` | ``$INTEGER`` | No |  |
-| `filetype` | ``$STRING`` | No |  |
-| `foreign_landing_url` | ``$STRING`` | No |  |
-| `height` | ``$INTEGER`` | No |  |
-| `id` | ``$STRING`` | Yes |  |
-| `identifier` | ``$STRING`` | Yes |  |
-| `indexed_on` | ``$STRING`` | Yes |  |
-| `license` | ``$STRING`` | Yes |  |
-| `license_url` | ``$STRING`` | Yes |  |
-| `license_version` | ``$STRING`` | No |  |
-| `logo_url` | ``$STRING`` | Yes |  |
-| `mature` | ``$BOOLEAN`` | Yes |  |
-| `media_count` | ``$INTEGER`` | Yes |  |
-| `provider` | ``$STRING`` | No |  |
-| `reason` | ``$ANY`` | Yes |  |
-| `related_url` | ``$STRING`` | Yes |  |
-| `source` | ``$STRING`` | No |  |
-| `source_name` | ``$STRING`` | Yes |  |
-| `source_url` | ``$STRING`` | Yes |  |
-| `tag` | ``$ARRAY`` | Yes |  |
-| `thumbnail` | ``$STRING`` | Yes |  |
-| `title` | ``$STRING`` | No |  |
-| `type` | ``$ANY`` | Yes |  |
-| `url` | ``$STRING`` | No |  |
-| `version` | ``$ANY`` | Yes |  |
-| `width` | ``$INTEGER`` | No |  |
+| `attribution` | `string` | Yes |  |
+| `author_name` | `string` | Yes |  |
+| `author_url` | `string` | Yes |  |
+| `category` | `string` | No |  |
+| `creator` | `string` | No |  |
+| `creator_url` | `string` | No |  |
+| `description` | `string` | No |  |
+| `detail_url` | `string` | Yes |  |
+| `display_name` | `string` | Yes |  |
+| `fields_matched` | `any[]` | Yes |  |
+| `filesize` | `number` | No |  |
+| `filetype` | `string` | No |  |
+| `foreign_landing_url` | `string` | No |  |
+| `height` | `number` | No |  |
+| `id` | `string` | Yes |  |
+| `identifier` | `string` | Yes |  |
+| `indexed_on` | `string` | Yes |  |
+| `license` | `string` | Yes |  |
+| `license_url` | `string` | Yes |  |
+| `license_version` | `string` | No |  |
+| `logo_url` | `string` | Yes |  |
+| `mature` | `boolean` | Yes |  |
+| `media_count` | `number` | Yes |  |
+| `provider` | `string` | No |  |
+| `reason` | `any` | Yes |  |
+| `related_url` | `string` | Yes |  |
+| `source` | `string` | No |  |
+| `source_name` | `string` | Yes |  |
+| `source_url` | `string` | Yes |  |
+| `tag` | `any[]` | Yes |  |
+| `thumbnail` | `string` | Yes |  |
+| `title` | `string` | No |  |
+| `type` | `any` | Yes |  |
+| `url` | `string` | No |  |
+| `version` | `any` | Yes |  |
+| `width` | `number` | No |  |
 
 ### Field Usage by Operation
 
-| Field | load | list | create | update | remove |
-| --- | --- | --- | --- | --- | --- |
-| `attribution` | - | - | - | - | - |
-| `author_name` | - | - | - | - | - |
-| `author_url` | - | - | - | - | - |
-| `category` | - | - | - | - | - |
-| `creator` | - | - | - | - | - |
-| `creator_url` | - | - | - | - | - |
-| `description` | - | - | - | - | - |
-| `detail_url` | - | - | - | - | - |
-| `display_name` | - | - | - | - | - |
-| `fields_matched` | - | - | - | - | - |
-| `filesize` | - | - | - | - | - |
-| `filetype` | - | - | - | - | - |
-| `foreign_landing_url` | - | - | - | - | - |
-| `height` | Yes | - | - | - | - |
-| `id` | - | - | - | - | - |
-| `identifier` | - | - | - | - | - |
-| `indexed_on` | - | - | - | - | - |
-| `license` | - | - | - | - | - |
-| `license_url` | - | - | - | - | - |
-| `license_version` | - | - | - | - | - |
-| `logo_url` | - | - | - | - | - |
-| `mature` | - | - | - | - | - |
-| `media_count` | - | - | - | - | - |
-| `provider` | - | - | - | - | - |
-| `reason` | - | - | - | - | - |
-| `related_url` | - | - | - | - | - |
-| `source` | - | - | - | - | - |
-| `source_name` | - | - | - | - | - |
-| `source_url` | - | - | - | - | - |
-| `tag` | - | - | - | - | - |
-| `thumbnail` | - | - | - | - | - |
-| `title` | - | - | - | - | - |
-| `type` | - | - | - | - | - |
-| `url` | - | - | - | - | - |
-| `version` | - | - | - | - | - |
-| `width` | Yes | - | - | - | - |
+| Field | load | list | create |
+| --- | --- | --- | --- |
+| `attribution` | - | - | - |
+| `author_name` | - | - | - |
+| `author_url` | - | - | - |
+| `category` | - | - | - |
+| `creator` | - | - | - |
+| `creator_url` | - | - | - |
+| `description` | - | - | - |
+| `detail_url` | - | - | - |
+| `display_name` | - | - | - |
+| `fields_matched` | - | - | - |
+| `filesize` | - | - | - |
+| `filetype` | - | - | - |
+| `foreign_landing_url` | - | - | - |
+| `height` | Yes | - | - |
+| `id` | - | - | - |
+| `identifier` | - | - | - |
+| `indexed_on` | - | - | - |
+| `license` | - | - | - |
+| `license_url` | - | - | - |
+| `license_version` | - | - | - |
+| `logo_url` | - | - | - |
+| `mature` | - | - | - |
+| `media_count` | - | - | - |
+| `provider` | - | - | - |
+| `reason` | - | - | - |
+| `related_url` | - | - | - |
+| `source` | - | - | - |
+| `source_name` | - | - | - |
+| `source_url` | - | - | - |
+| `tag` | - | - | - |
+| `thumbnail` | - | - | - |
+| `title` | - | - | - |
+| `type` | - | - | - |
+| `url` | - | - | - |
+| `version` | - | - | - |
+| `width` | Yes | - | - |
 
 ### Operations
 
@@ -378,27 +378,27 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.Image().create({
-  attribution: /* `$STRING` */,
-  author_name: /* `$STRING` */,
-  author_url: /* `$STRING` */,
-  detail_url: /* `$STRING` */,
-  display_name: /* `$STRING` */,
-  fields_matched: /* `$ARRAY` */,
-  identifier: /* `$STRING` */,
-  indexed_on: /* `$STRING` */,
-  license: /* `$STRING` */,
-  license_url: /* `$STRING` */,
-  logo_url: /* `$STRING` */,
-  mature: /* `$BOOLEAN` */,
-  media_count: /* `$INTEGER` */,
-  reason: /* `$ANY` */,
-  related_url: /* `$STRING` */,
-  source_name: /* `$STRING` */,
-  source_url: /* `$STRING` */,
-  tag: /* `$ARRAY` */,
-  thumbnail: /* `$STRING` */,
-  type: /* `$ANY` */,
-  version: /* `$ANY` */,
+  attribution: /* string */,
+  author_name: /* string */,
+  author_url: /* string */,
+  detail_url: /* string */,
+  display_name: /* string */,
+  fields_matched: /* any[] */,
+  identifier: /* string */,
+  indexed_on: /* string */,
+  license: /* string */,
+  license_url: /* string */,
+  logo_url: /* string */,
+  mature: /* boolean */,
+  media_count: /* number */,
+  reason: /* any */,
+  related_url: /* string */,
+  source_name: /* string */,
+  source_url: /* string */,
+  tag: /* any[] */,
+  thumbnail: /* string */,
+  type: /* any */,
+  version: /* any */,
 })
 ```
 
@@ -456,9 +456,9 @@ const o_auth2_application = client.OAuth2Application()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | ``$STRING`` | Yes |  |
-| `email` | ``$STRING`` | Yes |  |
-| `name` | ``$STRING`` | Yes |  |
+| `description` | `string` | Yes |  |
+| `email` | `string` | Yes |  |
+| `name` | `string` | Yes |  |
 
 ### Operations
 
@@ -468,9 +468,9 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.OAuth2Application().create({
-  description: /* `$STRING` */,
-  email: /* `$STRING` */,
-  name: /* `$STRING` */,
+  description: /* string */,
+  email: /* string */,
+  name: /* string */,
 })
 ```
 
@@ -512,10 +512,10 @@ const o_auth2_key_info = client.OAuth2KeyInfo()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `rate_limit_model` | ``$STRING`` | Yes |  |
-| `requests_this_minute` | ``$INTEGER`` | Yes |  |
-| `requests_today` | ``$INTEGER`` | Yes |  |
-| `verified` | ``$BOOLEAN`` | Yes |  |
+| `rate_limit_model` | `string` | Yes |  |
+| `requests_this_minute` | `number` | Yes |  |
+| `requests_today` | `number` | Yes |  |
+| `verified` | `boolean` | Yes |  |
 
 ### Operations
 
@@ -524,7 +524,7 @@ const o_auth2_key_info = client.OAuth2KeyInfo()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.OAuth2KeyInfo().load({ id: 'o_auth2_key_info_id' })
+const result = await client.OAuth2KeyInfo().load()
 ```
 
 ### Common Methods
@@ -565,10 +565,10 @@ const o_auth2_token = client.OAuth2Token()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `access_token` | ``$STRING`` | Yes |  |
-| `expires_in` | ``$INTEGER`` | Yes |  |
-| `scope` | ``$STRING`` | Yes |  |
-| `token_type` | ``$STRING`` | Yes |  |
+| `access_token` | `string` | Yes |  |
+| `expires_in` | `number` | Yes |  |
+| `scope` | `string` | Yes |  |
+| `token_type` | `string` | Yes |  |
 
 ### Operations
 
@@ -578,10 +578,10 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.OAuth2Token().create({
-  access_token: /* `$STRING` */,
-  expires_in: /* `$INTEGER` */,
-  scope: /* `$STRING` */,
-  token_type: /* `$STRING` */,
+  access_token: /* string */,
+  expires_in: /* number */,
+  scope: /* string */,
+  token_type: /* string */,
 })
 ```
 

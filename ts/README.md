@@ -4,6 +4,11 @@
 
 The TypeScript SDK for the Openverse API — a type-safe, entity-oriented client with full async/await support.
 
+The API is exposed as capitalised, semantic **Entities** — e.g.
+`client.Audio()` — each with a small set of operations (`list`, `load`, `create`)
+instead of raw URL paths and query parameters. This keeps the surface
+predictable and low-friction for both humans and AI agents.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -60,9 +65,38 @@ try {
 ```ts
 // Create — returns the created Audio
 const created = await client.Audio().create({
-  name: 'Example',
+  identifier: 'example_identifier',
 })
 
+```
+
+
+## Error handling
+
+Entity operations reject on failure, so wrap them in `try` / `catch`:
+
+```ts
+try {
+  const audios = await client.Audio().list()
+  console.log(audios)
+} catch (err) {
+  console.error('list failed:', err)
+}
+```
+
+The low-level `direct()` method does **not** throw — it returns the
+value or an `Error`, so check the result before using it:
+
+```ts
+const result = await client.direct({
+  path: '/api/resource/{id}',
+  method: 'GET',
+  params: { id: 'example_id' },
+})
+
+if (result instanceof Error) {
+  throw result
+}
 ```
 
 
@@ -110,7 +144,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = OpenverseSDK.test()
 
-const audio = await client.Audio().load({ id: 'test01' })
+const audio = await client.Audio().list()
 // audio is a bare entity populated with mock response data
 console.log(audio)
 ```
@@ -129,12 +163,12 @@ Entity instances remember their last match and data:
 ```ts
 const entity = client.Audio()
 
-// First call sets internal match
-await entity.load({ id: 'example' })
+// First call runs the operation and stores its result
+await entity.list()
 
-// Subsequent calls reuse the stored match
+// Subsequent calls reuse the stored state
 const data = entity.data()
-console.log(data.id) // 'example'
+console.log(data.id)
 ```
 
 ### Add custom middleware
@@ -233,10 +267,8 @@ All entities share the same interface.
 | `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria. |
 | `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
 | `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity. |
-| `update` | `update(reqdata?, ctrl?): Promise<Entity>` | Update an existing entity. |
-| `remove` | `remove(reqmatch?, ctrl?): Promise<void>` | Remove an entity. |
-| `data` | `data(data?): any` | Get or set entity data. |
-| `match` | `match(match?): any` | Get or set entity match criteria. |
+| `data` | `data(data?: Partial<Entity>): Entity` | Get or set entity data. |
+| `match` | `match(match?: Partial<Entity>): Partial<Entity>` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
 | `client` | `client(): OpenverseSDK` | Return the parent SDK client. |
 | `entopts` | `entopts(): object` | Return a copy of the entity options. |
@@ -246,10 +278,9 @@ All entities share the same interface.
 Entity operations resolve to the entity data directly — there is no
 result envelope:
 
-- `load`, `create` and `update` resolve to a single entity object.
+- `load` and `create` resolve to a single entity object.
 - `list` resolves to an **array** of entity objects (iterate it directly;
   there is no `.data` and no `.ok`).
-- `remove` resolves to `void`.
 
 On a failed request these methods **throw**, so wrap calls in
 `try`/`catch` to handle errors. Only `direct()` returns the result
@@ -437,45 +468,45 @@ Create an instance: `const audio = client.Audio()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_file` | ``$ARRAY`` |  |
-| `attribution` | ``$STRING`` |  |
-| `audio_set` | ``$ANY`` |  |
-| `bit_rate` | ``$INTEGER`` |  |
-| `category` | ``$STRING`` |  |
-| `creator` | ``$STRING`` |  |
-| `creator_url` | ``$STRING`` |  |
-| `description` | ``$STRING`` |  |
-| `detail_url` | ``$STRING`` |  |
-| `display_name` | ``$STRING`` |  |
-| `duration` | ``$INTEGER`` |  |
-| `fields_matched` | ``$ARRAY`` |  |
-| `filesize` | ``$INTEGER`` |  |
-| `filetype` | ``$STRING`` |  |
-| `foreign_landing_url` | ``$STRING`` |  |
-| `genre` | ``$ARRAY`` |  |
-| `id` | ``$STRING`` |  |
-| `identifier` | ``$STRING`` |  |
-| `indexed_on` | ``$STRING`` |  |
-| `len` | ``$INTEGER`` |  |
-| `license` | ``$STRING`` |  |
-| `license_url` | ``$STRING`` |  |
-| `license_version` | ``$STRING`` |  |
-| `logo_url` | ``$STRING`` |  |
-| `mature` | ``$BOOLEAN`` |  |
-| `media_count` | ``$INTEGER`` |  |
-| `point` | ``$ARRAY`` |  |
-| `provider` | ``$STRING`` |  |
-| `reason` | ``$ANY`` |  |
-| `related_url` | ``$STRING`` |  |
-| `sample_rate` | ``$INTEGER`` |  |
-| `source` | ``$STRING`` |  |
-| `source_name` | ``$STRING`` |  |
-| `source_url` | ``$STRING`` |  |
-| `tag` | ``$ARRAY`` |  |
-| `thumbnail` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
-| `waveform` | ``$STRING`` |  |
+| `alt_file` | `any[]` |  |
+| `attribution` | `string` |  |
+| `audio_set` | `any` |  |
+| `bit_rate` | `number` |  |
+| `category` | `string` |  |
+| `creator` | `string` |  |
+| `creator_url` | `string` |  |
+| `description` | `string` |  |
+| `detail_url` | `string` |  |
+| `display_name` | `string` |  |
+| `duration` | `number` |  |
+| `fields_matched` | `any[]` |  |
+| `filesize` | `number` |  |
+| `filetype` | `string` |  |
+| `foreign_landing_url` | `string` |  |
+| `genre` | `any[]` |  |
+| `id` | `string` |  |
+| `identifier` | `string` |  |
+| `indexed_on` | `string` |  |
+| `len` | `number` |  |
+| `license` | `string` |  |
+| `license_url` | `string` |  |
+| `license_version` | `string` |  |
+| `logo_url` | `string` |  |
+| `mature` | `boolean` |  |
+| `media_count` | `number` |  |
+| `point` | `any[]` |  |
+| `provider` | `string` |  |
+| `reason` | `any` |  |
+| `related_url` | `string` |  |
+| `sample_rate` | `number` |  |
+| `source` | `string` |  |
+| `source_name` | `string` |  |
+| `source_url` | `string` |  |
+| `tag` | `any[]` |  |
+| `thumbnail` | `string` |  |
+| `title` | `string` |  |
+| `url` | `string` |  |
+| `waveform` | `string` |  |
 
 #### Example: Load
 
@@ -493,28 +524,28 @@ const audios = await client.Audio().list()
 
 ```ts
 const audio = await client.Audio().create({
-  alt_file: /* `$ARRAY` */,
-  attribution: /* `$STRING` */,
-  audio_set: /* `$ANY` */,
-  detail_url: /* `$STRING` */,
-  display_name: /* `$STRING` */,
-  fields_matched: /* `$ARRAY` */,
-  identifier: /* `$STRING` */,
-  indexed_on: /* `$STRING` */,
-  len: /* `$INTEGER` */,
-  license: /* `$STRING` */,
-  license_url: /* `$STRING` */,
-  logo_url: /* `$STRING` */,
-  mature: /* `$BOOLEAN` */,
-  media_count: /* `$INTEGER` */,
-  point: /* `$ARRAY` */,
-  reason: /* `$ANY` */,
-  related_url: /* `$STRING` */,
-  source_name: /* `$STRING` */,
-  source_url: /* `$STRING` */,
-  tag: /* `$ARRAY` */,
-  thumbnail: /* `$STRING` */,
-  waveform: /* `$STRING` */,
+  alt_file: /* any[] */,
+  attribution: /* string */,
+  audio_set: /* any */,
+  detail_url: /* string */,
+  display_name: /* string */,
+  fields_matched: /* any[] */,
+  identifier: /* string */,
+  indexed_on: /* string */,
+  len: /* number */,
+  license: /* string */,
+  license_url: /* string */,
+  logo_url: /* string */,
+  mature: /* boolean */,
+  media_count: /* number */,
+  point: /* any[] */,
+  reason: /* any */,
+  related_url: /* string */,
+  source_name: /* string */,
+  source_url: /* string */,
+  tag: /* any[] */,
+  thumbnail: /* string */,
+  waveform: /* string */,
 })
 ```
 
@@ -535,42 +566,42 @@ Create an instance: `const image = client.Image()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `attribution` | ``$STRING`` |  |
-| `author_name` | ``$STRING`` |  |
-| `author_url` | ``$STRING`` |  |
-| `category` | ``$STRING`` |  |
-| `creator` | ``$STRING`` |  |
-| `creator_url` | ``$STRING`` |  |
-| `description` | ``$STRING`` |  |
-| `detail_url` | ``$STRING`` |  |
-| `display_name` | ``$STRING`` |  |
-| `fields_matched` | ``$ARRAY`` |  |
-| `filesize` | ``$INTEGER`` |  |
-| `filetype` | ``$STRING`` |  |
-| `foreign_landing_url` | ``$STRING`` |  |
-| `height` | ``$INTEGER`` |  |
-| `id` | ``$STRING`` |  |
-| `identifier` | ``$STRING`` |  |
-| `indexed_on` | ``$STRING`` |  |
-| `license` | ``$STRING`` |  |
-| `license_url` | ``$STRING`` |  |
-| `license_version` | ``$STRING`` |  |
-| `logo_url` | ``$STRING`` |  |
-| `mature` | ``$BOOLEAN`` |  |
-| `media_count` | ``$INTEGER`` |  |
-| `provider` | ``$STRING`` |  |
-| `reason` | ``$ANY`` |  |
-| `related_url` | ``$STRING`` |  |
-| `source` | ``$STRING`` |  |
-| `source_name` | ``$STRING`` |  |
-| `source_url` | ``$STRING`` |  |
-| `tag` | ``$ARRAY`` |  |
-| `thumbnail` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
-| `type` | ``$ANY`` |  |
-| `url` | ``$STRING`` |  |
-| `version` | ``$ANY`` |  |
-| `width` | ``$INTEGER`` |  |
+| `attribution` | `string` |  |
+| `author_name` | `string` |  |
+| `author_url` | `string` |  |
+| `category` | `string` |  |
+| `creator` | `string` |  |
+| `creator_url` | `string` |  |
+| `description` | `string` |  |
+| `detail_url` | `string` |  |
+| `display_name` | `string` |  |
+| `fields_matched` | `any[]` |  |
+| `filesize` | `number` |  |
+| `filetype` | `string` |  |
+| `foreign_landing_url` | `string` |  |
+| `height` | `number` |  |
+| `id` | `string` |  |
+| `identifier` | `string` |  |
+| `indexed_on` | `string` |  |
+| `license` | `string` |  |
+| `license_url` | `string` |  |
+| `license_version` | `string` |  |
+| `logo_url` | `string` |  |
+| `mature` | `boolean` |  |
+| `media_count` | `number` |  |
+| `provider` | `string` |  |
+| `reason` | `any` |  |
+| `related_url` | `string` |  |
+| `source` | `string` |  |
+| `source_name` | `string` |  |
+| `source_url` | `string` |  |
+| `tag` | `any[]` |  |
+| `thumbnail` | `string` |  |
+| `title` | `string` |  |
+| `type` | `any` |  |
+| `url` | `string` |  |
+| `version` | `any` |  |
+| `width` | `number` |  |
 
 #### Example: Load
 
@@ -588,27 +619,27 @@ const images = await client.Image().list()
 
 ```ts
 const image = await client.Image().create({
-  attribution: /* `$STRING` */,
-  author_name: /* `$STRING` */,
-  author_url: /* `$STRING` */,
-  detail_url: /* `$STRING` */,
-  display_name: /* `$STRING` */,
-  fields_matched: /* `$ARRAY` */,
-  identifier: /* `$STRING` */,
-  indexed_on: /* `$STRING` */,
-  license: /* `$STRING` */,
-  license_url: /* `$STRING` */,
-  logo_url: /* `$STRING` */,
-  mature: /* `$BOOLEAN` */,
-  media_count: /* `$INTEGER` */,
-  reason: /* `$ANY` */,
-  related_url: /* `$STRING` */,
-  source_name: /* `$STRING` */,
-  source_url: /* `$STRING` */,
-  tag: /* `$ARRAY` */,
-  thumbnail: /* `$STRING` */,
-  type: /* `$ANY` */,
-  version: /* `$ANY` */,
+  attribution: /* string */,
+  author_name: /* string */,
+  author_url: /* string */,
+  detail_url: /* string */,
+  display_name: /* string */,
+  fields_matched: /* any[] */,
+  identifier: /* string */,
+  indexed_on: /* string */,
+  license: /* string */,
+  license_url: /* string */,
+  logo_url: /* string */,
+  mature: /* boolean */,
+  media_count: /* number */,
+  reason: /* any */,
+  related_url: /* string */,
+  source_name: /* string */,
+  source_url: /* string */,
+  tag: /* any[] */,
+  thumbnail: /* string */,
+  type: /* any */,
+  version: /* any */,
 })
 ```
 
@@ -627,17 +658,17 @@ Create an instance: `const o_auth2_application = client.OAuth2Application()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | ``$STRING`` |  |
-| `email` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
+| `description` | `string` |  |
+| `email` | `string` |  |
+| `name` | `string` |  |
 
 #### Example: Create
 
 ```ts
 const o_auth2_application = await client.OAuth2Application().create({
-  description: /* `$STRING` */,
-  email: /* `$STRING` */,
-  name: /* `$STRING` */,
+  description: /* string */,
+  email: /* string */,
+  name: /* string */,
 })
 ```
 
@@ -656,15 +687,15 @@ Create an instance: `const o_auth2_key_info = client.OAuth2KeyInfo()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `rate_limit_model` | ``$STRING`` |  |
-| `requests_this_minute` | ``$INTEGER`` |  |
-| `requests_today` | ``$INTEGER`` |  |
-| `verified` | ``$BOOLEAN`` |  |
+| `rate_limit_model` | `string` |  |
+| `requests_this_minute` | `number` |  |
+| `requests_today` | `number` |  |
+| `verified` | `boolean` |  |
 
 #### Example: Load
 
 ```ts
-const o_auth2_key_info = await client.OAuth2KeyInfo().load({ id: 'o_auth2_key_info_id' })
+const o_auth2_key_info = await client.OAuth2KeyInfo().load()
 ```
 
 
@@ -682,29 +713,33 @@ Create an instance: `const o_auth2_token = client.OAuth2Token()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `access_token` | ``$STRING`` |  |
-| `expires_in` | ``$INTEGER`` |  |
-| `scope` | ``$STRING`` |  |
-| `token_type` | ``$STRING`` |  |
+| `access_token` | `string` |  |
+| `expires_in` | `number` |  |
+| `scope` | `string` |  |
+| `token_type` | `string` |  |
 
 #### Example: Create
 
 ```ts
 const o_auth2_token = await client.OAuth2Token().create({
-  access_token: /* `$STRING` */,
-  expires_in: /* `$INTEGER` */,
-  scope: /* `$STRING` */,
-  token_type: /* `$STRING` */,
+  access_token: /* string */,
+  expires_in: /* number */,
+  scope: /* string */,
+  token_type: /* string */,
 })
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -721,11 +756,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller.
-
-An unexpected exception triggers the `PreUnexpected` hook before
-propagating.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -761,16 +794,16 @@ import { OpenverseSDK } from '@voxgig-sdk/openverse'
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
 const audio = client.Audio()
-await audio.load({ id: "example_id" })
+await audio.list()
 
-// audio.data() now returns the loaded audio data
-// audio.match() returns { id: "example_id" }
+// audio.data() now returns the audio data from the last `list`
+// audio.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

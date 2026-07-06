@@ -4,6 +4,8 @@
 
 The PHP SDK for the Openverse API — an entity-oriented client using PHP conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `$client->Audio()` — with named operations (`list`/`load`/`create`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -38,7 +40,7 @@ try {
     // list() returns an array of Audio records — iterate directly.
     $audios = $client->Audio()->list();
     foreach ($audios as $item) {
-        echo $item["id"] . " " . $item["name"] . "\n";
+        echo $item["id"] . " " . $item["alt_file"] . "\n";
     }
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -61,8 +63,39 @@ try {
 
 ```php
 // create() returns the bare created Audio record.
-$created = $client->Audio()->create(["name" => "Example"]);
+$created = $client->Audio()->create(["identifier" => "example"]);
 
+```
+
+
+## Error handling
+
+Entity operations throw a `\Throwable` on failure, so wrap them in
+`try` / `catch`:
+
+```php
+try {
+    $audios = $client->Audio()->list();
+} catch (\Throwable $err) {
+    echo "Error: " . $err->getMessage();
+}
+```
+
+`direct()` does **not** throw — it returns the result array. Branch on
+`ok`; on failure `status` holds the HTTP status (for error responses) and
+`err` holds a transport error, so read both defensively:
+
+```php
+$result = $client->direct([
+    "path" => "/api/resource/{id}",
+    "method" => "GET",
+    "params" => ["id" => "example_id"],
+]);
+
+if (! $result["ok"]) {
+    $err = $result["err"] ?? null;
+    echo "request failed: " . ($err ? $err->getMessage() : "HTTP " . $result["status"]);
+}
 ```
 
 
@@ -85,7 +118,10 @@ if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
 } else {
-    echo "Error: " . $result["err"]->getMessage();
+    // On an HTTP error status there is no err (only a transport failure sets
+    // it), so fall back to the status code.
+    $err = $result["err"] ?? null;
+    echo "Error: " . ($err ? $err->getMessage() : "HTTP " . $result["status"]);
 }
 ```
 
@@ -114,8 +150,8 @@ $client = OpenverseSDK::test([
     "entity" => ["audio" => ["test01" => ["id" => "test01"]]],
 ]);
 
-// load() returns the bare mock record (throws on error).
-$audio = $client->Audio()->load(["id" => "test01"]);
+// Entity ops return the bare mock record (throws on error).
+$audio = $client->Audio()->list();
 print_r($audio);
 ```
 
@@ -210,10 +246,8 @@ All entities share the same interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `load` | `($reqmatch, $ctrl): array` | Load a single entity by match criteria. |
-| `list` | `($reqmatch, $ctrl): array` | List entities matching the criteria. |
+| `list` | `(?array $reqmatch = null, $ctrl): array` | List entities matching the criteria (call with no argument to list all). |
 | `create` | `($reqdata, $ctrl): array` | Create a new entity. |
-| `update` | `($reqdata, $ctrl): array` | Update an existing entity. |
-| `remove` | `($reqmatch, $ctrl): array` | Remove an entity. |
 | `data_get` | `(): array` | Get entity data. |
 | `data_set` | `($data): void` | Set entity data. |
 | `match_get` | `(): array` | Get entity match criteria. |
@@ -393,45 +427,45 @@ Create an instance: `$audio = $client->Audio();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_file` | ``$ARRAY`` |  |
-| `attribution` | ``$STRING`` |  |
-| `audio_set` | ``$ANY`` |  |
-| `bit_rate` | ``$INTEGER`` |  |
-| `category` | ``$STRING`` |  |
-| `creator` | ``$STRING`` |  |
-| `creator_url` | ``$STRING`` |  |
-| `description` | ``$STRING`` |  |
-| `detail_url` | ``$STRING`` |  |
-| `display_name` | ``$STRING`` |  |
-| `duration` | ``$INTEGER`` |  |
-| `fields_matched` | ``$ARRAY`` |  |
-| `filesize` | ``$INTEGER`` |  |
-| `filetype` | ``$STRING`` |  |
-| `foreign_landing_url` | ``$STRING`` |  |
-| `genre` | ``$ARRAY`` |  |
-| `id` | ``$STRING`` |  |
-| `identifier` | ``$STRING`` |  |
-| `indexed_on` | ``$STRING`` |  |
-| `len` | ``$INTEGER`` |  |
-| `license` | ``$STRING`` |  |
-| `license_url` | ``$STRING`` |  |
-| `license_version` | ``$STRING`` |  |
-| `logo_url` | ``$STRING`` |  |
-| `mature` | ``$BOOLEAN`` |  |
-| `media_count` | ``$INTEGER`` |  |
-| `point` | ``$ARRAY`` |  |
-| `provider` | ``$STRING`` |  |
-| `reason` | ``$ANY`` |  |
-| `related_url` | ``$STRING`` |  |
-| `sample_rate` | ``$INTEGER`` |  |
-| `source` | ``$STRING`` |  |
-| `source_name` | ``$STRING`` |  |
-| `source_url` | ``$STRING`` |  |
-| `tag` | ``$ARRAY`` |  |
-| `thumbnail` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
-| `waveform` | ``$STRING`` |  |
+| `alt_file` | `array` |  |
+| `attribution` | `string` |  |
+| `audio_set` | `mixed` |  |
+| `bit_rate` | `int` |  |
+| `category` | `string` |  |
+| `creator` | `string` |  |
+| `creator_url` | `string` |  |
+| `description` | `string` |  |
+| `detail_url` | `string` |  |
+| `display_name` | `string` |  |
+| `duration` | `int` |  |
+| `fields_matched` | `array` |  |
+| `filesize` | `int` |  |
+| `filetype` | `string` |  |
+| `foreign_landing_url` | `string` |  |
+| `genre` | `array` |  |
+| `id` | `string` |  |
+| `identifier` | `string` |  |
+| `indexed_on` | `string` |  |
+| `len` | `int` |  |
+| `license` | `string` |  |
+| `license_url` | `string` |  |
+| `license_version` | `string` |  |
+| `logo_url` | `string` |  |
+| `mature` | `bool` |  |
+| `media_count` | `int` |  |
+| `point` | `array` |  |
+| `provider` | `string` |  |
+| `reason` | `mixed` |  |
+| `related_url` | `string` |  |
+| `sample_rate` | `int` |  |
+| `source` | `string` |  |
+| `source_name` | `string` |  |
+| `source_url` | `string` |  |
+| `tag` | `array` |  |
+| `thumbnail` | `string` |  |
+| `title` | `string` |  |
+| `url` | `string` |  |
+| `waveform` | `string` |  |
 
 #### Example: Load
 
@@ -451,28 +485,28 @@ $audios = $client->Audio()->list();
 
 ```php
 $audio = $client->Audio()->create([
-    "alt_file" => null, // `$ARRAY`
-    "attribution" => null, // `$STRING`
-    "audio_set" => null, // `$ANY`
-    "detail_url" => null, // `$STRING`
-    "display_name" => null, // `$STRING`
-    "fields_matched" => null, // `$ARRAY`
-    "identifier" => null, // `$STRING`
-    "indexed_on" => null, // `$STRING`
-    "len" => null, // `$INTEGER`
-    "license" => null, // `$STRING`
-    "license_url" => null, // `$STRING`
-    "logo_url" => null, // `$STRING`
-    "mature" => null, // `$BOOLEAN`
-    "media_count" => null, // `$INTEGER`
-    "point" => null, // `$ARRAY`
-    "reason" => null, // `$ANY`
-    "related_url" => null, // `$STRING`
-    "source_name" => null, // `$STRING`
-    "source_url" => null, // `$STRING`
-    "tag" => null, // `$ARRAY`
-    "thumbnail" => null, // `$STRING`
-    "waveform" => null, // `$STRING`
+    "alt_file" => null, // array
+    "attribution" => null, // string
+    "audio_set" => null, // mixed
+    "detail_url" => null, // string
+    "display_name" => null, // string
+    "fields_matched" => null, // array
+    "identifier" => null, // string
+    "indexed_on" => null, // string
+    "len" => null, // int
+    "license" => null, // string
+    "license_url" => null, // string
+    "logo_url" => null, // string
+    "mature" => null, // bool
+    "media_count" => null, // int
+    "point" => null, // array
+    "reason" => null, // mixed
+    "related_url" => null, // string
+    "source_name" => null, // string
+    "source_url" => null, // string
+    "tag" => null, // array
+    "thumbnail" => null, // string
+    "waveform" => null, // string
 ]);
 ```
 
@@ -493,42 +527,42 @@ Create an instance: `$image = $client->Image();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `attribution` | ``$STRING`` |  |
-| `author_name` | ``$STRING`` |  |
-| `author_url` | ``$STRING`` |  |
-| `category` | ``$STRING`` |  |
-| `creator` | ``$STRING`` |  |
-| `creator_url` | ``$STRING`` |  |
-| `description` | ``$STRING`` |  |
-| `detail_url` | ``$STRING`` |  |
-| `display_name` | ``$STRING`` |  |
-| `fields_matched` | ``$ARRAY`` |  |
-| `filesize` | ``$INTEGER`` |  |
-| `filetype` | ``$STRING`` |  |
-| `foreign_landing_url` | ``$STRING`` |  |
-| `height` | ``$INTEGER`` |  |
-| `id` | ``$STRING`` |  |
-| `identifier` | ``$STRING`` |  |
-| `indexed_on` | ``$STRING`` |  |
-| `license` | ``$STRING`` |  |
-| `license_url` | ``$STRING`` |  |
-| `license_version` | ``$STRING`` |  |
-| `logo_url` | ``$STRING`` |  |
-| `mature` | ``$BOOLEAN`` |  |
-| `media_count` | ``$INTEGER`` |  |
-| `provider` | ``$STRING`` |  |
-| `reason` | ``$ANY`` |  |
-| `related_url` | ``$STRING`` |  |
-| `source` | ``$STRING`` |  |
-| `source_name` | ``$STRING`` |  |
-| `source_url` | ``$STRING`` |  |
-| `tag` | ``$ARRAY`` |  |
-| `thumbnail` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
-| `type` | ``$ANY`` |  |
-| `url` | ``$STRING`` |  |
-| `version` | ``$ANY`` |  |
-| `width` | ``$INTEGER`` |  |
+| `attribution` | `string` |  |
+| `author_name` | `string` |  |
+| `author_url` | `string` |  |
+| `category` | `string` |  |
+| `creator` | `string` |  |
+| `creator_url` | `string` |  |
+| `description` | `string` |  |
+| `detail_url` | `string` |  |
+| `display_name` | `string` |  |
+| `fields_matched` | `array` |  |
+| `filesize` | `int` |  |
+| `filetype` | `string` |  |
+| `foreign_landing_url` | `string` |  |
+| `height` | `int` |  |
+| `id` | `string` |  |
+| `identifier` | `string` |  |
+| `indexed_on` | `string` |  |
+| `license` | `string` |  |
+| `license_url` | `string` |  |
+| `license_version` | `string` |  |
+| `logo_url` | `string` |  |
+| `mature` | `bool` |  |
+| `media_count` | `int` |  |
+| `provider` | `string` |  |
+| `reason` | `mixed` |  |
+| `related_url` | `string` |  |
+| `source` | `string` |  |
+| `source_name` | `string` |  |
+| `source_url` | `string` |  |
+| `tag` | `array` |  |
+| `thumbnail` | `string` |  |
+| `title` | `string` |  |
+| `type` | `mixed` |  |
+| `url` | `string` |  |
+| `version` | `mixed` |  |
+| `width` | `int` |  |
 
 #### Example: Load
 
@@ -548,27 +582,27 @@ $images = $client->Image()->list();
 
 ```php
 $image = $client->Image()->create([
-    "attribution" => null, // `$STRING`
-    "author_name" => null, // `$STRING`
-    "author_url" => null, // `$STRING`
-    "detail_url" => null, // `$STRING`
-    "display_name" => null, // `$STRING`
-    "fields_matched" => null, // `$ARRAY`
-    "identifier" => null, // `$STRING`
-    "indexed_on" => null, // `$STRING`
-    "license" => null, // `$STRING`
-    "license_url" => null, // `$STRING`
-    "logo_url" => null, // `$STRING`
-    "mature" => null, // `$BOOLEAN`
-    "media_count" => null, // `$INTEGER`
-    "reason" => null, // `$ANY`
-    "related_url" => null, // `$STRING`
-    "source_name" => null, // `$STRING`
-    "source_url" => null, // `$STRING`
-    "tag" => null, // `$ARRAY`
-    "thumbnail" => null, // `$STRING`
-    "type" => null, // `$ANY`
-    "version" => null, // `$ANY`
+    "attribution" => null, // string
+    "author_name" => null, // string
+    "author_url" => null, // string
+    "detail_url" => null, // string
+    "display_name" => null, // string
+    "fields_matched" => null, // array
+    "identifier" => null, // string
+    "indexed_on" => null, // string
+    "license" => null, // string
+    "license_url" => null, // string
+    "logo_url" => null, // string
+    "mature" => null, // bool
+    "media_count" => null, // int
+    "reason" => null, // mixed
+    "related_url" => null, // string
+    "source_name" => null, // string
+    "source_url" => null, // string
+    "tag" => null, // array
+    "thumbnail" => null, // string
+    "type" => null, // mixed
+    "version" => null, // mixed
 ]);
 ```
 
@@ -587,17 +621,17 @@ Create an instance: `$o_auth2_application = $client->OAuth2Application();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | ``$STRING`` |  |
-| `email` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
+| `description` | `string` |  |
+| `email` | `string` |  |
+| `name` | `string` |  |
 
 #### Example: Create
 
 ```php
 $o_auth2_application = $client->OAuth2Application()->create([
-    "description" => null, // `$STRING`
-    "email" => null, // `$STRING`
-    "name" => null, // `$STRING`
+    "description" => null, // string
+    "email" => null, // string
+    "name" => null, // string
 ]);
 ```
 
@@ -616,16 +650,16 @@ Create an instance: `$o_auth2_key_info = $client->OAuth2KeyInfo();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `rate_limit_model` | ``$STRING`` |  |
-| `requests_this_minute` | ``$INTEGER`` |  |
-| `requests_today` | ``$INTEGER`` |  |
-| `verified` | ``$BOOLEAN`` |  |
+| `rate_limit_model` | `string` |  |
+| `requests_this_minute` | `int` |  |
+| `requests_today` | `int` |  |
+| `verified` | `bool` |  |
 
 #### Example: Load
 
 ```php
 // load() returns the bare OAuth2KeyInfo record (throws on error).
-$o_auth2_key_info = $client->OAuth2KeyInfo()->load(["id" => "o_auth2_key_info_id"]);
+$o_auth2_key_info = $client->OAuth2KeyInfo()->load();
 ```
 
 
@@ -643,29 +677,33 @@ Create an instance: `$o_auth2_token = $client->OAuth2Token();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `access_token` | ``$STRING`` |  |
-| `expires_in` | ``$INTEGER`` |  |
-| `scope` | ``$STRING`` |  |
-| `token_type` | ``$STRING`` |  |
+| `access_token` | `string` |  |
+| `expires_in` | `int` |  |
+| `scope` | `string` |  |
+| `token_type` | `string` |  |
 
 #### Example: Create
 
 ```php
 $o_auth2_token = $client->OAuth2Token()->create([
-    "access_token" => null, // `$STRING`
-    "expires_in" => null, // `$INTEGER`
-    "scope" => null, // `$STRING`
-    "token_type" => null, // `$STRING`
+    "access_token" => null, // string
+    "expires_in" => null, // int
+    "scope" => null, // string
+    "token_type" => null, // string
 ]);
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -682,8 +720,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as the second element in the return array.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -727,15 +766,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```php
 $audio = $client->Audio();
-$audio->load(["id" => "example_id"]);
+$audio->list();
 
-// $audio->dataGet() now returns the loaded audio data
-// $audio->matchGet() returns the last match criteria
+// $audio->data_get() now returns the audio data from the last list
+// $audio->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

@@ -393,16 +393,16 @@ OAuth2Application = Struct.new(
   keyword_init: true
 )
 
-# Match filter for OAuth2Application#create (any subset of OAuth2Application fields).
+# Request payload for OAuth2Application#create.
 #
 # @!attribute [rw] description
-#   @return [String, nil]
+#   @return [String]
 #
 # @!attribute [rw] email
-#   @return [String, nil]
+#   @return [String]
 #
 # @!attribute [rw] name
-#   @return [String, nil]
+#   @return [String]
 OAuth2ApplicationCreateData = Struct.new(
   :description,
   :email,
@@ -431,7 +431,7 @@ OAuth2KeyInfo = Struct.new(
   keyword_init: true
 )
 
-# Match filter for OAuth2KeyInfo#load (any subset of OAuth2KeyInfo fields).
+# Request payload for OAuth2KeyInfo#load.
 #
 # @!attribute [rw] rate_limit_model
 #   @return [String, nil]
@@ -473,19 +473,19 @@ OAuth2Token = Struct.new(
   keyword_init: true
 )
 
-# Match filter for OAuth2Token#create (any subset of OAuth2Token fields).
+# Request payload for OAuth2Token#create.
 #
 # @!attribute [rw] access_token
-#   @return [String, nil]
+#   @return [String]
 #
 # @!attribute [rw] expires_in
-#   @return [Integer, nil]
+#   @return [Integer]
 #
 # @!attribute [rw] scope
-#   @return [String, nil]
+#   @return [String]
 #
 # @!attribute [rw] token_type
-#   @return [String, nil]
+#   @return [String]
 OAuth2TokenCreateData = Struct.new(
   :access_token,
   :expires_in,

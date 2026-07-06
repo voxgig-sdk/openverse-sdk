@@ -117,7 +117,11 @@ export interface OAuth2Application {
   name: string
 }
 
-export type OAuth2ApplicationCreateData = Partial<OAuth2Application>
+export interface OAuth2ApplicationCreateData {
+  description: string
+  email: string
+  name: string
+}
 
 export interface OAuth2KeyInfo {
   rate_limit_model: string
@@ -126,7 +130,12 @@ export interface OAuth2KeyInfo {
   verified: boolean
 }
 
-export type OAuth2KeyInfoLoadMatch = Partial<OAuth2KeyInfo>
+export interface OAuth2KeyInfoLoadMatch {
+  rate_limit_model?: string
+  requests_this_minute?: number
+  requests_today?: number
+  verified?: boolean
+}
 
 export interface OAuth2Token {
   access_token: string
@@ -135,5 +144,10 @@ export interface OAuth2Token {
   token_type: string
 }
 
-export type OAuth2TokenCreateData = Partial<OAuth2Token>
+export interface OAuth2TokenCreateData {
+  access_token: string
+  expires_in: number
+  scope: string
+  token_type: string
+}
 

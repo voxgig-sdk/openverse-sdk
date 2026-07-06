@@ -221,31 +221,31 @@ class OpenverseSDK:
 
 
     def Audio(self, data=None) -> "AudioEntity":
-        """Entity factory: client.Audio().list({}) / client.Audio().load({"id": ...})."""
+        """Entity factory: client.Audio().list() / client.Audio().load({"id": ...})."""
         from entity.audio_entity import AudioEntity
         return AudioEntity(self, data)
 
 
     def Image(self, data=None) -> "ImageEntity":
-        """Entity factory: client.Image().list({}) / client.Image().load({"id": ...})."""
+        """Entity factory: client.Image().list() / client.Image().load({"id": ...})."""
         from entity.image_entity import ImageEntity
         return ImageEntity(self, data)
 
 
     def OAuth2Application(self, data=None) -> "OAuth2ApplicationEntity":
-        """Entity factory: client.OAuth2Application().list({}) / client.OAuth2Application().load({"id": ...})."""
+        """Entity factory: client.OAuth2Application().list() / client.OAuth2Application().load({"id": ...})."""
         from entity.o_auth2_application_entity import OAuth2ApplicationEntity
         return OAuth2ApplicationEntity(self, data)
 
 
     def OAuth2KeyInfo(self, data=None) -> "OAuth2KeyInfoEntity":
-        """Entity factory: client.OAuth2KeyInfo().list({}) / client.OAuth2KeyInfo().load({"id": ...})."""
+        """Entity factory: client.OAuth2KeyInfo().list() / client.OAuth2KeyInfo().load({"id": ...})."""
         from entity.o_auth2_key_info_entity import OAuth2KeyInfoEntity
         return OAuth2KeyInfoEntity(self, data)
 
 
     def OAuth2Token(self, data=None) -> "OAuth2TokenEntity":
-        """Entity factory: client.OAuth2Token().list({}) / client.OAuth2Token().load({"id": ...})."""
+        """Entity factory: client.OAuth2Token().list() / client.OAuth2Token().load({"id": ...})."""
         from entity.o_auth2_token_entity import OAuth2TokenEntity
         return OAuth2TokenEntity(self, data)
 

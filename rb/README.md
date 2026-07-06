@@ -4,6 +4,8 @@
 
 The Ruby SDK for the Openverse API — an entity-oriented client using idiomatic Ruby conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `client.Audio` — with named operations (`list`/`load`/`create`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -37,7 +39,7 @@ begin
   # list returns an Array of Audio records — iterate directly.
   audios = client.Audio.list
   audios.each do |item|
-    puts "#{item["id"]} #{item["name"]}"
+    puts "#{item["id"]} #{item["alt_file"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -60,8 +62,35 @@ end
 
 ```ruby
 # create returns the bare created Audio record.
-created = client.Audio.create({ "name" => "Example" })
+created = client.Audio.create({ "identifier" => "example" })
 
+```
+
+
+## Error handling
+
+Entity operations raise on failure, so rescue them:
+
+```ruby
+begin
+  audios = client.Audio.list()
+rescue => err
+  warn "list failed: #{err}"
+end
+```
+
+`direct` does **not** raise — it returns the result hash. Branch on
+`ok`; on failure `status` holds the HTTP status (for error responses) and
+`err` holds a transport error, so read both defensively:
+
+```ruby
+result = client.direct({
+  "path" => "/api/resource/{id}",
+  "method" => "GET",
+  "params" => { "id" => "example_id" },
+})
+
+warn "request failed: #{result["err"] || "HTTP #{result["status"]}"}" unless result["ok"]
 ```
 
 
@@ -82,7 +111,9 @@ if result["ok"]
   puts result["status"]  # 200
   puts result["data"]    # response body
 else
-  warn result["err"]
+  # On an HTTP error status there is no err (only a transport failure sets
+  # it), so fall back to the status code.
+  warn(result["err"] || "HTTP #{result["status"]}")
 end
 ```
 
@@ -113,8 +144,8 @@ client = OpenverseSDK.test({
   "entity" => { "audio" => { "test01" => { "id" => "test01" } } },
 })
 
-# load returns the bare mock record (raises on error).
-audio = client.Audio.load({ "id" => "test01" })
+# Entity ops return the bare mock record (raises on error).
+audio = client.Audio.list()
 puts audio
 ```
 
@@ -206,10 +237,8 @@ All entities share the same interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
-| `list` | `(reqmatch, ctrl) -> Array` | List entities matching the criteria. Raises on error. |
+| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all). Raises on error. |
 | `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
-| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
-| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
 | `data_get` | `() -> Hash` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> Hash` | Get entity match criteria. |
@@ -388,45 +417,45 @@ Create an instance: `audio = client.Audio`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_file` | ``$ARRAY`` |  |
-| `attribution` | ``$STRING`` |  |
-| `audio_set` | ``$ANY`` |  |
-| `bit_rate` | ``$INTEGER`` |  |
-| `category` | ``$STRING`` |  |
-| `creator` | ``$STRING`` |  |
-| `creator_url` | ``$STRING`` |  |
-| `description` | ``$STRING`` |  |
-| `detail_url` | ``$STRING`` |  |
-| `display_name` | ``$STRING`` |  |
-| `duration` | ``$INTEGER`` |  |
-| `fields_matched` | ``$ARRAY`` |  |
-| `filesize` | ``$INTEGER`` |  |
-| `filetype` | ``$STRING`` |  |
-| `foreign_landing_url` | ``$STRING`` |  |
-| `genre` | ``$ARRAY`` |  |
-| `id` | ``$STRING`` |  |
-| `identifier` | ``$STRING`` |  |
-| `indexed_on` | ``$STRING`` |  |
-| `len` | ``$INTEGER`` |  |
-| `license` | ``$STRING`` |  |
-| `license_url` | ``$STRING`` |  |
-| `license_version` | ``$STRING`` |  |
-| `logo_url` | ``$STRING`` |  |
-| `mature` | ``$BOOLEAN`` |  |
-| `media_count` | ``$INTEGER`` |  |
-| `point` | ``$ARRAY`` |  |
-| `provider` | ``$STRING`` |  |
-| `reason` | ``$ANY`` |  |
-| `related_url` | ``$STRING`` |  |
-| `sample_rate` | ``$INTEGER`` |  |
-| `source` | ``$STRING`` |  |
-| `source_name` | ``$STRING`` |  |
-| `source_url` | ``$STRING`` |  |
-| `tag` | ``$ARRAY`` |  |
-| `thumbnail` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
-| `waveform` | ``$STRING`` |  |
+| `alt_file` | `Array` |  |
+| `attribution` | `String` |  |
+| `audio_set` | `Object` |  |
+| `bit_rate` | `Integer` |  |
+| `category` | `String` |  |
+| `creator` | `String` |  |
+| `creator_url` | `String` |  |
+| `description` | `String` |  |
+| `detail_url` | `String` |  |
+| `display_name` | `String` |  |
+| `duration` | `Integer` |  |
+| `fields_matched` | `Array` |  |
+| `filesize` | `Integer` |  |
+| `filetype` | `String` |  |
+| `foreign_landing_url` | `String` |  |
+| `genre` | `Array` |  |
+| `id` | `String` |  |
+| `identifier` | `String` |  |
+| `indexed_on` | `String` |  |
+| `len` | `Integer` |  |
+| `license` | `String` |  |
+| `license_url` | `String` |  |
+| `license_version` | `String` |  |
+| `logo_url` | `String` |  |
+| `mature` | `Boolean` |  |
+| `media_count` | `Integer` |  |
+| `point` | `Array` |  |
+| `provider` | `String` |  |
+| `reason` | `Object` |  |
+| `related_url` | `String` |  |
+| `sample_rate` | `Integer` |  |
+| `source` | `String` |  |
+| `source_name` | `String` |  |
+| `source_url` | `String` |  |
+| `tag` | `Array` |  |
+| `thumbnail` | `String` |  |
+| `title` | `String` |  |
+| `url` | `String` |  |
+| `waveform` | `String` |  |
 
 #### Example: Load
 
@@ -446,28 +475,28 @@ audios = client.Audio.list
 
 ```ruby
 audio = client.Audio.create({
-  "alt_file" => nil, # `$ARRAY`
-  "attribution" => nil, # `$STRING`
-  "audio_set" => nil, # `$ANY`
-  "detail_url" => nil, # `$STRING`
-  "display_name" => nil, # `$STRING`
-  "fields_matched" => nil, # `$ARRAY`
-  "identifier" => nil, # `$STRING`
-  "indexed_on" => nil, # `$STRING`
-  "len" => nil, # `$INTEGER`
-  "license" => nil, # `$STRING`
-  "license_url" => nil, # `$STRING`
-  "logo_url" => nil, # `$STRING`
-  "mature" => nil, # `$BOOLEAN`
-  "media_count" => nil, # `$INTEGER`
-  "point" => nil, # `$ARRAY`
-  "reason" => nil, # `$ANY`
-  "related_url" => nil, # `$STRING`
-  "source_name" => nil, # `$STRING`
-  "source_url" => nil, # `$STRING`
-  "tag" => nil, # `$ARRAY`
-  "thumbnail" => nil, # `$STRING`
-  "waveform" => nil, # `$STRING`
+  "alt_file" => [], # Array
+  "attribution" => "example", # String
+  "audio_set" => "example", # Object
+  "detail_url" => "example", # String
+  "display_name" => "example", # String
+  "fields_matched" => [], # Array
+  "identifier" => "example", # String
+  "indexed_on" => "example", # String
+  "len" => 1, # Integer
+  "license" => "example", # String
+  "license_url" => "example", # String
+  "logo_url" => "example", # String
+  "mature" => true, # Boolean
+  "media_count" => 1, # Integer
+  "point" => [], # Array
+  "reason" => "example", # Object
+  "related_url" => "example", # String
+  "source_name" => "example", # String
+  "source_url" => "example", # String
+  "tag" => [], # Array
+  "thumbnail" => "example", # String
+  "waveform" => "example", # String
 })
 ```
 
@@ -488,42 +517,42 @@ Create an instance: `image = client.Image`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `attribution` | ``$STRING`` |  |
-| `author_name` | ``$STRING`` |  |
-| `author_url` | ``$STRING`` |  |
-| `category` | ``$STRING`` |  |
-| `creator` | ``$STRING`` |  |
-| `creator_url` | ``$STRING`` |  |
-| `description` | ``$STRING`` |  |
-| `detail_url` | ``$STRING`` |  |
-| `display_name` | ``$STRING`` |  |
-| `fields_matched` | ``$ARRAY`` |  |
-| `filesize` | ``$INTEGER`` |  |
-| `filetype` | ``$STRING`` |  |
-| `foreign_landing_url` | ``$STRING`` |  |
-| `height` | ``$INTEGER`` |  |
-| `id` | ``$STRING`` |  |
-| `identifier` | ``$STRING`` |  |
-| `indexed_on` | ``$STRING`` |  |
-| `license` | ``$STRING`` |  |
-| `license_url` | ``$STRING`` |  |
-| `license_version` | ``$STRING`` |  |
-| `logo_url` | ``$STRING`` |  |
-| `mature` | ``$BOOLEAN`` |  |
-| `media_count` | ``$INTEGER`` |  |
-| `provider` | ``$STRING`` |  |
-| `reason` | ``$ANY`` |  |
-| `related_url` | ``$STRING`` |  |
-| `source` | ``$STRING`` |  |
-| `source_name` | ``$STRING`` |  |
-| `source_url` | ``$STRING`` |  |
-| `tag` | ``$ARRAY`` |  |
-| `thumbnail` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
-| `type` | ``$ANY`` |  |
-| `url` | ``$STRING`` |  |
-| `version` | ``$ANY`` |  |
-| `width` | ``$INTEGER`` |  |
+| `attribution` | `String` |  |
+| `author_name` | `String` |  |
+| `author_url` | `String` |  |
+| `category` | `String` |  |
+| `creator` | `String` |  |
+| `creator_url` | `String` |  |
+| `description` | `String` |  |
+| `detail_url` | `String` |  |
+| `display_name` | `String` |  |
+| `fields_matched` | `Array` |  |
+| `filesize` | `Integer` |  |
+| `filetype` | `String` |  |
+| `foreign_landing_url` | `String` |  |
+| `height` | `Integer` |  |
+| `id` | `String` |  |
+| `identifier` | `String` |  |
+| `indexed_on` | `String` |  |
+| `license` | `String` |  |
+| `license_url` | `String` |  |
+| `license_version` | `String` |  |
+| `logo_url` | `String` |  |
+| `mature` | `Boolean` |  |
+| `media_count` | `Integer` |  |
+| `provider` | `String` |  |
+| `reason` | `Object` |  |
+| `related_url` | `String` |  |
+| `source` | `String` |  |
+| `source_name` | `String` |  |
+| `source_url` | `String` |  |
+| `tag` | `Array` |  |
+| `thumbnail` | `String` |  |
+| `title` | `String` |  |
+| `type` | `Object` |  |
+| `url` | `String` |  |
+| `version` | `Object` |  |
+| `width` | `Integer` |  |
 
 #### Example: Load
 
@@ -543,27 +572,27 @@ images = client.Image.list
 
 ```ruby
 image = client.Image.create({
-  "attribution" => nil, # `$STRING`
-  "author_name" => nil, # `$STRING`
-  "author_url" => nil, # `$STRING`
-  "detail_url" => nil, # `$STRING`
-  "display_name" => nil, # `$STRING`
-  "fields_matched" => nil, # `$ARRAY`
-  "identifier" => nil, # `$STRING`
-  "indexed_on" => nil, # `$STRING`
-  "license" => nil, # `$STRING`
-  "license_url" => nil, # `$STRING`
-  "logo_url" => nil, # `$STRING`
-  "mature" => nil, # `$BOOLEAN`
-  "media_count" => nil, # `$INTEGER`
-  "reason" => nil, # `$ANY`
-  "related_url" => nil, # `$STRING`
-  "source_name" => nil, # `$STRING`
-  "source_url" => nil, # `$STRING`
-  "tag" => nil, # `$ARRAY`
-  "thumbnail" => nil, # `$STRING`
-  "type" => nil, # `$ANY`
-  "version" => nil, # `$ANY`
+  "attribution" => "example", # String
+  "author_name" => "example", # String
+  "author_url" => "example", # String
+  "detail_url" => "example", # String
+  "display_name" => "example", # String
+  "fields_matched" => [], # Array
+  "identifier" => "example", # String
+  "indexed_on" => "example", # String
+  "license" => "example", # String
+  "license_url" => "example", # String
+  "logo_url" => "example", # String
+  "mature" => true, # Boolean
+  "media_count" => 1, # Integer
+  "reason" => "example", # Object
+  "related_url" => "example", # String
+  "source_name" => "example", # String
+  "source_url" => "example", # String
+  "tag" => [], # Array
+  "thumbnail" => "example", # String
+  "type" => "example", # Object
+  "version" => "example", # Object
 })
 ```
 
@@ -582,17 +611,17 @@ Create an instance: `o_auth2_application = client.OAuth2Application`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | ``$STRING`` |  |
-| `email` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
+| `description` | `String` |  |
+| `email` | `String` |  |
+| `name` | `String` |  |
 
 #### Example: Create
 
 ```ruby
 o_auth2_application = client.OAuth2Application.create({
-  "description" => nil, # `$STRING`
-  "email" => nil, # `$STRING`
-  "name" => nil, # `$STRING`
+  "description" => "example", # String
+  "email" => "example", # String
+  "name" => "example", # String
 })
 ```
 
@@ -611,16 +640,16 @@ Create an instance: `o_auth2_key_info = client.OAuth2KeyInfo`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `rate_limit_model` | ``$STRING`` |  |
-| `requests_this_minute` | ``$INTEGER`` |  |
-| `requests_today` | ``$INTEGER`` |  |
-| `verified` | ``$BOOLEAN`` |  |
+| `rate_limit_model` | `String` |  |
+| `requests_this_minute` | `Integer` |  |
+| `requests_today` | `Integer` |  |
+| `verified` | `Boolean` |  |
 
 #### Example: Load
 
 ```ruby
 # load returns the bare OAuth2KeyInfo record (raises on error).
-o_auth2_key_info = client.OAuth2KeyInfo.load({ "id" => "o_auth2_key_info_id" })
+o_auth2_key_info = client.OAuth2KeyInfo.load()
 ```
 
 
@@ -638,29 +667,33 @@ Create an instance: `o_auth2_token = client.OAuth2Token`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `access_token` | ``$STRING`` |  |
-| `expires_in` | ``$INTEGER`` |  |
-| `scope` | ``$STRING`` |  |
-| `token_type` | ``$STRING`` |  |
+| `access_token` | `String` |  |
+| `expires_in` | `Integer` |  |
+| `scope` | `String` |  |
+| `token_type` | `String` |  |
 
 #### Example: Create
 
 ```ruby
 o_auth2_token = client.OAuth2Token.create({
-  "access_token" => nil, # `$STRING`
-  "expires_in" => nil, # `$INTEGER`
-  "scope" => nil, # `$STRING`
-  "token_type" => nil, # `$STRING`
+  "access_token" => "example", # String
+  "expires_in" => 1, # Integer
+  "scope" => "example", # String
+  "token_type" => "example", # String
 })
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -677,8 +710,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as a second return value.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -722,14 +756,14 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
 audio = client.Audio
-audio.load({ "id" => "example_id" })
+audio.list()
 
-# audio.data_get now returns the loaded audio data
+# audio.data_get now returns the audio data from the last list
 # audio.match_get returns the last match criteria
 ```
 

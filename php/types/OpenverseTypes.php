@@ -142,12 +142,12 @@ class OAuth2Application
     public string $name;
 }
 
-/** Match filter for OAuth2Application#create (any subset of OAuth2Application fields). */
+/** Request payload for OAuth2Application#create. */
 class OAuth2ApplicationCreateData
 {
-    public ?string $description = null;
-    public ?string $email = null;
-    public ?string $name = null;
+    public string $description;
+    public string $email;
+    public string $name;
 }
 
 /** OAuth2KeyInfo entity data model. */
@@ -159,7 +159,7 @@ class OAuth2KeyInfo
     public bool $verified;
 }
 
-/** Match filter for OAuth2KeyInfo#load (any subset of OAuth2KeyInfo fields). */
+/** Request payload for OAuth2KeyInfo#load. */
 class OAuth2KeyInfoLoadMatch
 {
     public ?string $rate_limit_model = null;
@@ -177,12 +177,12 @@ class OAuth2Token
     public string $token_type;
 }
 
-/** Match filter for OAuth2Token#create (any subset of OAuth2Token fields). */
+/** Request payload for OAuth2Token#create. */
 class OAuth2TokenCreateData
 {
-    public ?string $access_token = null;
-    public ?int $expires_in = null;
-    public ?string $scope = null;
-    public ?string $token_type = null;
+    public string $access_token;
+    public int $expires_in;
+    public string $scope;
+    public string $token_type;
 }
 

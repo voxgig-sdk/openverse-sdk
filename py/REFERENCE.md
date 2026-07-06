@@ -104,45 +104,45 @@ audio = client.Audio()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_file` | ``$ARRAY`` | Yes |  |
-| `attribution` | ``$STRING`` | Yes |  |
-| `audio_set` | ``$ANY`` | Yes |  |
-| `bit_rate` | ``$INTEGER`` | No |  |
-| `category` | ``$STRING`` | No |  |
-| `creator` | ``$STRING`` | No |  |
-| `creator_url` | ``$STRING`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `detail_url` | ``$STRING`` | Yes |  |
-| `display_name` | ``$STRING`` | Yes |  |
-| `duration` | ``$INTEGER`` | No |  |
-| `fields_matched` | ``$ARRAY`` | Yes |  |
-| `filesize` | ``$INTEGER`` | No |  |
-| `filetype` | ``$STRING`` | No |  |
-| `foreign_landing_url` | ``$STRING`` | No |  |
-| `genre` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | Yes |  |
-| `identifier` | ``$STRING`` | Yes |  |
-| `indexed_on` | ``$STRING`` | Yes |  |
-| `len` | ``$INTEGER`` | Yes |  |
-| `license` | ``$STRING`` | Yes |  |
-| `license_url` | ``$STRING`` | Yes |  |
-| `license_version` | ``$STRING`` | No |  |
-| `logo_url` | ``$STRING`` | Yes |  |
-| `mature` | ``$BOOLEAN`` | Yes |  |
-| `media_count` | ``$INTEGER`` | Yes |  |
-| `point` | ``$ARRAY`` | Yes |  |
-| `provider` | ``$STRING`` | No |  |
-| `reason` | ``$ANY`` | Yes |  |
-| `related_url` | ``$STRING`` | Yes |  |
-| `sample_rate` | ``$INTEGER`` | No |  |
-| `source` | ``$STRING`` | No |  |
-| `source_name` | ``$STRING`` | Yes |  |
-| `source_url` | ``$STRING`` | Yes |  |
-| `tag` | ``$ARRAY`` | Yes |  |
-| `thumbnail` | ``$STRING`` | Yes |  |
-| `title` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
-| `waveform` | ``$STRING`` | Yes |  |
+| `alt_file` | `list` | Yes |  |
+| `attribution` | `str` | Yes |  |
+| `audio_set` | `Any` | Yes |  |
+| `bit_rate` | `int` | No |  |
+| `category` | `str` | No |  |
+| `creator` | `str` | No |  |
+| `creator_url` | `str` | No |  |
+| `description` | `str` | No |  |
+| `detail_url` | `str` | Yes |  |
+| `display_name` | `str` | Yes |  |
+| `duration` | `int` | No |  |
+| `fields_matched` | `list` | Yes |  |
+| `filesize` | `int` | No |  |
+| `filetype` | `str` | No |  |
+| `foreign_landing_url` | `str` | No |  |
+| `genre` | `list` | No |  |
+| `id` | `str` | Yes |  |
+| `identifier` | `str` | Yes |  |
+| `indexed_on` | `str` | Yes |  |
+| `len` | `int` | Yes |  |
+| `license` | `str` | Yes |  |
+| `license_url` | `str` | Yes |  |
+| `license_version` | `str` | No |  |
+| `logo_url` | `str` | Yes |  |
+| `mature` | `bool` | Yes |  |
+| `media_count` | `int` | Yes |  |
+| `point` | `list` | Yes |  |
+| `provider` | `str` | No |  |
+| `reason` | `Any` | Yes |  |
+| `related_url` | `str` | Yes |  |
+| `sample_rate` | `int` | No |  |
+| `source` | `str` | No |  |
+| `source_name` | `str` | Yes |  |
+| `source_url` | `str` | Yes |  |
+| `tag` | `list` | Yes |  |
+| `thumbnail` | `str` | Yes |  |
+| `title` | `str` | No |  |
+| `url` | `str` | No |  |
+| `waveform` | `str` | Yes |  |
 
 ### Operations
 
@@ -152,37 +152,37 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.Audio().create({
-    "alt_file": ...,  # `$ARRAY`
-    "attribution": ...,  # `$STRING`
-    "audio_set": ...,  # `$ANY`
-    "detail_url": ...,  # `$STRING`
-    "display_name": ...,  # `$STRING`
-    "fields_matched": ...,  # `$ARRAY`
-    "identifier": ...,  # `$STRING`
-    "indexed_on": ...,  # `$STRING`
-    "len": ...,  # `$INTEGER`
-    "license": ...,  # `$STRING`
-    "license_url": ...,  # `$STRING`
-    "logo_url": ...,  # `$STRING`
-    "mature": ...,  # `$BOOLEAN`
-    "media_count": ...,  # `$INTEGER`
-    "point": ...,  # `$ARRAY`
-    "reason": ...,  # `$ANY`
-    "related_url": ...,  # `$STRING`
-    "source_name": ...,  # `$STRING`
-    "source_url": ...,  # `$STRING`
-    "tag": ...,  # `$ARRAY`
-    "thumbnail": ...,  # `$STRING`
-    "waveform": ...,  # `$STRING`
+    "alt_file": [],  # list
+    "attribution": "example",  # str
+    "audio_set": "example",  # Any
+    "detail_url": "example",  # str
+    "display_name": "example",  # str
+    "fields_matched": [],  # list
+    "identifier": "example",  # str
+    "indexed_on": "example",  # str
+    "len": 1,  # int
+    "license": "example",  # str
+    "license_url": "example",  # str
+    "logo_url": "example",  # str
+    "mature": True,  # bool
+    "media_count": 1,  # int
+    "point": [],  # list
+    "reason": "example",  # Any
+    "related_url": "example",  # str
+    "source_name": "example",  # str
+    "source_url": "example",  # str
+    "tag": [],  # list
+    "thumbnail": "example",  # str
+    "waveform": "example",  # str
 })
 ```
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Audio().list({})
+results = client.Audio().list()
 for audio in results:
     print(audio)
 ```
@@ -234,83 +234,83 @@ image = client.Image()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `attribution` | ``$STRING`` | Yes |  |
-| `author_name` | ``$STRING`` | Yes |  |
-| `author_url` | ``$STRING`` | Yes |  |
-| `category` | ``$STRING`` | No |  |
-| `creator` | ``$STRING`` | No |  |
-| `creator_url` | ``$STRING`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `detail_url` | ``$STRING`` | Yes |  |
-| `display_name` | ``$STRING`` | Yes |  |
-| `fields_matched` | ``$ARRAY`` | Yes |  |
-| `filesize` | ``$INTEGER`` | No |  |
-| `filetype` | ``$STRING`` | No |  |
-| `foreign_landing_url` | ``$STRING`` | No |  |
-| `height` | ``$INTEGER`` | No |  |
-| `id` | ``$STRING`` | Yes |  |
-| `identifier` | ``$STRING`` | Yes |  |
-| `indexed_on` | ``$STRING`` | Yes |  |
-| `license` | ``$STRING`` | Yes |  |
-| `license_url` | ``$STRING`` | Yes |  |
-| `license_version` | ``$STRING`` | No |  |
-| `logo_url` | ``$STRING`` | Yes |  |
-| `mature` | ``$BOOLEAN`` | Yes |  |
-| `media_count` | ``$INTEGER`` | Yes |  |
-| `provider` | ``$STRING`` | No |  |
-| `reason` | ``$ANY`` | Yes |  |
-| `related_url` | ``$STRING`` | Yes |  |
-| `source` | ``$STRING`` | No |  |
-| `source_name` | ``$STRING`` | Yes |  |
-| `source_url` | ``$STRING`` | Yes |  |
-| `tag` | ``$ARRAY`` | Yes |  |
-| `thumbnail` | ``$STRING`` | Yes |  |
-| `title` | ``$STRING`` | No |  |
-| `type` | ``$ANY`` | Yes |  |
-| `url` | ``$STRING`` | No |  |
-| `version` | ``$ANY`` | Yes |  |
-| `width` | ``$INTEGER`` | No |  |
+| `attribution` | `str` | Yes |  |
+| `author_name` | `str` | Yes |  |
+| `author_url` | `str` | Yes |  |
+| `category` | `str` | No |  |
+| `creator` | `str` | No |  |
+| `creator_url` | `str` | No |  |
+| `description` | `str` | No |  |
+| `detail_url` | `str` | Yes |  |
+| `display_name` | `str` | Yes |  |
+| `fields_matched` | `list` | Yes |  |
+| `filesize` | `int` | No |  |
+| `filetype` | `str` | No |  |
+| `foreign_landing_url` | `str` | No |  |
+| `height` | `int` | No |  |
+| `id` | `str` | Yes |  |
+| `identifier` | `str` | Yes |  |
+| `indexed_on` | `str` | Yes |  |
+| `license` | `str` | Yes |  |
+| `license_url` | `str` | Yes |  |
+| `license_version` | `str` | No |  |
+| `logo_url` | `str` | Yes |  |
+| `mature` | `bool` | Yes |  |
+| `media_count` | `int` | Yes |  |
+| `provider` | `str` | No |  |
+| `reason` | `Any` | Yes |  |
+| `related_url` | `str` | Yes |  |
+| `source` | `str` | No |  |
+| `source_name` | `str` | Yes |  |
+| `source_url` | `str` | Yes |  |
+| `tag` | `list` | Yes |  |
+| `thumbnail` | `str` | Yes |  |
+| `title` | `str` | No |  |
+| `type` | `Any` | Yes |  |
+| `url` | `str` | No |  |
+| `version` | `Any` | Yes |  |
+| `width` | `int` | No |  |
 
 ### Field Usage by Operation
 
-| Field | load | list | create | update | remove |
-| --- | --- | --- | --- | --- | --- |
-| `attribution` | - | - | - | - | - |
-| `author_name` | - | - | - | - | - |
-| `author_url` | - | - | - | - | - |
-| `category` | - | - | - | - | - |
-| `creator` | - | - | - | - | - |
-| `creator_url` | - | - | - | - | - |
-| `description` | - | - | - | - | - |
-| `detail_url` | - | - | - | - | - |
-| `display_name` | - | - | - | - | - |
-| `fields_matched` | - | - | - | - | - |
-| `filesize` | - | - | - | - | - |
-| `filetype` | - | - | - | - | - |
-| `foreign_landing_url` | - | - | - | - | - |
-| `height` | Yes | - | - | - | - |
-| `id` | - | - | - | - | - |
-| `identifier` | - | - | - | - | - |
-| `indexed_on` | - | - | - | - | - |
-| `license` | - | - | - | - | - |
-| `license_url` | - | - | - | - | - |
-| `license_version` | - | - | - | - | - |
-| `logo_url` | - | - | - | - | - |
-| `mature` | - | - | - | - | - |
-| `media_count` | - | - | - | - | - |
-| `provider` | - | - | - | - | - |
-| `reason` | - | - | - | - | - |
-| `related_url` | - | - | - | - | - |
-| `source` | - | - | - | - | - |
-| `source_name` | - | - | - | - | - |
-| `source_url` | - | - | - | - | - |
-| `tag` | - | - | - | - | - |
-| `thumbnail` | - | - | - | - | - |
-| `title` | - | - | - | - | - |
-| `type` | - | - | - | - | - |
-| `url` | - | - | - | - | - |
-| `version` | - | - | - | - | - |
-| `width` | Yes | - | - | - | - |
+| Field | load | list | create |
+| --- | --- | --- | --- |
+| `attribution` | - | - | - |
+| `author_name` | - | - | - |
+| `author_url` | - | - | - |
+| `category` | - | - | - |
+| `creator` | - | - | - |
+| `creator_url` | - | - | - |
+| `description` | - | - | - |
+| `detail_url` | - | - | - |
+| `display_name` | - | - | - |
+| `fields_matched` | - | - | - |
+| `filesize` | - | - | - |
+| `filetype` | - | - | - |
+| `foreign_landing_url` | - | - | - |
+| `height` | Yes | - | - |
+| `id` | - | - | - |
+| `identifier` | - | - | - |
+| `indexed_on` | - | - | - |
+| `license` | - | - | - |
+| `license_url` | - | - | - |
+| `license_version` | - | - | - |
+| `logo_url` | - | - | - |
+| `mature` | - | - | - |
+| `media_count` | - | - | - |
+| `provider` | - | - | - |
+| `reason` | - | - | - |
+| `related_url` | - | - | - |
+| `source` | - | - | - |
+| `source_name` | - | - | - |
+| `source_url` | - | - | - |
+| `tag` | - | - | - |
+| `thumbnail` | - | - | - |
+| `title` | - | - | - |
+| `type` | - | - | - |
+| `url` | - | - | - |
+| `version` | - | - | - |
+| `width` | Yes | - | - |
 
 ### Operations
 
@@ -320,36 +320,36 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.Image().create({
-    "attribution": ...,  # `$STRING`
-    "author_name": ...,  # `$STRING`
-    "author_url": ...,  # `$STRING`
-    "detail_url": ...,  # `$STRING`
-    "display_name": ...,  # `$STRING`
-    "fields_matched": ...,  # `$ARRAY`
-    "identifier": ...,  # `$STRING`
-    "indexed_on": ...,  # `$STRING`
-    "license": ...,  # `$STRING`
-    "license_url": ...,  # `$STRING`
-    "logo_url": ...,  # `$STRING`
-    "mature": ...,  # `$BOOLEAN`
-    "media_count": ...,  # `$INTEGER`
-    "reason": ...,  # `$ANY`
-    "related_url": ...,  # `$STRING`
-    "source_name": ...,  # `$STRING`
-    "source_url": ...,  # `$STRING`
-    "tag": ...,  # `$ARRAY`
-    "thumbnail": ...,  # `$STRING`
-    "type": ...,  # `$ANY`
-    "version": ...,  # `$ANY`
+    "attribution": "example",  # str
+    "author_name": "example",  # str
+    "author_url": "example",  # str
+    "detail_url": "example",  # str
+    "display_name": "example",  # str
+    "fields_matched": [],  # list
+    "identifier": "example",  # str
+    "indexed_on": "example",  # str
+    "license": "example",  # str
+    "license_url": "example",  # str
+    "logo_url": "example",  # str
+    "mature": True,  # bool
+    "media_count": 1,  # int
+    "reason": "example",  # Any
+    "related_url": "example",  # str
+    "source_name": "example",  # str
+    "source_url": "example",  # str
+    "tag": [],  # list
+    "thumbnail": "example",  # str
+    "type": "example",  # Any
+    "version": "example",  # Any
 })
 ```
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Image().list({})
+results = client.Image().list()
 for image in results:
     print(image)
 ```
@@ -401,9 +401,9 @@ o_auth2_application = client.OAuth2Application()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | ``$STRING`` | Yes |  |
-| `email` | ``$STRING`` | Yes |  |
-| `name` | ``$STRING`` | Yes |  |
+| `description` | `str` | Yes |  |
+| `email` | `str` | Yes |  |
+| `name` | `str` | Yes |  |
 
 ### Operations
 
@@ -413,9 +413,9 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.OAuth2Application().create({
-    "description": ...,  # `$STRING`
-    "email": ...,  # `$STRING`
-    "name": ...,  # `$STRING`
+    "description": "example",  # str
+    "email": "example",  # str
+    "name": "example",  # str
 })
 ```
 
@@ -458,10 +458,10 @@ o_auth2_key_info = client.OAuth2KeyInfo()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `rate_limit_model` | ``$STRING`` | Yes |  |
-| `requests_this_minute` | ``$INTEGER`` | Yes |  |
-| `requests_today` | ``$INTEGER`` | Yes |  |
-| `verified` | ``$BOOLEAN`` | Yes |  |
+| `rate_limit_model` | `str` | Yes |  |
+| `requests_this_minute` | `int` | Yes |  |
+| `requests_today` | `int` | Yes |  |
+| `verified` | `bool` | Yes |  |
 
 ### Operations
 
@@ -470,7 +470,7 @@ o_auth2_key_info = client.OAuth2KeyInfo()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.OAuth2KeyInfo().load({"id": "o_auth2_key_info_id"})
+result = client.OAuth2KeyInfo().load()
 ```
 
 ### Common Methods
@@ -512,10 +512,10 @@ o_auth2_token = client.OAuth2Token()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `access_token` | ``$STRING`` | Yes |  |
-| `expires_in` | ``$INTEGER`` | Yes |  |
-| `scope` | ``$STRING`` | Yes |  |
-| `token_type` | ``$STRING`` | Yes |  |
+| `access_token` | `str` | Yes |  |
+| `expires_in` | `int` | Yes |  |
+| `scope` | `str` | Yes |  |
+| `token_type` | `str` | Yes |  |
 
 ### Operations
 
@@ -525,10 +525,10 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.OAuth2Token().create({
-    "access_token": ...,  # `$STRING`
-    "expires_in": ...,  # `$INTEGER`
-    "scope": ...,  # `$STRING`
-    "token_type": ...,  # `$STRING`
+    "access_token": "example",  # str
+    "expires_in": 1,  # int
+    "scope": "example",  # str
+    "token_type": "example",  # str
 })
 ```
 

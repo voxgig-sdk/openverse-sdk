@@ -110,6 +110,9 @@
 ---@field name string
 
 ---@class OAuth2ApplicationCreateData
+---@field description string
+---@field email string
+---@field name string
 
 ---@class OAuth2KeyInfo
 ---@field rate_limit_model string
@@ -118,6 +121,10 @@
 ---@field verified boolean
 
 ---@class OAuth2KeyInfoLoadMatch
+---@field rate_limit_model? string
+---@field requests_this_minute? number
+---@field requests_today? number
+---@field verified? boolean
 
 ---@class OAuth2Token
 ---@field access_token string
@@ -126,6 +133,10 @@
 ---@field token_type string
 
 ---@class OAuth2TokenCreateData
+---@field access_token string
+---@field expires_in number
+---@field scope string
+---@field token_type string
 
 local M = {}
 

@@ -8,7 +8,7 @@ Complete API reference for the Openverse Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'openverse_sdk'
+require_relative 'Openverse_sdk'
 
 client = OpenverseSDK.new(options)
 ```
@@ -110,45 +110,45 @@ audio = client.Audio
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_file` | ``$ARRAY`` | Yes |  |
-| `attribution` | ``$STRING`` | Yes |  |
-| `audio_set` | ``$ANY`` | Yes |  |
-| `bit_rate` | ``$INTEGER`` | No |  |
-| `category` | ``$STRING`` | No |  |
-| `creator` | ``$STRING`` | No |  |
-| `creator_url` | ``$STRING`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `detail_url` | ``$STRING`` | Yes |  |
-| `display_name` | ``$STRING`` | Yes |  |
-| `duration` | ``$INTEGER`` | No |  |
-| `fields_matched` | ``$ARRAY`` | Yes |  |
-| `filesize` | ``$INTEGER`` | No |  |
-| `filetype` | ``$STRING`` | No |  |
-| `foreign_landing_url` | ``$STRING`` | No |  |
-| `genre` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | Yes |  |
-| `identifier` | ``$STRING`` | Yes |  |
-| `indexed_on` | ``$STRING`` | Yes |  |
-| `len` | ``$INTEGER`` | Yes |  |
-| `license` | ``$STRING`` | Yes |  |
-| `license_url` | ``$STRING`` | Yes |  |
-| `license_version` | ``$STRING`` | No |  |
-| `logo_url` | ``$STRING`` | Yes |  |
-| `mature` | ``$BOOLEAN`` | Yes |  |
-| `media_count` | ``$INTEGER`` | Yes |  |
-| `point` | ``$ARRAY`` | Yes |  |
-| `provider` | ``$STRING`` | No |  |
-| `reason` | ``$ANY`` | Yes |  |
-| `related_url` | ``$STRING`` | Yes |  |
-| `sample_rate` | ``$INTEGER`` | No |  |
-| `source` | ``$STRING`` | No |  |
-| `source_name` | ``$STRING`` | Yes |  |
-| `source_url` | ``$STRING`` | Yes |  |
-| `tag` | ``$ARRAY`` | Yes |  |
-| `thumbnail` | ``$STRING`` | Yes |  |
-| `title` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
-| `waveform` | ``$STRING`` | Yes |  |
+| `alt_file` | `Array` | Yes |  |
+| `attribution` | `String` | Yes |  |
+| `audio_set` | `Object` | Yes |  |
+| `bit_rate` | `Integer` | No |  |
+| `category` | `String` | No |  |
+| `creator` | `String` | No |  |
+| `creator_url` | `String` | No |  |
+| `description` | `String` | No |  |
+| `detail_url` | `String` | Yes |  |
+| `display_name` | `String` | Yes |  |
+| `duration` | `Integer` | No |  |
+| `fields_matched` | `Array` | Yes |  |
+| `filesize` | `Integer` | No |  |
+| `filetype` | `String` | No |  |
+| `foreign_landing_url` | `String` | No |  |
+| `genre` | `Array` | No |  |
+| `id` | `String` | Yes |  |
+| `identifier` | `String` | Yes |  |
+| `indexed_on` | `String` | Yes |  |
+| `len` | `Integer` | Yes |  |
+| `license` | `String` | Yes |  |
+| `license_url` | `String` | Yes |  |
+| `license_version` | `String` | No |  |
+| `logo_url` | `String` | Yes |  |
+| `mature` | `Boolean` | Yes |  |
+| `media_count` | `Integer` | Yes |  |
+| `point` | `Array` | Yes |  |
+| `provider` | `String` | No |  |
+| `reason` | `Object` | Yes |  |
+| `related_url` | `String` | Yes |  |
+| `sample_rate` | `Integer` | No |  |
+| `source` | `String` | No |  |
+| `source_name` | `String` | Yes |  |
+| `source_url` | `String` | Yes |  |
+| `tag` | `Array` | Yes |  |
+| `thumbnail` | `String` | Yes |  |
+| `title` | `String` | No |  |
+| `url` | `String` | No |  |
+| `waveform` | `String` | Yes |  |
 
 ### Operations
 
@@ -158,37 +158,37 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.Audio.create({
-  "alt_file" => # `$ARRAY`,
-  "attribution" => # `$STRING`,
-  "audio_set" => # `$ANY`,
-  "detail_url" => # `$STRING`,
-  "display_name" => # `$STRING`,
-  "fields_matched" => # `$ARRAY`,
-  "identifier" => # `$STRING`,
-  "indexed_on" => # `$STRING`,
-  "len" => # `$INTEGER`,
-  "license" => # `$STRING`,
-  "license_url" => # `$STRING`,
-  "logo_url" => # `$STRING`,
-  "mature" => # `$BOOLEAN`,
-  "media_count" => # `$INTEGER`,
-  "point" => # `$ARRAY`,
-  "reason" => # `$ANY`,
-  "related_url" => # `$STRING`,
-  "source_name" => # `$STRING`,
-  "source_url" => # `$STRING`,
-  "tag" => # `$ARRAY`,
-  "thumbnail" => # `$STRING`,
-  "waveform" => # `$STRING`,
+  "alt_file" => [], # Array
+  "attribution" => "example", # String
+  "audio_set" => "example", # Object
+  "detail_url" => "example", # String
+  "display_name" => "example", # String
+  "fields_matched" => [], # Array
+  "identifier" => "example", # String
+  "indexed_on" => "example", # String
+  "len" => 1, # Integer
+  "license" => "example", # String
+  "license_url" => "example", # String
+  "logo_url" => "example", # String
+  "mature" => true, # Boolean
+  "media_count" => 1, # Integer
+  "point" => [], # Array
+  "reason" => "example", # Object
+  "related_url" => "example", # String
+  "source_name" => "example", # String
+  "source_url" => "example", # String
+  "tag" => [], # Array
+  "thumbnail" => "example", # String
+  "waveform" => "example", # String
 })
 ```
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Audio.list(nil)
+results = client.Audio.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -239,83 +239,83 @@ image = client.Image
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `attribution` | ``$STRING`` | Yes |  |
-| `author_name` | ``$STRING`` | Yes |  |
-| `author_url` | ``$STRING`` | Yes |  |
-| `category` | ``$STRING`` | No |  |
-| `creator` | ``$STRING`` | No |  |
-| `creator_url` | ``$STRING`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `detail_url` | ``$STRING`` | Yes |  |
-| `display_name` | ``$STRING`` | Yes |  |
-| `fields_matched` | ``$ARRAY`` | Yes |  |
-| `filesize` | ``$INTEGER`` | No |  |
-| `filetype` | ``$STRING`` | No |  |
-| `foreign_landing_url` | ``$STRING`` | No |  |
-| `height` | ``$INTEGER`` | No |  |
-| `id` | ``$STRING`` | Yes |  |
-| `identifier` | ``$STRING`` | Yes |  |
-| `indexed_on` | ``$STRING`` | Yes |  |
-| `license` | ``$STRING`` | Yes |  |
-| `license_url` | ``$STRING`` | Yes |  |
-| `license_version` | ``$STRING`` | No |  |
-| `logo_url` | ``$STRING`` | Yes |  |
-| `mature` | ``$BOOLEAN`` | Yes |  |
-| `media_count` | ``$INTEGER`` | Yes |  |
-| `provider` | ``$STRING`` | No |  |
-| `reason` | ``$ANY`` | Yes |  |
-| `related_url` | ``$STRING`` | Yes |  |
-| `source` | ``$STRING`` | No |  |
-| `source_name` | ``$STRING`` | Yes |  |
-| `source_url` | ``$STRING`` | Yes |  |
-| `tag` | ``$ARRAY`` | Yes |  |
-| `thumbnail` | ``$STRING`` | Yes |  |
-| `title` | ``$STRING`` | No |  |
-| `type` | ``$ANY`` | Yes |  |
-| `url` | ``$STRING`` | No |  |
-| `version` | ``$ANY`` | Yes |  |
-| `width` | ``$INTEGER`` | No |  |
+| `attribution` | `String` | Yes |  |
+| `author_name` | `String` | Yes |  |
+| `author_url` | `String` | Yes |  |
+| `category` | `String` | No |  |
+| `creator` | `String` | No |  |
+| `creator_url` | `String` | No |  |
+| `description` | `String` | No |  |
+| `detail_url` | `String` | Yes |  |
+| `display_name` | `String` | Yes |  |
+| `fields_matched` | `Array` | Yes |  |
+| `filesize` | `Integer` | No |  |
+| `filetype` | `String` | No |  |
+| `foreign_landing_url` | `String` | No |  |
+| `height` | `Integer` | No |  |
+| `id` | `String` | Yes |  |
+| `identifier` | `String` | Yes |  |
+| `indexed_on` | `String` | Yes |  |
+| `license` | `String` | Yes |  |
+| `license_url` | `String` | Yes |  |
+| `license_version` | `String` | No |  |
+| `logo_url` | `String` | Yes |  |
+| `mature` | `Boolean` | Yes |  |
+| `media_count` | `Integer` | Yes |  |
+| `provider` | `String` | No |  |
+| `reason` | `Object` | Yes |  |
+| `related_url` | `String` | Yes |  |
+| `source` | `String` | No |  |
+| `source_name` | `String` | Yes |  |
+| `source_url` | `String` | Yes |  |
+| `tag` | `Array` | Yes |  |
+| `thumbnail` | `String` | Yes |  |
+| `title` | `String` | No |  |
+| `type` | `Object` | Yes |  |
+| `url` | `String` | No |  |
+| `version` | `Object` | Yes |  |
+| `width` | `Integer` | No |  |
 
 ### Field Usage by Operation
 
-| Field | load | list | create | update | remove |
-| --- | --- | --- | --- | --- | --- |
-| `attribution` | - | - | - | - | - |
-| `author_name` | - | - | - | - | - |
-| `author_url` | - | - | - | - | - |
-| `category` | - | - | - | - | - |
-| `creator` | - | - | - | - | - |
-| `creator_url` | - | - | - | - | - |
-| `description` | - | - | - | - | - |
-| `detail_url` | - | - | - | - | - |
-| `display_name` | - | - | - | - | - |
-| `fields_matched` | - | - | - | - | - |
-| `filesize` | - | - | - | - | - |
-| `filetype` | - | - | - | - | - |
-| `foreign_landing_url` | - | - | - | - | - |
-| `height` | Yes | - | - | - | - |
-| `id` | - | - | - | - | - |
-| `identifier` | - | - | - | - | - |
-| `indexed_on` | - | - | - | - | - |
-| `license` | - | - | - | - | - |
-| `license_url` | - | - | - | - | - |
-| `license_version` | - | - | - | - | - |
-| `logo_url` | - | - | - | - | - |
-| `mature` | - | - | - | - | - |
-| `media_count` | - | - | - | - | - |
-| `provider` | - | - | - | - | - |
-| `reason` | - | - | - | - | - |
-| `related_url` | - | - | - | - | - |
-| `source` | - | - | - | - | - |
-| `source_name` | - | - | - | - | - |
-| `source_url` | - | - | - | - | - |
-| `tag` | - | - | - | - | - |
-| `thumbnail` | - | - | - | - | - |
-| `title` | - | - | - | - | - |
-| `type` | - | - | - | - | - |
-| `url` | - | - | - | - | - |
-| `version` | - | - | - | - | - |
-| `width` | Yes | - | - | - | - |
+| Field | load | list | create |
+| --- | --- | --- | --- |
+| `attribution` | - | - | - |
+| `author_name` | - | - | - |
+| `author_url` | - | - | - |
+| `category` | - | - | - |
+| `creator` | - | - | - |
+| `creator_url` | - | - | - |
+| `description` | - | - | - |
+| `detail_url` | - | - | - |
+| `display_name` | - | - | - |
+| `fields_matched` | - | - | - |
+| `filesize` | - | - | - |
+| `filetype` | - | - | - |
+| `foreign_landing_url` | - | - | - |
+| `height` | Yes | - | - |
+| `id` | - | - | - |
+| `identifier` | - | - | - |
+| `indexed_on` | - | - | - |
+| `license` | - | - | - |
+| `license_url` | - | - | - |
+| `license_version` | - | - | - |
+| `logo_url` | - | - | - |
+| `mature` | - | - | - |
+| `media_count` | - | - | - |
+| `provider` | - | - | - |
+| `reason` | - | - | - |
+| `related_url` | - | - | - |
+| `source` | - | - | - |
+| `source_name` | - | - | - |
+| `source_url` | - | - | - |
+| `tag` | - | - | - |
+| `thumbnail` | - | - | - |
+| `title` | - | - | - |
+| `type` | - | - | - |
+| `url` | - | - | - |
+| `version` | - | - | - |
+| `width` | Yes | - | - |
 
 ### Operations
 
@@ -325,36 +325,36 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.Image.create({
-  "attribution" => # `$STRING`,
-  "author_name" => # `$STRING`,
-  "author_url" => # `$STRING`,
-  "detail_url" => # `$STRING`,
-  "display_name" => # `$STRING`,
-  "fields_matched" => # `$ARRAY`,
-  "identifier" => # `$STRING`,
-  "indexed_on" => # `$STRING`,
-  "license" => # `$STRING`,
-  "license_url" => # `$STRING`,
-  "logo_url" => # `$STRING`,
-  "mature" => # `$BOOLEAN`,
-  "media_count" => # `$INTEGER`,
-  "reason" => # `$ANY`,
-  "related_url" => # `$STRING`,
-  "source_name" => # `$STRING`,
-  "source_url" => # `$STRING`,
-  "tag" => # `$ARRAY`,
-  "thumbnail" => # `$STRING`,
-  "type" => # `$ANY`,
-  "version" => # `$ANY`,
+  "attribution" => "example", # String
+  "author_name" => "example", # String
+  "author_url" => "example", # String
+  "detail_url" => "example", # String
+  "display_name" => "example", # String
+  "fields_matched" => [], # Array
+  "identifier" => "example", # String
+  "indexed_on" => "example", # String
+  "license" => "example", # String
+  "license_url" => "example", # String
+  "logo_url" => "example", # String
+  "mature" => true, # Boolean
+  "media_count" => 1, # Integer
+  "reason" => "example", # Object
+  "related_url" => "example", # String
+  "source_name" => "example", # String
+  "source_url" => "example", # String
+  "tag" => [], # Array
+  "thumbnail" => "example", # String
+  "type" => "example", # Object
+  "version" => "example", # Object
 })
 ```
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Image.list(nil)
+results = client.Image.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -405,9 +405,9 @@ o_auth2_application = client.OAuth2Application
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | ``$STRING`` | Yes |  |
-| `email` | ``$STRING`` | Yes |  |
-| `name` | ``$STRING`` | Yes |  |
+| `description` | `String` | Yes |  |
+| `email` | `String` | Yes |  |
+| `name` | `String` | Yes |  |
 
 ### Operations
 
@@ -417,9 +417,9 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.OAuth2Application.create({
-  "description" => # `$STRING`,
-  "email" => # `$STRING`,
-  "name" => # `$STRING`,
+  "description" => "example", # String
+  "email" => "example", # String
+  "name" => "example", # String
 })
 ```
 
@@ -463,10 +463,10 @@ o_auth2_key_info = client.OAuth2KeyInfo
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `rate_limit_model` | ``$STRING`` | Yes |  |
-| `requests_this_minute` | ``$INTEGER`` | Yes |  |
-| `requests_today` | ``$INTEGER`` | Yes |  |
-| `verified` | ``$BOOLEAN`` | Yes |  |
+| `rate_limit_model` | `String` | Yes |  |
+| `requests_this_minute` | `Integer` | Yes |  |
+| `requests_today` | `Integer` | Yes |  |
+| `verified` | `Boolean` | Yes |  |
 
 ### Operations
 
@@ -475,7 +475,7 @@ o_auth2_key_info = client.OAuth2KeyInfo
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.OAuth2KeyInfo.load({ "id" => "o_auth2_key_info_id" })
+result = client.OAuth2KeyInfo.load()
 ```
 
 ### Common Methods
@@ -518,10 +518,10 @@ o_auth2_token = client.OAuth2Token
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `access_token` | ``$STRING`` | Yes |  |
-| `expires_in` | ``$INTEGER`` | Yes |  |
-| `scope` | ``$STRING`` | Yes |  |
-| `token_type` | ``$STRING`` | Yes |  |
+| `access_token` | `String` | Yes |  |
+| `expires_in` | `Integer` | Yes |  |
+| `scope` | `String` | Yes |  |
+| `token_type` | `String` | Yes |  |
 
 ### Operations
 
@@ -531,10 +531,10 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.OAuth2Token.create({
-  "access_token" => # `$STRING`,
-  "expires_in" => # `$INTEGER`,
-  "scope" => # `$STRING`,
-  "token_type" => # `$STRING`,
+  "access_token" => "example", # String
+  "expires_in" => 1, # Integer
+  "scope" => "example", # String
+  "token_type" => "example", # String
 })
 ```
 

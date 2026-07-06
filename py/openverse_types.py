@@ -134,7 +134,7 @@ class OAuth2Application(TypedDict):
     name: str
 
 
-class OAuth2ApplicationCreateData(TypedDict, total=False):
+class OAuth2ApplicationCreateData(TypedDict):
     description: str
     email: str
     name: str
@@ -161,7 +161,7 @@ class OAuth2Token(TypedDict):
     token_type: str
 
 
-class OAuth2TokenCreateData(TypedDict, total=False):
+class OAuth2TokenCreateData(TypedDict):
     access_token: str
     expires_in: int
     scope: str
