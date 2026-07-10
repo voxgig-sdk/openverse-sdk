@@ -63,7 +63,7 @@ try {
 
 ```php
 // create() returns the bare created Audio record.
-$created = $client->Audio()->create(["identifier" => "example"]);
+$created = $client->Audio()->create(["identifier" => "example_identifier"]);
 
 ```
 
@@ -485,28 +485,7 @@ $audios = $client->Audio()->list();
 
 ```php
 $audio = $client->Audio()->create([
-    "alt_file" => null, // array
-    "attribution" => null, // string
-    "audio_set" => null, // mixed
-    "detail_url" => null, // string
-    "display_name" => null, // string
-    "fields_matched" => null, // array
     "identifier" => null, // string
-    "indexed_on" => null, // string
-    "len" => null, // int
-    "license" => null, // string
-    "license_url" => null, // string
-    "logo_url" => null, // string
-    "mature" => null, // bool
-    "media_count" => null, // int
-    "point" => null, // array
-    "reason" => null, // mixed
-    "related_url" => null, // string
-    "source_name" => null, // string
-    "source_url" => null, // string
-    "tag" => null, // array
-    "thumbnail" => null, // string
-    "waveform" => null, // string
 ]);
 ```
 
@@ -582,27 +561,7 @@ $images = $client->Image()->list();
 
 ```php
 $image = $client->Image()->create([
-    "attribution" => null, // string
-    "author_name" => null, // string
-    "author_url" => null, // string
-    "detail_url" => null, // string
-    "display_name" => null, // string
-    "fields_matched" => null, // array
     "identifier" => null, // string
-    "indexed_on" => null, // string
-    "license" => null, // string
-    "license_url" => null, // string
-    "logo_url" => null, // string
-    "mature" => null, // bool
-    "media_count" => null, // int
-    "reason" => null, // mixed
-    "related_url" => null, // string
-    "source_name" => null, // string
-    "source_url" => null, // string
-    "tag" => null, // array
-    "thumbnail" => null, // string
-    "type" => null, // mixed
-    "version" => null, // mixed
 ]);
 ```
 

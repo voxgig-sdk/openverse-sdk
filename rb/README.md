@@ -62,7 +62,7 @@ end
 
 ```ruby
 # create returns the bare created Audio record.
-created = client.Audio.create({ "identifier" => "example" })
+created = client.Audio.create({ "identifier" => "example_identifier" })
 
 ```
 
@@ -475,28 +475,7 @@ audios = client.Audio.list
 
 ```ruby
 audio = client.Audio.create({
-  "alt_file" => [], # Array
-  "attribution" => "example", # String
-  "audio_set" => "example", # Object
-  "detail_url" => "example", # String
-  "display_name" => "example", # String
-  "fields_matched" => [], # Array
-  "identifier" => "example", # String
-  "indexed_on" => "example", # String
-  "len" => 1, # Integer
-  "license" => "example", # String
-  "license_url" => "example", # String
-  "logo_url" => "example", # String
-  "mature" => true, # Boolean
-  "media_count" => 1, # Integer
-  "point" => [], # Array
-  "reason" => "example", # Object
-  "related_url" => "example", # String
-  "source_name" => "example", # String
-  "source_url" => "example", # String
-  "tag" => [], # Array
-  "thumbnail" => "example", # String
-  "waveform" => "example", # String
+  "identifier" => "example_identifier", # String
 })
 ```
 
@@ -572,27 +551,7 @@ images = client.Image.list
 
 ```ruby
 image = client.Image.create({
-  "attribution" => "example", # String
-  "author_name" => "example", # String
-  "author_url" => "example", # String
-  "detail_url" => "example", # String
-  "display_name" => "example", # String
-  "fields_matched" => [], # Array
-  "identifier" => "example", # String
-  "indexed_on" => "example", # String
-  "license" => "example", # String
-  "license_url" => "example", # String
-  "logo_url" => "example", # String
-  "mature" => true, # Boolean
-  "media_count" => 1, # Integer
-  "reason" => "example", # Object
-  "related_url" => "example", # String
-  "source_name" => "example", # String
-  "source_url" => "example", # String
-  "tag" => [], # Array
-  "thumbnail" => "example", # String
-  "type" => "example", # Object
-  "version" => "example", # Object
+  "identifier" => "example_identifier", # String
 })
 ```
 
@@ -619,9 +578,9 @@ Create an instance: `o_auth2_application = client.OAuth2Application`
 
 ```ruby
 o_auth2_application = client.OAuth2Application.create({
-  "description" => "example", # String
-  "email" => "example", # String
-  "name" => "example", # String
+  "description" => "example_description", # String
+  "email" => "example_email", # String
+  "name" => "example_name", # String
 })
 ```
 
@@ -676,10 +635,10 @@ Create an instance: `o_auth2_token = client.OAuth2Token`
 
 ```ruby
 o_auth2_token = client.OAuth2Token.create({
-  "access_token" => "example", # String
+  "access_token" => "example_access_token", # String
   "expires_in" => 1, # Integer
-  "scope" => "example", # String
-  "token_type" => "example", # String
+  "scope" => "example_scope", # String
+  "token_type" => "example_token_type", # String
 })
 ```
 

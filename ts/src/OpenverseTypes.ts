@@ -48,12 +48,50 @@ export interface Audio {
 }
 
 export interface AudioLoadMatch {
-  identifier: string
-  id: string
+  identifier?: string
+  id?: string
 }
 
 export interface AudioListMatch {
-  identifier: string
+  alt_file?: any[]
+  attribution?: string
+  audio_set?: any
+  bit_rate?: number
+  category?: string
+  creator?: string
+  creator_url?: string
+  description?: string
+  detail_url?: string
+  display_name?: string
+  duration?: number
+  fields_matched?: any[]
+  filesize?: number
+  filetype?: string
+  foreign_landing_url?: string
+  genre?: any[]
+  id?: string
+  identifier?: string
+  indexed_on?: string
+  len?: number
+  license?: string
+  license_url?: string
+  license_version?: string
+  logo_url?: string
+  mature?: boolean
+  media_count?: number
+  point?: any[]
+  provider?: string
+  reason?: any
+  related_url?: string
+  sample_rate?: number
+  source?: string
+  source_name?: string
+  source_url?: string
+  tag?: any[]
+  thumbnail?: string
+  title?: string
+  url?: string
+  waveform?: string
 }
 
 export interface AudioCreateData {
@@ -104,7 +142,42 @@ export interface ImageLoadMatch {
 }
 
 export interface ImageListMatch {
-  identifier: string
+  attribution?: string
+  author_name?: string
+  author_url?: string
+  category?: string
+  creator?: string
+  creator_url?: string
+  description?: string
+  detail_url?: string
+  display_name?: string
+  fields_matched?: any[]
+  filesize?: number
+  filetype?: string
+  foreign_landing_url?: string
+  height?: number
+  id?: string
+  identifier?: string
+  indexed_on?: string
+  license?: string
+  license_url?: string
+  license_version?: string
+  logo_url?: string
+  mature?: boolean
+  media_count?: number
+  provider?: string
+  reason?: any
+  related_url?: string
+  source?: string
+  source_name?: string
+  source_url?: string
+  tag?: any[]
+  thumbnail?: string
+  title?: string
+  type?: any
+  url?: string
+  version?: any
+  width?: number
 }
 
 export interface ImageCreateData {

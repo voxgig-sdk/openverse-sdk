@@ -53,13 +53,51 @@ type Audio struct {
 
 // AudioLoadMatch is the typed request payload for Audio.LoadTyped.
 type AudioLoadMatch struct {
-	Identifier string `json:"identifier"`
-	Id string `json:"id"`
+	Identifier *string `json:"identifier,omitempty"`
+	Id *string `json:"id,omitempty"`
 }
 
 // AudioListMatch is the typed request payload for Audio.ListTyped.
 type AudioListMatch struct {
-	Identifier string `json:"identifier"`
+	AltFile *[]any `json:"alt_file,omitempty"`
+	Attribution *string `json:"attribution,omitempty"`
+	AudioSet *any `json:"audio_set,omitempty"`
+	BitRate *int `json:"bit_rate,omitempty"`
+	Category *string `json:"category,omitempty"`
+	Creator *string `json:"creator,omitempty"`
+	CreatorUrl *string `json:"creator_url,omitempty"`
+	Description *string `json:"description,omitempty"`
+	DetailUrl *string `json:"detail_url,omitempty"`
+	DisplayName *string `json:"display_name,omitempty"`
+	Duration *int `json:"duration,omitempty"`
+	FieldsMatched *[]any `json:"fields_matched,omitempty"`
+	Filesize *int `json:"filesize,omitempty"`
+	Filetype *string `json:"filetype,omitempty"`
+	ForeignLandingUrl *string `json:"foreign_landing_url,omitempty"`
+	Genre *[]any `json:"genre,omitempty"`
+	Id *string `json:"id,omitempty"`
+	Identifier *string `json:"identifier,omitempty"`
+	IndexedOn *string `json:"indexed_on,omitempty"`
+	Len *int `json:"len,omitempty"`
+	License *string `json:"license,omitempty"`
+	LicenseUrl *string `json:"license_url,omitempty"`
+	LicenseVersion *string `json:"license_version,omitempty"`
+	LogoUrl *string `json:"logo_url,omitempty"`
+	Mature *bool `json:"mature,omitempty"`
+	MediaCount *int `json:"media_count,omitempty"`
+	Point *[]any `json:"point,omitempty"`
+	Provider *string `json:"provider,omitempty"`
+	Reason *any `json:"reason,omitempty"`
+	RelatedUrl *string `json:"related_url,omitempty"`
+	SampleRate *int `json:"sample_rate,omitempty"`
+	Source *string `json:"source,omitempty"`
+	SourceName *string `json:"source_name,omitempty"`
+	SourceUrl *string `json:"source_url,omitempty"`
+	Tag *[]any `json:"tag,omitempty"`
+	Thumbnail *string `json:"thumbnail,omitempty"`
+	Title *string `json:"title,omitempty"`
+	Url *string `json:"url,omitempty"`
+	Waveform *string `json:"waveform,omitempty"`
 }
 
 // AudioCreateData is the typed request payload for Audio.CreateTyped.
@@ -114,7 +152,42 @@ type ImageLoadMatch struct {
 
 // ImageListMatch is the typed request payload for Image.ListTyped.
 type ImageListMatch struct {
-	Identifier string `json:"identifier"`
+	Attribution *string `json:"attribution,omitempty"`
+	AuthorName *string `json:"author_name,omitempty"`
+	AuthorUrl *string `json:"author_url,omitempty"`
+	Category *string `json:"category,omitempty"`
+	Creator *string `json:"creator,omitempty"`
+	CreatorUrl *string `json:"creator_url,omitempty"`
+	Description *string `json:"description,omitempty"`
+	DetailUrl *string `json:"detail_url,omitempty"`
+	DisplayName *string `json:"display_name,omitempty"`
+	FieldsMatched *[]any `json:"fields_matched,omitempty"`
+	Filesize *int `json:"filesize,omitempty"`
+	Filetype *string `json:"filetype,omitempty"`
+	ForeignLandingUrl *string `json:"foreign_landing_url,omitempty"`
+	Height *int `json:"height,omitempty"`
+	Id *string `json:"id,omitempty"`
+	Identifier *string `json:"identifier,omitempty"`
+	IndexedOn *string `json:"indexed_on,omitempty"`
+	License *string `json:"license,omitempty"`
+	LicenseUrl *string `json:"license_url,omitempty"`
+	LicenseVersion *string `json:"license_version,omitempty"`
+	LogoUrl *string `json:"logo_url,omitempty"`
+	Mature *bool `json:"mature,omitempty"`
+	MediaCount *int `json:"media_count,omitempty"`
+	Provider *string `json:"provider,omitempty"`
+	Reason *any `json:"reason,omitempty"`
+	RelatedUrl *string `json:"related_url,omitempty"`
+	Source *string `json:"source,omitempty"`
+	SourceName *string `json:"source_name,omitempty"`
+	SourceUrl *string `json:"source_url,omitempty"`
+	Tag *[]any `json:"tag,omitempty"`
+	Thumbnail *string `json:"thumbnail,omitempty"`
+	Title *string `json:"title,omitempty"`
+	Type *any `json:"type,omitempty"`
+	Url *string `json:"url,omitempty"`
+	Version *any `json:"version,omitempty"`
+	Width *int `json:"width,omitempty"`
 }
 
 // ImageCreateData is the typed request payload for Image.CreateTyped.

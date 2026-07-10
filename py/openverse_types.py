@@ -61,13 +61,51 @@ class Audio(AudioRequired, total=False):
     url: str
 
 
-class AudioLoadMatch(TypedDict):
+class AudioLoadMatch(TypedDict, total=False):
     identifier: str
     id: str
 
 
-class AudioListMatch(TypedDict):
+class AudioListMatch(TypedDict, total=False):
+    alt_file: list
+    attribution: str
+    audio_set: Any
+    bit_rate: int
+    category: str
+    creator: str
+    creator_url: str
+    description: str
+    detail_url: str
+    display_name: str
+    duration: int
+    fields_matched: list
+    filesize: int
+    filetype: str
+    foreign_landing_url: str
+    genre: list
+    id: str
     identifier: str
+    indexed_on: str
+    len: int
+    license: str
+    license_url: str
+    license_version: str
+    logo_url: str
+    mature: bool
+    media_count: int
+    point: list
+    provider: str
+    reason: Any
+    related_url: str
+    sample_rate: int
+    source: str
+    source_name: str
+    source_url: str
+    tag: list
+    thumbnail: str
+    title: str
+    url: str
+    waveform: str
 
 
 class AudioCreateData(TypedDict):
@@ -120,8 +158,43 @@ class ImageLoadMatch(TypedDict):
     id: str
 
 
-class ImageListMatch(TypedDict):
+class ImageListMatch(TypedDict, total=False):
+    attribution: str
+    author_name: str
+    author_url: str
+    category: str
+    creator: str
+    creator_url: str
+    description: str
+    detail_url: str
+    display_name: str
+    fields_matched: list
+    filesize: int
+    filetype: str
+    foreign_landing_url: str
+    height: int
+    id: str
     identifier: str
+    indexed_on: str
+    license: str
+    license_url: str
+    license_version: str
+    logo_url: str
+    mature: bool
+    media_count: int
+    provider: str
+    reason: Any
+    related_url: str
+    source: str
+    source_name: str
+    source_url: str
+    tag: list
+    thumbnail: str
+    title: str
+    type: Any
+    url: str
+    version: Any
+    width: int
 
 
 class ImageCreateData(TypedDict):

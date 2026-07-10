@@ -1,0 +1,7 @@
+# Entity Models
+
+@"audio.aontu"
+@"image.aontu"
+@"o_auth2_application.aontu"
+@"o_auth2_key_info.aontu"
+@"o_auth2_token.aontu"

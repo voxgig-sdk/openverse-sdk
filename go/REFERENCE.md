@@ -108,6 +108,7 @@ same parameters as `Direct()`.
 
 ```go
 audio := client.Audio(nil)
+fmt.Println(audio.GetName()) // "audio"
 ```
 
 ### Fields
@@ -156,43 +157,16 @@ audio := client.Audio(nil)
 
 ### Operations
 
-#### `Create(reqdata, ctrl map[string]any) (any, error)`
-
-Create a new entity with the given data.
-
-```go
-result, err := client.Audio(nil).Create(map[string]any{
-    "alt_file": /* []any */,
-    "attribution": /* string */,
-    "audio_set": /* any */,
-    "detail_url": /* string */,
-    "display_name": /* string */,
-    "fields_matched": /* []any */,
-    "identifier": /* string */,
-    "indexed_on": /* string */,
-    "len": /* int */,
-    "license": /* string */,
-    "license_url": /* string */,
-    "logo_url": /* string */,
-    "mature": /* bool */,
-    "media_count": /* int */,
-    "point": /* []any */,
-    "reason": /* any */,
-    "related_url": /* string */,
-    "source_name": /* string */,
-    "source_url": /* string */,
-    "tag": /* []any */,
-    "thumbnail": /* string */,
-    "waveform": /* string */,
-}, nil)
-```
-
 #### `List(reqmatch, ctrl map[string]any) (any, error)`
 
 List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Audio(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
@@ -201,6 +175,24 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Audio(nil).Load(map[string]any{"id": "audio_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
+```
+
+#### `Create(reqdata, ctrl map[string]any) (any, error)`
+
+Create a new entity with the given data.
+
+```go
+result, err := client.Audio(nil).Create(map[string]any{
+    "identifier": "example_identifier",
+}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -231,6 +223,7 @@ Return the entity name.
 
 ```go
 image := client.Image(nil)
+fmt.Println(image.GetName()) // "image"
 ```
 
 ### Fields
@@ -317,42 +310,16 @@ image := client.Image(nil)
 
 ### Operations
 
-#### `Create(reqdata, ctrl map[string]any) (any, error)`
-
-Create a new entity with the given data.
-
-```go
-result, err := client.Image(nil).Create(map[string]any{
-    "attribution": /* string */,
-    "author_name": /* string */,
-    "author_url": /* string */,
-    "detail_url": /* string */,
-    "display_name": /* string */,
-    "fields_matched": /* []any */,
-    "identifier": /* string */,
-    "indexed_on": /* string */,
-    "license": /* string */,
-    "license_url": /* string */,
-    "logo_url": /* string */,
-    "mature": /* bool */,
-    "media_count": /* int */,
-    "reason": /* any */,
-    "related_url": /* string */,
-    "source_name": /* string */,
-    "source_url": /* string */,
-    "tag": /* []any */,
-    "thumbnail": /* string */,
-    "type": /* any */,
-    "version": /* any */,
-}, nil)
-```
-
 #### `List(reqmatch, ctrl map[string]any) (any, error)`
 
 List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Image(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
@@ -361,6 +328,24 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Image(nil).Load(map[string]any{"id": "image_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
+```
+
+#### `Create(reqdata, ctrl map[string]any) (any, error)`
+
+Create a new entity with the given data.
+
+```go
+result, err := client.Image(nil).Create(map[string]any{
+    "identifier": "example_identifier",
+}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -390,7 +375,8 @@ Return the entity name.
 ## OAuth2ApplicationEntity
 
 ```go
-o_auth2_application := client.OAuth2Application(nil)
+oAuth2Application := client.OAuth2Application(nil)
+fmt.Println(oAuth2Application.GetName()) // "o_auth2_application"
 ```
 
 ### Fields
@@ -409,10 +395,14 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.OAuth2Application(nil).Create(map[string]any{
-    "description": /* string */,
-    "email": /* string */,
-    "name": /* string */,
+    "description": "example_description",
+    "email": "example_email",
+    "name": "example_name",
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -442,7 +432,8 @@ Return the entity name.
 ## OAuth2KeyInfoEntity
 
 ```go
-o_auth2_key_info := client.OAuth2KeyInfo(nil)
+oAuth2KeyInfo := client.OAuth2KeyInfo(nil)
+fmt.Println(oAuth2KeyInfo.GetName()) // "o_auth2_key_info"
 ```
 
 ### Fields
@@ -462,6 +453,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.OAuth2KeyInfo(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -491,7 +486,8 @@ Return the entity name.
 ## OAuth2TokenEntity
 
 ```go
-o_auth2_token := client.OAuth2Token(nil)
+oAuth2Token := client.OAuth2Token(nil)
+fmt.Println(oAuth2Token.GetName()) // "o_auth2_token"
 ```
 
 ### Fields
@@ -511,11 +507,15 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.OAuth2Token(nil).Create(map[string]any{
-    "access_token": /* string */,
-    "expires_in": /* int */,
-    "scope": /* string */,
-    "token_type": /* string */,
+    "access_token": "example_access_token",
+    "expires_in": 1,
+    "scope": "example_scope",
+    "token_type": "example_token_type",
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods

@@ -155,28 +155,7 @@ Create a new entity with the given data.
 
 ```lua
 local result, err = client:Audio():create({
-  alt_file = --[[ table ]],
-  attribution = --[[ string ]],
-  audio_set = --[[ any ]],
-  detail_url = --[[ string ]],
-  display_name = --[[ string ]],
-  fields_matched = --[[ table ]],
   identifier = --[[ string ]],
-  indexed_on = --[[ string ]],
-  len = --[[ number ]],
-  license = --[[ string ]],
-  license_url = --[[ string ]],
-  logo_url = --[[ string ]],
-  mature = --[[ boolean ]],
-  media_count = --[[ number ]],
-  point = --[[ table ]],
-  reason = --[[ any ]],
-  related_url = --[[ string ]],
-  source_name = --[[ string ]],
-  source_url = --[[ string ]],
-  tag = --[[ table ]],
-  thumbnail = --[[ string ]],
-  waveform = --[[ string ]],
 })
 ```
 
@@ -322,27 +301,7 @@ Create a new entity with the given data.
 
 ```lua
 local result, err = client:Image():create({
-  attribution = --[[ string ]],
-  author_name = --[[ string ]],
-  author_url = --[[ string ]],
-  detail_url = --[[ string ]],
-  display_name = --[[ string ]],
-  fields_matched = --[[ table ]],
   identifier = --[[ string ]],
-  indexed_on = --[[ string ]],
-  license = --[[ string ]],
-  license_url = --[[ string ]],
-  logo_url = --[[ string ]],
-  mature = --[[ boolean ]],
-  media_count = --[[ number ]],
-  reason = --[[ any ]],
-  related_url = --[[ string ]],
-  source_name = --[[ string ]],
-  source_url = --[[ string ]],
-  tag = --[[ table ]],
-  thumbnail = --[[ string ]],
-  type = --[[ any ]],
-  version = --[[ any ]],
 })
 ```
 

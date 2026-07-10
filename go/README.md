@@ -63,14 +63,14 @@ func main() {
     }
 
     // Load a single audio — the value is the loaded record.
-    audio, err := client.Audio(nil).Load(map[string]any{"id": "example"}, nil)
+    audio, err := client.Audio(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }
     fmt.Println(audio)
 
     // Create a audio.
-    created, err := client.Audio(nil).Create(map[string]any{"identifier": "example"}, nil)
+    created, err := client.Audio(nil).Create(map[string]any{"identifier": "example_identifier"}, nil)
     if err != nil {
         panic(err)
     }
@@ -426,9 +426,9 @@ Create an instance: `audio := client.Audio(nil)`
 
 | Method | Description |
 | --- | --- |
-| `Create(data, ctrl)` | Create a new entity with the given data. |
 | `List(match, ctrl)` | List entities matching the criteria. |
 | `Load(match, ctrl)` | Load a single entity by match criteria. |
+| `Create(data, ctrl)` | Create a new entity with the given data. |
 
 #### Fields
 
@@ -498,29 +498,12 @@ fmt.Println(audios) // the array of records
 
 ```go
 result, err := client.Audio(nil).Create(map[string]any{
-    "alt_file": /* []any */,
-    "attribution": /* string */,
-    "audio_set": /* any */,
-    "detail_url": /* string */,
-    "display_name": /* string */,
-    "fields_matched": /* []any */,
-    "identifier": /* string */,
-    "indexed_on": /* string */,
-    "len": /* int */,
-    "license": /* string */,
-    "license_url": /* string */,
-    "logo_url": /* string */,
-    "mature": /* bool */,
-    "media_count": /* int */,
-    "point": /* []any */,
-    "reason": /* any */,
-    "related_url": /* string */,
-    "source_name": /* string */,
-    "source_url": /* string */,
-    "tag": /* []any */,
-    "thumbnail": /* string */,
-    "waveform": /* string */,
+    "identifier": "example_identifier",
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 
@@ -532,9 +515,9 @@ Create an instance: `image := client.Image(nil)`
 
 | Method | Description |
 | --- | --- |
-| `Create(data, ctrl)` | Create a new entity with the given data. |
 | `List(match, ctrl)` | List entities matching the criteria. |
 | `Load(match, ctrl)` | Load a single entity by match criteria. |
+| `Create(data, ctrl)` | Create a new entity with the given data. |
 
 #### Fields
 
@@ -601,34 +584,18 @@ fmt.Println(images) // the array of records
 
 ```go
 result, err := client.Image(nil).Create(map[string]any{
-    "attribution": /* string */,
-    "author_name": /* string */,
-    "author_url": /* string */,
-    "detail_url": /* string */,
-    "display_name": /* string */,
-    "fields_matched": /* []any */,
-    "identifier": /* string */,
-    "indexed_on": /* string */,
-    "license": /* string */,
-    "license_url": /* string */,
-    "logo_url": /* string */,
-    "mature": /* bool */,
-    "media_count": /* int */,
-    "reason": /* any */,
-    "related_url": /* string */,
-    "source_name": /* string */,
-    "source_url": /* string */,
-    "tag": /* []any */,
-    "thumbnail": /* string */,
-    "type": /* any */,
-    "version": /* any */,
+    "identifier": "example_identifier",
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 
 ### OAuth2Application
 
-Create an instance: `o_auth2_application := client.OAuth2Application(nil)`
+Create an instance: `oAuth2Application := client.OAuth2Application(nil)`
 
 #### Operations
 
@@ -648,16 +615,20 @@ Create an instance: `o_auth2_application := client.OAuth2Application(nil)`
 
 ```go
 result, err := client.OAuth2Application(nil).Create(map[string]any{
-    "description": /* string */,
-    "email": /* string */,
-    "name": /* string */,
+    "description": "example_description",
+    "email": "example_email",
+    "name": "example_name",
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 
 ### OAuth2KeyInfo
 
-Create an instance: `o_auth2_key_info := client.OAuth2KeyInfo(nil)`
+Create an instance: `oAuth2KeyInfo := client.OAuth2KeyInfo(nil)`
 
 #### Operations
 
@@ -677,17 +648,17 @@ Create an instance: `o_auth2_key_info := client.OAuth2KeyInfo(nil)`
 #### Example: Load
 
 ```go
-o_auth2_key_info, err := client.OAuth2KeyInfo(nil).Load(nil, nil)
+oAuth2KeyInfo, err := client.OAuth2KeyInfo(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(o_auth2_key_info) // the loaded record
+fmt.Println(oAuth2KeyInfo) // the loaded record
 ```
 
 
 ### OAuth2Token
 
-Create an instance: `o_auth2_token := client.OAuth2Token(nil)`
+Create an instance: `oAuth2Token := client.OAuth2Token(nil)`
 
 #### Operations
 
@@ -708,11 +679,15 @@ Create an instance: `o_auth2_token := client.OAuth2Token(nil)`
 
 ```go
 result, err := client.OAuth2Token(nil).Create(map[string]any{
-    "access_token": /* string */,
-    "expires_in": /* int */,
-    "scope": /* string */,
-    "token_type": /* string */,
+    "access_token": "example_access_token",
+    "expires_in": 1,
+    "scope": "example_scope",
+    "token_type": "example_token_type",
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 

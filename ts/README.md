@@ -524,28 +524,7 @@ const audios = await client.Audio().list()
 
 ```ts
 const audio = await client.Audio().create({
-  alt_file: /* any[] */,
-  attribution: /* string */,
-  audio_set: /* any */,
-  detail_url: /* string */,
-  display_name: /* string */,
-  fields_matched: /* any[] */,
-  identifier: /* string */,
-  indexed_on: /* string */,
-  len: /* number */,
-  license: /* string */,
-  license_url: /* string */,
-  logo_url: /* string */,
-  mature: /* boolean */,
-  media_count: /* number */,
-  point: /* any[] */,
-  reason: /* any */,
-  related_url: /* string */,
-  source_name: /* string */,
-  source_url: /* string */,
-  tag: /* any[] */,
-  thumbnail: /* string */,
-  waveform: /* string */,
+  identifier: 'example_identifier',
 })
 ```
 
@@ -619,27 +598,7 @@ const images = await client.Image().list()
 
 ```ts
 const image = await client.Image().create({
-  attribution: /* string */,
-  author_name: /* string */,
-  author_url: /* string */,
-  detail_url: /* string */,
-  display_name: /* string */,
-  fields_matched: /* any[] */,
-  identifier: /* string */,
-  indexed_on: /* string */,
-  license: /* string */,
-  license_url: /* string */,
-  logo_url: /* string */,
-  mature: /* boolean */,
-  media_count: /* number */,
-  reason: /* any */,
-  related_url: /* string */,
-  source_name: /* string */,
-  source_url: /* string */,
-  tag: /* any[] */,
-  thumbnail: /* string */,
-  type: /* any */,
-  version: /* any */,
+  identifier: 'example_identifier',
 })
 ```
 
@@ -666,9 +625,9 @@ Create an instance: `const o_auth2_application = client.OAuth2Application()`
 
 ```ts
 const o_auth2_application = await client.OAuth2Application().create({
-  description: /* string */,
-  email: /* string */,
-  name: /* string */,
+  description: 'example_description',
+  email: 'example_email',
+  name: 'example_name',
 })
 ```
 
@@ -722,10 +681,10 @@ Create an instance: `const o_auth2_token = client.OAuth2Token()`
 
 ```ts
 const o_auth2_token = await client.OAuth2Token().create({
-  access_token: /* string */,
-  expires_in: /* number */,
-  scope: /* string */,
-  token_type: /* string */,
+  access_token: 'example_access_token',
+  expires_in: 1,
+  scope: 'example_scope',
+  token_type: 'example_token_type',
 })
 ```
 

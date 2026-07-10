@@ -59,14 +59,52 @@ class Audio
 /** Request payload for Audio#load. */
 class AudioLoadMatch
 {
-    public string $identifier;
-    public string $id;
+    public ?string $identifier = null;
+    public ?string $id = null;
 }
 
 /** Request payload for Audio#list. */
 class AudioListMatch
 {
-    public string $identifier;
+    public ?array $alt_file = null;
+    public ?string $attribution = null;
+    public mixed $audio_set = null;
+    public ?int $bit_rate = null;
+    public ?string $category = null;
+    public ?string $creator = null;
+    public ?string $creator_url = null;
+    public ?string $description = null;
+    public ?string $detail_url = null;
+    public ?string $display_name = null;
+    public ?int $duration = null;
+    public ?array $fields_matched = null;
+    public ?int $filesize = null;
+    public ?string $filetype = null;
+    public ?string $foreign_landing_url = null;
+    public ?array $genre = null;
+    public ?string $id = null;
+    public ?string $identifier = null;
+    public ?string $indexed_on = null;
+    public ?int $len = null;
+    public ?string $license = null;
+    public ?string $license_url = null;
+    public ?string $license_version = null;
+    public ?string $logo_url = null;
+    public ?bool $mature = null;
+    public ?int $media_count = null;
+    public ?array $point = null;
+    public ?string $provider = null;
+    public mixed $reason = null;
+    public ?string $related_url = null;
+    public ?int $sample_rate = null;
+    public ?string $source = null;
+    public ?string $source_name = null;
+    public ?string $source_url = null;
+    public ?array $tag = null;
+    public ?string $thumbnail = null;
+    public ?string $title = null;
+    public ?string $url = null;
+    public ?string $waveform = null;
 }
 
 /** Request payload for Audio#create. */
@@ -125,7 +163,42 @@ class ImageLoadMatch
 /** Request payload for Image#list. */
 class ImageListMatch
 {
-    public string $identifier;
+    public ?string $attribution = null;
+    public ?string $author_name = null;
+    public ?string $author_url = null;
+    public ?string $category = null;
+    public ?string $creator = null;
+    public ?string $creator_url = null;
+    public ?string $description = null;
+    public ?string $detail_url = null;
+    public ?string $display_name = null;
+    public ?array $fields_matched = null;
+    public ?int $filesize = null;
+    public ?string $filetype = null;
+    public ?string $foreign_landing_url = null;
+    public ?int $height = null;
+    public ?string $id = null;
+    public ?string $identifier = null;
+    public ?string $indexed_on = null;
+    public ?string $license = null;
+    public ?string $license_url = null;
+    public ?string $license_version = null;
+    public ?string $logo_url = null;
+    public ?bool $mature = null;
+    public ?int $media_count = null;
+    public ?string $provider = null;
+    public mixed $reason = null;
+    public ?string $related_url = null;
+    public ?string $source = null;
+    public ?string $source_name = null;
+    public ?string $source_url = null;
+    public ?array $tag = null;
+    public ?string $thumbnail = null;
+    public ?string $title = null;
+    public mixed $type = null;
+    public ?string $url = null;
+    public mixed $version = null;
+    public ?int $width = null;
 }
 
 /** Request payload for Image#create. */

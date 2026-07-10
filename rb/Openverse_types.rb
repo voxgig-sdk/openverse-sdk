@@ -172,10 +172,10 @@ Audio = Struct.new(
 # Request payload for Audio#load.
 #
 # @!attribute [rw] identifier
-#   @return [String]
+#   @return [String, nil]
 #
 # @!attribute [rw] id
-#   @return [String]
+#   @return [String, nil]
 AudioLoadMatch = Struct.new(
   :identifier,
   :id,
@@ -184,10 +184,162 @@ AudioLoadMatch = Struct.new(
 
 # Request payload for Audio#list.
 #
+# @!attribute [rw] alt_file
+#   @return [Array, nil]
+#
+# @!attribute [rw] attribution
+#   @return [String, nil]
+#
+# @!attribute [rw] audio_set
+#   @return [Object, nil]
+#
+# @!attribute [rw] bit_rate
+#   @return [Integer, nil]
+#
+# @!attribute [rw] category
+#   @return [String, nil]
+#
+# @!attribute [rw] creator
+#   @return [String, nil]
+#
+# @!attribute [rw] creator_url
+#   @return [String, nil]
+#
+# @!attribute [rw] description
+#   @return [String, nil]
+#
+# @!attribute [rw] detail_url
+#   @return [String, nil]
+#
+# @!attribute [rw] display_name
+#   @return [String, nil]
+#
+# @!attribute [rw] duration
+#   @return [Integer, nil]
+#
+# @!attribute [rw] fields_matched
+#   @return [Array, nil]
+#
+# @!attribute [rw] filesize
+#   @return [Integer, nil]
+#
+# @!attribute [rw] filetype
+#   @return [String, nil]
+#
+# @!attribute [rw] foreign_landing_url
+#   @return [String, nil]
+#
+# @!attribute [rw] genre
+#   @return [Array, nil]
+#
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] identifier
-#   @return [String]
+#   @return [String, nil]
+#
+# @!attribute [rw] indexed_on
+#   @return [String, nil]
+#
+# @!attribute [rw] len
+#   @return [Integer, nil]
+#
+# @!attribute [rw] license
+#   @return [String, nil]
+#
+# @!attribute [rw] license_url
+#   @return [String, nil]
+#
+# @!attribute [rw] license_version
+#   @return [String, nil]
+#
+# @!attribute [rw] logo_url
+#   @return [String, nil]
+#
+# @!attribute [rw] mature
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] media_count
+#   @return [Integer, nil]
+#
+# @!attribute [rw] point
+#   @return [Array, nil]
+#
+# @!attribute [rw] provider
+#   @return [String, nil]
+#
+# @!attribute [rw] reason
+#   @return [Object, nil]
+#
+# @!attribute [rw] related_url
+#   @return [String, nil]
+#
+# @!attribute [rw] sample_rate
+#   @return [Integer, nil]
+#
+# @!attribute [rw] source
+#   @return [String, nil]
+#
+# @!attribute [rw] source_name
+#   @return [String, nil]
+#
+# @!attribute [rw] source_url
+#   @return [String, nil]
+#
+# @!attribute [rw] tag
+#   @return [Array, nil]
+#
+# @!attribute [rw] thumbnail
+#   @return [String, nil]
+#
+# @!attribute [rw] title
+#   @return [String, nil]
+#
+# @!attribute [rw] url
+#   @return [String, nil]
+#
+# @!attribute [rw] waveform
+#   @return [String, nil]
 AudioListMatch = Struct.new(
+  :alt_file,
+  :attribution,
+  :audio_set,
+  :bit_rate,
+  :category,
+  :creator,
+  :creator_url,
+  :description,
+  :detail_url,
+  :display_name,
+  :duration,
+  :fields_matched,
+  :filesize,
+  :filetype,
+  :foreign_landing_url,
+  :genre,
+  :id,
   :identifier,
+  :indexed_on,
+  :len,
+  :license,
+  :license_url,
+  :license_version,
+  :logo_url,
+  :mature,
+  :media_count,
+  :point,
+  :provider,
+  :reason,
+  :related_url,
+  :sample_rate,
+  :source,
+  :source_name,
+  :source_url,
+  :tag,
+  :thumbnail,
+  :title,
+  :url,
+  :waveform,
   keyword_init: true
 )
 
@@ -360,10 +512,150 @@ ImageLoadMatch = Struct.new(
 
 # Request payload for Image#list.
 #
+# @!attribute [rw] attribution
+#   @return [String, nil]
+#
+# @!attribute [rw] author_name
+#   @return [String, nil]
+#
+# @!attribute [rw] author_url
+#   @return [String, nil]
+#
+# @!attribute [rw] category
+#   @return [String, nil]
+#
+# @!attribute [rw] creator
+#   @return [String, nil]
+#
+# @!attribute [rw] creator_url
+#   @return [String, nil]
+#
+# @!attribute [rw] description
+#   @return [String, nil]
+#
+# @!attribute [rw] detail_url
+#   @return [String, nil]
+#
+# @!attribute [rw] display_name
+#   @return [String, nil]
+#
+# @!attribute [rw] fields_matched
+#   @return [Array, nil]
+#
+# @!attribute [rw] filesize
+#   @return [Integer, nil]
+#
+# @!attribute [rw] filetype
+#   @return [String, nil]
+#
+# @!attribute [rw] foreign_landing_url
+#   @return [String, nil]
+#
+# @!attribute [rw] height
+#   @return [Integer, nil]
+#
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] identifier
-#   @return [String]
+#   @return [String, nil]
+#
+# @!attribute [rw] indexed_on
+#   @return [String, nil]
+#
+# @!attribute [rw] license
+#   @return [String, nil]
+#
+# @!attribute [rw] license_url
+#   @return [String, nil]
+#
+# @!attribute [rw] license_version
+#   @return [String, nil]
+#
+# @!attribute [rw] logo_url
+#   @return [String, nil]
+#
+# @!attribute [rw] mature
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] media_count
+#   @return [Integer, nil]
+#
+# @!attribute [rw] provider
+#   @return [String, nil]
+#
+# @!attribute [rw] reason
+#   @return [Object, nil]
+#
+# @!attribute [rw] related_url
+#   @return [String, nil]
+#
+# @!attribute [rw] source
+#   @return [String, nil]
+#
+# @!attribute [rw] source_name
+#   @return [String, nil]
+#
+# @!attribute [rw] source_url
+#   @return [String, nil]
+#
+# @!attribute [rw] tag
+#   @return [Array, nil]
+#
+# @!attribute [rw] thumbnail
+#   @return [String, nil]
+#
+# @!attribute [rw] title
+#   @return [String, nil]
+#
+# @!attribute [rw] type
+#   @return [Object, nil]
+#
+# @!attribute [rw] url
+#   @return [String, nil]
+#
+# @!attribute [rw] version
+#   @return [Object, nil]
+#
+# @!attribute [rw] width
+#   @return [Integer, nil]
 ImageListMatch = Struct.new(
+  :attribution,
+  :author_name,
+  :author_url,
+  :category,
+  :creator,
+  :creator_url,
+  :description,
+  :detail_url,
+  :display_name,
+  :fields_matched,
+  :filesize,
+  :filetype,
+  :foreign_landing_url,
+  :height,
+  :id,
   :identifier,
+  :indexed_on,
+  :license,
+  :license_url,
+  :license_version,
+  :logo_url,
+  :mature,
+  :media_count,
+  :provider,
+  :reason,
+  :related_url,
+  :source,
+  :source_name,
+  :source_url,
+  :tag,
+  :thumbnail,
+  :title,
+  :type,
+  :url,
+  :version,
+  :width,
   keyword_init: true
 )
 

@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -1925,14 +1922,24 @@
           "name": "MIT License",
           "url": "https://github.com/WordPress/openverse/blob/main/LICENSE"
         },
+        "meta_source": "https://www.freepublicapis.com",
+        "security": {
+          "in": "header",
+          "name": "Authorization",
+          "prefix": "Bearer",
+          "scheme": "Openverse API Token",
+          "type": "http"
+        },
         "servers": [
           {
             "url": "https://api.openverse.org"
           }
         ],
+        "summary": "Openverse is a search engine for openly-licensed media.",
         "termsOfService": "https://docs.openverse.org/terms_of_service.html",
         "title": "Openverse API",
         "version": "909aa41ddf2115a69a447198b3f49121481e0c6b (v1)",
+        "website": "http://docs.openverse.org/api/user/index.html",
         "x-logo": {
           "backgroundColor": "#fafafa",
           "url": "https://raw.githubusercontent.com/WordPress/openverse/HEAD/documentation/meta/brand/logo.svg"
@@ -1989,6 +1996,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -2039,6 +2049,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

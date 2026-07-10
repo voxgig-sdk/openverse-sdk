@@ -152,28 +152,7 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.Audio().create({
-    "alt_file": [],  # list
-    "attribution": "example",  # str
-    "audio_set": "example",  # Any
-    "detail_url": "example",  # str
-    "display_name": "example",  # str
-    "fields_matched": [],  # list
-    "identifier": "example",  # str
-    "indexed_on": "example",  # str
-    "len": 1,  # int
-    "license": "example",  # str
-    "license_url": "example",  # str
-    "logo_url": "example",  # str
-    "mature": True,  # bool
-    "media_count": 1,  # int
-    "point": [],  # list
-    "reason": "example",  # Any
-    "related_url": "example",  # str
-    "source_name": "example",  # str
-    "source_url": "example",  # str
-    "tag": [],  # list
-    "thumbnail": "example",  # str
-    "waveform": "example",  # str
+    "identifier": "example_identifier",  # str
 })
 ```
 
@@ -320,27 +299,7 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.Image().create({
-    "attribution": "example",  # str
-    "author_name": "example",  # str
-    "author_url": "example",  # str
-    "detail_url": "example",  # str
-    "display_name": "example",  # str
-    "fields_matched": [],  # list
-    "identifier": "example",  # str
-    "indexed_on": "example",  # str
-    "license": "example",  # str
-    "license_url": "example",  # str
-    "logo_url": "example",  # str
-    "mature": True,  # bool
-    "media_count": 1,  # int
-    "reason": "example",  # Any
-    "related_url": "example",  # str
-    "source_name": "example",  # str
-    "source_url": "example",  # str
-    "tag": [],  # list
-    "thumbnail": "example",  # str
-    "type": "example",  # Any
-    "version": "example",  # Any
+    "identifier": "example_identifier",  # str
 })
 ```
 
@@ -413,9 +372,9 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.OAuth2Application().create({
-    "description": "example",  # str
-    "email": "example",  # str
-    "name": "example",  # str
+    "description": "example_description",  # str
+    "email": "example_email",  # str
+    "name": "example_name",  # str
 })
 ```
 
@@ -525,10 +484,10 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.OAuth2Token().create({
-    "access_token": "example",  # str
+    "access_token": "example_access_token",  # str
     "expires_in": 1,  # int
-    "scope": "example",  # str
-    "token_type": "example",  # str
+    "scope": "example_scope",  # str
+    "token_type": "example_token_type",  # str
 })
 ```
 

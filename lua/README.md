@@ -61,7 +61,7 @@ print(audio)
 
 ```lua
 -- Create
-local created, err = client:Audio():create({ identifier = "example" })
+local created, err = client:Audio():create({ identifier = "example_identifier" })
 if err then error(err) end
 
 ```
@@ -463,28 +463,7 @@ local audios, err = client:Audio():list()
 
 ```lua
 local audio, err = client:Audio():create({
-  alt_file = nil, -- table
-  attribution = nil, -- string
-  audio_set = nil, -- any
-  detail_url = nil, -- string
-  display_name = nil, -- string
-  fields_matched = nil, -- table
-  identifier = nil, -- string
-  indexed_on = nil, -- string
-  len = nil, -- number
-  license = nil, -- string
-  license_url = nil, -- string
-  logo_url = nil, -- string
-  mature = nil, -- boolean
-  media_count = nil, -- number
-  point = nil, -- table
-  reason = nil, -- any
-  related_url = nil, -- string
-  source_name = nil, -- string
-  source_url = nil, -- string
-  tag = nil, -- table
-  thumbnail = nil, -- string
-  waveform = nil, -- string
+  identifier = "example_identifier", -- string
 })
 ```
 
@@ -558,27 +537,7 @@ local images, err = client:Image():list()
 
 ```lua
 local image, err = client:Image():create({
-  attribution = nil, -- string
-  author_name = nil, -- string
-  author_url = nil, -- string
-  detail_url = nil, -- string
-  display_name = nil, -- string
-  fields_matched = nil, -- table
-  identifier = nil, -- string
-  indexed_on = nil, -- string
-  license = nil, -- string
-  license_url = nil, -- string
-  logo_url = nil, -- string
-  mature = nil, -- boolean
-  media_count = nil, -- number
-  reason = nil, -- any
-  related_url = nil, -- string
-  source_name = nil, -- string
-  source_url = nil, -- string
-  tag = nil, -- table
-  thumbnail = nil, -- string
-  type = nil, -- any
-  version = nil, -- any
+  identifier = "example_identifier", -- string
 })
 ```
 
@@ -605,9 +564,9 @@ Create an instance: `local o_auth2_application = client:OAuth2Application(nil)`
 
 ```lua
 local o_auth2_application, err = client:OAuth2Application():create({
-  description = nil, -- string
-  email = nil, -- string
-  name = nil, -- string
+  description = "example_description", -- string
+  email = "example_email", -- string
+  name = "example_name", -- string
 })
 ```
 
@@ -661,10 +620,10 @@ Create an instance: `local o_auth2_token = client:OAuth2Token(nil)`
 
 ```lua
 local o_auth2_token, err = client:OAuth2Token():create({
-  access_token = nil, -- string
-  expires_in = nil, -- number
-  scope = nil, -- string
-  token_type = nil, -- string
+  access_token = "example_access_token", -- string
+  expires_in = 1, -- number
+  scope = "example_scope", -- string
+  token_type = "example_token_type", -- string
 })
 ```
 

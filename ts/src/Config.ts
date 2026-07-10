@@ -641,8 +641,7 @@ class Config {
                     "name": "identifier",
                     "orig": "identifier",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -676,8 +675,7 @@ class Config {
                     "name": "identifier",
                     "orig": "identifier",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -1454,8 +1452,7 @@ class Config {
                     "name": "identifier",
                     "orig": "identifier",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
