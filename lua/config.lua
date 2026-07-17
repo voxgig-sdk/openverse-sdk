@@ -1,4 +1,4 @@
--- ProjectName SDK configuration
+-- Openverse SDK configuration
 
 local function make_config()
   return {

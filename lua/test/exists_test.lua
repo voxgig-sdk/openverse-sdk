@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- Openverse SDK exists test
 
 local sdk = require("openverse_sdk")
 
