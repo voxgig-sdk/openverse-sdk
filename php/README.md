@@ -40,7 +40,7 @@ try {
     // list() returns an array of Audio records — iterate directly.
     $audios = $client->Audio()->list();
     foreach ($audios as $item) {
-        echo $item["id"] . " " . $item["alt_file"] . "\n";
+        echo $item["id"] . " " . $item["alt_files"] . "\n";
     }
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -51,7 +51,7 @@ try {
 
 ```php
 try {
-    // load() returns the bare Audio record (throws on error).
+    // load() returns the ENTITY — call data_get() for the Audio record (throws on error).
     $audio = $client->Audio()->load(["id" => "example_id"]);
     print_r($audio);
 } catch (\Throwable $err) {
@@ -62,8 +62,8 @@ try {
 ### 4. Create, update, and remove
 
 ```php
-// create() returns the bare created Audio record.
-$created = $client->Audio()->create(["identifier" => "example_identifier"]);
+// create() returns the ENTITY — call data_get() for the created Audio record.
+$created = $client->Audio()->create(["identifier" => "example_identifier", "alt_files" => [], "attribution" => "example_attribution", "audio_set" => "example_audio_set", "detail_url" => "example_detail_url", "display_name" => "example_display_name", "fields_matched" => [], "id" => "example_id", "indexed_on" => "example_indexed_on", "len" => 1, "license" => "example_license", "license_url" => "example_license_url", "logo_url" => "example_logo_url", "mature" => true, "media_count" => 1, "points" => [], "reason" => "example_reason", "related_url" => "example_related_url", "source_name" => "example_source_name", "source_url" => "example_source_url", "tags" => [], "thumbnail" => "example_thumbnail", "waveform" => "example_waveform"]);
 
 ```
 
@@ -75,7 +75,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $audios = $client->Audio()->list();
+    $images = $client->Image()->list();
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -147,12 +147,13 @@ data via the `entity` option so offline calls resolve without a live server:
 
 ```php
 $client = OpenverseSDK::test([
-    "entity" => ["audio" => ["test01" => ["id" => "test01"]]],
+    "entity" => ["image" => ["test01" => ["id" => "test01"]]],
 ]);
 
-// Entity ops return the bare mock record (throws on error).
-$audio = $client->Audio()->list();
-print_r($audio);
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
+$image = $client->Image()->list();
+print_r($image);
 ```
 
 ### Use a custom fetch function
@@ -257,7 +258,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -279,7 +280,7 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `alt_file` |  |
+| `alt_files` |  |
 | `attribution` |  |
 | `audio_set` |  |
 | `bit_rate` |  |
@@ -294,7 +295,7 @@ On error, `ok` is `false` and `$err` contains the error value.
 | `filesize` |  |
 | `filetype` |  |
 | `foreign_landing_url` |  |
-| `genre` |  |
+| `genres` |  |
 | `id` |  |
 | `identifier` |  |
 | `indexed_on` |  |
@@ -305,7 +306,7 @@ On error, `ok` is `false` and `$err` contains the error value.
 | `logo_url` |  |
 | `mature` |  |
 | `media_count` |  |
-| `point` |  |
+| `points` |  |
 | `provider` |  |
 | `reason` |  |
 | `related_url` |  |
@@ -313,7 +314,7 @@ On error, `ok` is `false` and `$err` contains the error value.
 | `source` |  |
 | `source_name` |  |
 | `source_url` |  |
-| `tag` |  |
+| `tags` |  |
 | `thumbnail` |  |
 | `title` |  |
 | `url` |  |
@@ -356,7 +357,7 @@ API path: `/v1/audio/{identifier}/report/`
 | `source` |  |
 | `source_name` |  |
 | `source_url` |  |
-| `tag` |  |
+| `tags` |  |
 | `thumbnail` |  |
 | `title` |  |
 | `type` |  |
@@ -427,7 +428,7 @@ Create an instance: `$audio = $client->Audio();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_file` | `array` |  |
+| `alt_files` | `array` |  |
 | `attribution` | `string` |  |
 | `audio_set` | `mixed` |  |
 | `bit_rate` | `int` |  |
@@ -442,7 +443,7 @@ Create an instance: `$audio = $client->Audio();`
 | `filesize` | `int` |  |
 | `filetype` | `string` |  |
 | `foreign_landing_url` | `string` |  |
-| `genre` | `array` |  |
+| `genres` | `array` |  |
 | `id` | `string` |  |
 | `identifier` | `string` |  |
 | `indexed_on` | `string` |  |
@@ -453,7 +454,7 @@ Create an instance: `$audio = $client->Audio();`
 | `logo_url` | `string` |  |
 | `mature` | `bool` |  |
 | `media_count` | `int` |  |
-| `point` | `array` |  |
+| `points` | `array` |  |
 | `provider` | `string` |  |
 | `reason` | `mixed` |  |
 | `related_url` | `string` |  |
@@ -461,7 +462,7 @@ Create an instance: `$audio = $client->Audio();`
 | `source` | `string` |  |
 | `source_name` | `string` |  |
 | `source_url` | `string` |  |
-| `tag` | `array` |  |
+| `tags` | `array` |  |
 | `thumbnail` | `string` |  |
 | `title` | `string` |  |
 | `url` | `string` |  |
@@ -470,7 +471,7 @@ Create an instance: `$audio = $client->Audio();`
 #### Example: Load
 
 ```php
-// load() returns the bare Audio record (throws on error).
+// load() returns the ENTITY — call data_get() for the Audio record (throws on error).
 $audio = $client->Audio()->load(["id" => "audio_id"]);
 ```
 
@@ -486,6 +487,28 @@ $audios = $client->Audio()->list();
 ```php
 $audio = $client->Audio()->create([
     "identifier" => null, // string
+    "alt_files" => null, // array
+    "attribution" => null, // string
+    "audio_set" => null, // mixed
+    "detail_url" => null, // string
+    "display_name" => null, // string
+    "fields_matched" => null, // array
+    "id" => null, // string
+    "indexed_on" => null, // string
+    "len" => null, // int
+    "license" => null, // string
+    "license_url" => null, // string
+    "logo_url" => null, // string
+    "mature" => null, // bool
+    "media_count" => null, // int
+    "points" => null, // array
+    "reason" => null, // mixed
+    "related_url" => null, // string
+    "source_name" => null, // string
+    "source_url" => null, // string
+    "tags" => null, // array
+    "thumbnail" => null, // string
+    "waveform" => null, // string
 ]);
 ```
 
@@ -535,7 +558,7 @@ Create an instance: `$image = $client->Image();`
 | `source` | `string` |  |
 | `source_name` | `string` |  |
 | `source_url` | `string` |  |
-| `tag` | `array` |  |
+| `tags` | `array` |  |
 | `thumbnail` | `string` |  |
 | `title` | `string` |  |
 | `type` | `mixed` |  |
@@ -546,7 +569,7 @@ Create an instance: `$image = $client->Image();`
 #### Example: Load
 
 ```php
-// load() returns the bare Image record (throws on error).
+// load() returns the ENTITY — call data_get() for the Image record (throws on error).
 $image = $client->Image()->load(["id" => "image_id"]);
 ```
 
@@ -562,6 +585,27 @@ $images = $client->Image()->list();
 ```php
 $image = $client->Image()->create([
     "identifier" => null, // string
+    "attribution" => null, // string
+    "author_name" => null, // string
+    "author_url" => null, // string
+    "detail_url" => null, // string
+    "display_name" => null, // string
+    "fields_matched" => null, // array
+    "id" => null, // string
+    "indexed_on" => null, // string
+    "license" => null, // string
+    "license_url" => null, // string
+    "logo_url" => null, // string
+    "mature" => null, // bool
+    "media_count" => null, // int
+    "reason" => null, // mixed
+    "related_url" => null, // string
+    "source_name" => null, // string
+    "source_url" => null, // string
+    "tags" => null, // array
+    "thumbnail" => null, // string
+    "type" => null, // mixed
+    "version" => null, // mixed
 ]);
 ```
 
@@ -617,7 +661,7 @@ Create an instance: `$o_auth2_key_info = $client->OAuth2KeyInfo();`
 #### Example: Load
 
 ```php
-// load() returns the bare OAuth2KeyInfo record (throws on error).
+// load() returns the ENTITY — call data_get() for the OAuth2KeyInfo record (throws on error).
 $o_auth2_key_info = $client->OAuth2KeyInfo()->load();
 ```
 
@@ -729,11 +773,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$audio = $client->Audio();
-$audio->list();
+$image = $client->Image();
+$image->list();
 
-// $audio->data_get() now returns the audio data from the last list
-// $audio->match_get() returns the last match criteria
+// $image->data_get() now returns the image data from the last list
+// $image->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

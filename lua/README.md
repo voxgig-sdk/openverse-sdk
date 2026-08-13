@@ -61,7 +61,7 @@ print(audio)
 
 ```lua
 -- Create
-local created, err = client:Audio():create({ identifier = "example_identifier" })
+local created, err = client:Audio():create({ identifier = "example_identifier", alt_files = {}, attribution = "example_attribution", audio_set = "example_audio_set", detail_url = "example_detail_url", display_name = "example_display_name", fields_matched = {}, id = "example_id", indexed_on = "example_indexed_on", len = 1, license = "example_license", license_url = "example_license_url", logo_url = "example_logo_url", mature = true, media_count = 1, points = {}, reason = "example_reason", related_url = "example_related_url", source_name = "example_source_name", source_url = "example_source_url", tags = {}, thumbnail = "example_thumbnail", waveform = "example_waveform" })
 if err then error(err) end
 
 ```
@@ -73,7 +73,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local audios, err = client:Audio():list()
+local images, err = client:Image():list()
 if err then error(err) end
 ```
 
@@ -131,7 +131,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Audio():list()
+local result, err = client:Image():list()
 -- result is the returned data; err is set on failure
 ```
 
@@ -259,7 +259,7 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `alt_file` |  |
+| `alt_files` |  |
 | `attribution` |  |
 | `audio_set` |  |
 | `bit_rate` |  |
@@ -274,7 +274,7 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 | `filesize` |  |
 | `filetype` |  |
 | `foreign_landing_url` |  |
-| `genre` |  |
+| `genres` |  |
 | `id` |  |
 | `identifier` |  |
 | `indexed_on` |  |
@@ -285,7 +285,7 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 | `logo_url` |  |
 | `mature` |  |
 | `media_count` |  |
-| `point` |  |
+| `points` |  |
 | `provider` |  |
 | `reason` |  |
 | `related_url` |  |
@@ -293,7 +293,7 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 | `source` |  |
 | `source_name` |  |
 | `source_url` |  |
-| `tag` |  |
+| `tags` |  |
 | `thumbnail` |  |
 | `title` |  |
 | `url` |  |
@@ -336,7 +336,7 @@ API path: `/v1/audio/{identifier}/report/`
 | `source` |  |
 | `source_name` |  |
 | `source_url` |  |
-| `tag` |  |
+| `tags` |  |
 | `thumbnail` |  |
 | `title` |  |
 | `type` |  |
@@ -407,7 +407,7 @@ Create an instance: `local audio = client:Audio(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_file` | `table` |  |
+| `alt_files` | `table` |  |
 | `attribution` | `string` |  |
 | `audio_set` | `any` |  |
 | `bit_rate` | `number` |  |
@@ -422,7 +422,7 @@ Create an instance: `local audio = client:Audio(nil)`
 | `filesize` | `number` |  |
 | `filetype` | `string` |  |
 | `foreign_landing_url` | `string` |  |
-| `genre` | `table` |  |
+| `genres` | `table` |  |
 | `id` | `string` |  |
 | `identifier` | `string` |  |
 | `indexed_on` | `string` |  |
@@ -433,7 +433,7 @@ Create an instance: `local audio = client:Audio(nil)`
 | `logo_url` | `string` |  |
 | `mature` | `boolean` |  |
 | `media_count` | `number` |  |
-| `point` | `table` |  |
+| `points` | `table` |  |
 | `provider` | `string` |  |
 | `reason` | `any` |  |
 | `related_url` | `string` |  |
@@ -441,7 +441,7 @@ Create an instance: `local audio = client:Audio(nil)`
 | `source` | `string` |  |
 | `source_name` | `string` |  |
 | `source_url` | `string` |  |
-| `tag` | `table` |  |
+| `tags` | `table` |  |
 | `thumbnail` | `string` |  |
 | `title` | `string` |  |
 | `url` | `string` |  |
@@ -464,6 +464,28 @@ local audios, err = client:Audio():list()
 ```lua
 local audio, err = client:Audio():create({
   identifier = "example_identifier", -- string
+  alt_files = {}, -- table
+  attribution = "example_attribution", -- string
+  audio_set = "example_audio_set", -- any
+  detail_url = "example_detail_url", -- string
+  display_name = "example_display_name", -- string
+  fields_matched = {}, -- table
+  id = "example_id", -- string
+  indexed_on = "example_indexed_on", -- string
+  len = 1, -- number
+  license = "example_license", -- string
+  license_url = "example_license_url", -- string
+  logo_url = "example_logo_url", -- string
+  mature = true, -- boolean
+  media_count = 1, -- number
+  points = {}, -- table
+  reason = "example_reason", -- any
+  related_url = "example_related_url", -- string
+  source_name = "example_source_name", -- string
+  source_url = "example_source_url", -- string
+  tags = {}, -- table
+  thumbnail = "example_thumbnail", -- string
+  waveform = "example_waveform", -- string
 })
 ```
 
@@ -513,7 +535,7 @@ Create an instance: `local image = client:Image(nil)`
 | `source` | `string` |  |
 | `source_name` | `string` |  |
 | `source_url` | `string` |  |
-| `tag` | `table` |  |
+| `tags` | `table` |  |
 | `thumbnail` | `string` |  |
 | `title` | `string` |  |
 | `type` | `any` |  |
@@ -538,6 +560,27 @@ local images, err = client:Image():list()
 ```lua
 local image, err = client:Image():create({
   identifier = "example_identifier", -- string
+  attribution = "example_attribution", -- string
+  author_name = "example_author_name", -- string
+  author_url = "example_author_url", -- string
+  detail_url = "example_detail_url", -- string
+  display_name = "example_display_name", -- string
+  fields_matched = {}, -- table
+  id = "example_id", -- string
+  indexed_on = "example_indexed_on", -- string
+  license = "example_license", -- string
+  license_url = "example_license_url", -- string
+  logo_url = "example_logo_url", -- string
+  mature = true, -- boolean
+  media_count = 1, -- number
+  reason = "example_reason", -- any
+  related_url = "example_related_url", -- string
+  source_name = "example_source_name", -- string
+  source_url = "example_source_url", -- string
+  tags = {}, -- table
+  thumbnail = "example_thumbnail", -- string
+  type = "example_type", -- any
+  version = "example_version", -- any
 })
 ```
 
@@ -704,11 +747,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local audio = client:Audio()
-audio:list()
+local image = client:Image()
+image:list()
 
--- audio:data_get() now returns the audio data from the last list
--- audio:match_get() returns the last match criteria
+-- image:data_get() now returns the image data from the last list
+-- image:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

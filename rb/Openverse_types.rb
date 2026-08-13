@@ -10,7 +10,7 @@
 
 # Audio entity data model.
 #
-# @!attribute [rw] alt_file
+# @!attribute [rw] alt_files
 #   @return [Array]
 #
 # @!attribute [rw] attribution
@@ -55,7 +55,7 @@
 # @!attribute [rw] foreign_landing_url
 #   @return [String, nil]
 #
-# @!attribute [rw] genre
+# @!attribute [rw] genres
 #   @return [Array, nil]
 #
 # @!attribute [rw] id
@@ -88,7 +88,7 @@
 # @!attribute [rw] media_count
 #   @return [Integer]
 #
-# @!attribute [rw] point
+# @!attribute [rw] points
 #   @return [Array]
 #
 # @!attribute [rw] provider
@@ -112,7 +112,7 @@
 # @!attribute [rw] source_url
 #   @return [String]
 #
-# @!attribute [rw] tag
+# @!attribute [rw] tags
 #   @return [Array]
 #
 # @!attribute [rw] thumbnail
@@ -127,7 +127,7 @@
 # @!attribute [rw] waveform
 #   @return [String]
 Audio = Struct.new(
-  :alt_file,
+  :alt_files,
   :attribution,
   :audio_set,
   :bit_rate,
@@ -142,7 +142,7 @@ Audio = Struct.new(
   :filesize,
   :filetype,
   :foreign_landing_url,
-  :genre,
+  :genres,
   :id,
   :identifier,
   :indexed_on,
@@ -153,7 +153,7 @@ Audio = Struct.new(
   :logo_url,
   :mature,
   :media_count,
-  :point,
+  :points,
   :provider,
   :reason,
   :related_url,
@@ -161,7 +161,7 @@ Audio = Struct.new(
   :source,
   :source_name,
   :source_url,
-  :tag,
+  :tags,
   :thumbnail,
   :title,
   :url,
@@ -184,7 +184,7 @@ AudioLoadMatch = Struct.new(
 
 # Request payload for Audio#list.
 #
-# @!attribute [rw] alt_file
+# @!attribute [rw] alt_files
 #   @return [Array, nil]
 #
 # @!attribute [rw] attribution
@@ -229,7 +229,7 @@ AudioLoadMatch = Struct.new(
 # @!attribute [rw] foreign_landing_url
 #   @return [String, nil]
 #
-# @!attribute [rw] genre
+# @!attribute [rw] genres
 #   @return [Array, nil]
 #
 # @!attribute [rw] id
@@ -262,7 +262,7 @@ AudioLoadMatch = Struct.new(
 # @!attribute [rw] media_count
 #   @return [Integer, nil]
 #
-# @!attribute [rw] point
+# @!attribute [rw] points
 #   @return [Array, nil]
 #
 # @!attribute [rw] provider
@@ -286,7 +286,7 @@ AudioLoadMatch = Struct.new(
 # @!attribute [rw] source_url
 #   @return [String, nil]
 #
-# @!attribute [rw] tag
+# @!attribute [rw] tags
 #   @return [Array, nil]
 #
 # @!attribute [rw] thumbnail
@@ -301,7 +301,7 @@ AudioLoadMatch = Struct.new(
 # @!attribute [rw] waveform
 #   @return [String, nil]
 AudioListMatch = Struct.new(
-  :alt_file,
+  :alt_files,
   :attribution,
   :audio_set,
   :bit_rate,
@@ -316,7 +316,7 @@ AudioListMatch = Struct.new(
   :filesize,
   :filetype,
   :foreign_landing_url,
-  :genre,
+  :genres,
   :id,
   :identifier,
   :indexed_on,
@@ -327,7 +327,7 @@ AudioListMatch = Struct.new(
   :logo_url,
   :mature,
   :media_count,
-  :point,
+  :points,
   :provider,
   :reason,
   :related_url,
@@ -335,7 +335,7 @@ AudioListMatch = Struct.new(
   :source,
   :source_name,
   :source_url,
-  :tag,
+  :tags,
   :thumbnail,
   :title,
   :url,
@@ -347,8 +347,160 @@ AudioListMatch = Struct.new(
 #
 # @!attribute [rw] identifier
 #   @return [String]
+#
+# @!attribute [rw] alt_files
+#   @return [Array]
+#
+# @!attribute [rw] attribution
+#   @return [String]
+#
+# @!attribute [rw] audio_set
+#   @return [Object]
+#
+# @!attribute [rw] bit_rate
+#   @return [Integer, nil]
+#
+# @!attribute [rw] category
+#   @return [String, nil]
+#
+# @!attribute [rw] creator
+#   @return [String, nil]
+#
+# @!attribute [rw] creator_url
+#   @return [String, nil]
+#
+# @!attribute [rw] description
+#   @return [String, nil]
+#
+# @!attribute [rw] detail_url
+#   @return [String]
+#
+# @!attribute [rw] display_name
+#   @return [String]
+#
+# @!attribute [rw] duration
+#   @return [Integer, nil]
+#
+# @!attribute [rw] fields_matched
+#   @return [Array]
+#
+# @!attribute [rw] filesize
+#   @return [Integer, nil]
+#
+# @!attribute [rw] filetype
+#   @return [String, nil]
+#
+# @!attribute [rw] foreign_landing_url
+#   @return [String, nil]
+#
+# @!attribute [rw] genres
+#   @return [Array, nil]
+#
+# @!attribute [rw] id
+#   @return [String]
+#
+# @!attribute [rw] indexed_on
+#   @return [String]
+#
+# @!attribute [rw] len
+#   @return [Integer]
+#
+# @!attribute [rw] license
+#   @return [String]
+#
+# @!attribute [rw] license_url
+#   @return [String]
+#
+# @!attribute [rw] license_version
+#   @return [String, nil]
+#
+# @!attribute [rw] logo_url
+#   @return [String]
+#
+# @!attribute [rw] mature
+#   @return [Boolean]
+#
+# @!attribute [rw] media_count
+#   @return [Integer]
+#
+# @!attribute [rw] points
+#   @return [Array]
+#
+# @!attribute [rw] provider
+#   @return [String, nil]
+#
+# @!attribute [rw] reason
+#   @return [Object]
+#
+# @!attribute [rw] related_url
+#   @return [String]
+#
+# @!attribute [rw] sample_rate
+#   @return [Integer, nil]
+#
+# @!attribute [rw] source
+#   @return [String, nil]
+#
+# @!attribute [rw] source_name
+#   @return [String]
+#
+# @!attribute [rw] source_url
+#   @return [String]
+#
+# @!attribute [rw] tags
+#   @return [Array]
+#
+# @!attribute [rw] thumbnail
+#   @return [String]
+#
+# @!attribute [rw] title
+#   @return [String, nil]
+#
+# @!attribute [rw] url
+#   @return [String, nil]
+#
+# @!attribute [rw] waveform
+#   @return [String]
 AudioCreateData = Struct.new(
   :identifier,
+  :alt_files,
+  :attribution,
+  :audio_set,
+  :bit_rate,
+  :category,
+  :creator,
+  :creator_url,
+  :description,
+  :detail_url,
+  :display_name,
+  :duration,
+  :fields_matched,
+  :filesize,
+  :filetype,
+  :foreign_landing_url,
+  :genres,
+  :id,
+  :indexed_on,
+  :len,
+  :license,
+  :license_url,
+  :license_version,
+  :logo_url,
+  :mature,
+  :media_count,
+  :points,
+  :provider,
+  :reason,
+  :related_url,
+  :sample_rate,
+  :source,
+  :source_name,
+  :source_url,
+  :tags,
+  :thumbnail,
+  :title,
+  :url,
+  :waveform,
   keyword_init: true
 )
 
@@ -441,7 +593,7 @@ AudioCreateData = Struct.new(
 # @!attribute [rw] source_url
 #   @return [String]
 #
-# @!attribute [rw] tag
+# @!attribute [rw] tags
 #   @return [Array]
 #
 # @!attribute [rw] thumbnail
@@ -491,7 +643,7 @@ Image = Struct.new(
   :source,
   :source_name,
   :source_url,
-  :tag,
+  :tags,
   :thumbnail,
   :title,
   :type,
@@ -599,7 +751,7 @@ ImageLoadMatch = Struct.new(
 # @!attribute [rw] source_url
 #   @return [String, nil]
 #
-# @!attribute [rw] tag
+# @!attribute [rw] tags
 #   @return [Array, nil]
 #
 # @!attribute [rw] thumbnail
@@ -649,7 +801,7 @@ ImageListMatch = Struct.new(
   :source,
   :source_name,
   :source_url,
-  :tag,
+  :tags,
   :thumbnail,
   :title,
   :type,
@@ -663,8 +815,148 @@ ImageListMatch = Struct.new(
 #
 # @!attribute [rw] identifier
 #   @return [String]
+#
+# @!attribute [rw] attribution
+#   @return [String]
+#
+# @!attribute [rw] author_name
+#   @return [String]
+#
+# @!attribute [rw] author_url
+#   @return [String]
+#
+# @!attribute [rw] category
+#   @return [String, nil]
+#
+# @!attribute [rw] creator
+#   @return [String, nil]
+#
+# @!attribute [rw] creator_url
+#   @return [String, nil]
+#
+# @!attribute [rw] description
+#   @return [String, nil]
+#
+# @!attribute [rw] detail_url
+#   @return [String]
+#
+# @!attribute [rw] display_name
+#   @return [String]
+#
+# @!attribute [rw] fields_matched
+#   @return [Array]
+#
+# @!attribute [rw] filesize
+#   @return [Integer, nil]
+#
+# @!attribute [rw] filetype
+#   @return [String, nil]
+#
+# @!attribute [rw] foreign_landing_url
+#   @return [String, nil]
+#
+# @!attribute [rw] height
+#   @return [Integer, nil]
+#
+# @!attribute [rw] id
+#   @return [String]
+#
+# @!attribute [rw] indexed_on
+#   @return [String]
+#
+# @!attribute [rw] license
+#   @return [String]
+#
+# @!attribute [rw] license_url
+#   @return [String]
+#
+# @!attribute [rw] license_version
+#   @return [String, nil]
+#
+# @!attribute [rw] logo_url
+#   @return [String]
+#
+# @!attribute [rw] mature
+#   @return [Boolean]
+#
+# @!attribute [rw] media_count
+#   @return [Integer]
+#
+# @!attribute [rw] provider
+#   @return [String, nil]
+#
+# @!attribute [rw] reason
+#   @return [Object]
+#
+# @!attribute [rw] related_url
+#   @return [String]
+#
+# @!attribute [rw] source
+#   @return [String, nil]
+#
+# @!attribute [rw] source_name
+#   @return [String]
+#
+# @!attribute [rw] source_url
+#   @return [String]
+#
+# @!attribute [rw] tags
+#   @return [Array]
+#
+# @!attribute [rw] thumbnail
+#   @return [String]
+#
+# @!attribute [rw] title
+#   @return [String, nil]
+#
+# @!attribute [rw] type
+#   @return [Object]
+#
+# @!attribute [rw] url
+#   @return [String, nil]
+#
+# @!attribute [rw] version
+#   @return [Object]
+#
+# @!attribute [rw] width
+#   @return [Integer, nil]
 ImageCreateData = Struct.new(
   :identifier,
+  :attribution,
+  :author_name,
+  :author_url,
+  :category,
+  :creator,
+  :creator_url,
+  :description,
+  :detail_url,
+  :display_name,
+  :fields_matched,
+  :filesize,
+  :filetype,
+  :foreign_landing_url,
+  :height,
+  :id,
+  :indexed_on,
+  :license,
+  :license_url,
+  :license_version,
+  :logo_url,
+  :mature,
+  :media_count,
+  :provider,
+  :reason,
+  :related_url,
+  :source,
+  :source_name,
+  :source_url,
+  :tags,
+  :thumbnail,
+  :title,
+  :type,
+  :url,
+  :version,
+  :width,
   keyword_init: true
 )
 

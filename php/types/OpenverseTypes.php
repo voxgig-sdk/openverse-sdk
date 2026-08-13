@@ -15,7 +15,7 @@ declare(strict_types=1);
 /** Audio entity data model. */
 class Audio
 {
-    public array $alt_file;
+    public array $alt_files;
     public string $attribution;
     public mixed $audio_set;
     public ?int $bit_rate = null;
@@ -30,7 +30,7 @@ class Audio
     public ?int $filesize = null;
     public ?string $filetype = null;
     public ?string $foreign_landing_url = null;
-    public ?array $genre = null;
+    public ?array $genres = null;
     public string $id;
     public string $identifier;
     public string $indexed_on;
@@ -41,7 +41,7 @@ class Audio
     public string $logo_url;
     public bool $mature;
     public int $media_count;
-    public array $point;
+    public array $points;
     public ?string $provider = null;
     public mixed $reason;
     public string $related_url;
@@ -49,7 +49,7 @@ class Audio
     public ?string $source = null;
     public string $source_name;
     public string $source_url;
-    public array $tag;
+    public array $tags;
     public string $thumbnail;
     public ?string $title = null;
     public ?string $url = null;
@@ -66,7 +66,7 @@ class AudioLoadMatch
 /** Request payload for Audio#list. */
 class AudioListMatch
 {
-    public ?array $alt_file = null;
+    public ?array $alt_files = null;
     public ?string $attribution = null;
     public mixed $audio_set = null;
     public ?int $bit_rate = null;
@@ -81,7 +81,7 @@ class AudioListMatch
     public ?int $filesize = null;
     public ?string $filetype = null;
     public ?string $foreign_landing_url = null;
-    public ?array $genre = null;
+    public ?array $genres = null;
     public ?string $id = null;
     public ?string $identifier = null;
     public ?string $indexed_on = null;
@@ -92,7 +92,7 @@ class AudioListMatch
     public ?string $logo_url = null;
     public ?bool $mature = null;
     public ?int $media_count = null;
-    public ?array $point = null;
+    public ?array $points = null;
     public ?string $provider = null;
     public mixed $reason = null;
     public ?string $related_url = null;
@@ -100,7 +100,7 @@ class AudioListMatch
     public ?string $source = null;
     public ?string $source_name = null;
     public ?string $source_url = null;
-    public ?array $tag = null;
+    public ?array $tags = null;
     public ?string $thumbnail = null;
     public ?string $title = null;
     public ?string $url = null;
@@ -111,6 +111,44 @@ class AudioListMatch
 class AudioCreateData
 {
     public string $identifier;
+    public array $alt_files;
+    public string $attribution;
+    public mixed $audio_set;
+    public ?int $bit_rate = null;
+    public ?string $category = null;
+    public ?string $creator = null;
+    public ?string $creator_url = null;
+    public ?string $description = null;
+    public string $detail_url;
+    public string $display_name;
+    public ?int $duration = null;
+    public array $fields_matched;
+    public ?int $filesize = null;
+    public ?string $filetype = null;
+    public ?string $foreign_landing_url = null;
+    public ?array $genres = null;
+    public string $id;
+    public string $indexed_on;
+    public int $len;
+    public string $license;
+    public string $license_url;
+    public ?string $license_version = null;
+    public string $logo_url;
+    public bool $mature;
+    public int $media_count;
+    public array $points;
+    public ?string $provider = null;
+    public mixed $reason;
+    public string $related_url;
+    public ?int $sample_rate = null;
+    public ?string $source = null;
+    public string $source_name;
+    public string $source_url;
+    public array $tags;
+    public string $thumbnail;
+    public ?string $title = null;
+    public ?string $url = null;
+    public string $waveform;
 }
 
 /** Image entity data model. */
@@ -145,7 +183,7 @@ class Image
     public ?string $source = null;
     public string $source_name;
     public string $source_url;
-    public array $tag;
+    public array $tags;
     public string $thumbnail;
     public ?string $title = null;
     public mixed $type;
@@ -192,7 +230,7 @@ class ImageListMatch
     public ?string $source = null;
     public ?string $source_name = null;
     public ?string $source_url = null;
-    public ?array $tag = null;
+    public ?array $tags = null;
     public ?string $thumbnail = null;
     public ?string $title = null;
     public mixed $type = null;
@@ -205,6 +243,41 @@ class ImageListMatch
 class ImageCreateData
 {
     public string $identifier;
+    public string $attribution;
+    public string $author_name;
+    public string $author_url;
+    public ?string $category = null;
+    public ?string $creator = null;
+    public ?string $creator_url = null;
+    public ?string $description = null;
+    public string $detail_url;
+    public string $display_name;
+    public array $fields_matched;
+    public ?int $filesize = null;
+    public ?string $filetype = null;
+    public ?string $foreign_landing_url = null;
+    public ?int $height = null;
+    public string $id;
+    public string $indexed_on;
+    public string $license;
+    public string $license_url;
+    public ?string $license_version = null;
+    public string $logo_url;
+    public bool $mature;
+    public int $media_count;
+    public ?string $provider = null;
+    public mixed $reason;
+    public string $related_url;
+    public ?string $source = null;
+    public string $source_name;
+    public string $source_url;
+    public array $tags;
+    public string $thumbnail;
+    public ?string $title = null;
+    public mixed $type;
+    public ?string $url = null;
+    public mixed $version;
+    public ?int $width = null;
 }
 
 /** OAuth2Application entity data model. */

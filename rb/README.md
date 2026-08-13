@@ -39,7 +39,7 @@ begin
   # list returns an Array of Audio records — iterate directly.
   audios = client.Audio.list
   audios.each do |item|
-    puts "#{item["id"]} #{item["alt_file"]}"
+    puts "#{item["id"]} #{item["alt_files"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -50,7 +50,7 @@ end
 
 ```ruby
 begin
-  # load returns the bare Audio record (raises on error).
+  # load returns the ENTITY — call data_get for the Audio record (raises on error).
   audio = client.Audio.load({ "id" => "example_id" })
   puts audio
 rescue => err
@@ -61,8 +61,8 @@ end
 ### 4. Create, update, and remove
 
 ```ruby
-# create returns the bare created Audio record.
-created = client.Audio.create({ "identifier" => "example_identifier" })
+# create returns the ENTITY — call data_get for the created Audio record.
+created = client.Audio.create({ "identifier" => "example_identifier", "alt_files" => [], "attribution" => "example_attribution", "audio_set" => "example_audio_set", "detail_url" => "example_detail_url", "display_name" => "example_display_name", "fields_matched" => [], "id" => "example_id", "indexed_on" => "example_indexed_on", "len" => 1, "license" => "example_license", "license_url" => "example_license_url", "logo_url" => "example_logo_url", "mature" => true, "media_count" => 1, "points" => [], "reason" => "example_reason", "related_url" => "example_related_url", "source_name" => "example_source_name", "source_url" => "example_source_url", "tags" => [], "thumbnail" => "example_thumbnail", "waveform" => "example_waveform" })
 
 ```
 
@@ -73,7 +73,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  audios = client.Audio.list()
+  images = client.Image.list()
 rescue => err
   warn "list failed: #{err}"
 end
@@ -141,12 +141,13 @@ data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
 client = OpenverseSDK.test({
-  "entity" => { "audio" => { "test01" => { "id" => "test01" } } },
+  "entity" => { "image" => { "test01" => { "id" => "test01" } } },
 })
 
-# Entity ops return the bare mock record (raises on error).
-audio = client.Audio.list()
-puts audio
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+image = client.Image.list()
+puts image
 ```
 
 ### Use a custom fetch function
@@ -269,7 +270,7 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `alt_file` |  |
+| `alt_files` |  |
 | `attribution` |  |
 | `audio_set` |  |
 | `bit_rate` |  |
@@ -284,7 +285,7 @@ returns a result `Hash` with these keys:
 | `filesize` |  |
 | `filetype` |  |
 | `foreign_landing_url` |  |
-| `genre` |  |
+| `genres` |  |
 | `id` |  |
 | `identifier` |  |
 | `indexed_on` |  |
@@ -295,7 +296,7 @@ returns a result `Hash` with these keys:
 | `logo_url` |  |
 | `mature` |  |
 | `media_count` |  |
-| `point` |  |
+| `points` |  |
 | `provider` |  |
 | `reason` |  |
 | `related_url` |  |
@@ -303,7 +304,7 @@ returns a result `Hash` with these keys:
 | `source` |  |
 | `source_name` |  |
 | `source_url` |  |
-| `tag` |  |
+| `tags` |  |
 | `thumbnail` |  |
 | `title` |  |
 | `url` |  |
@@ -346,7 +347,7 @@ API path: `/v1/audio/{identifier}/report/`
 | `source` |  |
 | `source_name` |  |
 | `source_url` |  |
-| `tag` |  |
+| `tags` |  |
 | `thumbnail` |  |
 | `title` |  |
 | `type` |  |
@@ -417,7 +418,7 @@ Create an instance: `audio = client.Audio`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_file` | `Array` |  |
+| `alt_files` | `Array` |  |
 | `attribution` | `String` |  |
 | `audio_set` | `Object` |  |
 | `bit_rate` | `Integer` |  |
@@ -432,7 +433,7 @@ Create an instance: `audio = client.Audio`
 | `filesize` | `Integer` |  |
 | `filetype` | `String` |  |
 | `foreign_landing_url` | `String` |  |
-| `genre` | `Array` |  |
+| `genres` | `Array` |  |
 | `id` | `String` |  |
 | `identifier` | `String` |  |
 | `indexed_on` | `String` |  |
@@ -443,7 +444,7 @@ Create an instance: `audio = client.Audio`
 | `logo_url` | `String` |  |
 | `mature` | `Boolean` |  |
 | `media_count` | `Integer` |  |
-| `point` | `Array` |  |
+| `points` | `Array` |  |
 | `provider` | `String` |  |
 | `reason` | `Object` |  |
 | `related_url` | `String` |  |
@@ -451,7 +452,7 @@ Create an instance: `audio = client.Audio`
 | `source` | `String` |  |
 | `source_name` | `String` |  |
 | `source_url` | `String` |  |
-| `tag` | `Array` |  |
+| `tags` | `Array` |  |
 | `thumbnail` | `String` |  |
 | `title` | `String` |  |
 | `url` | `String` |  |
@@ -460,7 +461,7 @@ Create an instance: `audio = client.Audio`
 #### Example: Load
 
 ```ruby
-# load returns the bare Audio record (raises on error).
+# load returns the ENTITY — call data_get for the Audio record (raises on error).
 audio = client.Audio.load({ "id" => "audio_id" })
 ```
 
@@ -476,6 +477,28 @@ audios = client.Audio.list
 ```ruby
 audio = client.Audio.create({
   "identifier" => "example_identifier", # String
+  "alt_files" => [], # Array
+  "attribution" => "example_attribution", # String
+  "audio_set" => "example_audio_set", # Object
+  "detail_url" => "example_detail_url", # String
+  "display_name" => "example_display_name", # String
+  "fields_matched" => [], # Array
+  "id" => "example_id", # String
+  "indexed_on" => "example_indexed_on", # String
+  "len" => 1, # Integer
+  "license" => "example_license", # String
+  "license_url" => "example_license_url", # String
+  "logo_url" => "example_logo_url", # String
+  "mature" => true, # Boolean
+  "media_count" => 1, # Integer
+  "points" => [], # Array
+  "reason" => "example_reason", # Object
+  "related_url" => "example_related_url", # String
+  "source_name" => "example_source_name", # String
+  "source_url" => "example_source_url", # String
+  "tags" => [], # Array
+  "thumbnail" => "example_thumbnail", # String
+  "waveform" => "example_waveform", # String
 })
 ```
 
@@ -525,7 +548,7 @@ Create an instance: `image = client.Image`
 | `source` | `String` |  |
 | `source_name` | `String` |  |
 | `source_url` | `String` |  |
-| `tag` | `Array` |  |
+| `tags` | `Array` |  |
 | `thumbnail` | `String` |  |
 | `title` | `String` |  |
 | `type` | `Object` |  |
@@ -536,7 +559,7 @@ Create an instance: `image = client.Image`
 #### Example: Load
 
 ```ruby
-# load returns the bare Image record (raises on error).
+# load returns the ENTITY — call data_get for the Image record (raises on error).
 image = client.Image.load({ "id" => "image_id" })
 ```
 
@@ -552,6 +575,27 @@ images = client.Image.list
 ```ruby
 image = client.Image.create({
   "identifier" => "example_identifier", # String
+  "attribution" => "example_attribution", # String
+  "author_name" => "example_author_name", # String
+  "author_url" => "example_author_url", # String
+  "detail_url" => "example_detail_url", # String
+  "display_name" => "example_display_name", # String
+  "fields_matched" => [], # Array
+  "id" => "example_id", # String
+  "indexed_on" => "example_indexed_on", # String
+  "license" => "example_license", # String
+  "license_url" => "example_license_url", # String
+  "logo_url" => "example_logo_url", # String
+  "mature" => true, # Boolean
+  "media_count" => 1, # Integer
+  "reason" => "example_reason", # Object
+  "related_url" => "example_related_url", # String
+  "source_name" => "example_source_name", # String
+  "source_url" => "example_source_url", # String
+  "tags" => [], # Array
+  "thumbnail" => "example_thumbnail", # String
+  "type" => "example_type", # Object
+  "version" => "example_version", # Object
 })
 ```
 
@@ -607,7 +651,7 @@ Create an instance: `o_auth2_key_info = client.OAuth2KeyInfo`
 #### Example: Load
 
 ```ruby
-# load returns the bare OAuth2KeyInfo record (raises on error).
+# load returns the ENTITY — call data_get for the OAuth2KeyInfo record (raises on error).
 o_auth2_key_info = client.OAuth2KeyInfo.load()
 ```
 
@@ -719,11 +763,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-audio = client.Audio
-audio.list()
+image = client.Image
+image.list()
 
-# audio.data_get now returns the audio data from the last list
-# audio.match_get returns the last match criteria
+# image.data_get now returns the image data from the last list
+# image.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

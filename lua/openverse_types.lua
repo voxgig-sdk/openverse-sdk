@@ -7,7 +7,7 @@
 -- edit by hand.
 
 ---@class Audio
----@field alt_file table
+---@field alt_files table
 ---@field attribution string
 ---@field audio_set any
 ---@field bit_rate? number
@@ -22,7 +22,7 @@
 ---@field filesize? number
 ---@field filetype? string
 ---@field foreign_landing_url? string
----@field genre? table
+---@field genres? table
 ---@field id string
 ---@field identifier string
 ---@field indexed_on string
@@ -33,7 +33,7 @@
 ---@field logo_url string
 ---@field mature boolean
 ---@field media_count number
----@field point table
+---@field points table
 ---@field provider? string
 ---@field reason any
 ---@field related_url string
@@ -41,7 +41,7 @@
 ---@field source? string
 ---@field source_name string
 ---@field source_url string
----@field tag table
+---@field tags table
 ---@field thumbnail string
 ---@field title? string
 ---@field url? string
@@ -52,7 +52,7 @@
 ---@field id? string
 
 ---@class AudioListMatch
----@field alt_file? table
+---@field alt_files? table
 ---@field attribution? string
 ---@field audio_set? any
 ---@field bit_rate? number
@@ -67,7 +67,7 @@
 ---@field filesize? number
 ---@field filetype? string
 ---@field foreign_landing_url? string
----@field genre? table
+---@field genres? table
 ---@field id? string
 ---@field identifier? string
 ---@field indexed_on? string
@@ -78,7 +78,7 @@
 ---@field logo_url? string
 ---@field mature? boolean
 ---@field media_count? number
----@field point? table
+---@field points? table
 ---@field provider? string
 ---@field reason? any
 ---@field related_url? string
@@ -86,7 +86,7 @@
 ---@field source? string
 ---@field source_name? string
 ---@field source_url? string
----@field tag? table
+---@field tags? table
 ---@field thumbnail? string
 ---@field title? string
 ---@field url? string
@@ -94,6 +94,44 @@
 
 ---@class AudioCreateData
 ---@field identifier string
+---@field alt_files table
+---@field attribution string
+---@field audio_set any
+---@field bit_rate? number
+---@field category? string
+---@field creator? string
+---@field creator_url? string
+---@field description? string
+---@field detail_url string
+---@field display_name string
+---@field duration? number
+---@field fields_matched table
+---@field filesize? number
+---@field filetype? string
+---@field foreign_landing_url? string
+---@field genres? table
+---@field id string
+---@field indexed_on string
+---@field len number
+---@field license string
+---@field license_url string
+---@field license_version? string
+---@field logo_url string
+---@field mature boolean
+---@field media_count number
+---@field points table
+---@field provider? string
+---@field reason any
+---@field related_url string
+---@field sample_rate? number
+---@field source? string
+---@field source_name string
+---@field source_url string
+---@field tags table
+---@field thumbnail string
+---@field title? string
+---@field url? string
+---@field waveform string
 
 ---@class Image
 ---@field attribution string
@@ -125,7 +163,7 @@
 ---@field source? string
 ---@field source_name string
 ---@field source_url string
----@field tag table
+---@field tags table
 ---@field thumbnail string
 ---@field title? string
 ---@field type any
@@ -166,7 +204,7 @@
 ---@field source? string
 ---@field source_name? string
 ---@field source_url? string
----@field tag? table
+---@field tags? table
 ---@field thumbnail? string
 ---@field title? string
 ---@field type? any
@@ -176,6 +214,41 @@
 
 ---@class ImageCreateData
 ---@field identifier string
+---@field attribution string
+---@field author_name string
+---@field author_url string
+---@field category? string
+---@field creator? string
+---@field creator_url? string
+---@field description? string
+---@field detail_url string
+---@field display_name string
+---@field fields_matched table
+---@field filesize? number
+---@field filetype? string
+---@field foreign_landing_url? string
+---@field height? number
+---@field id string
+---@field indexed_on string
+---@field license string
+---@field license_url string
+---@field license_version? string
+---@field logo_url string
+---@field mature boolean
+---@field media_count number
+---@field provider? string
+---@field reason any
+---@field related_url string
+---@field source? string
+---@field source_name string
+---@field source_url string
+---@field tags table
+---@field thumbnail string
+---@field title? string
+---@field type any
+---@field url? string
+---@field version any
+---@field width? number
 
 ---@class OAuth2Application
 ---@field description string

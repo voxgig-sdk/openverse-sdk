@@ -6,7 +6,7 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 
 export interface Audio {
-  alt_file: any[]
+  alt_files: any[]
   attribution: string
   audio_set: any
   bit_rate?: number
@@ -21,7 +21,7 @@ export interface Audio {
   filesize?: number
   filetype?: string
   foreign_landing_url?: string
-  genre?: any[]
+  genres?: any[]
   id: string
   identifier: string
   indexed_on: string
@@ -32,7 +32,7 @@ export interface Audio {
   logo_url: string
   mature: boolean
   media_count: number
-  point: any[]
+  points: any[]
   provider?: string
   reason: any
   related_url: string
@@ -40,7 +40,7 @@ export interface Audio {
   source?: string
   source_name: string
   source_url: string
-  tag: any[]
+  tags: any[]
   thumbnail: string
   title?: string
   url?: string
@@ -50,10 +50,16 @@ export interface Audio {
 export interface AudioLoadMatch {
   identifier?: string
   id?: string
+
+  // Selects a custom action instead of the plain load:
+  //   'thumb'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface AudioListMatch {
-  alt_file?: any[]
+  alt_files?: any[]
   attribution?: string
   audio_set?: any
   bit_rate?: number
@@ -68,7 +74,7 @@ export interface AudioListMatch {
   filesize?: number
   filetype?: string
   foreign_landing_url?: string
-  genre?: any[]
+  genres?: any[]
   id?: string
   identifier?: string
   indexed_on?: string
@@ -79,7 +85,7 @@ export interface AudioListMatch {
   logo_url?: string
   mature?: boolean
   media_count?: number
-  point?: any[]
+  points?: any[]
   provider?: string
   reason?: any
   related_url?: string
@@ -87,15 +93,65 @@ export interface AudioListMatch {
   source?: string
   source_name?: string
   source_url?: string
-  tag?: any[]
+  tags?: any[]
   thumbnail?: string
   title?: string
   url?: string
   waveform?: string
+
+  // Selects a custom action instead of the plain list:
+  //   'related' | 'stat' | 'waveform'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface AudioCreateData {
   identifier: string
+  alt_files: any[]
+  attribution: string
+  audio_set: any
+  bit_rate?: number
+  category?: string
+  creator?: string
+  creator_url?: string
+  description?: string
+  detail_url: string
+  display_name: string
+  duration?: number
+  fields_matched: any[]
+  filesize?: number
+  filetype?: string
+  foreign_landing_url?: string
+  genres?: any[]
+  id: string
+  indexed_on: string
+  len: number
+  license: string
+  license_url: string
+  license_version?: string
+  logo_url: string
+  mature: boolean
+  media_count: number
+  points: any[]
+  provider?: string
+  reason: any
+  related_url: string
+  sample_rate?: number
+  source?: string
+  source_name: string
+  source_url: string
+  tags: any[]
+  thumbnail: string
+  title?: string
+  url?: string
+  waveform: string
+
+  // Selects a custom action instead of the plain create:
+  //   'report'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface Image {
@@ -128,7 +184,7 @@ export interface Image {
   source?: string
   source_name: string
   source_url: string
-  tag: any[]
+  tags: any[]
   thumbnail: string
   title?: string
   type: any
@@ -139,6 +195,12 @@ export interface Image {
 
 export interface ImageLoadMatch {
   id: string
+
+  // Selects a custom action instead of the plain load:
+  //   'oembed'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface ImageListMatch {
@@ -171,17 +233,64 @@ export interface ImageListMatch {
   source?: string
   source_name?: string
   source_url?: string
-  tag?: any[]
+  tags?: any[]
   thumbnail?: string
   title?: string
   type?: any
   url?: string
   version?: any
   width?: number
+
+  // Selects a custom action instead of the plain list:
+  //   'related' | 'stat'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface ImageCreateData {
   identifier: string
+  attribution: string
+  author_name: string
+  author_url: string
+  category?: string
+  creator?: string
+  creator_url?: string
+  description?: string
+  detail_url: string
+  display_name: string
+  fields_matched: any[]
+  filesize?: number
+  filetype?: string
+  foreign_landing_url?: string
+  height?: number
+  id: string
+  indexed_on: string
+  license: string
+  license_url: string
+  license_version?: string
+  logo_url: string
+  mature: boolean
+  media_count: number
+  provider?: string
+  reason: any
+  related_url: string
+  source?: string
+  source_name: string
+  source_url: string
+  tags: any[]
+  thumbnail: string
+  title?: string
+  type: any
+  url?: string
+  version: any
+  width?: number
+
+  // Selects a custom action instead of the plain create:
+  //   'report'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface OAuth2Application {

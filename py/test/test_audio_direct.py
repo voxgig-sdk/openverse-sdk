@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from openverse_sdk.utility.voxgig_struct import voxgig_struct as vs
 from openverse_sdk import OpenverseSDK
-from core import helpers
+from openverse_sdk.core import helpers
 from test import runner
 
 

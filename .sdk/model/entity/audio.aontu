@@ -6,7 +6,7 @@ main: kit: entity: audio: {
 
   fields: [
     {
-      name: "alt_file"
+      name: "alt_files"
       req: true
       type: "`$ARRAY`"
     }
@@ -81,7 +81,7 @@ main: kit: entity: audio: {
       type: "`$STRING`"
     }
     {
-      name: "genre"
+      name: "genres"
       req: false
       type: "`$ARRAY`"
     }
@@ -136,7 +136,7 @@ main: kit: entity: audio: {
       type: "`$INTEGER`"
     }
     {
-      name: "point"
+      name: "points"
       req: true
       type: "`$ARRAY`"
     }
@@ -176,7 +176,7 @@ main: kit: entity: audio: {
       type: "`$STRING`"
     }
     {
-      name: "tag"
+      name: "tags"
       req: true
       type: "`$ARRAY`"
     }
@@ -240,7 +240,7 @@ main: kit: entity: audio: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.reason`"
           }
         }
       ]
@@ -521,7 +521,7 @@ main: kit: entity: audio: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.points`"
           }
         }
         {

@@ -165,7 +165,7 @@ const audio = client.Audio()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_file` | `any[]` | Yes |  |
+| `alt_files` | `any[]` | Yes |  |
 | `attribution` | `string` | Yes |  |
 | `audio_set` | `any` | Yes |  |
 | `bit_rate` | `number` | No |  |
@@ -180,7 +180,7 @@ const audio = client.Audio()
 | `filesize` | `number` | No |  |
 | `filetype` | `string` | No |  |
 | `foreign_landing_url` | `string` | No |  |
-| `genre` | `any[]` | No |  |
+| `genres` | `any[]` | No |  |
 | `id` | `string` | Yes |  |
 | `identifier` | `string` | Yes |  |
 | `indexed_on` | `string` | Yes |  |
@@ -191,7 +191,7 @@ const audio = client.Audio()
 | `logo_url` | `string` | Yes |  |
 | `mature` | `boolean` | Yes |  |
 | `media_count` | `number` | Yes |  |
-| `point` | `any[]` | Yes |  |
+| `points` | `any[]` | Yes |  |
 | `provider` | `string` | No |  |
 | `reason` | `any` | Yes |  |
 | `related_url` | `string` | Yes |  |
@@ -199,11 +199,35 @@ const audio = client.Audio()
 | `source` | `string` | No |  |
 | `source_name` | `string` | Yes |  |
 | `source_url` | `string` | Yes |  |
-| `tag` | `any[]` | Yes |  |
+| `tags` | `any[]` | Yes |  |
 | `thumbnail` | `string` | Yes |  |
 | `title` | `string` | No |  |
 | `url` | `string` | No |  |
 | `waveform` | `string` | Yes |  |
+
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `report` | `/v1/audio/{identifier}/report/` | `client.Audio().create({ $action: 'report', ... })` |
+| `related` | `/v1/audio/{identifier}/related/` | `client.Audio().list({ $action: 'related', ... })` |
+| `stat` | `/v1/audio/stats/` | `client.Audio().list({ $action: 'stat', ... })` |
+| `waveform` | `/v1/audio/{identifier}/waveform/` | `client.Audio().list({ $action: 'waveform', ... })` |
+| `thumb` | `/v1/audio/{identifier}/thumb/` | `client.Audio().load({ $action: 'thumb', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+Audio record — check the API definition for its shape.
+
+```ts
+const result = await client.Audio().create({
+  $action: 'report',
+  /* ...the action's own arguments */
+})
+```
 
 ### Operations
 
@@ -214,6 +238,28 @@ Create a new entity with the given data.
 ```ts
 const result = await client.Audio().create({
   identifier: 'example_identifier',
+  alt_files: [],
+  attribution: 'example_attribution',
+  audio_set: 'example_audio_set',
+  detail_url: 'example_detail_url',
+  display_name: 'example_display_name',
+  fields_matched: [],
+  id: 'example_id',
+  indexed_on: 'example_indexed_on',
+  len: 1,
+  license: 'example_license',
+  license_url: 'example_license_url',
+  logo_url: 'example_logo_url',
+  mature: true,
+  media_count: 1,
+  points: [],
+  reason: 'example_reason',
+  related_url: 'example_related_url',
+  source_name: 'example_source_name',
+  source_url: 'example_source_url',
+  tags: [],
+  thumbnail: 'example_thumbnail',
+  waveform: 'example_waveform',
 })
 ```
 
@@ -300,7 +346,7 @@ const image = client.Image()
 | `source` | `string` | No |  |
 | `source_name` | `string` | Yes |  |
 | `source_url` | `string` | Yes |  |
-| `tag` | `any[]` | Yes |  |
+| `tags` | `any[]` | Yes |  |
 | `thumbnail` | `string` | Yes |  |
 | `title` | `string` | No |  |
 | `type` | `any` | Yes |  |
@@ -341,13 +387,36 @@ const image = client.Image()
 | `source` | - | - | - |
 | `source_name` | - | - | - |
 | `source_url` | - | - | - |
-| `tag` | - | - | - |
+| `tags` | - | - | - |
 | `thumbnail` | - | - | - |
 | `title` | - | - | - |
 | `type` | - | - | - |
 | `url` | - | - | - |
 | `version` | - | - | - |
 | `width` | Yes | - | - |
+
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `report` | `/v1/images/{identifier}/report/` | `client.Image().create({ $action: 'report', ... })` |
+| `related` | `/v1/images/{identifier}/related/` | `client.Image().list({ $action: 'related', ... })` |
+| `stat` | `/v1/images/stats/` | `client.Image().list({ $action: 'stat', ... })` |
+| `oembed` | `/v1/images/oembed/` | `client.Image().load({ $action: 'oembed', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+Image record — check the API definition for its shape.
+
+```ts
+const result = await client.Image().create({
+  $action: 'report',
+  /* ...the action's own arguments */
+})
+```
 
 ### Operations
 
@@ -358,6 +427,27 @@ Create a new entity with the given data.
 ```ts
 const result = await client.Image().create({
   identifier: 'example_identifier',
+  attribution: 'example_attribution',
+  author_name: 'example_author_name',
+  author_url: 'example_author_url',
+  detail_url: 'example_detail_url',
+  display_name: 'example_display_name',
+  fields_matched: [],
+  id: 'example_id',
+  indexed_on: 'example_indexed_on',
+  license: 'example_license',
+  license_url: 'example_license_url',
+  logo_url: 'example_logo_url',
+  mature: true,
+  media_count: 1,
+  reason: 'example_reason',
+  related_url: 'example_related_url',
+  source_name: 'example_source_name',
+  source_url: 'example_source_url',
+  tags: [],
+  thumbnail: 'example_thumbnail',
+  type: 'example_type',
+  version: 'example_version',
 })
 ```
 

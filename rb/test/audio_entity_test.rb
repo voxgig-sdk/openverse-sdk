@@ -74,7 +74,7 @@ class AudioEntityTest < Minitest::Test
     audio_ref01_data["identifier"] = setup[:idmap]["identifier01"]
 
     audio_ref01_data_result = audio_ref01_ent.create(audio_ref01_data, nil)
-    audio_ref01_data = Helpers.to_map(audio_ref01_data_result)
+    audio_ref01_data = Helpers.to_map(audio_ref01_data_result.respond_to?(:data_get) ? audio_ref01_data_result.data_get : audio_ref01_data_result)
     assert !audio_ref01_data.nil?
     assert !audio_ref01_data["id"].nil?
 
@@ -94,7 +94,7 @@ class AudioEntityTest < Minitest::Test
       "id" => audio_ref01_data["id"],
     }
     audio_ref01_data_dt0_loaded = audio_ref01_ent.load(audio_ref01_match_dt0, nil)
-    audio_ref01_data_dt0_load_result = Helpers.to_map(audio_ref01_data_dt0_loaded)
+    audio_ref01_data_dt0_load_result = Helpers.to_map(audio_ref01_data_dt0_loaded.respond_to?(:data_get) ? audio_ref01_data_dt0_loaded.data_get : audio_ref01_data_dt0_loaded)
     assert !audio_ref01_data_dt0_load_result.nil?
     assert_equal audio_ref01_data_dt0_load_result["id"], audio_ref01_data["id"]
 

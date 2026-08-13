@@ -157,7 +157,7 @@ main: kit: entity: image: {
       type: "`$STRING`"
     }
     {
-      name: "tag"
+      name: "tags"
       req: true
       type: "`$ARRAY`"
     }
@@ -237,7 +237,7 @@ main: kit: entity: image: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.reason`"
           }
         }
       ]

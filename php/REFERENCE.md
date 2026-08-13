@@ -109,7 +109,7 @@ $audio = $client->Audio();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_file` | `array` | Yes |  |
+| `alt_files` | `array` | Yes |  |
 | `attribution` | `string` | Yes |  |
 | `audio_set` | `mixed` | Yes |  |
 | `bit_rate` | `int` | No |  |
@@ -124,7 +124,7 @@ $audio = $client->Audio();
 | `filesize` | `int` | No |  |
 | `filetype` | `string` | No |  |
 | `foreign_landing_url` | `string` | No |  |
-| `genre` | `array` | No |  |
+| `genres` | `array` | No |  |
 | `id` | `string` | Yes |  |
 | `identifier` | `string` | Yes |  |
 | `indexed_on` | `string` | Yes |  |
@@ -135,7 +135,7 @@ $audio = $client->Audio();
 | `logo_url` | `string` | Yes |  |
 | `mature` | `bool` | Yes |  |
 | `media_count` | `int` | Yes |  |
-| `point` | `array` | Yes |  |
+| `points` | `array` | Yes |  |
 | `provider` | `string` | No |  |
 | `reason` | `mixed` | Yes |  |
 | `related_url` | `string` | Yes |  |
@@ -143,7 +143,7 @@ $audio = $client->Audio();
 | `source` | `string` | No |  |
 | `source_name` | `string` | Yes |  |
 | `source_url` | `string` | Yes |  |
-| `tag` | `array` | Yes |  |
+| `tags` | `array` | Yes |  |
 | `thumbnail` | `string` | Yes |  |
 | `title` | `string` | No |  |
 | `url` | `string` | No |  |
@@ -158,6 +158,28 @@ Create a new entity with the given data. Throws on error.
 ```php
 $result = $client->Audio()->create([
   "identifier" => null, // string
+  "alt_files" => null, // array
+  "attribution" => null, // string
+  "audio_set" => null, // mixed
+  "detail_url" => null, // string
+  "display_name" => null, // string
+  "fields_matched" => null, // array
+  "id" => null, // string
+  "indexed_on" => null, // string
+  "len" => null, // int
+  "license" => null, // string
+  "license_url" => null, // string
+  "logo_url" => null, // string
+  "mature" => null, // bool
+  "media_count" => null, // int
+  "points" => null, // array
+  "reason" => null, // mixed
+  "related_url" => null, // string
+  "source_name" => null, // string
+  "source_url" => null, // string
+  "tags" => null, // array
+  "thumbnail" => null, // string
+  "waveform" => null, // string
 ]);
 ```
 
@@ -246,7 +268,7 @@ $image = $client->Image();
 | `source` | `string` | No |  |
 | `source_name` | `string` | Yes |  |
 | `source_url` | `string` | Yes |  |
-| `tag` | `array` | Yes |  |
+| `tags` | `array` | Yes |  |
 | `thumbnail` | `string` | Yes |  |
 | `title` | `string` | No |  |
 | `type` | `mixed` | Yes |  |
@@ -287,7 +309,7 @@ $image = $client->Image();
 | `source` | - | - | - |
 | `source_name` | - | - | - |
 | `source_url` | - | - | - |
-| `tag` | - | - | - |
+| `tags` | - | - | - |
 | `thumbnail` | - | - | - |
 | `title` | - | - | - |
 | `type` | - | - | - |
@@ -304,6 +326,27 @@ Create a new entity with the given data. Throws on error.
 ```php
 $result = $client->Image()->create([
   "identifier" => null, // string
+  "attribution" => null, // string
+  "author_name" => null, // string
+  "author_url" => null, // string
+  "detail_url" => null, // string
+  "display_name" => null, // string
+  "fields_matched" => null, // array
+  "id" => null, // string
+  "indexed_on" => null, // string
+  "license" => null, // string
+  "license_url" => null, // string
+  "logo_url" => null, // string
+  "mature" => null, // bool
+  "media_count" => null, // int
+  "reason" => null, // mixed
+  "related_url" => null, // string
+  "source_name" => null, // string
+  "source_url" => null, // string
+  "tags" => null, // array
+  "thumbnail" => null, // string
+  "type" => null, // mixed
+  "version" => null, // mixed
 ]);
 ```
 

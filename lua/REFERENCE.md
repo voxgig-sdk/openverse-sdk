@@ -107,7 +107,7 @@ local audio = client:Audio(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_file` | `table` | Yes |  |
+| `alt_files` | `table` | Yes |  |
 | `attribution` | `string` | Yes |  |
 | `audio_set` | `any` | Yes |  |
 | `bit_rate` | `number` | No |  |
@@ -122,7 +122,7 @@ local audio = client:Audio(nil)
 | `filesize` | `number` | No |  |
 | `filetype` | `string` | No |  |
 | `foreign_landing_url` | `string` | No |  |
-| `genre` | `table` | No |  |
+| `genres` | `table` | No |  |
 | `id` | `string` | Yes |  |
 | `identifier` | `string` | Yes |  |
 | `indexed_on` | `string` | Yes |  |
@@ -133,7 +133,7 @@ local audio = client:Audio(nil)
 | `logo_url` | `string` | Yes |  |
 | `mature` | `boolean` | Yes |  |
 | `media_count` | `number` | Yes |  |
-| `point` | `table` | Yes |  |
+| `points` | `table` | Yes |  |
 | `provider` | `string` | No |  |
 | `reason` | `any` | Yes |  |
 | `related_url` | `string` | Yes |  |
@@ -141,7 +141,7 @@ local audio = client:Audio(nil)
 | `source` | `string` | No |  |
 | `source_name` | `string` | Yes |  |
 | `source_url` | `string` | Yes |  |
-| `tag` | `table` | Yes |  |
+| `tags` | `table` | Yes |  |
 | `thumbnail` | `string` | Yes |  |
 | `title` | `string` | No |  |
 | `url` | `string` | No |  |
@@ -156,6 +156,28 @@ Create a new entity with the given data.
 ```lua
 local result, err = client:Audio():create({
   identifier = --[[ string ]],
+  alt_files = --[[ table ]],
+  attribution = --[[ string ]],
+  audio_set = --[[ any ]],
+  detail_url = --[[ string ]],
+  display_name = --[[ string ]],
+  fields_matched = --[[ table ]],
+  id = --[[ string ]],
+  indexed_on = --[[ string ]],
+  len = --[[ number ]],
+  license = --[[ string ]],
+  license_url = --[[ string ]],
+  logo_url = --[[ string ]],
+  mature = --[[ boolean ]],
+  media_count = --[[ number ]],
+  points = --[[ table ]],
+  reason = --[[ any ]],
+  related_url = --[[ string ]],
+  source_name = --[[ string ]],
+  source_url = --[[ string ]],
+  tags = --[[ table ]],
+  thumbnail = --[[ string ]],
+  waveform = --[[ string ]],
 })
 ```
 
@@ -244,7 +266,7 @@ local image = client:Image(nil)
 | `source` | `string` | No |  |
 | `source_name` | `string` | Yes |  |
 | `source_url` | `string` | Yes |  |
-| `tag` | `table` | Yes |  |
+| `tags` | `table` | Yes |  |
 | `thumbnail` | `string` | Yes |  |
 | `title` | `string` | No |  |
 | `type` | `any` | Yes |  |
@@ -285,7 +307,7 @@ local image = client:Image(nil)
 | `source` | - | - | - |
 | `source_name` | - | - | - |
 | `source_url` | - | - | - |
-| `tag` | - | - | - |
+| `tags` | - | - | - |
 | `thumbnail` | - | - | - |
 | `title` | - | - | - |
 | `type` | - | - | - |
@@ -302,6 +324,27 @@ Create a new entity with the given data.
 ```lua
 local result, err = client:Image():create({
   identifier = --[[ string ]],
+  attribution = --[[ string ]],
+  author_name = --[[ string ]],
+  author_url = --[[ string ]],
+  detail_url = --[[ string ]],
+  display_name = --[[ string ]],
+  fields_matched = --[[ table ]],
+  id = --[[ string ]],
+  indexed_on = --[[ string ]],
+  license = --[[ string ]],
+  license_url = --[[ string ]],
+  logo_url = --[[ string ]],
+  mature = --[[ boolean ]],
+  media_count = --[[ number ]],
+  reason = --[[ any ]],
+  related_url = --[[ string ]],
+  source_name = --[[ string ]],
+  source_url = --[[ string ]],
+  tags = --[[ table ]],
+  thumbnail = --[[ string ]],
+  type = --[[ any ]],
+  version = --[[ any ]],
 })
 ```
 

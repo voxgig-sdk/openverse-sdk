@@ -63,14 +63,14 @@ describe('AudioEntity', async () => {
     let audio_ref01_data = setup.data.new.audio['audio_ref01']
     audio_ref01_data['identifier'] = setup.idmap['identifier01']
 
-    audio_ref01_data = await audio_ref01_ent.create(audio_ref01_data)
+    audio_ref01_data = (await audio_ref01_ent.create(audio_ref01_data)).data()
     assert(null != audio_ref01_data.id)
 
 
     // LIST
     const audio_ref01_match: any = {}
 
-    const audio_ref01_list = await audio_ref01_ent.list(audio_ref01_match)
+    const audio_ref01_list = (await audio_ref01_ent.list(audio_ref01_match)).map((e: any) => e.data())
 
     assert(!isempty(select(audio_ref01_list, { id: audio_ref01_data.id })))
 
@@ -78,7 +78,7 @@ describe('AudioEntity', async () => {
     // LOAD
     const audio_ref01_match_dt0: any = {}
     audio_ref01_match_dt0.id = audio_ref01_data.id
-    const audio_ref01_data_dt0 = await audio_ref01_ent.load(audio_ref01_match_dt0)
+    const audio_ref01_data_dt0 = (await audio_ref01_ent.load(audio_ref01_match_dt0)).data()
     assert(audio_ref01_data_dt0.id === audio_ref01_data.id)
 
 

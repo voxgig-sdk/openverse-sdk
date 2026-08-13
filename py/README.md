@@ -55,7 +55,7 @@ except Exception as err:
 
 ### 3. Load an audio
 
-`load()` returns the bare record (a `dict`) and raises on error.
+`load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
@@ -68,8 +68,8 @@ except Exception as err:
 ### 4. Create, update, and remove
 
 ```python
-# Create — returns the bare created record (a dict)
-created = client.Audio().create({"identifier": "example_identifier"})
+# Create — returns the ENTITY (call data_get() for the record)
+created = client.Audio().create({"identifier": "example_identifier", "alt_files": [], "attribution": "example_attribution", "audio_set": "example_audio_set", "detail_url": "example_detail_url", "display_name": "example_display_name", "fields_matched": [], "id": "example_id", "indexed_on": "example_indexed_on", "len": 1, "license": "example_license", "license_url": "example_license_url", "logo_url": "example_logo_url", "mature": True, "media_count": 1, "points": [], "reason": "example_reason", "related_url": "example_related_url", "source_name": "example_source_name", "source_url": "example_source_url", "tags": [], "thumbnail": "example_thumbnail", "waveform": "example_waveform"})
 
 ```
 
@@ -80,8 +80,8 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    audios = client.Audio().list()
-    print(audios)
+    images = client.Image().list()
+    print(images)
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -147,9 +147,10 @@ Create a mock client for unit testing — no server required:
 ```python
 client = OpenverseSDK.test()
 
-# Entity ops return the bare record and raise on error.
-audio = client.Audio().list()
-# audio contains the mock response record
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
+image = client.Image().list()
+# image contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -251,7 +252,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -273,7 +274,7 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `alt_file` |  |
+| `alt_files` |  |
 | `attribution` |  |
 | `audio_set` |  |
 | `bit_rate` |  |
@@ -288,7 +289,7 @@ On error, `ok` is `False` and `err` contains the error value.
 | `filesize` |  |
 | `filetype` |  |
 | `foreign_landing_url` |  |
-| `genre` |  |
+| `genres` |  |
 | `id` |  |
 | `identifier` |  |
 | `indexed_on` |  |
@@ -299,7 +300,7 @@ On error, `ok` is `False` and `err` contains the error value.
 | `logo_url` |  |
 | `mature` |  |
 | `media_count` |  |
-| `point` |  |
+| `points` |  |
 | `provider` |  |
 | `reason` |  |
 | `related_url` |  |
@@ -307,7 +308,7 @@ On error, `ok` is `False` and `err` contains the error value.
 | `source` |  |
 | `source_name` |  |
 | `source_url` |  |
-| `tag` |  |
+| `tags` |  |
 | `thumbnail` |  |
 | `title` |  |
 | `url` |  |
@@ -350,7 +351,7 @@ API path: `/v1/audio/{identifier}/report/`
 | `source` |  |
 | `source_name` |  |
 | `source_url` |  |
-| `tag` |  |
+| `tags` |  |
 | `thumbnail` |  |
 | `title` |  |
 | `type` |  |
@@ -421,7 +422,7 @@ Create an instance: `audio = client.Audio()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_file` | `list` |  |
+| `alt_files` | `list` |  |
 | `attribution` | `str` |  |
 | `audio_set` | `Any` |  |
 | `bit_rate` | `int` |  |
@@ -436,7 +437,7 @@ Create an instance: `audio = client.Audio()`
 | `filesize` | `int` |  |
 | `filetype` | `str` |  |
 | `foreign_landing_url` | `str` |  |
-| `genre` | `list` |  |
+| `genres` | `list` |  |
 | `id` | `str` |  |
 | `identifier` | `str` |  |
 | `indexed_on` | `str` |  |
@@ -447,7 +448,7 @@ Create an instance: `audio = client.Audio()`
 | `logo_url` | `str` |  |
 | `mature` | `bool` |  |
 | `media_count` | `int` |  |
-| `point` | `list` |  |
+| `points` | `list` |  |
 | `provider` | `str` |  |
 | `reason` | `Any` |  |
 | `related_url` | `str` |  |
@@ -455,7 +456,7 @@ Create an instance: `audio = client.Audio()`
 | `source` | `str` |  |
 | `source_name` | `str` |  |
 | `source_url` | `str` |  |
-| `tag` | `list` |  |
+| `tags` | `list` |  |
 | `thumbnail` | `str` |  |
 | `title` | `str` |  |
 | `url` | `str` |  |
@@ -478,6 +479,28 @@ audios = client.Audio().list()
 ```python
 audio = client.Audio().create({
     "identifier": "example_identifier",  # str
+    "alt_files": [],  # list
+    "attribution": "example_attribution",  # str
+    "audio_set": "example_audio_set",  # Any
+    "detail_url": "example_detail_url",  # str
+    "display_name": "example_display_name",  # str
+    "fields_matched": [],  # list
+    "id": "example_id",  # str
+    "indexed_on": "example_indexed_on",  # str
+    "len": 1,  # int
+    "license": "example_license",  # str
+    "license_url": "example_license_url",  # str
+    "logo_url": "example_logo_url",  # str
+    "mature": True,  # bool
+    "media_count": 1,  # int
+    "points": [],  # list
+    "reason": "example_reason",  # Any
+    "related_url": "example_related_url",  # str
+    "source_name": "example_source_name",  # str
+    "source_url": "example_source_url",  # str
+    "tags": [],  # list
+    "thumbnail": "example_thumbnail",  # str
+    "waveform": "example_waveform",  # str
 })
 ```
 
@@ -527,7 +550,7 @@ Create an instance: `image = client.Image()`
 | `source` | `str` |  |
 | `source_name` | `str` |  |
 | `source_url` | `str` |  |
-| `tag` | `list` |  |
+| `tags` | `list` |  |
 | `thumbnail` | `str` |  |
 | `title` | `str` |  |
 | `type` | `Any` |  |
@@ -552,6 +575,27 @@ images = client.Image().list()
 ```python
 image = client.Image().create({
     "identifier": "example_identifier",  # str
+    "attribution": "example_attribution",  # str
+    "author_name": "example_author_name",  # str
+    "author_url": "example_author_url",  # str
+    "detail_url": "example_detail_url",  # str
+    "display_name": "example_display_name",  # str
+    "fields_matched": [],  # list
+    "id": "example_id",  # str
+    "indexed_on": "example_indexed_on",  # str
+    "license": "example_license",  # str
+    "license_url": "example_license_url",  # str
+    "logo_url": "example_logo_url",  # str
+    "mature": True,  # bool
+    "media_count": 1,  # int
+    "reason": "example_reason",  # Any
+    "related_url": "example_related_url",  # str
+    "source_name": "example_source_name",  # str
+    "source_url": "example_source_url",  # str
+    "tags": [],  # list
+    "thumbnail": "example_thumbnail",  # str
+    "type": "example_type",  # Any
+    "version": "example_version",  # Any
 })
 ```
 
@@ -717,11 +761,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-audio = client.Audio()
-audio.list()
+image = client.Image()
+image.list()
 
-# audio.data_get() now returns the audio data from the last list
-# audio.match_get() returns the last match criteria
+# image.data_get() now returns the image data from the last list
+# image.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

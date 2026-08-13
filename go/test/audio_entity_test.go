@@ -107,7 +107,7 @@ func TestAudioEntity(t *testing.T) {
 		if err != nil {
 			t.Fatalf("create failed: %v", err)
 		}
-		audioRef01Data = core.ToMapAny(audioRef01DataResult)
+		audioRef01Data = core.ToMapAny(entityData(audioRef01DataResult))
 		if audioRef01Data == nil {
 			t.Fatal("expected create result to be a map")
 		}
@@ -140,7 +140,7 @@ func TestAudioEntity(t *testing.T) {
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		audioRef01DataDt0LoadResult := core.ToMapAny(audioRef01DataDt0Loaded)
+		audioRef01DataDt0LoadResult := core.ToMapAny(entityData(audioRef01DataDt0Loaded))
 		if audioRef01DataDt0LoadResult == nil {
 			t.Fatal("expected load result to be a map")
 		}

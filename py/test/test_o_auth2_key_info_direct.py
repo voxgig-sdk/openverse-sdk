@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from openverse_sdk.utility.voxgig_struct import voxgig_struct as vs
 from openverse_sdk import OpenverseSDK
-from core import helpers
+from openverse_sdk.core import helpers
 from test import runner
 
 
@@ -56,7 +56,7 @@ def _o_auth2_key_info_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "OPENVERSE_TEST_O_AUTH__KEY_INFO_ENTID": {},
+        "OPENVERSE_TEST_O_AUTH2_KEY_INFO_ENTID": {},
         "OPENVERSE_TEST_LIVE": "FALSE",
         "OPENVERSE_APIKEY": "NONE",
     })

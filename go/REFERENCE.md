@@ -115,7 +115,7 @@ fmt.Println(audio.GetName()) // "audio"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_file` | `[]any` | Yes |  |
+| `alt_files` | `[]any` | Yes |  |
 | `attribution` | `string` | Yes |  |
 | `audio_set` | `any` | Yes |  |
 | `bit_rate` | `int` | No |  |
@@ -130,7 +130,7 @@ fmt.Println(audio.GetName()) // "audio"
 | `filesize` | `int` | No |  |
 | `filetype` | `string` | No |  |
 | `foreign_landing_url` | `string` | No |  |
-| `genre` | `[]any` | No |  |
+| `genres` | `[]any` | No |  |
 | `id` | `string` | Yes |  |
 | `identifier` | `string` | Yes |  |
 | `indexed_on` | `string` | Yes |  |
@@ -141,7 +141,7 @@ fmt.Println(audio.GetName()) // "audio"
 | `logo_url` | `string` | Yes |  |
 | `mature` | `bool` | Yes |  |
 | `media_count` | `int` | Yes |  |
-| `point` | `[]any` | Yes |  |
+| `points` | `[]any` | Yes |  |
 | `provider` | `string` | No |  |
 | `reason` | `any` | Yes |  |
 | `related_url` | `string` | Yes |  |
@@ -149,7 +149,7 @@ fmt.Println(audio.GetName()) // "audio"
 | `source` | `string` | No |  |
 | `source_name` | `string` | Yes |  |
 | `source_url` | `string` | Yes |  |
-| `tag` | `[]any` | Yes |  |
+| `tags` | `[]any` | Yes |  |
 | `thumbnail` | `string` | Yes |  |
 | `title` | `string` | No |  |
 | `url` | `string` | No |  |
@@ -188,6 +188,28 @@ Create a new entity with the given data.
 ```go
 result, err := client.Audio(nil).Create(map[string]any{
     "identifier": "example_identifier",
+    "alt_files": []any{},
+    "attribution": "example_attribution",
+    "audio_set": "example_audio_set",
+    "detail_url": "example_detail_url",
+    "display_name": "example_display_name",
+    "fields_matched": []any{},
+    "id": "example_id",
+    "indexed_on": "example_indexed_on",
+    "len": 1,
+    "license": "example_license",
+    "license_url": "example_license_url",
+    "logo_url": "example_logo_url",
+    "mature": true,
+    "media_count": 1,
+    "points": []any{},
+    "reason": "example_reason",
+    "related_url": "example_related_url",
+    "source_name": "example_source_name",
+    "source_url": "example_source_url",
+    "tags": []any{},
+    "thumbnail": "example_thumbnail",
+    "waveform": "example_waveform",
 }, nil)
 if err != nil {
     panic(err)
@@ -259,7 +281,7 @@ fmt.Println(image.GetName()) // "image"
 | `source` | `string` | No |  |
 | `source_name` | `string` | Yes |  |
 | `source_url` | `string` | Yes |  |
-| `tag` | `[]any` | Yes |  |
+| `tags` | `[]any` | Yes |  |
 | `thumbnail` | `string` | Yes |  |
 | `title` | `string` | No |  |
 | `type` | `any` | Yes |  |
@@ -300,7 +322,7 @@ fmt.Println(image.GetName()) // "image"
 | `source` | - | - | - |
 | `source_name` | - | - | - |
 | `source_url` | - | - | - |
-| `tag` | - | - | - |
+| `tags` | - | - | - |
 | `thumbnail` | - | - | - |
 | `title` | - | - | - |
 | `type` | - | - | - |
@@ -341,6 +363,27 @@ Create a new entity with the given data.
 ```go
 result, err := client.Image(nil).Create(map[string]any{
     "identifier": "example_identifier",
+    "attribution": "example_attribution",
+    "author_name": "example_author_name",
+    "author_url": "example_author_url",
+    "detail_url": "example_detail_url",
+    "display_name": "example_display_name",
+    "fields_matched": []any{},
+    "id": "example_id",
+    "indexed_on": "example_indexed_on",
+    "license": "example_license",
+    "license_url": "example_license_url",
+    "logo_url": "example_logo_url",
+    "mature": true,
+    "media_count": 1,
+    "reason": "example_reason",
+    "related_url": "example_related_url",
+    "source_name": "example_source_name",
+    "source_url": "example_source_url",
+    "tags": []any{},
+    "thumbnail": "example_thumbnail",
+    "type": "example_type",
+    "version": "example_version",
 }, nil)
 if err != nil {
     panic(err)

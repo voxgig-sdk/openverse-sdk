@@ -6,11 +6,15 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/voxgig-sdk/openverse-sdk/go/core"
+)
 
 // Audio is the typed data model for the audio entity.
 type Audio struct {
-	AltFile []any `json:"alt_file"`
+	AltFiles []any `json:"alt_files"`
 	Attribution string `json:"attribution"`
 	AudioSet any `json:"audio_set"`
 	BitRate *int `json:"bit_rate,omitempty"`
@@ -25,7 +29,7 @@ type Audio struct {
 	Filesize *int `json:"filesize,omitempty"`
 	Filetype *string `json:"filetype,omitempty"`
 	ForeignLandingUrl *string `json:"foreign_landing_url,omitempty"`
-	Genre *[]any `json:"genre,omitempty"`
+	Genres *[]any `json:"genres,omitempty"`
 	Id string `json:"id"`
 	Identifier string `json:"identifier"`
 	IndexedOn string `json:"indexed_on"`
@@ -36,7 +40,7 @@ type Audio struct {
 	LogoUrl string `json:"logo_url"`
 	Mature bool `json:"mature"`
 	MediaCount int `json:"media_count"`
-	Point []any `json:"point"`
+	Points []any `json:"points"`
 	Provider *string `json:"provider,omitempty"`
 	Reason any `json:"reason"`
 	RelatedUrl string `json:"related_url"`
@@ -44,7 +48,7 @@ type Audio struct {
 	Source *string `json:"source,omitempty"`
 	SourceName string `json:"source_name"`
 	SourceUrl string `json:"source_url"`
-	Tag []any `json:"tag"`
+	Tags []any `json:"tags"`
 	Thumbnail string `json:"thumbnail"`
 	Title *string `json:"title,omitempty"`
 	Url *string `json:"url,omitempty"`
@@ -59,7 +63,7 @@ type AudioLoadMatch struct {
 
 // AudioListMatch is the typed request payload for Audio.ListTyped.
 type AudioListMatch struct {
-	AltFile *[]any `json:"alt_file,omitempty"`
+	AltFiles *[]any `json:"alt_files,omitempty"`
 	Attribution *string `json:"attribution,omitempty"`
 	AudioSet *any `json:"audio_set,omitempty"`
 	BitRate *int `json:"bit_rate,omitempty"`
@@ -74,7 +78,7 @@ type AudioListMatch struct {
 	Filesize *int `json:"filesize,omitempty"`
 	Filetype *string `json:"filetype,omitempty"`
 	ForeignLandingUrl *string `json:"foreign_landing_url,omitempty"`
-	Genre *[]any `json:"genre,omitempty"`
+	Genres *[]any `json:"genres,omitempty"`
 	Id *string `json:"id,omitempty"`
 	Identifier *string `json:"identifier,omitempty"`
 	IndexedOn *string `json:"indexed_on,omitempty"`
@@ -85,7 +89,7 @@ type AudioListMatch struct {
 	LogoUrl *string `json:"logo_url,omitempty"`
 	Mature *bool `json:"mature,omitempty"`
 	MediaCount *int `json:"media_count,omitempty"`
-	Point *[]any `json:"point,omitempty"`
+	Points *[]any `json:"points,omitempty"`
 	Provider *string `json:"provider,omitempty"`
 	Reason *any `json:"reason,omitempty"`
 	RelatedUrl *string `json:"related_url,omitempty"`
@@ -93,7 +97,7 @@ type AudioListMatch struct {
 	Source *string `json:"source,omitempty"`
 	SourceName *string `json:"source_name,omitempty"`
 	SourceUrl *string `json:"source_url,omitempty"`
-	Tag *[]any `json:"tag,omitempty"`
+	Tags *[]any `json:"tags,omitempty"`
 	Thumbnail *string `json:"thumbnail,omitempty"`
 	Title *string `json:"title,omitempty"`
 	Url *string `json:"url,omitempty"`
@@ -103,6 +107,44 @@ type AudioListMatch struct {
 // AudioCreateData is the typed request payload for Audio.CreateTyped.
 type AudioCreateData struct {
 	Identifier string `json:"identifier"`
+	AltFiles []any `json:"alt_files"`
+	Attribution string `json:"attribution"`
+	AudioSet any `json:"audio_set"`
+	BitRate *int `json:"bit_rate,omitempty"`
+	Category *string `json:"category,omitempty"`
+	Creator *string `json:"creator,omitempty"`
+	CreatorUrl *string `json:"creator_url,omitempty"`
+	Description *string `json:"description,omitempty"`
+	DetailUrl string `json:"detail_url"`
+	DisplayName string `json:"display_name"`
+	Duration *int `json:"duration,omitempty"`
+	FieldsMatched []any `json:"fields_matched"`
+	Filesize *int `json:"filesize,omitempty"`
+	Filetype *string `json:"filetype,omitempty"`
+	ForeignLandingUrl *string `json:"foreign_landing_url,omitempty"`
+	Genres *[]any `json:"genres,omitempty"`
+	Id string `json:"id"`
+	IndexedOn string `json:"indexed_on"`
+	Len int `json:"len"`
+	License string `json:"license"`
+	LicenseUrl string `json:"license_url"`
+	LicenseVersion *string `json:"license_version,omitempty"`
+	LogoUrl string `json:"logo_url"`
+	Mature bool `json:"mature"`
+	MediaCount int `json:"media_count"`
+	Points []any `json:"points"`
+	Provider *string `json:"provider,omitempty"`
+	Reason any `json:"reason"`
+	RelatedUrl string `json:"related_url"`
+	SampleRate *int `json:"sample_rate,omitempty"`
+	Source *string `json:"source,omitempty"`
+	SourceName string `json:"source_name"`
+	SourceUrl string `json:"source_url"`
+	Tags []any `json:"tags"`
+	Thumbnail string `json:"thumbnail"`
+	Title *string `json:"title,omitempty"`
+	Url *string `json:"url,omitempty"`
+	Waveform string `json:"waveform"`
 }
 
 // Image is the typed data model for the image entity.
@@ -136,7 +178,7 @@ type Image struct {
 	Source *string `json:"source,omitempty"`
 	SourceName string `json:"source_name"`
 	SourceUrl string `json:"source_url"`
-	Tag []any `json:"tag"`
+	Tags []any `json:"tags"`
 	Thumbnail string `json:"thumbnail"`
 	Title *string `json:"title,omitempty"`
 	Type any `json:"type"`
@@ -181,7 +223,7 @@ type ImageListMatch struct {
 	Source *string `json:"source,omitempty"`
 	SourceName *string `json:"source_name,omitempty"`
 	SourceUrl *string `json:"source_url,omitempty"`
-	Tag *[]any `json:"tag,omitempty"`
+	Tags *[]any `json:"tags,omitempty"`
 	Thumbnail *string `json:"thumbnail,omitempty"`
 	Title *string `json:"title,omitempty"`
 	Type *any `json:"type,omitempty"`
@@ -193,6 +235,41 @@ type ImageListMatch struct {
 // ImageCreateData is the typed request payload for Image.CreateTyped.
 type ImageCreateData struct {
 	Identifier string `json:"identifier"`
+	Attribution string `json:"attribution"`
+	AuthorName string `json:"author_name"`
+	AuthorUrl string `json:"author_url"`
+	Category *string `json:"category,omitempty"`
+	Creator *string `json:"creator,omitempty"`
+	CreatorUrl *string `json:"creator_url,omitempty"`
+	Description *string `json:"description,omitempty"`
+	DetailUrl string `json:"detail_url"`
+	DisplayName string `json:"display_name"`
+	FieldsMatched []any `json:"fields_matched"`
+	Filesize *int `json:"filesize,omitempty"`
+	Filetype *string `json:"filetype,omitempty"`
+	ForeignLandingUrl *string `json:"foreign_landing_url,omitempty"`
+	Height *int `json:"height,omitempty"`
+	Id string `json:"id"`
+	IndexedOn string `json:"indexed_on"`
+	License string `json:"license"`
+	LicenseUrl string `json:"license_url"`
+	LicenseVersion *string `json:"license_version,omitempty"`
+	LogoUrl string `json:"logo_url"`
+	Mature bool `json:"mature"`
+	MediaCount int `json:"media_count"`
+	Provider *string `json:"provider,omitempty"`
+	Reason any `json:"reason"`
+	RelatedUrl string `json:"related_url"`
+	Source *string `json:"source,omitempty"`
+	SourceName string `json:"source_name"`
+	SourceUrl string `json:"source_url"`
+	Tags []any `json:"tags"`
+	Thumbnail string `json:"thumbnail"`
+	Title *string `json:"title,omitempty"`
+	Type any `json:"type"`
+	Url *string `json:"url,omitempty"`
+	Version any `json:"version"`
+	Width *int `json:"width,omitempty"`
 }
 
 // OAuth2Application is the typed data model for the o_auth2_application entity.
@@ -253,12 +330,26 @@ func asMap(v any) map[string]any {
 	return out
 }
 
-// typedFrom decodes a runtime value (a map[string]any produced by the op
-// pipeline) into a typed model T via a JSON round-trip. On any error it
-// returns the zero value of T; the op's own (value, error) tuple carries the
-// real error.
+// entityData unwraps an entity to its data map.
+//
+// Operations resolve to the ENTITY, not the raw data (see AGENTS.md), and an
+// entity's fields are UNEXPORTED — marshalling one directly yields `{}`, so
+// every typed accessor would silently hand back a zero-valued struct. The
+// typed boundary therefore takes the data hop first.
+func entityData(v any) any {
+	if ent, ok := v.(core.Entity); ok {
+		return ent.Data()
+	}
+	return v
+}
+
+// typedFrom decodes a runtime value (an entity, or the map[string]any the op
+// pipeline produced) into a typed model T via a JSON round-trip. On any error
+// it returns the zero value of T; the op's own (value, error) tuple carries
+// the real error.
 func typedFrom[T any](v any) T {
 	var out T
+	v = entityData(v)
 	if v == nil {
 		return out
 	}
@@ -270,12 +361,20 @@ func typedFrom[T any](v any) T {
 	return out
 }
 
-// typedSliceFrom decodes a runtime list value ([]any of maps) into a typed
-// slice []T via a JSON round-trip, for list ops.
+// typedSliceFrom decodes a runtime list value into a typed slice []T via a
+// JSON round-trip, for list ops. `list` resolves to a slice of ENTITY
+// instances, so each element takes the data hop.
 func typedSliceFrom[T any](v any) []T {
 	var out []T
 	if v == nil {
 		return out
+	}
+	if list, ok := v.([]any); ok {
+		unwrapped := make([]any, 0, len(list))
+		for _, item := range list {
+			unwrapped = append(unwrapped, entityData(item))
+		}
+		v = unwrapped
 	}
 	b, err := json.Marshal(v)
 	if err != nil {

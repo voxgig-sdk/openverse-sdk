@@ -6,9 +6,9 @@ import time
 
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from openverse_sdk.utility.voxgig_struct import voxgig_struct as vs
 from openverse_sdk import OpenverseSDK
-from core import helpers
+from openverse_sdk.core import helpers
 
 _TEST_DIR = os.path.dirname(os.path.abspath(__file__))
 from test import runner
@@ -36,7 +36,7 @@ class TestOAuth2ApplicationEntity:
         # without an *_ENTID env override, those IDs hit the live API and 4xx.
         if setup.get("synthetic_only"):
             pytest.skip("live entity test uses synthetic IDs from fixture — "
-                        "set OPENVERSE_TEST_O_AUTH__APPLICATION_ENTID JSON to run live")
+                        "set OPENVERSE_TEST_O_AUTH2_APPLICATION_ENTID JSON to run live")
         client = setup["client"]
 
         # CREATE
@@ -44,7 +44,7 @@ class TestOAuth2ApplicationEntity:
         o_auth2_application_ref01_data = helpers.to_map(vs.getprop(
             vs.getpath(setup["data"], "new.o_auth2_application"), "o_auth2_application_ref01"))
 
-        o_auth2_application_ref01_data = helpers.to_map(o_auth2_application_ref01_ent.create(o_auth2_application_ref01_data, None))
+        o_auth2_application_ref01_data = helpers.to_map(runner.entity_data(o_auth2_application_ref01_ent.create(o_auth2_application_ref01_data, None)))
         assert o_auth2_application_ref01_data is not None
 
 
@@ -78,18 +78,18 @@ def _o_auth2_application_basic_setup(extra):
     # mode is on without a real override, the basic test runs against synthetic
     # IDs from the fixture and 4xx's. We surface this so the test can skip.
     _entid_env_raw = os.environ.get(
-        "OPENVERSE_TEST_O_AUTH__APPLICATION_ENTID")
+        "OPENVERSE_TEST_O_AUTH2_APPLICATION_ENTID")
     _idmap_overridden = _entid_env_raw is not None and _entid_env_raw.strip().startswith("{")
 
     env = runner.env_override({
-        "OPENVERSE_TEST_O_AUTH__APPLICATION_ENTID": idmap,
+        "OPENVERSE_TEST_O_AUTH2_APPLICATION_ENTID": idmap,
         "OPENVERSE_TEST_LIVE": "FALSE",
         "OPENVERSE_TEST_EXPLAIN": "FALSE",
         "OPENVERSE_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
-        env.get("OPENVERSE_TEST_O_AUTH__APPLICATION_ENTID"))
+        env.get("OPENVERSE_TEST_O_AUTH2_APPLICATION_ENTID"))
     if idmap_resolved is None:
         idmap_resolved = helpers.to_map(idmap)
 

@@ -110,7 +110,7 @@ audio = client.Audio
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_file` | `Array` | Yes |  |
+| `alt_files` | `Array` | Yes |  |
 | `attribution` | `String` | Yes |  |
 | `audio_set` | `Object` | Yes |  |
 | `bit_rate` | `Integer` | No |  |
@@ -125,7 +125,7 @@ audio = client.Audio
 | `filesize` | `Integer` | No |  |
 | `filetype` | `String` | No |  |
 | `foreign_landing_url` | `String` | No |  |
-| `genre` | `Array` | No |  |
+| `genres` | `Array` | No |  |
 | `id` | `String` | Yes |  |
 | `identifier` | `String` | Yes |  |
 | `indexed_on` | `String` | Yes |  |
@@ -136,7 +136,7 @@ audio = client.Audio
 | `logo_url` | `String` | Yes |  |
 | `mature` | `Boolean` | Yes |  |
 | `media_count` | `Integer` | Yes |  |
-| `point` | `Array` | Yes |  |
+| `points` | `Array` | Yes |  |
 | `provider` | `String` | No |  |
 | `reason` | `Object` | Yes |  |
 | `related_url` | `String` | Yes |  |
@@ -144,7 +144,7 @@ audio = client.Audio
 | `source` | `String` | No |  |
 | `source_name` | `String` | Yes |  |
 | `source_url` | `String` | Yes |  |
-| `tag` | `Array` | Yes |  |
+| `tags` | `Array` | Yes |  |
 | `thumbnail` | `String` | Yes |  |
 | `title` | `String` | No |  |
 | `url` | `String` | No |  |
@@ -159,6 +159,28 @@ Create a new entity with the given data. Raises on error.
 ```ruby
 result = client.Audio.create({
   "identifier" => "example_identifier", # String
+  "alt_files" => [], # Array
+  "attribution" => "example_attribution", # String
+  "audio_set" => "example_audio_set", # Object
+  "detail_url" => "example_detail_url", # String
+  "display_name" => "example_display_name", # String
+  "fields_matched" => [], # Array
+  "id" => "example_id", # String
+  "indexed_on" => "example_indexed_on", # String
+  "len" => 1, # Integer
+  "license" => "example_license", # String
+  "license_url" => "example_license_url", # String
+  "logo_url" => "example_logo_url", # String
+  "mature" => true, # Boolean
+  "media_count" => 1, # Integer
+  "points" => [], # Array
+  "reason" => "example_reason", # Object
+  "related_url" => "example_related_url", # String
+  "source_name" => "example_source_name", # String
+  "source_url" => "example_source_url", # String
+  "tags" => [], # Array
+  "thumbnail" => "example_thumbnail", # String
+  "waveform" => "example_waveform", # String
 })
 ```
 
@@ -247,7 +269,7 @@ image = client.Image
 | `source` | `String` | No |  |
 | `source_name` | `String` | Yes |  |
 | `source_url` | `String` | Yes |  |
-| `tag` | `Array` | Yes |  |
+| `tags` | `Array` | Yes |  |
 | `thumbnail` | `String` | Yes |  |
 | `title` | `String` | No |  |
 | `type` | `Object` | Yes |  |
@@ -288,7 +310,7 @@ image = client.Image
 | `source` | - | - | - |
 | `source_name` | - | - | - |
 | `source_url` | - | - | - |
-| `tag` | - | - | - |
+| `tags` | - | - | - |
 | `thumbnail` | - | - | - |
 | `title` | - | - | - |
 | `type` | - | - | - |
@@ -305,6 +327,27 @@ Create a new entity with the given data. Raises on error.
 ```ruby
 result = client.Image.create({
   "identifier" => "example_identifier", # String
+  "attribution" => "example_attribution", # String
+  "author_name" => "example_author_name", # String
+  "author_url" => "example_author_url", # String
+  "detail_url" => "example_detail_url", # String
+  "display_name" => "example_display_name", # String
+  "fields_matched" => [], # Array
+  "id" => "example_id", # String
+  "indexed_on" => "example_indexed_on", # String
+  "license" => "example_license", # String
+  "license_url" => "example_license_url", # String
+  "logo_url" => "example_logo_url", # String
+  "mature" => true, # Boolean
+  "media_count" => 1, # Integer
+  "reason" => "example_reason", # Object
+  "related_url" => "example_related_url", # String
+  "source_name" => "example_source_name", # String
+  "source_url" => "example_source_url", # String
+  "tags" => [], # Array
+  "thumbnail" => "example_thumbnail", # String
+  "type" => "example_type", # Object
+  "version" => "example_version", # Object
 })
 ```
 

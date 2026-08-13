@@ -24,6 +24,7 @@ guide: {
     path: "/v1/audio/{identifier}/report/": {
       action: "report": {}
       op: create: method: *POST
+      op: create: transform: res: *("`body.reason`")|top
     }
     path: "/v1/audio/{identifier}/thumb/": {
       action: "thumb": {}
@@ -32,6 +33,7 @@ guide: {
     path: "/v1/audio/{identifier}/waveform/": {
       action: "waveform": {}
       op: list: method: *GET
+      op: list: transform: res: *("`body.points`")|top
     }
     path: "/v1/images/{identifier}/thumb/": {
       op: load: method: *GET
@@ -61,6 +63,7 @@ guide: {
     path: "/v1/images/{identifier}/report/": {
       action: "report": {}
       op: create: method: *POST
+      op: create: transform: res: *("`body.reason`")|top
     }
   }
 

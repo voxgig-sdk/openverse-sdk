@@ -33,7 +33,7 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "alt_file",
+            ["name"] = "alt_files",
             ["req"] = true,
             ["type"] = "`$ARRAY`",
             ["index$"] = 0,
@@ -138,7 +138,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "genre",
+            ["name"] = "genres",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 15,
@@ -215,7 +215,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "point",
+            ["name"] = "points",
             ["req"] = true,
             ["type"] = "`$ARRAY`",
             ["index$"] = 26,
@@ -271,7 +271,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "tag",
+            ["name"] = "tags",
             ["req"] = true,
             ["type"] = "`$ARRAY`",
             ["index$"] = 34,
@@ -326,6 +326,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/v1/audio/{identifier}/report/",
                 ["parts"] = {
@@ -342,7 +343,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.reason`",
                 },
                 ["index$"] = 0,
               },
@@ -553,6 +554,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v1/audio/",
                 ["parts"] = {
@@ -606,6 +608,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v1/audio/{identifier}/related/",
                 ["parts"] = {
@@ -640,6 +643,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v1/audio/{identifier}/waveform/",
                 ["parts"] = {
@@ -656,13 +660,14 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.points`",
                 },
                 ["index$"] = 2,
               },
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v1/audio/stats/",
                 ["parts"] = {
@@ -720,6 +725,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v1/audio/{identifier}/thumb/",
                 ["parts"] = {
@@ -776,6 +782,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v1/images/{identifier}/thumb/",
                 ["parts"] = {
@@ -812,6 +819,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v1/audio/{identifier}/",
                 ["parts"] = {
@@ -1063,7 +1071,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "tag",
+            ["name"] = "tags",
             ["req"] = true,
             ["type"] = "`$ARRAY`",
             ["index$"] = 29,
@@ -1138,6 +1146,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/v1/images/{identifier}/report/",
                 ["parts"] = {
@@ -1154,7 +1163,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.reason`",
                 },
                 ["index$"] = 0,
               },
@@ -1364,6 +1373,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v1/images/",
                 ["parts"] = {
@@ -1417,6 +1427,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v1/images/{identifier}/related/",
                 ["parts"] = {
@@ -1440,6 +1451,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v1/images/stats/",
                 ["parts"] = {
@@ -1478,6 +1490,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v1/images/{identifier}/",
                 ["parts"] = {
@@ -1515,6 +1528,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v1/images/oembed/",
                 ["parts"] = {
@@ -1579,6 +1593,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/v1/auth_tokens/register/",
                 ["parts"] = {
@@ -1641,6 +1656,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v1/rate_limit/",
                 ["parts"] = {
@@ -1702,6 +1718,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/v1/auth_tokens/token/",
                 ["parts"] = {

@@ -37,7 +37,9 @@ const client = new OpenverseSDK({
 
 ### 2. List audio records
 
-`list()` resolves to an array of Audio objects — iterate it directly:
+`list()` resolves to an array of Audio ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
 const audios = await client.Audio().list()
@@ -63,9 +65,31 @@ try {
 ### 4. Create, update, and remove
 
 ```ts
-// Create — returns the created Audio
+// Create — returns the created Audio ENTITY (.data() for the record)
 const created = await client.Audio().create({
   identifier: 'example_identifier',
+  alt_files: [],
+  attribution: 'example_attribution',
+  audio_set: 'example_audio_set',
+  detail_url: 'example_detail_url',
+  display_name: 'example_display_name',
+  fields_matched: [],
+  id: 'example_id',
+  indexed_on: 'example_indexed_on',
+  len: 1,
+  license: 'example_license',
+  license_url: 'example_license_url',
+  logo_url: 'example_logo_url',
+  mature: true,
+  media_count: 1,
+  points: [],
+  reason: 'example_reason',
+  related_url: 'example_related_url',
+  source_name: 'example_source_name',
+  source_url: 'example_source_url',
+  tags: [],
+  thumbnail: 'example_thumbnail',
+  waveform: 'example_waveform',
 })
 
 ```
@@ -77,8 +101,8 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const audios = await client.Audio().list()
-  console.log(audios)
+  const images = await client.Image().list()
+  console.log(images)
 } catch (err) {
   console.error('list failed:', err)
 }
@@ -144,9 +168,10 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = OpenverseSDK.test()
 
-const audio = await client.Audio().list()
-// audio is a bare entity populated with mock response data
-console.log(audio)
+const image = await client.Image().list()
+// image is the entity, populated with mock response data
+// — call image.data() for the record itself
+console.log(image)
 ```
 
 You can also use the instance method:
@@ -161,7 +186,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Audio()
+const entity = client.Image()
 
 // First call runs the operation and stores its result
 await entity.list()
@@ -320,7 +345,7 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `alt_file` |  |
+| `alt_files` |  |
 | `attribution` |  |
 | `audio_set` |  |
 | `bit_rate` |  |
@@ -335,7 +360,7 @@ The `prepare()` method returns:
 | `filesize` |  |
 | `filetype` |  |
 | `foreign_landing_url` |  |
-| `genre` |  |
+| `genres` |  |
 | `id` |  |
 | `identifier` |  |
 | `indexed_on` |  |
@@ -346,7 +371,7 @@ The `prepare()` method returns:
 | `logo_url` |  |
 | `mature` |  |
 | `media_count` |  |
-| `point` |  |
+| `points` |  |
 | `provider` |  |
 | `reason` |  |
 | `related_url` |  |
@@ -354,7 +379,7 @@ The `prepare()` method returns:
 | `source` |  |
 | `source_name` |  |
 | `source_url` |  |
-| `tag` |  |
+| `tags` |  |
 | `thumbnail` |  |
 | `title` |  |
 | `url` |  |
@@ -397,7 +422,7 @@ API path: `/v1/audio/{identifier}/report/`
 | `source` |  |
 | `source_name` |  |
 | `source_url` |  |
-| `tag` |  |
+| `tags` |  |
 | `thumbnail` |  |
 | `title` |  |
 | `type` |  |
@@ -468,7 +493,7 @@ Create an instance: `const audio = client.Audio()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_file` | `any[]` |  |
+| `alt_files` | `any[]` |  |
 | `attribution` | `string` |  |
 | `audio_set` | `any` |  |
 | `bit_rate` | `number` |  |
@@ -483,7 +508,7 @@ Create an instance: `const audio = client.Audio()`
 | `filesize` | `number` |  |
 | `filetype` | `string` |  |
 | `foreign_landing_url` | `string` |  |
-| `genre` | `any[]` |  |
+| `genres` | `any[]` |  |
 | `id` | `string` |  |
 | `identifier` | `string` |  |
 | `indexed_on` | `string` |  |
@@ -494,7 +519,7 @@ Create an instance: `const audio = client.Audio()`
 | `logo_url` | `string` |  |
 | `mature` | `boolean` |  |
 | `media_count` | `number` |  |
-| `point` | `any[]` |  |
+| `points` | `any[]` |  |
 | `provider` | `string` |  |
 | `reason` | `any` |  |
 | `related_url` | `string` |  |
@@ -502,7 +527,7 @@ Create an instance: `const audio = client.Audio()`
 | `source` | `string` |  |
 | `source_name` | `string` |  |
 | `source_url` | `string` |  |
-| `tag` | `any[]` |  |
+| `tags` | `any[]` |  |
 | `thumbnail` | `string` |  |
 | `title` | `string` |  |
 | `url` | `string` |  |
@@ -525,6 +550,28 @@ const audios = await client.Audio().list()
 ```ts
 const audio = await client.Audio().create({
   identifier: 'example_identifier',
+  alt_files: [],
+  attribution: 'example_attribution',
+  audio_set: 'example_audio_set',
+  detail_url: 'example_detail_url',
+  display_name: 'example_display_name',
+  fields_matched: [],
+  id: 'example_id',
+  indexed_on: 'example_indexed_on',
+  len: 1,
+  license: 'example_license',
+  license_url: 'example_license_url',
+  logo_url: 'example_logo_url',
+  mature: true,
+  media_count: 1,
+  points: [],
+  reason: 'example_reason',
+  related_url: 'example_related_url',
+  source_name: 'example_source_name',
+  source_url: 'example_source_url',
+  tags: [],
+  thumbnail: 'example_thumbnail',
+  waveform: 'example_waveform',
 })
 ```
 
@@ -574,7 +621,7 @@ Create an instance: `const image = client.Image()`
 | `source` | `string` |  |
 | `source_name` | `string` |  |
 | `source_url` | `string` |  |
-| `tag` | `any[]` |  |
+| `tags` | `any[]` |  |
 | `thumbnail` | `string` |  |
 | `title` | `string` |  |
 | `type` | `any` |  |
@@ -599,6 +646,27 @@ const images = await client.Image().list()
 ```ts
 const image = await client.Image().create({
   identifier: 'example_identifier',
+  attribution: 'example_attribution',
+  author_name: 'example_author_name',
+  author_url: 'example_author_url',
+  detail_url: 'example_detail_url',
+  display_name: 'example_display_name',
+  fields_matched: [],
+  id: 'example_id',
+  indexed_on: 'example_indexed_on',
+  license: 'example_license',
+  license_url: 'example_license_url',
+  logo_url: 'example_logo_url',
+  mature: true,
+  media_count: 1,
+  reason: 'example_reason',
+  related_url: 'example_related_url',
+  source_name: 'example_source_name',
+  source_url: 'example_source_url',
+  tags: [],
+  thumbnail: 'example_thumbnail',
+  type: 'example_type',
+  version: 'example_version',
 })
 ```
 
@@ -758,11 +826,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const audio = client.Audio()
-await audio.list()
+const image = client.Image()
+await image.list()
 
-// audio.data() now returns the audio data from the last `list`
-// audio.match() returns the last match criteria
+// image.data() now returns the image data from the last `list`
+// image.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

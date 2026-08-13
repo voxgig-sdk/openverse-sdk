@@ -84,7 +84,7 @@ class AudioEntityTest extends TestCase
         $audio_ref01_data["identifier"] = $setup["idmap"]["identifier01"];
 
         $audio_ref01_data_result = $audio_ref01_ent->create($audio_ref01_data, null);
-        $audio_ref01_data = Helpers::to_map($audio_ref01_data_result);
+        $audio_ref01_data = Helpers::to_map(is_object($audio_ref01_data_result) && method_exists($audio_ref01_data_result, 'data_get') ? $audio_ref01_data_result->data_get() : $audio_ref01_data_result);
         $this->assertNotNull($audio_ref01_data);
         $this->assertNotNull($audio_ref01_data["id"]);
 
@@ -104,7 +104,7 @@ class AudioEntityTest extends TestCase
             "id" => $audio_ref01_data["id"],
         ];
         $audio_ref01_data_dt0_loaded = $audio_ref01_ent->load($audio_ref01_match_dt0, null);
-        $audio_ref01_data_dt0_load_result = Helpers::to_map($audio_ref01_data_dt0_loaded);
+        $audio_ref01_data_dt0_load_result = Helpers::to_map(is_object($audio_ref01_data_dt0_loaded) && method_exists($audio_ref01_data_dt0_loaded, 'data_get') ? $audio_ref01_data_dt0_loaded->data_get() : $audio_ref01_data_dt0_loaded);
         $this->assertNotNull($audio_ref01_data_dt0_load_result);
         $this->assertEquals($audio_ref01_data_dt0_load_result["id"], $audio_ref01_data["id"]);
 

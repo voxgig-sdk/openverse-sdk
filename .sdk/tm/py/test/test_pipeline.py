@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import OpenverseSDK
-from core.error import OpenverseError
-from core.result import OpenverseResult
-from core.response import OpenverseResponse
-from core.spec import OpenverseSpec
-from feature.base_feature import OpenverseBaseFeature
+from projectname_sdk.core.error import OpenverseError
+from projectname_sdk.core.result import OpenverseResult
+from projectname_sdk.core.response import OpenverseResponse
+from projectname_sdk.core.spec import OpenverseSpec
+from projectname_sdk.feature.base_feature import OpenverseBaseFeature
 
 
 def _client():

@@ -39,7 +39,7 @@ class OpenverseConfig
           'fields' => [
             [
               'active' => true,
-              'name' => 'alt_file',
+              'name' => 'alt_files',
               'req' => true,
               'type' => '`$ARRAY`',
               'index$' => 0,
@@ -144,7 +144,7 @@ class OpenverseConfig
             ],
             [
               'active' => true,
-              'name' => 'genre',
+              'name' => 'genres',
               'req' => false,
               'type' => '`$ARRAY`',
               'index$' => 15,
@@ -221,7 +221,7 @@ class OpenverseConfig
             ],
             [
               'active' => true,
-              'name' => 'point',
+              'name' => 'points',
               'req' => true,
               'type' => '`$ARRAY`',
               'index$' => 26,
@@ -277,7 +277,7 @@ class OpenverseConfig
             ],
             [
               'active' => true,
-              'name' => 'tag',
+              'name' => 'tags',
               'req' => true,
               'type' => '`$ARRAY`',
               'index$' => 34,
@@ -332,6 +332,7 @@ class OpenverseConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/v1/audio/{identifier}/report/',
                   'parts' => [
@@ -348,7 +349,7 @@ class OpenverseConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.reason`',
                   ],
                   'index$' => 0,
                 ],
@@ -559,6 +560,7 @@ class OpenverseConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/v1/audio/',
                   'parts' => [
@@ -612,6 +614,7 @@ class OpenverseConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/v1/audio/{identifier}/related/',
                   'parts' => [
@@ -646,6 +649,7 @@ class OpenverseConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/v1/audio/{identifier}/waveform/',
                   'parts' => [
@@ -662,13 +666,14 @@ class OpenverseConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.points`',
                   ],
                   'index$' => 2,
                 ],
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/v1/audio/stats/',
                   'parts' => [
@@ -726,6 +731,7 @@ class OpenverseConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/v1/audio/{identifier}/thumb/',
                   'parts' => [
@@ -782,6 +788,7 @@ class OpenverseConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/v1/images/{identifier}/thumb/',
                   'parts' => [
@@ -818,6 +825,7 @@ class OpenverseConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/v1/audio/{identifier}/',
                   'parts' => [
@@ -1069,7 +1077,7 @@ class OpenverseConfig
             ],
             [
               'active' => true,
-              'name' => 'tag',
+              'name' => 'tags',
               'req' => true,
               'type' => '`$ARRAY`',
               'index$' => 29,
@@ -1144,6 +1152,7 @@ class OpenverseConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/v1/images/{identifier}/report/',
                   'parts' => [
@@ -1160,7 +1169,7 @@ class OpenverseConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.reason`',
                   ],
                   'index$' => 0,
                 ],
@@ -1370,6 +1379,7 @@ class OpenverseConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/v1/images/',
                   'parts' => [
@@ -1423,6 +1433,7 @@ class OpenverseConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/v1/images/{identifier}/related/',
                   'parts' => [
@@ -1446,6 +1457,7 @@ class OpenverseConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/v1/images/stats/',
                   'parts' => [
@@ -1484,6 +1496,7 @@ class OpenverseConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/v1/images/{identifier}/',
                   'parts' => [
@@ -1521,6 +1534,7 @@ class OpenverseConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/v1/images/oembed/',
                   'parts' => [
@@ -1585,6 +1599,7 @@ class OpenverseConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/v1/auth_tokens/register/',
                   'parts' => [
@@ -1647,6 +1662,7 @@ class OpenverseConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/v1/rate_limit/',
                   'parts' => [
@@ -1708,6 +1724,7 @@ class OpenverseConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/v1/auth_tokens/token/',
                   'parts' => [

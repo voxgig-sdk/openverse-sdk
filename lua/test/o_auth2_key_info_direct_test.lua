@@ -60,7 +60,7 @@ function o_auth2_key_info_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["OPENVERSE_TEST_O_AUTH__KEY_INFO_ENTID"] = {},
+    ["OPENVERSE_TEST_O_AUTH2_KEY_INFO_ENTID"] = {},
     ["OPENVERSE_TEST_LIVE"] = "FALSE",
     ["OPENVERSE_APIKEY"] = "NONE",
   })

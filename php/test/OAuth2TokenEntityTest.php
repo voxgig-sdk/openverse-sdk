@@ -33,7 +33,7 @@ class OAuth2TokenEntityTest extends TestCase
         // The basic flow consumes synthetic IDs from the fixture. In live mode
         // without an *_ENTID env override, those IDs hit the live API and 4xx.
         if (!empty($setup["synthetic_only"])) {
-            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set OPENVERSE_TEST_O_AUTH__TOKEN_ENTID JSON to run live");
+            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set OPENVERSE_TEST_O_AUTH2_TOKEN_ENTID JSON to run live");
             return;
         }
         $client = $setup["client"];
@@ -44,7 +44,7 @@ class OAuth2TokenEntityTest extends TestCase
             Vs::getpath($setup["data"], "new.o_auth2_token"), "o_auth2_token_ref01"));
 
         $o_auth2_token_ref01_data_result = $o_auth2_token_ref01_ent->create($o_auth2_token_ref01_data, null);
-        $o_auth2_token_ref01_data = Helpers::to_map($o_auth2_token_ref01_data_result);
+        $o_auth2_token_ref01_data = Helpers::to_map(is_object($o_auth2_token_ref01_data_result) && method_exists($o_auth2_token_ref01_data_result, 'data_get') ? $o_auth2_token_ref01_data_result->data_get() : $o_auth2_token_ref01_data_result);
         $this->assertNotNull($o_auth2_token_ref01_data);
 
     }
@@ -72,18 +72,18 @@ function o_auth2_token_basic_setup($extra)
     // Detect ENTID env override before envOverride consumes it. When live
     // mode is on without a real override, the basic test runs against synthetic
     // IDs from the fixture and 4xx's. Surface this so the test can skip.
-    $entid_env_raw = getenv("OPENVERSE_TEST_O_AUTH__TOKEN_ENTID");
+    $entid_env_raw = getenv("OPENVERSE_TEST_O_AUTH2_TOKEN_ENTID");
     $idmap_overridden = $entid_env_raw !== false && str_starts_with(trim($entid_env_raw), "{");
 
     $env = Runner::env_override([
-        "OPENVERSE_TEST_O_AUTH__TOKEN_ENTID" => $idmap,
+        "OPENVERSE_TEST_O_AUTH2_TOKEN_ENTID" => $idmap,
         "OPENVERSE_TEST_LIVE" => "FALSE",
         "OPENVERSE_TEST_EXPLAIN" => "FALSE",
         "OPENVERSE_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
-        $env["OPENVERSE_TEST_O_AUTH__TOKEN_ENTID"]);
+        $env["OPENVERSE_TEST_O_AUTH2_TOKEN_ENTID"]);
     if ($idmap_resolved === null) {
         $idmap_resolved = Helpers::to_map($idmap);
     }

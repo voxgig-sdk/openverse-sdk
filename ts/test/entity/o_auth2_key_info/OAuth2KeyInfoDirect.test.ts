@@ -24,6 +24,10 @@ describe('OAuth2KeyInfoDirect', async () => {
 
   test('direct-exists', async () => {
     const sdk = new OpenverseSDK({
+      // Concrete base: a live construction must satisfy any server
+      // variables a templated base URL declares; overriding base with a
+      // literal (as the direct flow tests do) sidesteps the requirement.
+      base: 'http://localhost:8080',
       system: { fetch: async () => ({}) }
     })
     assert('function' === typeof sdk.direct)
@@ -72,7 +76,7 @@ function directSetup(mockres?: any) {
   const calls: any[] = []
 
   const env = envOverride({
-    'OPENVERSE_TEST_O_AUTH__KEY_INFO_ENTID': {},
+    'OPENVERSE_TEST_O_AUTH2_KEY_INFO_ENTID': {},
     'OPENVERSE_TEST_LIVE': 'FALSE',
     'OPENVERSE_APIKEY': 'NONE',
   })
@@ -84,7 +88,7 @@ function directSetup(mockres?: any) {
       apikey: env.OPENVERSE_APIKEY,
     })
 
-    let idmap: any = env['OPENVERSE_TEST_O_AUTH__KEY_INFO_ENTID']
+    let idmap: any = env['OPENVERSE_TEST_O_AUTH2_KEY_INFO_ENTID']
     if ('string' === typeof idmap && idmap.startsWith('{')) {
       idmap = JSON.parse(idmap)
     }

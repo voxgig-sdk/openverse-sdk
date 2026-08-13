@@ -70,7 +70,7 @@ func main() {
     fmt.Println(audio)
 
     // Create a audio.
-    created, err := client.Audio(nil).Create(map[string]any{"identifier": "example_identifier"}, nil)
+    created, err := client.Audio(nil).Create(map[string]any{"identifier": "example_identifier", "alt_files": []any{}, "attribution": "example_attribution", "audio_set": "example_audio_set", "detail_url": "example_detail_url", "display_name": "example_display_name", "fields_matched": []any{}, "id": "example_id", "indexed_on": "example_indexed_on", "len": 1, "license": "example_license", "license_url": "example_license_url", "logo_url": "example_logo_url", "mature": true, "media_count": 1, "points": []any{}, "reason": "example_reason", "related_url": "example_related_url", "source_name": "example_source_name", "source_url": "example_source_url", "tags": []any{}, "thumbnail": "example_thumbnail", "waveform": "example_waveform"}, nil)
     if err != nil {
         panic(err)
     }
@@ -85,12 +85,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-audios, err := client.Audio(nil).List(nil, nil)
+images, err := client.Image(nil).List(nil, nil)
 if err != nil {
     // handle err
     return
 }
-_ = audios
+_ = images
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -154,13 +154,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-audio, err := client.Audio(nil).List(
+image, err := client.Image(nil).List(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(audio) // the returned mock data
+fmt.Println(image) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -286,7 +286,7 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"alt_file"` |  |
+| `"alt_files"` |  |
 | `"attribution"` |  |
 | `"audio_set"` |  |
 | `"bit_rate"` |  |
@@ -301,7 +301,7 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 | `"filesize"` |  |
 | `"filetype"` |  |
 | `"foreign_landing_url"` |  |
-| `"genre"` |  |
+| `"genres"` |  |
 | `"id"` |  |
 | `"identifier"` |  |
 | `"indexed_on"` |  |
@@ -312,7 +312,7 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 | `"logo_url"` |  |
 | `"mature"` |  |
 | `"media_count"` |  |
-| `"point"` |  |
+| `"points"` |  |
 | `"provider"` |  |
 | `"reason"` |  |
 | `"related_url"` |  |
@@ -320,7 +320,7 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 | `"source"` |  |
 | `"source_name"` |  |
 | `"source_url"` |  |
-| `"tag"` |  |
+| `"tags"` |  |
 | `"thumbnail"` |  |
 | `"title"` |  |
 | `"url"` |  |
@@ -363,7 +363,7 @@ API path: `/v1/audio/{identifier}/report/`
 | `"source"` |  |
 | `"source_name"` |  |
 | `"source_url"` |  |
-| `"tag"` |  |
+| `"tags"` |  |
 | `"thumbnail"` |  |
 | `"title"` |  |
 | `"type"` |  |
@@ -434,7 +434,7 @@ Create an instance: `audio := client.Audio(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_file` | `[]any` |  |
+| `alt_files` | `[]any` |  |
 | `attribution` | `string` |  |
 | `audio_set` | `any` |  |
 | `bit_rate` | `int` |  |
@@ -449,7 +449,7 @@ Create an instance: `audio := client.Audio(nil)`
 | `filesize` | `int` |  |
 | `filetype` | `string` |  |
 | `foreign_landing_url` | `string` |  |
-| `genre` | `[]any` |  |
+| `genres` | `[]any` |  |
 | `id` | `string` |  |
 | `identifier` | `string` |  |
 | `indexed_on` | `string` |  |
@@ -460,7 +460,7 @@ Create an instance: `audio := client.Audio(nil)`
 | `logo_url` | `string` |  |
 | `mature` | `bool` |  |
 | `media_count` | `int` |  |
-| `point` | `[]any` |  |
+| `points` | `[]any` |  |
 | `provider` | `string` |  |
 | `reason` | `any` |  |
 | `related_url` | `string` |  |
@@ -468,7 +468,7 @@ Create an instance: `audio := client.Audio(nil)`
 | `source` | `string` |  |
 | `source_name` | `string` |  |
 | `source_url` | `string` |  |
-| `tag` | `[]any` |  |
+| `tags` | `[]any` |  |
 | `thumbnail` | `string` |  |
 | `title` | `string` |  |
 | `url` | `string` |  |
@@ -499,6 +499,28 @@ fmt.Println(audios) // the array of records
 ```go
 result, err := client.Audio(nil).Create(map[string]any{
     "identifier": "example_identifier",
+    "alt_files": []any{},
+    "attribution": "example_attribution",
+    "audio_set": "example_audio_set",
+    "detail_url": "example_detail_url",
+    "display_name": "example_display_name",
+    "fields_matched": []any{},
+    "id": "example_id",
+    "indexed_on": "example_indexed_on",
+    "len": 1,
+    "license": "example_license",
+    "license_url": "example_license_url",
+    "logo_url": "example_logo_url",
+    "mature": true,
+    "media_count": 1,
+    "points": []any{},
+    "reason": "example_reason",
+    "related_url": "example_related_url",
+    "source_name": "example_source_name",
+    "source_url": "example_source_url",
+    "tags": []any{},
+    "thumbnail": "example_thumbnail",
+    "waveform": "example_waveform",
 }, nil)
 if err != nil {
     panic(err)
@@ -552,7 +574,7 @@ Create an instance: `image := client.Image(nil)`
 | `source` | `string` |  |
 | `source_name` | `string` |  |
 | `source_url` | `string` |  |
-| `tag` | `[]any` |  |
+| `tags` | `[]any` |  |
 | `thumbnail` | `string` |  |
 | `title` | `string` |  |
 | `type` | `any` |  |
@@ -585,6 +607,27 @@ fmt.Println(images) // the array of records
 ```go
 result, err := client.Image(nil).Create(map[string]any{
     "identifier": "example_identifier",
+    "attribution": "example_attribution",
+    "author_name": "example_author_name",
+    "author_url": "example_author_url",
+    "detail_url": "example_detail_url",
+    "display_name": "example_display_name",
+    "fields_matched": []any{},
+    "id": "example_id",
+    "indexed_on": "example_indexed_on",
+    "license": "example_license",
+    "license_url": "example_license_url",
+    "logo_url": "example_logo_url",
+    "mature": true,
+    "media_count": 1,
+    "reason": "example_reason",
+    "related_url": "example_related_url",
+    "source_name": "example_source_name",
+    "source_url": "example_source_url",
+    "tags": []any{},
+    "thumbnail": "example_thumbnail",
+    "type": "example_type",
+    "version": "example_version",
 }, nil)
 if err != nil {
     panic(err)
@@ -764,11 +807,11 @@ Entity instances are stateful. After a successful `List`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-audio := client.Audio(nil)
-audio.List(nil, nil)
+image := client.Image(nil)
+image.List(nil, nil)
 
-// audio.Data() now returns the audio data from the last list
-// audio.Match() returns the last match criteria
+// image.Data() now returns the image data from the last list
+// image.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

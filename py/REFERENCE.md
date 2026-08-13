@@ -104,7 +104,7 @@ audio = client.Audio()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_file` | `list` | Yes |  |
+| `alt_files` | `list` | Yes |  |
 | `attribution` | `str` | Yes |  |
 | `audio_set` | `Any` | Yes |  |
 | `bit_rate` | `int` | No |  |
@@ -119,7 +119,7 @@ audio = client.Audio()
 | `filesize` | `int` | No |  |
 | `filetype` | `str` | No |  |
 | `foreign_landing_url` | `str` | No |  |
-| `genre` | `list` | No |  |
+| `genres` | `list` | No |  |
 | `id` | `str` | Yes |  |
 | `identifier` | `str` | Yes |  |
 | `indexed_on` | `str` | Yes |  |
@@ -130,7 +130,7 @@ audio = client.Audio()
 | `logo_url` | `str` | Yes |  |
 | `mature` | `bool` | Yes |  |
 | `media_count` | `int` | Yes |  |
-| `point` | `list` | Yes |  |
+| `points` | `list` | Yes |  |
 | `provider` | `str` | No |  |
 | `reason` | `Any` | Yes |  |
 | `related_url` | `str` | Yes |  |
@@ -138,7 +138,7 @@ audio = client.Audio()
 | `source` | `str` | No |  |
 | `source_name` | `str` | Yes |  |
 | `source_url` | `str` | Yes |  |
-| `tag` | `list` | Yes |  |
+| `tags` | `list` | Yes |  |
 | `thumbnail` | `str` | Yes |  |
 | `title` | `str` | No |  |
 | `url` | `str` | No |  |
@@ -153,6 +153,28 @@ Create a new entity with the given data. Returns the created entity data and rai
 ```python
 result = client.Audio().create({
     "identifier": "example_identifier",  # str
+    "alt_files": [],  # list
+    "attribution": "example_attribution",  # str
+    "audio_set": "example_audio_set",  # Any
+    "detail_url": "example_detail_url",  # str
+    "display_name": "example_display_name",  # str
+    "fields_matched": [],  # list
+    "id": "example_id",  # str
+    "indexed_on": "example_indexed_on",  # str
+    "len": 1,  # int
+    "license": "example_license",  # str
+    "license_url": "example_license_url",  # str
+    "logo_url": "example_logo_url",  # str
+    "mature": True,  # bool
+    "media_count": 1,  # int
+    "points": [],  # list
+    "reason": "example_reason",  # Any
+    "related_url": "example_related_url",  # str
+    "source_name": "example_source_name",  # str
+    "source_url": "example_source_url",  # str
+    "tags": [],  # list
+    "thumbnail": "example_thumbnail",  # str
+    "waveform": "example_waveform",  # str
 })
 ```
 
@@ -242,7 +264,7 @@ image = client.Image()
 | `source` | `str` | No |  |
 | `source_name` | `str` | Yes |  |
 | `source_url` | `str` | Yes |  |
-| `tag` | `list` | Yes |  |
+| `tags` | `list` | Yes |  |
 | `thumbnail` | `str` | Yes |  |
 | `title` | `str` | No |  |
 | `type` | `Any` | Yes |  |
@@ -283,7 +305,7 @@ image = client.Image()
 | `source` | - | - | - |
 | `source_name` | - | - | - |
 | `source_url` | - | - | - |
-| `tag` | - | - | - |
+| `tags` | - | - | - |
 | `thumbnail` | - | - | - |
 | `title` | - | - | - |
 | `type` | - | - | - |
@@ -300,6 +322,27 @@ Create a new entity with the given data. Returns the created entity data and rai
 ```python
 result = client.Image().create({
     "identifier": "example_identifier",  # str
+    "attribution": "example_attribution",  # str
+    "author_name": "example_author_name",  # str
+    "author_url": "example_author_url",  # str
+    "detail_url": "example_detail_url",  # str
+    "display_name": "example_display_name",  # str
+    "fields_matched": [],  # list
+    "id": "example_id",  # str
+    "indexed_on": "example_indexed_on",  # str
+    "license": "example_license",  # str
+    "license_url": "example_license_url",  # str
+    "logo_url": "example_logo_url",  # str
+    "mature": True,  # bool
+    "media_count": 1,  # int
+    "reason": "example_reason",  # Any
+    "related_url": "example_related_url",  # str
+    "source_name": "example_source_name",  # str
+    "source_url": "example_source_url",  # str
+    "tags": [],  # list
+    "thumbnail": "example_thumbnail",  # str
+    "type": "example_type",  # Any
+    "version": "example_version",  # Any
 })
 ```
 

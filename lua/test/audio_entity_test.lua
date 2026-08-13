@@ -83,7 +83,7 @@ describe("AudioEntity", function()
 
     local audio_ref01_data_result, err = audio_ref01_ent:create(audio_ref01_data, nil)
     assert.is_nil(err)
-    audio_ref01_data = helpers.to_map(audio_ref01_data_result)
+    audio_ref01_data = helpers.to_map(type(audio_ref01_data_result) == 'table' and audio_ref01_data_result.data_get and audio_ref01_data_result:data_get() or audio_ref01_data_result)
     assert.is_not_nil(audio_ref01_data)
     assert.is_not_nil(audio_ref01_data["id"])
 
@@ -105,7 +105,7 @@ describe("AudioEntity", function()
     }
     local audio_ref01_data_dt0_loaded, err = audio_ref01_ent:load(audio_ref01_match_dt0, nil)
     assert.is_nil(err)
-    local audio_ref01_data_dt0_load_result = helpers.to_map(audio_ref01_data_dt0_loaded)
+    local audio_ref01_data_dt0_load_result = helpers.to_map(type(audio_ref01_data_dt0_loaded) == 'table' and audio_ref01_data_dt0_loaded.data_get and audio_ref01_data_dt0_loaded:data_get() or audio_ref01_data_dt0_loaded)
     assert.is_not_nil(audio_ref01_data_dt0_load_result)
     assert.are.equal(audio_ref01_data_dt0_load_result["id"], audio_ref01_data["id"])
 

@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ OpenverseUtility.registrar = ->(u) {
   u.prepare_params = OpenverseUtilities::PrepareParams
   u.prepare_path = OpenverseUtilities::PreparePath
   u.prepare_query = OpenverseUtilities::PrepareQuery
+  u.graphql_body = OpenverseUtilities::GraphqlBody
+  u.graphql_errors = OpenverseUtilities::GraphqlErrors
   u.result_basic = OpenverseUtilities::ResultBasic
   u.result_body = OpenverseUtilities::ResultBody
   u.result_headers = OpenverseUtilities::ResultHeaders

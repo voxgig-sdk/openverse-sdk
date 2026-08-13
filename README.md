@@ -38,18 +38,27 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = OpenverseSDK.test()
-const audios = await client.Audio().list()
-// audios is an array of bare Audio records populated with mock data
-console.log(audios)
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = OpenverseSDK.test({
+  entity: {
+    image: {
+      test01: { id: 'test01', identifier: 'example_identifier', attribution: 'example_attribution', author_name: 'example_author_name' },
+    },
+  },
+})
+const images = await client.Image().list()
+// images is an array of Image entities, populated with mock data
+// — call images[0].data() for the record itself
+console.log(images)
 ```
 
 ### Python
 
 ```python
 client = OpenverseSDK.test()
-audios = client.Audio().list()
-print(audios)
+images = client.Image().list()
+print(images)
 ```
 
 ### PHP
@@ -57,16 +66,16 @@ print(audios)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = OpenverseSDK::test([
-    "entity" => ["audio" => ["test01" => ["id" => "test01"]]],
+    "entity" => ["image" => ["test01" => ["id" => "test01"]]],
 ]);
-$audios = $client->Audio()->list();
+$images = $client->Image()->list();
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.Audio(nil).List(
+result, err := client.Image(nil).List(
     nil, nil,
 )
 ```
@@ -76,16 +85,16 @@ result, err := client.Audio(nil).List(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = OpenverseSDK.test({
-  "entity" => { "audio" => { "test01" => { "id" => "test01" } } },
+  "entity" => { "image" => { "test01" => { "id" => "test01" } } },
 })
-audios = client.Audio.list()
+images = client.Image.list()
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local results, err = client:Audio():list()
+local results, err = client:Image():list()
 ```
 
 ## Packages
@@ -112,7 +121,7 @@ const client = new OpenverseSDK({
   apikey: process.env.OPENVERSE_APIKEY,
 })
 
-// List all audios (returns Audio[])
+// List all audios (returns AudioEntity[] — .data() for the record)
 const audios = await client.Audio().list()
 for (const audio of audios) {
   console.log(audio)
@@ -157,8 +166,8 @@ The API exposes 5 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Audio** | The Audio entity (create, list, load). | `/v1/audio/{identifier}/report/` |
-| **Image** | The Image entity (create, list, load). | `/v1/images/{identifier}/report/` |
+| **Audio** | The Audio entity (create, list, load). | `/v1/audio/` |
+| **Image** | The Image entity (create, list, load). | `/v1/images/` |
 | **OAuth2Application** | The OAuth2Application entity (create). | `/v1/auth_tokens/register/` |
 | **OAuth2KeyInfo** | The OAuth2KeyInfo entity (load). | `/v1/rate_limit/` |
 | **OAuth2Token** | The OAuth2Token entity (create). | `/v1/auth_tokens/token/` |
@@ -202,7 +211,7 @@ $client = new OpenverseSDK([
 $audios = $client->Audio()->list();
 print_r($audios);
 
-// Load a specific audio (returns the bare record; throws on error)
+// Load a specific audio (returns the ENTITY; call data_get() for the record; throws on error)
 $audio = $client->Audio()->load(["id" => "example_id"]);
 print_r($audio);
 ```
@@ -237,7 +246,7 @@ client = OpenverseSDK.new({
 audios = client.Audio.list
 puts audios
 
-# Load a specific audio (returns the bare record; raises on error)
+# Load a specific audio (returns the ENTITY; call data_get for the record)
 audio = client.Audio.load({ "id" => "example_id" })
 puts audio
 ```
@@ -376,6 +385,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://api.openverse.org](https://api.openverse.org)
 

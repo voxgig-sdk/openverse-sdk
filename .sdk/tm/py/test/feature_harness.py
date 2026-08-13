@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import OpenverseControl
-from core.error import OpenverseError
-from core.result import OpenverseResult
-from core.spec import OpenverseSpec
+from projectname_sdk.config import make_config
+from projectname_sdk.features import _make_feature
+from projectname_sdk.core.control import OpenverseControl
+from projectname_sdk.core.error import OpenverseError
+from projectname_sdk.core.result import OpenverseResult
+from projectname_sdk.core.spec import OpenverseSpec
 
 
 # True when this SDK was generated with the named feature.

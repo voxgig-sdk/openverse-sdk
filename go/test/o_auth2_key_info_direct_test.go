@@ -35,7 +35,8 @@ func TestOAuth2KeyInfoDirect(t *testing.T) {
 		if setup.live {
 			// Live mode is lenient: synthetic IDs frequently 4xx. Skip
 			// rather than fail when the load endpoint isn't reachable with
-			// the IDs we can construct from setup.idmap.
+			// the IDs we can construct from setup.idmap — unless the model
+			// sets main.kit.test.live.strict.
 			if err != nil {
 				t.Skipf("load call failed (likely synthetic IDs against live API): %v", err)
 			}
@@ -97,7 +98,7 @@ func o_auth2_key_infoDirectSetup(mockres any) *o_auth2_key_infoDirectSetupResult
 	calls := &[]map[string]any{}
 
 	env := envOverride(map[string]any{
-		"OPENVERSE_TEST_O_AUTH__KEY_INFO_ENTID": map[string]any{},
+		"OPENVERSE_TEST_O_AUTH2_KEY_INFO_ENTID": map[string]any{},
 		"OPENVERSE_TEST_LIVE":    "FALSE",
 		"OPENVERSE_APIKEY":       "NONE",
 	})
@@ -111,7 +112,7 @@ func o_auth2_key_infoDirectSetup(mockres any) *o_auth2_key_infoDirectSetupResult
 		client := sdk.NewOpenverseSDK(mergedOpts)
 
 		idmap := map[string]any{}
-		if entidRaw, ok := env["OPENVERSE_TEST_O_AUTH__KEY_INFO_ENTID"]; ok {
+		if entidRaw, ok := env["OPENVERSE_TEST_O_AUTH2_KEY_INFO_ENTID"]; ok {
 			if entidStr, ok := entidRaw.(string); ok && strings.HasPrefix(entidStr, "{") {
 				json.Unmarshal([]byte(entidStr), &idmap)
 			} else if entidMap, ok := entidRaw.(map[string]any); ok {

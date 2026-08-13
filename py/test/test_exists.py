@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# Openverse SDK exists test
 
 import pytest
 from openverse_sdk import OpenverseSDK

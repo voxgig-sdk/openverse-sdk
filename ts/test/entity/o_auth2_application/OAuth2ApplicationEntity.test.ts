@@ -48,7 +48,7 @@ describe('OAuth2ApplicationEntity', async () => {
     // fixture (entity TestData.json). Those don't exist on the live API.
     // Skip live runs unless the user provided a real ENTID env override.
     if (setup.syntheticOnly) {
-      t.skip('live entity test uses synthetic IDs from fixture — set OPENVERSE_TEST_O_AUTH__APPLICATION_ENTID JSON to run live')
+      t.skip('live entity test uses synthetic IDs from fixture — set OPENVERSE_TEST_O_AUTH2_APPLICATION_ENTID JSON to run live')
       return
     }
     const client = setup.client
@@ -62,7 +62,7 @@ describe('OAuth2ApplicationEntity', async () => {
     const o_auth2_application_ref01_ent = client.OAuth2Application()
     let o_auth2_application_ref01_data = setup.data.new.o_auth2_application['o_auth2_application_ref01']
 
-    o_auth2_application_ref01_data = await o_auth2_application_ref01_ent.create(o_auth2_application_ref01_data)
+    o_auth2_application_ref01_data = (await o_auth2_application_ref01_ent.create(o_auth2_application_ref01_data)).data()
     assert(null != o_auth2_application_ref01_data)
 
 
@@ -106,17 +106,17 @@ function basicSetup(extra?: any) {
   // basic flow consumes synthetic IDs from the fixture file; without an
   // override those synthetic IDs reach the live API and 4xx. Surface this
   // to the test so it can skip rather than fail.
-  const idmapEnvVal = process.env['OPENVERSE_TEST_O_AUTH__APPLICATION_ENTID']
+  const idmapEnvVal = process.env['OPENVERSE_TEST_O_AUTH2_APPLICATION_ENTID']
   const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{')
 
   const env = envOverride({
-    'OPENVERSE_TEST_O_AUTH__APPLICATION_ENTID': idmap,
+    'OPENVERSE_TEST_O_AUTH2_APPLICATION_ENTID': idmap,
     'OPENVERSE_TEST_LIVE': 'FALSE',
     'OPENVERSE_TEST_EXPLAIN': 'FALSE',
     'OPENVERSE_APIKEY': 'NONE',
   })
 
-  idmap = env['OPENVERSE_TEST_O_AUTH__APPLICATION_ENTID']
+  idmap = env['OPENVERSE_TEST_O_AUTH2_APPLICATION_ENTID']
 
   const live = 'TRUE' === env.OPENVERSE_TEST_LIVE
 
