@@ -61,8 +61,7 @@ class Audio(AudioRequired, total=False):
     url: str
 
 
-class AudioLoadMatch(TypedDict, total=False):
-    identifier: str
+class AudioLoadMatch(TypedDict):
     id: str
 
 

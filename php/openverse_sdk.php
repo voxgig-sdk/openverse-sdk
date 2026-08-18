@@ -40,7 +40,7 @@ class OpenverseSDK
         $utility = new OpenverseUtility();
         $this->_utility = $utility;
 
-        $config = OpenverseConfig::make_config();
+        $config = OpenverseConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

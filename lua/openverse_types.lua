@@ -48,8 +48,7 @@
 ---@field waveform string
 
 ---@class AudioLoadMatch
----@field identifier? string
----@field id? string
+---@field id string
 
 ---@class AudioListMatch
 ---@field alt_files? table

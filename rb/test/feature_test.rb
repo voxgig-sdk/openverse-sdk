@@ -15,7 +15,7 @@ require_relative "../Openverse_sdk"
 module OpenverseFeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = OpenverseConfig.make_config["feature"]
+    f = OpenverseConfig.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 

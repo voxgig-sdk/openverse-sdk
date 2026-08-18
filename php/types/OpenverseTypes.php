@@ -59,8 +59,7 @@ class Audio
 /** Request payload for Audio#load. */
 class AudioLoadMatch
 {
-    public ?string $identifier = null;
-    public ?string $id = null;
+    public string $id;
 }
 
 /** Request payload for Audio#list. */

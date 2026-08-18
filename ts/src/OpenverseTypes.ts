@@ -48,8 +48,7 @@ export interface Audio {
 }
 
 export interface AudioLoadMatch {
-  identifier?: string
-  id?: string
+  id: string
 
   // Selects a custom action instead of the plain load:
   //   'thumb'

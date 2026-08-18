@@ -57,8 +57,7 @@ type Audio struct {
 
 // AudioLoadMatch is the typed request payload for Audio.LoadTyped.
 type AudioLoadMatch struct {
-	Identifier *string `json:"identifier,omitempty"`
-	Id *string `json:"id,omitempty"`
+	Id string `json:"id"`
 }
 
 // AudioListMatch is the typed request payload for Audio.ListTyped.

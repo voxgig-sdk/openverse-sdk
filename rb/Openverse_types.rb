@@ -171,13 +171,9 @@ Audio = Struct.new(
 
 # Request payload for Audio#load.
 #
-# @!attribute [rw] identifier
-#   @return [String, nil]
-#
 # @!attribute [rw] id
-#   @return [String, nil]
+#   @return [String]
 AudioLoadMatch = Struct.new(
-  :identifier,
   :id,
   keyword_init: true
 )

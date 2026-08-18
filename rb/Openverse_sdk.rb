@@ -28,7 +28,7 @@ class OpenverseSDK
     utility = OpenverseUtility.new
     @_utility = utility
 
-    config = OpenverseConfig.make_config
+    config = OpenverseConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,
