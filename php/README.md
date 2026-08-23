@@ -280,45 +280,45 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `alt_files` |  |
-| `attribution` |  |
-| `audio_set` |  |
-| `bit_rate` |  |
-| `category` |  |
-| `creator` |  |
-| `creator_url` |  |
-| `description` |  |
-| `detail_url` |  |
-| `display_name` |  |
-| `duration` |  |
-| `fields_matched` |  |
-| `filesize` |  |
-| `filetype` |  |
-| `foreign_landing_url` |  |
-| `genres` |  |
-| `id` |  |
-| `identifier` |  |
-| `indexed_on` |  |
+| `alt_files` | JSON describing alternative files for this audio. |
+| `attribution` | Legally valid attribution for the media item in plain-text English. |
+| `audio_set` | Reference to set of which this track is a part. |
+| `bit_rate` | Number in bits per second, eg. |
+| `category` | The top-level classification of this media file. |
+| `creator` | The name of the media creator. |
+| `creator_url` | A direct link to the media creator. |
+| `description` | The explanation on why media is being reported. |
+| `detail_url` | A direct link to the detail view of this audio file. |
+| `display_name` | The name of content source, e.g. |
+| `duration` | The time length of the audio file in milliseconds. |
+| `fields_matched` | List the fields that matched the query for this result. |
+| `filesize` | Number in bytes, e.g. |
+| `filetype` | The type of the file, related to the file extension. |
+| `foreign_landing_url` | The landing page of the work. |
+| `genres` | An array of audio genres such as `rock`, `electronic` for `music` category, or `politics`, `sport`, `education` for `podcast` category |
+| `id` | Our unique identifier for an open-licensed work. |
+| `identifier` | Our unique identifier for an open-licensed work. |
+| `indexed_on` | The timestamp of when the media was indexed by Openverse. |
 | `len` |  |
-| `license` |  |
-| `license_url` |  |
-| `license_version` |  |
-| `logo_url` |  |
-| `mature` |  |
-| `media_count` |  |
+| `license` | The name of license for the media. |
+| `license_url` | A direct link to the license deed or legal terms. |
+| `license_version` | The version of the media license. |
+| `logo_url` | The URL to a logo for the source. |
+| `mature` | Whether the media item is marked as mature |
+| `media_count` | The number of media items indexed from the source. |
 | `points` |  |
-| `provider` |  |
-| `reason` |  |
-| `related_url` |  |
-| `sample_rate` |  |
-| `source` |  |
-| `source_name` |  |
-| `source_url` |  |
-| `tags` |  |
-| `thumbnail` |  |
-| `title` |  |
-| `url` |  |
-| `waveform` |  |
+| `provider` | The content provider, e.g. |
+| `reason` | The reason to report media to Openverse. |
+| `related_url` | A link to an endpoint that provides similar audio files. |
+| `sample_rate` | Number in hertz, eg. |
+| `source` | The source of the data, meaning a particular dataset. |
+| `source_name` | The source of the media, e.g. |
+| `source_url` | The URL of the source, e.g. |
+| `tags` | Tags with detailed metadata, such as accuracy. |
+| `thumbnail` | A direct link to the miniature artwork. |
+| `title` | The name of the media. |
+| `url` | The actual URL to the media file. |
+| `waveform` | A direct link to the waveform peaks. |
 
 Operations: Create, List, Load.
 
@@ -328,42 +328,42 @@ API path: `/v1/audio/{identifier}/report/`
 
 | Field | Description |
 | --- | --- |
-| `attribution` |  |
-| `author_name` |  |
-| `author_url` |  |
-| `category` |  |
-| `creator` |  |
-| `creator_url` |  |
-| `description` |  |
-| `detail_url` |  |
-| `display_name` |  |
-| `fields_matched` |  |
-| `filesize` |  |
-| `filetype` |  |
-| `foreign_landing_url` |  |
-| `height` |  |
-| `id` |  |
-| `identifier` |  |
-| `indexed_on` |  |
-| `license` |  |
-| `license_url` |  |
-| `license_version` |  |
-| `logo_url` |  |
-| `mature` |  |
-| `media_count` |  |
-| `provider` |  |
-| `reason` |  |
-| `related_url` |  |
-| `source` |  |
-| `source_name` |  |
-| `source_url` |  |
-| `tags` |  |
-| `thumbnail` |  |
-| `title` |  |
-| `type` |  |
-| `url` |  |
-| `version` |  |
-| `width` |  |
+| `attribution` | Legally valid attribution for the media item in plain-text English. |
+| `author_name` | The name of the media creator. |
+| `author_url` | A direct link to the media creator. |
+| `category` | The top-level classification of this media file. |
+| `creator` | The name of the media creator. |
+| `creator_url` | A direct link to the media creator. |
+| `description` | The explanation on why media is being reported. |
+| `detail_url` | A direct link to the detail view of this audio file. |
+| `display_name` | The name of content source, e.g. |
+| `fields_matched` | List the fields that matched the query for this result. |
+| `filesize` | Number in bytes, e.g. |
+| `filetype` | The type of the file, related to the file extension. |
+| `foreign_landing_url` | The landing page of the work. |
+| `height` | The height of the image in pixels. |
+| `id` | Our unique identifier for an open-licensed work. |
+| `identifier` | Our unique identifier for an open-licensed work. |
+| `indexed_on` | The timestamp of when the media was indexed by Openverse. |
+| `license` | The name of license for the media. |
+| `license_url` | A direct link to the license deed or legal terms. |
+| `license_version` | The version of the media license. |
+| `logo_url` | The URL to a logo for the source. |
+| `mature` | Whether the media item is marked as mature |
+| `media_count` | The number of media items indexed from the source. |
+| `provider` | The content provider, e.g. |
+| `reason` | The reason to report media to Openverse. |
+| `related_url` | A link to an endpoint that provides similar audio files. |
+| `source` | The source of the data, meaning a particular dataset. |
+| `source_name` | The source of the media, e.g. |
+| `source_url` | The URL of the source, e.g. |
+| `tags` | Tags with detailed metadata, such as accuracy. |
+| `thumbnail` | A direct link to the miniature artwork. |
+| `title` | The name of the media. |
+| `type` | The resource type, always set to 'photo' for images. |
+| `url` | The actual URL to the media file. |
+| `version` | The oEmbed version number, always set to 1.0. |
+| `width` | The width of the image in pixels. |
 
 Operations: Create, List, Load.
 
@@ -373,9 +373,9 @@ API path: `/v1/images/{identifier}/report/`
 
 | Field | Description |
 | --- | --- |
-| `description` |  |
-| `email` |  |
-| `name` |  |
+| `description` | A description of what you are trying to achieve with your project using the API. |
+| `email` | A valid email that we can reach you at if we have any questions about your use case or data consumption. |
+| `name` | A unique human-readable name for your application or project requiring access to the Openverse API. |
 
 Operations: Create.
 
@@ -385,10 +385,10 @@ API path: `/v1/auth_tokens/register/`
 
 | Field | Description |
 | --- | --- |
-| `rate_limit_model` |  |
-| `requests_this_minute` |  |
-| `requests_today` |  |
-| `verified` |  |
+| `rate_limit_model` | The type of rate limit applied to your key. |
+| `requests_this_minute` | The number of requests your key has performed in the last minute. |
+| `requests_today` | The number of requests your key has performed in the last day. |
+| `verified` | Whether the application has verified the submitted email address. |
 
 Operations: Load.
 
@@ -398,10 +398,10 @@ API path: `/v1/rate_limit/`
 
 | Field | Description |
 | --- | --- |
-| `access_token` |  |
-| `expires_in` |  |
-| `scope` |  |
-| `token_type` |  |
+| `access_token` | The access token that can be used to authenticate requests. |
+| `expires_in` | The number of seconds until the token expires. |
+| `scope` | The scope of the token. |
+| `token_type` | The type of token. |
 
 Operations: Create.
 
@@ -428,45 +428,45 @@ Create an instance: `$audio = $client->Audio();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_files` | `array` |  |
-| `attribution` | `string` |  |
-| `audio_set` | `mixed` |  |
-| `bit_rate` | `int` |  |
-| `category` | `string` |  |
-| `creator` | `string` |  |
-| `creator_url` | `string` |  |
-| `description` | `string` |  |
-| `detail_url` | `string` |  |
-| `display_name` | `string` |  |
-| `duration` | `int` |  |
-| `fields_matched` | `array` |  |
-| `filesize` | `int` |  |
-| `filetype` | `string` |  |
-| `foreign_landing_url` | `string` |  |
-| `genres` | `array` |  |
-| `id` | `string` |  |
-| `identifier` | `string` |  |
-| `indexed_on` | `string` |  |
+| `alt_files` | `array` | JSON describing alternative files for this audio. |
+| `attribution` | `string` | Legally valid attribution for the media item in plain-text English. |
+| `audio_set` | `mixed` | Reference to set of which this track is a part. |
+| `bit_rate` | `int` | Number in bits per second, eg. |
+| `category` | `string` | The top-level classification of this media file. |
+| `creator` | `string` | The name of the media creator. |
+| `creator_url` | `string` | A direct link to the media creator. |
+| `description` | `string` | The explanation on why media is being reported. |
+| `detail_url` | `string` | A direct link to the detail view of this audio file. |
+| `display_name` | `string` | The name of content source, e.g. |
+| `duration` | `int` | The time length of the audio file in milliseconds. |
+| `fields_matched` | `array` | List the fields that matched the query for this result. |
+| `filesize` | `int` | Number in bytes, e.g. |
+| `filetype` | `string` | The type of the file, related to the file extension. |
+| `foreign_landing_url` | `string` | The landing page of the work. |
+| `genres` | `array` | An array of audio genres such as `rock`, `electronic` for `music` category, or `politics`, `sport`, `education` for `podcast` category |
+| `id` | `string` | Our unique identifier for an open-licensed work. |
+| `identifier` | `string` | Our unique identifier for an open-licensed work. |
+| `indexed_on` | `string` | The timestamp of when the media was indexed by Openverse. |
 | `len` | `int` |  |
-| `license` | `string` |  |
-| `license_url` | `string` |  |
-| `license_version` | `string` |  |
-| `logo_url` | `string` |  |
-| `mature` | `bool` |  |
-| `media_count` | `int` |  |
+| `license` | `string` | The name of license for the media. |
+| `license_url` | `string` | A direct link to the license deed or legal terms. |
+| `license_version` | `string` | The version of the media license. |
+| `logo_url` | `string` | The URL to a logo for the source. |
+| `mature` | `bool` | Whether the media item is marked as mature |
+| `media_count` | `int` | The number of media items indexed from the source. |
 | `points` | `array` |  |
-| `provider` | `string` |  |
-| `reason` | `mixed` |  |
-| `related_url` | `string` |  |
-| `sample_rate` | `int` |  |
-| `source` | `string` |  |
-| `source_name` | `string` |  |
-| `source_url` | `string` |  |
-| `tags` | `array` |  |
-| `thumbnail` | `string` |  |
-| `title` | `string` |  |
-| `url` | `string` |  |
-| `waveform` | `string` |  |
+| `provider` | `string` | The content provider, e.g. |
+| `reason` | `mixed` | The reason to report media to Openverse. |
+| `related_url` | `string` | A link to an endpoint that provides similar audio files. |
+| `sample_rate` | `int` | Number in hertz, eg. |
+| `source` | `string` | The source of the data, meaning a particular dataset. |
+| `source_name` | `string` | The source of the media, e.g. |
+| `source_url` | `string` | The URL of the source, e.g. |
+| `tags` | `array` | Tags with detailed metadata, such as accuracy. |
+| `thumbnail` | `string` | A direct link to the miniature artwork. |
+| `title` | `string` | The name of the media. |
+| `url` | `string` | The actual URL to the media file. |
+| `waveform` | `string` | A direct link to the waveform peaks. |
 
 #### Example: Load
 
@@ -529,42 +529,42 @@ Create an instance: `$image = $client->Image();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `attribution` | `string` |  |
-| `author_name` | `string` |  |
-| `author_url` | `string` |  |
-| `category` | `string` |  |
-| `creator` | `string` |  |
-| `creator_url` | `string` |  |
-| `description` | `string` |  |
-| `detail_url` | `string` |  |
-| `display_name` | `string` |  |
-| `fields_matched` | `array` |  |
-| `filesize` | `int` |  |
-| `filetype` | `string` |  |
-| `foreign_landing_url` | `string` |  |
-| `height` | `int` |  |
-| `id` | `string` |  |
-| `identifier` | `string` |  |
-| `indexed_on` | `string` |  |
-| `license` | `string` |  |
-| `license_url` | `string` |  |
-| `license_version` | `string` |  |
-| `logo_url` | `string` |  |
-| `mature` | `bool` |  |
-| `media_count` | `int` |  |
-| `provider` | `string` |  |
-| `reason` | `mixed` |  |
-| `related_url` | `string` |  |
-| `source` | `string` |  |
-| `source_name` | `string` |  |
-| `source_url` | `string` |  |
-| `tags` | `array` |  |
-| `thumbnail` | `string` |  |
-| `title` | `string` |  |
-| `type` | `mixed` |  |
-| `url` | `string` |  |
-| `version` | `mixed` |  |
-| `width` | `int` |  |
+| `attribution` | `string` | Legally valid attribution for the media item in plain-text English. |
+| `author_name` | `string` | The name of the media creator. |
+| `author_url` | `string` | A direct link to the media creator. |
+| `category` | `string` | The top-level classification of this media file. |
+| `creator` | `string` | The name of the media creator. |
+| `creator_url` | `string` | A direct link to the media creator. |
+| `description` | `string` | The explanation on why media is being reported. |
+| `detail_url` | `string` | A direct link to the detail view of this audio file. |
+| `display_name` | `string` | The name of content source, e.g. |
+| `fields_matched` | `array` | List the fields that matched the query for this result. |
+| `filesize` | `int` | Number in bytes, e.g. |
+| `filetype` | `string` | The type of the file, related to the file extension. |
+| `foreign_landing_url` | `string` | The landing page of the work. |
+| `height` | `int` | The height of the image in pixels. |
+| `id` | `string` | Our unique identifier for an open-licensed work. |
+| `identifier` | `string` | Our unique identifier for an open-licensed work. |
+| `indexed_on` | `string` | The timestamp of when the media was indexed by Openverse. |
+| `license` | `string` | The name of license for the media. |
+| `license_url` | `string` | A direct link to the license deed or legal terms. |
+| `license_version` | `string` | The version of the media license. |
+| `logo_url` | `string` | The URL to a logo for the source. |
+| `mature` | `bool` | Whether the media item is marked as mature |
+| `media_count` | `int` | The number of media items indexed from the source. |
+| `provider` | `string` | The content provider, e.g. |
+| `reason` | `mixed` | The reason to report media to Openverse. |
+| `related_url` | `string` | A link to an endpoint that provides similar audio files. |
+| `source` | `string` | The source of the data, meaning a particular dataset. |
+| `source_name` | `string` | The source of the media, e.g. |
+| `source_url` | `string` | The URL of the source, e.g. |
+| `tags` | `array` | Tags with detailed metadata, such as accuracy. |
+| `thumbnail` | `string` | A direct link to the miniature artwork. |
+| `title` | `string` | The name of the media. |
+| `type` | `mixed` | The resource type, always set to 'photo' for images. |
+| `url` | `string` | The actual URL to the media file. |
+| `version` | `mixed` | The oEmbed version number, always set to 1.0. |
+| `width` | `int` | The width of the image in pixels. |
 
 #### Example: Load
 
@@ -624,9 +624,9 @@ Create an instance: `$o_auth2_application = $client->OAuth2Application();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | `string` |  |
-| `email` | `string` |  |
-| `name` | `string` |  |
+| `description` | `string` | A description of what you are trying to achieve with your project using the API. |
+| `email` | `string` | A valid email that we can reach you at if we have any questions about your use case or data consumption. |
+| `name` | `string` | A unique human-readable name for your application or project requiring access to the Openverse API. |
 
 #### Example: Create
 
@@ -653,10 +653,10 @@ Create an instance: `$o_auth2_key_info = $client->OAuth2KeyInfo();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `rate_limit_model` | `string` |  |
-| `requests_this_minute` | `int` |  |
-| `requests_today` | `int` |  |
-| `verified` | `bool` |  |
+| `rate_limit_model` | `string` | The type of rate limit applied to your key. |
+| `requests_this_minute` | `int` | The number of requests your key has performed in the last minute. |
+| `requests_today` | `int` | The number of requests your key has performed in the last day. |
+| `verified` | `bool` | Whether the application has verified the submitted email address. |
 
 #### Example: Load
 
@@ -680,10 +680,10 @@ Create an instance: `$o_auth2_token = $client->OAuth2Token();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `access_token` | `string` |  |
-| `expires_in` | `int` |  |
-| `scope` | `string` |  |
-| `token_type` | `string` |  |
+| `access_token` | `string` | The access token that can be used to authenticate requests. |
+| `expires_in` | `int` | The number of seconds until the token expires. |
+| `scope` | `string` | The scope of the token. |
+| `token_type` | `string` | The type of token. |
 
 #### Example: Create
 

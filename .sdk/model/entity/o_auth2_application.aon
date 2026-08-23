@@ -1,0 +1,52 @@
+# Entity: o_auth2_application
+
+main: kit: entity: o_auth2_application: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "description"
+      req: true
+      short: "A description of what you are trying to achieve with your project using the API."
+      type: "`$STRING`"
+    }
+    {
+      name: "email"
+      req: true
+      short: "A valid email that we can reach you at if we have any questions about your use case or data consumption."
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      req: true
+      short: "A unique human-readable name for your application or project requiring access to the Openverse API."
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "o_auth2_application"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          method: "POST"
+          orig: "/v1/auth_tokens/register/"
+          parts: [
+            "v1"
+            "auth_tokens"
+            "register"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -110,45 +110,45 @@ audio = client.Audio
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_files` | `Array` | Yes |  |
-| `attribution` | `String` | Yes |  |
-| `audio_set` | `Object` | Yes |  |
-| `bit_rate` | `Integer` | No |  |
-| `category` | `String` | No |  |
-| `creator` | `String` | No |  |
-| `creator_url` | `String` | No |  |
-| `description` | `String` | No |  |
-| `detail_url` | `String` | Yes |  |
-| `display_name` | `String` | Yes |  |
-| `duration` | `Integer` | No |  |
-| `fields_matched` | `Array` | Yes |  |
-| `filesize` | `Integer` | No |  |
-| `filetype` | `String` | No |  |
-| `foreign_landing_url` | `String` | No |  |
-| `genres` | `Array` | No |  |
-| `id` | `String` | Yes |  |
-| `identifier` | `String` | Yes |  |
-| `indexed_on` | `String` | Yes |  |
+| `alt_files` | `Array` | Yes | JSON describing alternative files for this audio. |
+| `attribution` | `String` | Yes | Legally valid attribution for the media item in plain-text English. |
+| `audio_set` | `Object` | Yes | Reference to set of which this track is a part. |
+| `bit_rate` | `Integer` | No | Number in bits per second, eg. |
+| `category` | `String` | No | The top-level classification of this media file. |
+| `creator` | `String` | No | The name of the media creator. |
+| `creator_url` | `String` | No | A direct link to the media creator. |
+| `description` | `String` | No | The explanation on why media is being reported. |
+| `detail_url` | `String` | Yes | A direct link to the detail view of this audio file. |
+| `display_name` | `String` | Yes | The name of content source, e.g. |
+| `duration` | `Integer` | No | The time length of the audio file in milliseconds. |
+| `fields_matched` | `Array` | Yes | List the fields that matched the query for this result. |
+| `filesize` | `Integer` | No | Number in bytes, e.g. |
+| `filetype` | `String` | No | The type of the file, related to the file extension. |
+| `foreign_landing_url` | `String` | No | The landing page of the work. |
+| `genres` | `Array` | No | An array of audio genres such as `rock`, `electronic` for `music` category, or `politics`, `sport`, `education` for `podcast` category |
+| `id` | `String` | Yes | Our unique identifier for an open-licensed work. |
+| `identifier` | `String` | Yes | Our unique identifier for an open-licensed work. |
+| `indexed_on` | `String` | Yes | The timestamp of when the media was indexed by Openverse. |
 | `len` | `Integer` | Yes |  |
-| `license` | `String` | Yes |  |
-| `license_url` | `String` | Yes |  |
-| `license_version` | `String` | No |  |
-| `logo_url` | `String` | Yes |  |
-| `mature` | `Boolean` | Yes |  |
-| `media_count` | `Integer` | Yes |  |
+| `license` | `String` | Yes | The name of license for the media. |
+| `license_url` | `String` | Yes | A direct link to the license deed or legal terms. |
+| `license_version` | `String` | No | The version of the media license. |
+| `logo_url` | `String` | Yes | The URL to a logo for the source. |
+| `mature` | `Boolean` | Yes | Whether the media item is marked as mature |
+| `media_count` | `Integer` | Yes | The number of media items indexed from the source. |
 | `points` | `Array` | Yes |  |
-| `provider` | `String` | No |  |
-| `reason` | `Object` | Yes |  |
-| `related_url` | `String` | Yes |  |
-| `sample_rate` | `Integer` | No |  |
-| `source` | `String` | No |  |
-| `source_name` | `String` | Yes |  |
-| `source_url` | `String` | Yes |  |
-| `tags` | `Array` | Yes |  |
-| `thumbnail` | `String` | Yes |  |
-| `title` | `String` | No |  |
-| `url` | `String` | No |  |
-| `waveform` | `String` | Yes |  |
+| `provider` | `String` | No | The content provider, e.g. |
+| `reason` | `Object` | Yes | The reason to report media to Openverse. |
+| `related_url` | `String` | Yes | A link to an endpoint that provides similar audio files. |
+| `sample_rate` | `Integer` | No | Number in hertz, eg. |
+| `source` | `String` | No | The source of the data, meaning a particular dataset. |
+| `source_name` | `String` | Yes | The source of the media, e.g. |
+| `source_url` | `String` | Yes | The URL of the source, e.g. |
+| `tags` | `Array` | Yes | Tags with detailed metadata, such as accuracy. |
+| `thumbnail` | `String` | Yes | A direct link to the miniature artwork. |
+| `title` | `String` | No | The name of the media. |
+| `url` | `String` | No | The actual URL to the media file. |
+| `waveform` | `String` | Yes | A direct link to the waveform peaks. |
 
 ### Operations
 
@@ -240,42 +240,42 @@ image = client.Image
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `attribution` | `String` | Yes |  |
-| `author_name` | `String` | Yes |  |
-| `author_url` | `String` | Yes |  |
-| `category` | `String` | No |  |
-| `creator` | `String` | No |  |
-| `creator_url` | `String` | No |  |
-| `description` | `String` | No |  |
-| `detail_url` | `String` | Yes |  |
-| `display_name` | `String` | Yes |  |
-| `fields_matched` | `Array` | Yes |  |
-| `filesize` | `Integer` | No |  |
-| `filetype` | `String` | No |  |
-| `foreign_landing_url` | `String` | No |  |
-| `height` | `Integer` | No |  |
-| `id` | `String` | Yes |  |
-| `identifier` | `String` | Yes |  |
-| `indexed_on` | `String` | Yes |  |
-| `license` | `String` | Yes |  |
-| `license_url` | `String` | Yes |  |
-| `license_version` | `String` | No |  |
-| `logo_url` | `String` | Yes |  |
-| `mature` | `Boolean` | Yes |  |
-| `media_count` | `Integer` | Yes |  |
-| `provider` | `String` | No |  |
-| `reason` | `Object` | Yes |  |
-| `related_url` | `String` | Yes |  |
-| `source` | `String` | No |  |
-| `source_name` | `String` | Yes |  |
-| `source_url` | `String` | Yes |  |
-| `tags` | `Array` | Yes |  |
-| `thumbnail` | `String` | Yes |  |
-| `title` | `String` | No |  |
-| `type` | `Object` | Yes |  |
-| `url` | `String` | No |  |
-| `version` | `Object` | Yes |  |
-| `width` | `Integer` | No |  |
+| `attribution` | `String` | Yes | Legally valid attribution for the media item in plain-text English. |
+| `author_name` | `String` | Yes | The name of the media creator. |
+| `author_url` | `String` | Yes | A direct link to the media creator. |
+| `category` | `String` | No | The top-level classification of this media file. |
+| `creator` | `String` | No | The name of the media creator. |
+| `creator_url` | `String` | No | A direct link to the media creator. |
+| `description` | `String` | No | The explanation on why media is being reported. |
+| `detail_url` | `String` | Yes | A direct link to the detail view of this audio file. |
+| `display_name` | `String` | Yes | The name of content source, e.g. |
+| `fields_matched` | `Array` | Yes | List the fields that matched the query for this result. |
+| `filesize` | `Integer` | No | Number in bytes, e.g. |
+| `filetype` | `String` | No | The type of the file, related to the file extension. |
+| `foreign_landing_url` | `String` | No | The landing page of the work. |
+| `height` | `Integer` | No | The height of the image in pixels. |
+| `id` | `String` | Yes | Our unique identifier for an open-licensed work. |
+| `identifier` | `String` | Yes | Our unique identifier for an open-licensed work. |
+| `indexed_on` | `String` | Yes | The timestamp of when the media was indexed by Openverse. |
+| `license` | `String` | Yes | The name of license for the media. |
+| `license_url` | `String` | Yes | A direct link to the license deed or legal terms. |
+| `license_version` | `String` | No | The version of the media license. |
+| `logo_url` | `String` | Yes | The URL to a logo for the source. |
+| `mature` | `Boolean` | Yes | Whether the media item is marked as mature |
+| `media_count` | `Integer` | Yes | The number of media items indexed from the source. |
+| `provider` | `String` | No | The content provider, e.g. |
+| `reason` | `Object` | Yes | The reason to report media to Openverse. |
+| `related_url` | `String` | Yes | A link to an endpoint that provides similar audio files. |
+| `source` | `String` | No | The source of the data, meaning a particular dataset. |
+| `source_name` | `String` | Yes | The source of the media, e.g. |
+| `source_url` | `String` | Yes | The URL of the source, e.g. |
+| `tags` | `Array` | Yes | Tags with detailed metadata, such as accuracy. |
+| `thumbnail` | `String` | Yes | A direct link to the miniature artwork. |
+| `title` | `String` | No | The name of the media. |
+| `type` | `Object` | Yes | The resource type, always set to 'photo' for images. |
+| `url` | `String` | No | The actual URL to the media file. |
+| `version` | `Object` | Yes | The oEmbed version number, always set to 1.0. |
+| `width` | `Integer` | No | The width of the image in pixels. |
 
 ### Field Usage by Operation
 
@@ -407,9 +407,9 @@ o_auth2_application = client.OAuth2Application
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | `String` | Yes |  |
-| `email` | `String` | Yes |  |
-| `name` | `String` | Yes |  |
+| `description` | `String` | Yes | A description of what you are trying to achieve with your project using the API. |
+| `email` | `String` | Yes | A valid email that we can reach you at if we have any questions about your use case or data consumption. |
+| `name` | `String` | Yes | A unique human-readable name for your application or project requiring access to the Openverse API. |
 
 ### Operations
 
@@ -465,10 +465,10 @@ o_auth2_key_info = client.OAuth2KeyInfo
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `rate_limit_model` | `String` | Yes |  |
-| `requests_this_minute` | `Integer` | Yes |  |
-| `requests_today` | `Integer` | Yes |  |
-| `verified` | `Boolean` | Yes |  |
+| `rate_limit_model` | `String` | Yes | The type of rate limit applied to your key. |
+| `requests_this_minute` | `Integer` | Yes | The number of requests your key has performed in the last minute. |
+| `requests_today` | `Integer` | Yes | The number of requests your key has performed in the last day. |
+| `verified` | `Boolean` | Yes | Whether the application has verified the submitted email address. |
 
 ### Operations
 
@@ -520,10 +520,10 @@ o_auth2_token = client.OAuth2Token
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `access_token` | `String` | Yes |  |
-| `expires_in` | `Integer` | Yes |  |
-| `scope` | `String` | Yes |  |
-| `token_type` | `String` | Yes |  |
+| `access_token` | `String` | Yes | The access token that can be used to authenticate requests. |
+| `expires_in` | `Integer` | Yes | The number of seconds until the token expires. |
+| `scope` | `String` | Yes | The scope of the token. |
+| `token_type` | `String` | Yes | The type of token. |
 
 ### Operations
 

@@ -107,45 +107,45 @@ local audio = client:Audio(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_files` | `table` | Yes |  |
-| `attribution` | `string` | Yes |  |
-| `audio_set` | `any` | Yes |  |
-| `bit_rate` | `number` | No |  |
-| `category` | `string` | No |  |
-| `creator` | `string` | No |  |
-| `creator_url` | `string` | No |  |
-| `description` | `string` | No |  |
-| `detail_url` | `string` | Yes |  |
-| `display_name` | `string` | Yes |  |
-| `duration` | `number` | No |  |
-| `fields_matched` | `table` | Yes |  |
-| `filesize` | `number` | No |  |
-| `filetype` | `string` | No |  |
-| `foreign_landing_url` | `string` | No |  |
-| `genres` | `table` | No |  |
-| `id` | `string` | Yes |  |
-| `identifier` | `string` | Yes |  |
-| `indexed_on` | `string` | Yes |  |
+| `alt_files` | `table` | Yes | JSON describing alternative files for this audio. |
+| `attribution` | `string` | Yes | Legally valid attribution for the media item in plain-text English. |
+| `audio_set` | `any` | Yes | Reference to set of which this track is a part. |
+| `bit_rate` | `number` | No | Number in bits per second, eg. |
+| `category` | `string` | No | The top-level classification of this media file. |
+| `creator` | `string` | No | The name of the media creator. |
+| `creator_url` | `string` | No | A direct link to the media creator. |
+| `description` | `string` | No | The explanation on why media is being reported. |
+| `detail_url` | `string` | Yes | A direct link to the detail view of this audio file. |
+| `display_name` | `string` | Yes | The name of content source, e.g. |
+| `duration` | `number` | No | The time length of the audio file in milliseconds. |
+| `fields_matched` | `table` | Yes | List the fields that matched the query for this result. |
+| `filesize` | `number` | No | Number in bytes, e.g. |
+| `filetype` | `string` | No | The type of the file, related to the file extension. |
+| `foreign_landing_url` | `string` | No | The landing page of the work. |
+| `genres` | `table` | No | An array of audio genres such as `rock`, `electronic` for `music` category, or `politics`, `sport`, `education` for `podcast` category |
+| `id` | `string` | Yes | Our unique identifier for an open-licensed work. |
+| `identifier` | `string` | Yes | Our unique identifier for an open-licensed work. |
+| `indexed_on` | `string` | Yes | The timestamp of when the media was indexed by Openverse. |
 | `len` | `number` | Yes |  |
-| `license` | `string` | Yes |  |
-| `license_url` | `string` | Yes |  |
-| `license_version` | `string` | No |  |
-| `logo_url` | `string` | Yes |  |
-| `mature` | `boolean` | Yes |  |
-| `media_count` | `number` | Yes |  |
+| `license` | `string` | Yes | The name of license for the media. |
+| `license_url` | `string` | Yes | A direct link to the license deed or legal terms. |
+| `license_version` | `string` | No | The version of the media license. |
+| `logo_url` | `string` | Yes | The URL to a logo for the source. |
+| `mature` | `boolean` | Yes | Whether the media item is marked as mature |
+| `media_count` | `number` | Yes | The number of media items indexed from the source. |
 | `points` | `table` | Yes |  |
-| `provider` | `string` | No |  |
-| `reason` | `any` | Yes |  |
-| `related_url` | `string` | Yes |  |
-| `sample_rate` | `number` | No |  |
-| `source` | `string` | No |  |
-| `source_name` | `string` | Yes |  |
-| `source_url` | `string` | Yes |  |
-| `tags` | `table` | Yes |  |
-| `thumbnail` | `string` | Yes |  |
-| `title` | `string` | No |  |
-| `url` | `string` | No |  |
-| `waveform` | `string` | Yes |  |
+| `provider` | `string` | No | The content provider, e.g. |
+| `reason` | `any` | Yes | The reason to report media to Openverse. |
+| `related_url` | `string` | Yes | A link to an endpoint that provides similar audio files. |
+| `sample_rate` | `number` | No | Number in hertz, eg. |
+| `source` | `string` | No | The source of the data, meaning a particular dataset. |
+| `source_name` | `string` | Yes | The source of the media, e.g. |
+| `source_url` | `string` | Yes | The URL of the source, e.g. |
+| `tags` | `table` | Yes | Tags with detailed metadata, such as accuracy. |
+| `thumbnail` | `string` | Yes | A direct link to the miniature artwork. |
+| `title` | `string` | No | The name of the media. |
+| `url` | `string` | No | The actual URL to the media file. |
+| `waveform` | `string` | Yes | A direct link to the waveform peaks. |
 
 ### Operations
 
@@ -237,42 +237,42 @@ local image = client:Image(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `attribution` | `string` | Yes |  |
-| `author_name` | `string` | Yes |  |
-| `author_url` | `string` | Yes |  |
-| `category` | `string` | No |  |
-| `creator` | `string` | No |  |
-| `creator_url` | `string` | No |  |
-| `description` | `string` | No |  |
-| `detail_url` | `string` | Yes |  |
-| `display_name` | `string` | Yes |  |
-| `fields_matched` | `table` | Yes |  |
-| `filesize` | `number` | No |  |
-| `filetype` | `string` | No |  |
-| `foreign_landing_url` | `string` | No |  |
-| `height` | `number` | No |  |
-| `id` | `string` | Yes |  |
-| `identifier` | `string` | Yes |  |
-| `indexed_on` | `string` | Yes |  |
-| `license` | `string` | Yes |  |
-| `license_url` | `string` | Yes |  |
-| `license_version` | `string` | No |  |
-| `logo_url` | `string` | Yes |  |
-| `mature` | `boolean` | Yes |  |
-| `media_count` | `number` | Yes |  |
-| `provider` | `string` | No |  |
-| `reason` | `any` | Yes |  |
-| `related_url` | `string` | Yes |  |
-| `source` | `string` | No |  |
-| `source_name` | `string` | Yes |  |
-| `source_url` | `string` | Yes |  |
-| `tags` | `table` | Yes |  |
-| `thumbnail` | `string` | Yes |  |
-| `title` | `string` | No |  |
-| `type` | `any` | Yes |  |
-| `url` | `string` | No |  |
-| `version` | `any` | Yes |  |
-| `width` | `number` | No |  |
+| `attribution` | `string` | Yes | Legally valid attribution for the media item in plain-text English. |
+| `author_name` | `string` | Yes | The name of the media creator. |
+| `author_url` | `string` | Yes | A direct link to the media creator. |
+| `category` | `string` | No | The top-level classification of this media file. |
+| `creator` | `string` | No | The name of the media creator. |
+| `creator_url` | `string` | No | A direct link to the media creator. |
+| `description` | `string` | No | The explanation on why media is being reported. |
+| `detail_url` | `string` | Yes | A direct link to the detail view of this audio file. |
+| `display_name` | `string` | Yes | The name of content source, e.g. |
+| `fields_matched` | `table` | Yes | List the fields that matched the query for this result. |
+| `filesize` | `number` | No | Number in bytes, e.g. |
+| `filetype` | `string` | No | The type of the file, related to the file extension. |
+| `foreign_landing_url` | `string` | No | The landing page of the work. |
+| `height` | `number` | No | The height of the image in pixels. |
+| `id` | `string` | Yes | Our unique identifier for an open-licensed work. |
+| `identifier` | `string` | Yes | Our unique identifier for an open-licensed work. |
+| `indexed_on` | `string` | Yes | The timestamp of when the media was indexed by Openverse. |
+| `license` | `string` | Yes | The name of license for the media. |
+| `license_url` | `string` | Yes | A direct link to the license deed or legal terms. |
+| `license_version` | `string` | No | The version of the media license. |
+| `logo_url` | `string` | Yes | The URL to a logo for the source. |
+| `mature` | `boolean` | Yes | Whether the media item is marked as mature |
+| `media_count` | `number` | Yes | The number of media items indexed from the source. |
+| `provider` | `string` | No | The content provider, e.g. |
+| `reason` | `any` | Yes | The reason to report media to Openverse. |
+| `related_url` | `string` | Yes | A link to an endpoint that provides similar audio files. |
+| `source` | `string` | No | The source of the data, meaning a particular dataset. |
+| `source_name` | `string` | Yes | The source of the media, e.g. |
+| `source_url` | `string` | Yes | The URL of the source, e.g. |
+| `tags` | `table` | Yes | Tags with detailed metadata, such as accuracy. |
+| `thumbnail` | `string` | Yes | A direct link to the miniature artwork. |
+| `title` | `string` | No | The name of the media. |
+| `type` | `any` | Yes | The resource type, always set to 'photo' for images. |
+| `url` | `string` | No | The actual URL to the media file. |
+| `version` | `any` | Yes | The oEmbed version number, always set to 1.0. |
+| `width` | `number` | No | The width of the image in pixels. |
 
 ### Field Usage by Operation
 
@@ -404,9 +404,9 @@ local o_auth2_application = client:OAuth2Application(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | `string` | Yes |  |
-| `email` | `string` | Yes |  |
-| `name` | `string` | Yes |  |
+| `description` | `string` | Yes | A description of what you are trying to achieve with your project using the API. |
+| `email` | `string` | Yes | A valid email that we can reach you at if we have any questions about your use case or data consumption. |
+| `name` | `string` | Yes | A unique human-readable name for your application or project requiring access to the Openverse API. |
 
 ### Operations
 
@@ -462,10 +462,10 @@ local o_auth2_key_info = client:OAuth2KeyInfo(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `rate_limit_model` | `string` | Yes |  |
-| `requests_this_minute` | `number` | Yes |  |
-| `requests_today` | `number` | Yes |  |
-| `verified` | `boolean` | Yes |  |
+| `rate_limit_model` | `string` | Yes | The type of rate limit applied to your key. |
+| `requests_this_minute` | `number` | Yes | The number of requests your key has performed in the last minute. |
+| `requests_today` | `number` | Yes | The number of requests your key has performed in the last day. |
+| `verified` | `boolean` | Yes | Whether the application has verified the submitted email address. |
 
 ### Operations
 
@@ -517,10 +517,10 @@ local o_auth2_token = client:OAuth2Token(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `access_token` | `string` | Yes |  |
-| `expires_in` | `number` | Yes |  |
-| `scope` | `string` | Yes |  |
-| `token_type` | `string` | Yes |  |
+| `access_token` | `string` | Yes | The access token that can be used to authenticate requests. |
+| `expires_in` | `number` | Yes | The number of seconds until the token expires. |
+| `scope` | `string` | Yes | The scope of the token. |
+| `token_type` | `string` | Yes | The type of token. |
 
 ### Operations
 

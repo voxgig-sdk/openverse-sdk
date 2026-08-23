@@ -1,7 +1,0 @@
-# Flows
-
-@"BasicAudioFlow.aontu"
-@"BasicImageFlow.aontu"
-@"BasicOAuth2ApplicationFlow.aontu"
-@"BasicOAuth2KeyInfoFlow.aontu"
-@"BasicOAuth2TokenFlow.aontu"

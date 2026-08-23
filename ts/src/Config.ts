@@ -19,9 +19,20 @@ class Config {
     return fi
   }
 
+  // False for a feature added at runtime via options.extend (station's
+  // adopt path) - the constructor uses this to skip makeFeature for names
+  // no generated class backs.
+  hasFeature(this: any, fn: string) {
+    return null != FEATURE_CLASS[fn]
+  }
+
 
   main = {
     name: 'Openverse',
+        slug: "openverse",
+    version: "0.0.1",
+    target: "ts",
+
   }
 
 
@@ -73,86 +84,105 @@ class Config {
         {
           "name": "alt_files",
           "req": true,
+          "short": "JSON describing alternative files for this audio.",
           "type": "`$ARRAY`"
         },
         {
           "name": "attribution",
           "req": true,
+          "short": "Legally valid attribution for the media item in plain-text English.",
           "type": "`$STRING`"
         },
         {
           "name": "audio_set",
           "req": true,
+          "short": "Reference to set of which this track is a part.",
           "type": "`$ANY`"
         },
         {
           "name": "bit_rate",
+          "short": "Number in bits per second, eg.",
           "type": "`$INTEGER`"
         },
         {
           "name": "category",
+          "short": "The top-level classification of this media file.",
           "type": "`$STRING`"
         },
         {
           "name": "creator",
+          "short": "The name of the media creator.",
           "type": "`$STRING`"
         },
         {
           "name": "creator_url",
+          "short": "A direct link to the media creator.",
           "type": "`$STRING`"
         },
         {
           "name": "description",
+          "short": "The explanation on why media is being reported.",
           "type": "`$STRING`"
         },
         {
           "name": "detail_url",
           "req": true,
+          "short": "A direct link to the detail view of this audio file.",
           "type": "`$STRING`"
         },
         {
           "name": "display_name",
           "req": true,
+          "short": "The name of content source, e.g.",
           "type": "`$STRING`"
         },
         {
           "name": "duration",
+          "short": "The time length of the audio file in milliseconds.",
           "type": "`$INTEGER`"
         },
         {
           "name": "fields_matched",
           "req": true,
+          "short": "List the fields that matched the query for this result.",
           "type": "`$ARRAY`"
         },
         {
           "name": "filesize",
+          "short": "Number in bytes, e.g.",
           "type": "`$INTEGER`"
         },
         {
           "name": "filetype",
+          "short": "The type of the file, related to the file extension.",
           "type": "`$STRING`"
         },
         {
           "name": "foreign_landing_url",
+          "short": "The landing page of the work.",
           "type": "`$STRING`"
         },
         {
           "name": "genres",
+          "short": "An array of audio genres such as `rock`, `electronic` for `music` category, or `politics`, `sport`, `education` for `podcast` category",
           "type": "`$ARRAY`"
         },
         {
           "name": "id",
           "req": true,
+          "short": "Our unique identifier for an open-licensed work.",
           "type": "`$STRING`"
         },
         {
           "name": "identifier",
           "req": true,
+          "short": "Our unique identifier for an open-licensed work.",
           "type": "`$STRING`"
         },
         {
           "name": "indexed_on",
           "req": true,
+          "short": "The timestamp of when the media was indexed by Openverse.",
           "type": "`$STRING`"
         },
         {
@@ -163,30 +193,36 @@ class Config {
         {
           "name": "license",
           "req": true,
+          "short": "The name of license for the media.",
           "type": "`$STRING`"
         },
         {
           "name": "license_url",
           "req": true,
+          "short": "A direct link to the license deed or legal terms.",
           "type": "`$STRING`"
         },
         {
           "name": "license_version",
+          "short": "The version of the media license.",
           "type": "`$STRING`"
         },
         {
           "name": "logo_url",
           "req": true,
+          "short": "The URL to a logo for the source.",
           "type": "`$STRING`"
         },
         {
           "name": "mature",
           "req": true,
+          "short": "Whether the media item is marked as mature",
           "type": "`$BOOLEAN`"
         },
         {
           "name": "media_count",
           "req": true,
+          "short": "The number of media items indexed from the source.",
           "type": "`$INTEGER`"
         },
         {
@@ -196,57 +232,69 @@ class Config {
         },
         {
           "name": "provider",
+          "short": "The content provider, e.g.",
           "type": "`$STRING`"
         },
         {
           "name": "reason",
           "req": true,
+          "short": "The reason to report media to Openverse.",
           "type": "`$ANY`"
         },
         {
           "name": "related_url",
           "req": true,
+          "short": "A link to an endpoint that provides similar audio files.",
           "type": "`$STRING`"
         },
         {
           "name": "sample_rate",
+          "short": "Number in hertz, eg.",
           "type": "`$INTEGER`"
         },
         {
           "name": "source",
+          "short": "The source of the data, meaning a particular dataset.",
           "type": "`$STRING`"
         },
         {
           "name": "source_name",
           "req": true,
+          "short": "The source of the media, e.g.",
           "type": "`$STRING`"
         },
         {
           "name": "source_url",
           "req": true,
+          "short": "The URL of the source, e.g.",
           "type": "`$STRING`"
         },
         {
           "name": "tags",
           "req": true,
+          "short": "Tags with detailed metadata, such as accuracy.",
           "type": "`$ARRAY`"
         },
         {
           "name": "thumbnail",
           "req": true,
+          "short": "A direct link to the miniature artwork.",
           "type": "`$STRING`"
         },
         {
           "name": "title",
+          "short": "The name of the media.",
           "type": "`$STRING`"
         },
         {
           "name": "url",
+          "short": "The actual URL to the media file.",
           "type": "`$STRING`"
         },
         {
           "name": "waveform",
           "req": true,
+          "short": "A direct link to the waveform peaks.",
           "type": "`$STRING`"
         }
       ],
@@ -725,59 +773,72 @@ class Config {
         {
           "name": "attribution",
           "req": true,
+          "short": "Legally valid attribution for the media item in plain-text English.",
           "type": "`$STRING`"
         },
         {
           "name": "author_name",
           "req": true,
+          "short": "The name of the media creator.",
           "type": "`$STRING`"
         },
         {
           "name": "author_url",
           "req": true,
+          "short": "A direct link to the media creator.",
           "type": "`$STRING`"
         },
         {
           "name": "category",
+          "short": "The top-level classification of this media file.",
           "type": "`$STRING`"
         },
         {
           "name": "creator",
+          "short": "The name of the media creator.",
           "type": "`$STRING`"
         },
         {
           "name": "creator_url",
+          "short": "A direct link to the media creator.",
           "type": "`$STRING`"
         },
         {
           "name": "description",
+          "short": "The explanation on why media is being reported.",
           "type": "`$STRING`"
         },
         {
           "name": "detail_url",
           "req": true,
+          "short": "A direct link to the detail view of this audio file.",
           "type": "`$STRING`"
         },
         {
           "name": "display_name",
           "req": true,
+          "short": "The name of content source, e.g.",
           "type": "`$STRING`"
         },
         {
           "name": "fields_matched",
           "req": true,
+          "short": "List the fields that matched the query for this result.",
           "type": "`$ARRAY`"
         },
         {
           "name": "filesize",
+          "short": "Number in bytes, e.g.",
           "type": "`$INTEGER`"
         },
         {
           "name": "filetype",
+          "short": "The type of the file, related to the file extension.",
           "type": "`$STRING`"
         },
         {
           "name": "foreign_landing_url",
+          "short": "The landing page of the work.",
           "type": "`$STRING`"
         },
         {
@@ -788,106 +849,128 @@ class Config {
               "type": "`$INTEGER`"
             }
           },
+          "short": "The height of the image in pixels.",
           "type": "`$INTEGER`"
         },
         {
           "name": "id",
           "req": true,
+          "short": "Our unique identifier for an open-licensed work.",
           "type": "`$STRING`"
         },
         {
           "name": "identifier",
           "req": true,
+          "short": "Our unique identifier for an open-licensed work.",
           "type": "`$STRING`"
         },
         {
           "name": "indexed_on",
           "req": true,
+          "short": "The timestamp of when the media was indexed by Openverse.",
           "type": "`$STRING`"
         },
         {
           "name": "license",
           "req": true,
+          "short": "The name of license for the media.",
           "type": "`$STRING`"
         },
         {
           "name": "license_url",
           "req": true,
+          "short": "A direct link to the license deed or legal terms.",
           "type": "`$STRING`"
         },
         {
           "name": "license_version",
+          "short": "The version of the media license.",
           "type": "`$STRING`"
         },
         {
           "name": "logo_url",
           "req": true,
+          "short": "The URL to a logo for the source.",
           "type": "`$STRING`"
         },
         {
           "name": "mature",
           "req": true,
+          "short": "Whether the media item is marked as mature",
           "type": "`$BOOLEAN`"
         },
         {
           "name": "media_count",
           "req": true,
+          "short": "The number of media items indexed from the source.",
           "type": "`$INTEGER`"
         },
         {
           "name": "provider",
+          "short": "The content provider, e.g.",
           "type": "`$STRING`"
         },
         {
           "name": "reason",
           "req": true,
+          "short": "The reason to report media to Openverse.",
           "type": "`$ANY`"
         },
         {
           "name": "related_url",
           "req": true,
+          "short": "A link to an endpoint that provides similar audio files.",
           "type": "`$STRING`"
         },
         {
           "name": "source",
+          "short": "The source of the data, meaning a particular dataset.",
           "type": "`$STRING`"
         },
         {
           "name": "source_name",
           "req": true,
+          "short": "The source of the media, e.g.",
           "type": "`$STRING`"
         },
         {
           "name": "source_url",
           "req": true,
+          "short": "The URL of the source, e.g.",
           "type": "`$STRING`"
         },
         {
           "name": "tags",
           "req": true,
+          "short": "Tags with detailed metadata, such as accuracy.",
           "type": "`$ARRAY`"
         },
         {
           "name": "thumbnail",
           "req": true,
+          "short": "A direct link to the miniature artwork.",
           "type": "`$STRING`"
         },
         {
           "name": "title",
+          "short": "The name of the media.",
           "type": "`$STRING`"
         },
         {
           "name": "type",
           "req": true,
+          "short": "The resource type, always set to 'photo' for images.",
           "type": "`$ANY`"
         },
         {
           "name": "url",
+          "short": "The actual URL to the media file.",
           "type": "`$STRING`"
         },
         {
           "name": "version",
           "req": true,
+          "short": "The oEmbed version number, always set to 1.0.",
           "type": "`$ANY`"
         },
         {
@@ -898,6 +981,7 @@ class Config {
               "type": "`$INTEGER`"
             }
           },
+          "short": "The width of the image in pixels.",
           "type": "`$INTEGER`"
         }
       ],
@@ -1274,16 +1358,19 @@ class Config {
         {
           "name": "description",
           "req": true,
+          "short": "A description of what you are trying to achieve with your project using the API.",
           "type": "`$STRING`"
         },
         {
           "name": "email",
           "req": true,
+          "short": "A valid email that we can reach you at if we have any questions about your use case or data consumption.",
           "type": "`$STRING`"
         },
         {
           "name": "name",
           "req": true,
+          "short": "A unique human-readable name for your application or project requiring access to the Openverse API.",
           "type": "`$STRING`"
         }
       ],
@@ -1321,21 +1408,25 @@ class Config {
         {
           "name": "rate_limit_model",
           "req": true,
+          "short": "The type of rate limit applied to your key.",
           "type": "`$STRING`"
         },
         {
           "name": "requests_this_minute",
           "req": true,
+          "short": "The number of requests your key has performed in the last minute.",
           "type": "`$INTEGER`"
         },
         {
           "name": "requests_today",
           "req": true,
+          "short": "The number of requests your key has performed in the last day.",
           "type": "`$INTEGER`"
         },
         {
           "name": "verified",
           "req": true,
+          "short": "Whether the application has verified the submitted email address.",
           "type": "`$BOOLEAN`"
         }
       ],
@@ -1372,21 +1463,25 @@ class Config {
         {
           "name": "access_token",
           "req": true,
+          "short": "The access token that can be used to authenticate requests.",
           "type": "`$STRING`"
         },
         {
           "name": "expires_in",
           "req": true,
+          "short": "The number of seconds until the token expires.",
           "type": "`$INTEGER`"
         },
         {
           "name": "scope",
           "req": true,
+          "short": "The scope of the token.",
           "type": "`$STRING`"
         },
         {
           "name": "token_type",
           "req": true,
+          "short": "The type of token.",
           "type": "`$STRING`"
         }
       ],

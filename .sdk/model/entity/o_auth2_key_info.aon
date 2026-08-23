@@ -1,0 +1,57 @@
+# Entity: o_auth2_key_info
+
+main: kit: entity: o_auth2_key_info: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "rate_limit_model"
+      req: true
+      short: "The type of rate limit applied to your key."
+      type: "`$STRING`"
+    }
+    {
+      name: "requests_this_minute"
+      req: true
+      short: "The number of requests your key has performed in the last minute."
+      type: "`$INTEGER`"
+    }
+    {
+      name: "requests_today"
+      req: true
+      short: "The number of requests your key has performed in the last day."
+      type: "`$INTEGER`"
+    }
+    {
+      name: "verified"
+      req: true
+      short: "Whether the application has verified the submitted email address."
+      type: "`$BOOLEAN`"
+    }
+  ]
+
+  name: "o_auth2_key_info"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          method: "GET"
+          orig: "/v1/rate_limit/"
+          parts: [
+            "v1"
+            "rate_limit"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}
