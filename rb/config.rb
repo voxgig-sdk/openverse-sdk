@@ -28,6 +28,7 @@ module OpenverseConfig
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {
