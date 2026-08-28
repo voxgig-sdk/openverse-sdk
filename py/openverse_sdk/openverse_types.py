@@ -66,45 +66,29 @@ class AudioLoadMatch(TypedDict):
 
 
 class AudioListMatch(TypedDict, total=False):
-    alt_files: list
-    attribution: str
-    audio_set: Any
-    bit_rate: int
     category: str
     creator: str
-    creator_url: str
-    description: str
-    detail_url: str
-    display_name: str
-    duration: int
-    fields_matched: list
-    filesize: int
-    filetype: str
-    foreign_landing_url: str
-    genres: list
-    id: str
-    identifier: str
-    indexed_on: str
-    len: int
+    excluded_source: str
+    extension: str
+    filter_dead: bool
+    length: str
     license: str
-    license_url: str
-    license_version: str
-    logo_url: str
+    license_type: str
     mature: bool
-    media_count: int
-    points: list
-    provider: str
-    reason: Any
-    related_url: str
-    sample_rate: int
+    page: int
+    page_size: int
+    peak: bool
+    q: str
     source: str
-    source_name: str
-    source_url: str
-    tags: list
-    thumbnail: str
+    tag: str
     title: str
-    url: str
-    waveform: str
+    unstable_authority: bool
+    unstable_authority_boost: float
+    unstable_collection: str
+    unstable_include_sensitive_result: bool
+    unstable_sort_by: str
+    unstable_sort_dir: str
+    unstable_tag: str
 
 
 class AudioCreateDataRequired(TypedDict):
@@ -199,42 +183,29 @@ class ImageLoadMatch(TypedDict):
 
 
 class ImageListMatch(TypedDict, total=False):
-    attribution: str
-    author_name: str
-    author_url: str
+    aspect_ratio: str
     category: str
     creator: str
-    creator_url: str
-    description: str
-    detail_url: str
-    display_name: str
-    fields_matched: list
-    filesize: int
-    filetype: str
-    foreign_landing_url: str
-    height: int
-    id: str
-    identifier: str
-    indexed_on: str
+    excluded_source: str
+    extension: str
+    filter_dead: bool
     license: str
-    license_url: str
-    license_version: str
-    logo_url: str
+    license_type: str
     mature: bool
-    media_count: int
-    provider: str
-    reason: Any
-    related_url: str
+    page: int
+    page_size: int
+    q: str
+    size: str
     source: str
-    source_name: str
-    source_url: str
-    tags: list
-    thumbnail: str
+    tag: str
     title: str
-    type: Any
-    url: str
-    version: Any
-    width: int
+    unstable_authority: bool
+    unstable_authority_boost: float
+    unstable_collection: str
+    unstable_include_sensitive_result: bool
+    unstable_sort_by: str
+    unstable_sort_dir: str
+    unstable_tag: str
 
 
 class ImageCreateDataRequired(TypedDict):

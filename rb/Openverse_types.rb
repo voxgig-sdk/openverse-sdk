@@ -180,162 +180,98 @@ AudioLoadMatch = Struct.new(
 
 # Request payload for Audio#list.
 #
-# @!attribute [rw] alt_files
-#   @return [Array, nil]
-#
-# @!attribute [rw] attribution
-#   @return [String, nil]
-#
-# @!attribute [rw] audio_set
-#   @return [Object, nil]
-#
-# @!attribute [rw] bit_rate
-#   @return [Integer, nil]
-#
 # @!attribute [rw] category
 #   @return [String, nil]
 #
 # @!attribute [rw] creator
 #   @return [String, nil]
 #
-# @!attribute [rw] creator_url
+# @!attribute [rw] excluded_source
 #   @return [String, nil]
 #
-# @!attribute [rw] description
+# @!attribute [rw] extension
 #   @return [String, nil]
 #
-# @!attribute [rw] detail_url
+# @!attribute [rw] filter_dead
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] length
 #   @return [String, nil]
-#
-# @!attribute [rw] display_name
-#   @return [String, nil]
-#
-# @!attribute [rw] duration
-#   @return [Integer, nil]
-#
-# @!attribute [rw] fields_matched
-#   @return [Array, nil]
-#
-# @!attribute [rw] filesize
-#   @return [Integer, nil]
-#
-# @!attribute [rw] filetype
-#   @return [String, nil]
-#
-# @!attribute [rw] foreign_landing_url
-#   @return [String, nil]
-#
-# @!attribute [rw] genres
-#   @return [Array, nil]
-#
-# @!attribute [rw] id
-#   @return [String, nil]
-#
-# @!attribute [rw] identifier
-#   @return [String, nil]
-#
-# @!attribute [rw] indexed_on
-#   @return [String, nil]
-#
-# @!attribute [rw] len
-#   @return [Integer, nil]
 #
 # @!attribute [rw] license
 #   @return [String, nil]
 #
-# @!attribute [rw] license_url
-#   @return [String, nil]
-#
-# @!attribute [rw] license_version
-#   @return [String, nil]
-#
-# @!attribute [rw] logo_url
+# @!attribute [rw] license_type
 #   @return [String, nil]
 #
 # @!attribute [rw] mature
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] media_count
+# @!attribute [rw] page
 #   @return [Integer, nil]
 #
-# @!attribute [rw] points
-#   @return [Array, nil]
-#
-# @!attribute [rw] provider
-#   @return [String, nil]
-#
-# @!attribute [rw] reason
-#   @return [Object, nil]
-#
-# @!attribute [rw] related_url
-#   @return [String, nil]
-#
-# @!attribute [rw] sample_rate
+# @!attribute [rw] page_size
 #   @return [Integer, nil]
+#
+# @!attribute [rw] peak
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] q
+#   @return [String, nil]
 #
 # @!attribute [rw] source
 #   @return [String, nil]
 #
-# @!attribute [rw] source_name
-#   @return [String, nil]
-#
-# @!attribute [rw] source_url
-#   @return [String, nil]
-#
-# @!attribute [rw] tags
-#   @return [Array, nil]
-#
-# @!attribute [rw] thumbnail
+# @!attribute [rw] tag
 #   @return [String, nil]
 #
 # @!attribute [rw] title
 #   @return [String, nil]
 #
-# @!attribute [rw] url
+# @!attribute [rw] unstable_authority
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] unstable_authority_boost
+#   @return [Float, nil]
+#
+# @!attribute [rw] unstable_collection
 #   @return [String, nil]
 #
-# @!attribute [rw] waveform
+# @!attribute [rw] unstable_include_sensitive_result
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] unstable_sort_by
+#   @return [String, nil]
+#
+# @!attribute [rw] unstable_sort_dir
+#   @return [String, nil]
+#
+# @!attribute [rw] unstable_tag
 #   @return [String, nil]
 AudioListMatch = Struct.new(
-  :alt_files,
-  :attribution,
-  :audio_set,
-  :bit_rate,
   :category,
   :creator,
-  :creator_url,
-  :description,
-  :detail_url,
-  :display_name,
-  :duration,
-  :fields_matched,
-  :filesize,
-  :filetype,
-  :foreign_landing_url,
-  :genres,
-  :id,
-  :identifier,
-  :indexed_on,
-  :len,
+  :excluded_source,
+  :extension,
+  :filter_dead,
+  :length,
   :license,
-  :license_url,
-  :license_version,
-  :logo_url,
+  :license_type,
   :mature,
-  :media_count,
-  :points,
-  :provider,
-  :reason,
-  :related_url,
-  :sample_rate,
+  :page,
+  :page_size,
+  :peak,
+  :q,
   :source,
-  :source_name,
-  :source_url,
-  :tags,
-  :thumbnail,
+  :tag,
   :title,
-  :url,
-  :waveform,
+  :unstable_authority,
+  :unstable_authority_boost,
+  :unstable_collection,
+  :unstable_include_sensitive_result,
+  :unstable_sort_by,
+  :unstable_sort_dir,
+  :unstable_tag,
   keyword_init: true
 )
 
@@ -660,13 +596,7 @@ ImageLoadMatch = Struct.new(
 
 # Request payload for Image#list.
 #
-# @!attribute [rw] attribution
-#   @return [String, nil]
-#
-# @!attribute [rw] author_name
-#   @return [String, nil]
-#
-# @!attribute [rw] author_url
+# @!attribute [rw] aspect_ratio
 #   @return [String, nil]
 #
 # @!attribute [rw] category
@@ -675,135 +605,89 @@ ImageLoadMatch = Struct.new(
 # @!attribute [rw] creator
 #   @return [String, nil]
 #
-# @!attribute [rw] creator_url
+# @!attribute [rw] excluded_source
 #   @return [String, nil]
 #
-# @!attribute [rw] description
+# @!attribute [rw] extension
 #   @return [String, nil]
 #
-# @!attribute [rw] detail_url
-#   @return [String, nil]
-#
-# @!attribute [rw] display_name
-#   @return [String, nil]
-#
-# @!attribute [rw] fields_matched
-#   @return [Array, nil]
-#
-# @!attribute [rw] filesize
-#   @return [Integer, nil]
-#
-# @!attribute [rw] filetype
-#   @return [String, nil]
-#
-# @!attribute [rw] foreign_landing_url
-#   @return [String, nil]
-#
-# @!attribute [rw] height
-#   @return [Integer, nil]
-#
-# @!attribute [rw] id
-#   @return [String, nil]
-#
-# @!attribute [rw] identifier
-#   @return [String, nil]
-#
-# @!attribute [rw] indexed_on
-#   @return [String, nil]
+# @!attribute [rw] filter_dead
+#   @return [Boolean, nil]
 #
 # @!attribute [rw] license
 #   @return [String, nil]
 #
-# @!attribute [rw] license_url
-#   @return [String, nil]
-#
-# @!attribute [rw] license_version
-#   @return [String, nil]
-#
-# @!attribute [rw] logo_url
+# @!attribute [rw] license_type
 #   @return [String, nil]
 #
 # @!attribute [rw] mature
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] media_count
+# @!attribute [rw] page
 #   @return [Integer, nil]
 #
-# @!attribute [rw] provider
+# @!attribute [rw] page_size
+#   @return [Integer, nil]
+#
+# @!attribute [rw] q
 #   @return [String, nil]
 #
-# @!attribute [rw] reason
-#   @return [Object, nil]
-#
-# @!attribute [rw] related_url
+# @!attribute [rw] size
 #   @return [String, nil]
 #
 # @!attribute [rw] source
 #   @return [String, nil]
 #
-# @!attribute [rw] source_name
-#   @return [String, nil]
-#
-# @!attribute [rw] source_url
-#   @return [String, nil]
-#
-# @!attribute [rw] tags
-#   @return [Array, nil]
-#
-# @!attribute [rw] thumbnail
+# @!attribute [rw] tag
 #   @return [String, nil]
 #
 # @!attribute [rw] title
 #   @return [String, nil]
 #
-# @!attribute [rw] type
-#   @return [Object, nil]
+# @!attribute [rw] unstable_authority
+#   @return [Boolean, nil]
 #
-# @!attribute [rw] url
+# @!attribute [rw] unstable_authority_boost
+#   @return [Float, nil]
+#
+# @!attribute [rw] unstable_collection
 #   @return [String, nil]
 #
-# @!attribute [rw] version
-#   @return [Object, nil]
+# @!attribute [rw] unstable_include_sensitive_result
+#   @return [Boolean, nil]
 #
-# @!attribute [rw] width
-#   @return [Integer, nil]
+# @!attribute [rw] unstable_sort_by
+#   @return [String, nil]
+#
+# @!attribute [rw] unstable_sort_dir
+#   @return [String, nil]
+#
+# @!attribute [rw] unstable_tag
+#   @return [String, nil]
 ImageListMatch = Struct.new(
-  :attribution,
-  :author_name,
-  :author_url,
+  :aspect_ratio,
   :category,
   :creator,
-  :creator_url,
-  :description,
-  :detail_url,
-  :display_name,
-  :fields_matched,
-  :filesize,
-  :filetype,
-  :foreign_landing_url,
-  :height,
-  :id,
-  :identifier,
-  :indexed_on,
+  :excluded_source,
+  :extension,
+  :filter_dead,
   :license,
-  :license_url,
-  :license_version,
-  :logo_url,
+  :license_type,
   :mature,
-  :media_count,
-  :provider,
-  :reason,
-  :related_url,
+  :page,
+  :page_size,
+  :q,
+  :size,
   :source,
-  :source_name,
-  :source_url,
-  :tags,
-  :thumbnail,
+  :tag,
   :title,
-  :type,
-  :url,
-  :version,
-  :width,
+  :unstable_authority,
+  :unstable_authority_boost,
+  :unstable_collection,
+  :unstable_include_sensitive_result,
+  :unstable_sort_by,
+  :unstable_sort_dir,
+  :unstable_tag,
   keyword_init: true
 )
 

@@ -65,45 +65,29 @@ class AudioLoadMatch
 /** Request payload for Audio#list. */
 class AudioListMatch
 {
-    public ?array $alt_files = null;
-    public ?string $attribution = null;
-    public mixed $audio_set = null;
-    public ?int $bit_rate = null;
     public ?string $category = null;
     public ?string $creator = null;
-    public ?string $creator_url = null;
-    public ?string $description = null;
-    public ?string $detail_url = null;
-    public ?string $display_name = null;
-    public ?int $duration = null;
-    public ?array $fields_matched = null;
-    public ?int $filesize = null;
-    public ?string $filetype = null;
-    public ?string $foreign_landing_url = null;
-    public ?array $genres = null;
-    public ?string $id = null;
-    public ?string $identifier = null;
-    public ?string $indexed_on = null;
-    public ?int $len = null;
+    public ?string $excluded_source = null;
+    public ?string $extension = null;
+    public ?bool $filter_dead = null;
+    public ?string $length = null;
     public ?string $license = null;
-    public ?string $license_url = null;
-    public ?string $license_version = null;
-    public ?string $logo_url = null;
+    public ?string $license_type = null;
     public ?bool $mature = null;
-    public ?int $media_count = null;
-    public ?array $points = null;
-    public ?string $provider = null;
-    public mixed $reason = null;
-    public ?string $related_url = null;
-    public ?int $sample_rate = null;
+    public ?int $page = null;
+    public ?int $page_size = null;
+    public ?bool $peak = null;
+    public ?string $q = null;
     public ?string $source = null;
-    public ?string $source_name = null;
-    public ?string $source_url = null;
-    public ?array $tags = null;
-    public ?string $thumbnail = null;
+    public ?string $tag = null;
     public ?string $title = null;
-    public ?string $url = null;
-    public ?string $waveform = null;
+    public ?bool $unstable_authority = null;
+    public ?float $unstable_authority_boost = null;
+    public ?string $unstable_collection = null;
+    public ?bool $unstable_include_sensitive_result = null;
+    public ?string $unstable_sort_by = null;
+    public ?string $unstable_sort_dir = null;
+    public ?string $unstable_tag = null;
 }
 
 /** Request payload for Audio#create. */
@@ -200,42 +184,29 @@ class ImageLoadMatch
 /** Request payload for Image#list. */
 class ImageListMatch
 {
-    public ?string $attribution = null;
-    public ?string $author_name = null;
-    public ?string $author_url = null;
+    public ?string $aspect_ratio = null;
     public ?string $category = null;
     public ?string $creator = null;
-    public ?string $creator_url = null;
-    public ?string $description = null;
-    public ?string $detail_url = null;
-    public ?string $display_name = null;
-    public ?array $fields_matched = null;
-    public ?int $filesize = null;
-    public ?string $filetype = null;
-    public ?string $foreign_landing_url = null;
-    public ?int $height = null;
-    public ?string $id = null;
-    public ?string $identifier = null;
-    public ?string $indexed_on = null;
+    public ?string $excluded_source = null;
+    public ?string $extension = null;
+    public ?bool $filter_dead = null;
     public ?string $license = null;
-    public ?string $license_url = null;
-    public ?string $license_version = null;
-    public ?string $logo_url = null;
+    public ?string $license_type = null;
     public ?bool $mature = null;
-    public ?int $media_count = null;
-    public ?string $provider = null;
-    public mixed $reason = null;
-    public ?string $related_url = null;
+    public ?int $page = null;
+    public ?int $page_size = null;
+    public ?string $q = null;
+    public ?string $size = null;
     public ?string $source = null;
-    public ?string $source_name = null;
-    public ?string $source_url = null;
-    public ?array $tags = null;
-    public ?string $thumbnail = null;
+    public ?string $tag = null;
     public ?string $title = null;
-    public mixed $type = null;
-    public ?string $url = null;
-    public mixed $version = null;
-    public ?int $width = null;
+    public ?bool $unstable_authority = null;
+    public ?float $unstable_authority_boost = null;
+    public ?string $unstable_collection = null;
+    public ?bool $unstable_include_sensitive_result = null;
+    public ?string $unstable_sort_by = null;
+    public ?string $unstable_sort_dir = null;
+    public ?string $unstable_tag = null;
 }
 
 /** Request payload for Image#create. */
