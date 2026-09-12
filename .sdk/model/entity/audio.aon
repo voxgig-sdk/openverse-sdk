@@ -7,18 +7,21 @@ main: kit: entity: audio: {
   fields: [
     {
       name: "alt_files"
+      readOnly: true
       req: true
       short: "JSON describing alternative files for this audio."
       type: "`$ARRAY`"
     }
     {
       name: "attribution"
+      readOnly: true
       req: true
       short: "Legally valid attribution for the media item in plain-text English."
       type: "`$STRING`"
     }
     {
       name: "audio_set"
+      readOnly: true
       req: true
       short: "Reference to set of which this track is a part."
       type: "`$ANY`"
@@ -54,7 +57,9 @@ main: kit: entity: audio: {
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "detail_url"
+      readOnly: true
       req: true
       short: "A direct link to the detail view of this audio file."
       type: "`$STRING`"
@@ -108,12 +113,14 @@ main: kit: entity: audio: {
       type: "`$STRING`"
     }
     {
+      format: "uuid"
       name: "identifier"
       req: true
       short: "Our unique identifier for an open-licensed work."
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "indexed_on"
       req: true
       short: "The timestamp of when the media was indexed by Openverse."
@@ -121,6 +128,7 @@ main: kit: entity: audio: {
     }
     {
       name: "len"
+      readOnly: true
       req: true
       type: "`$INTEGER`"
     }
@@ -132,6 +140,7 @@ main: kit: entity: audio: {
     }
     {
       name: "license_url"
+      readOnly: true
       req: true
       short: "A direct link to the license deed or legal terms."
       type: "`$STRING`"
@@ -143,7 +152,9 @@ main: kit: entity: audio: {
       type: "`$STRING`"
     }
     {
+      deprecated: true
       name: "logo_url"
+      readOnly: true
       req: true
       short: "The URL to a logo for the source."
       type: "`$STRING`"
@@ -156,6 +167,7 @@ main: kit: entity: audio: {
     }
     {
       name: "media_count"
+      readOnly: true
       req: true
       short: "The number of media items indexed from the source."
       type: "`$INTEGER`"
@@ -178,7 +190,9 @@ main: kit: entity: audio: {
       type: "`$ANY`"
     }
     {
+      format: "uri"
       name: "related_url"
+      readOnly: true
       req: true
       short: "A link to an endpoint that provides similar audio files."
       type: "`$STRING`"
@@ -202,6 +216,7 @@ main: kit: entity: audio: {
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "source_url"
       req: true
       short: "The URL of the source, e.g."
@@ -214,7 +229,9 @@ main: kit: entity: audio: {
       type: "`$ARRAY`"
     }
     {
+      format: "uri"
       name: "thumbnail"
+      readOnly: true
       req: true
       short: "A direct link to the miniature artwork."
       type: "`$STRING`"
@@ -232,7 +249,9 @@ main: kit: entity: audio: {
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "waveform"
+      readOnly: true
       req: true
       short: "A direct link to the waveform peaks."
       type: "`$STRING`"
@@ -263,11 +282,19 @@ main: kit: entity: audio: {
           }
           method: "POST"
           orig: "/v1/audio/{identifier}/report/"
-          parts: [
-            "v1"
-            "audio"
-            "{identifier}"
-            "report"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "audio"
+            }
+            {
+              var: "identifier"
+            }
+            {
+              lit: "report"
+            }
           ]
           select: {
             "$action": "report"
@@ -463,9 +490,13 @@ main: kit: entity: audio: {
           }
           method: "GET"
           orig: "/v1/audio/"
-          parts: [
-            "v1"
-            "audio"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "audio"
+            }
           ]
           select: {
             exist: [
@@ -513,11 +544,19 @@ main: kit: entity: audio: {
           }
           method: "GET"
           orig: "/v1/audio/{identifier}/related/"
-          parts: [
-            "v1"
-            "audio"
-            "{identifier}"
-            "related"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "audio"
+            }
+            {
+              var: "identifier"
+            }
+            {
+              lit: "related"
+            }
           ]
           select: {
             "$action": "related"
@@ -544,11 +583,19 @@ main: kit: entity: audio: {
           }
           method: "GET"
           orig: "/v1/audio/{identifier}/waveform/"
-          parts: [
-            "v1"
-            "audio"
-            "{identifier}"
-            "waveform"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "audio"
+            }
+            {
+              var: "identifier"
+            }
+            {
+              lit: "waveform"
+            }
           ]
           select: {
             "$action": "waveform"
@@ -564,10 +611,16 @@ main: kit: entity: audio: {
         {
           method: "GET"
           orig: "/v1/audio/stats/"
-          parts: [
-            "v1"
-            "audio"
-            "stats"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "audio"
+            }
+            {
+              lit: "stats"
+            }
           ]
           select: {
             "$action": "stat"
@@ -613,11 +666,19 @@ main: kit: entity: audio: {
           }
           method: "GET"
           orig: "/v1/audio/{identifier}/thumb/"
-          parts: [
-            "v1"
-            "audio"
-            "{identifier}"
-            "thumb"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "audio"
+            }
+            {
+              var: "identifier"
+            }
+            {
+              lit: "thumb"
+            }
           ]
           select: {
             "$action": "thumb"
@@ -663,11 +724,19 @@ main: kit: entity: audio: {
           }
           method: "GET"
           orig: "/v1/images/{identifier}/thumb/"
-          parts: [
-            "v1"
-            "images"
-            "{identifier}"
-            "thumb"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "images"
+            }
+            {
+              var: "identifier"
+            }
+            {
+              lit: "thumb"
+            }
           ]
           select: {
             exist: [
@@ -695,16 +764,22 @@ main: kit: entity: audio: {
           }
           method: "GET"
           orig: "/v1/audio/{identifier}/"
-          parts: [
-            "v1"
-            "audio"
-            "{id}"
-          ]
           rename: {
             param: {
               identifier: "id"
             }
           }
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "audio"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

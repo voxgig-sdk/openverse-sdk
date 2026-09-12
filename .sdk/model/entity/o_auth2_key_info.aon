@@ -39,9 +39,13 @@ main: kit: entity: o_auth2_key_info: {
         {
           method: "GET"
           orig: "/v1/rate_limit/"
-          parts: [
-            "v1"
-            "rate_limit"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "rate_limit"
+            }
           ]
           transform: {
             req: "`reqdata`"

@@ -52,7 +52,7 @@ func TestOAuth2ApplicationEntity(t *testing.T) {
 		// CREATE
 		oAuth2ApplicationRef01Ent := client.OAuth2Application(nil)
 		oAuth2ApplicationRef01Data := core.ToMapAny(vs.GetProp(
-			vs.GetPath([]any{"new", "o_auth2_application"}, setup.data), "o_auth2_application_ref01"))
+			vs.GetPath(setup.data, []any{"new", "o_auth2_application"}), "o_auth2_application_ref01"))
 
 		oAuth2ApplicationRef01DataResult, err := oAuth2ApplicationRef01Ent.Create(oAuth2ApplicationRef01Data, nil)
 		if err != nil {
@@ -90,7 +90,7 @@ func o_auth2_applicationBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"o_auth2_application01", "o_auth2_application02", "o_auth2_application03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -110,7 +110,7 @@ func o_auth2_applicationBasicSetup(extra map[string]any) *entityTestSetup {
 		"OPENVERSE_TEST_O_AUTH2_APPLICATION_ENTID": idmap,
 		"OPENVERSE_TEST_LIVE":      "FALSE",
 		"OPENVERSE_TEST_EXPLAIN":   "FALSE",
-		"OPENVERSE_APIKEY":         "NONE",
+		"OPENVERSE_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["OPENVERSE_TEST_O_AUTH2_APPLICATION_ENTID"])
@@ -119,11 +119,23 @@ func o_auth2_applicationBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["OPENVERSE_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 				"apikey": env["OPENVERSE_APIKEY"],
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewOpenverseSDK(core.ToMapAny(mergedOpts))
 	}

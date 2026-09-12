@@ -100,7 +100,7 @@ func TestImageEntity(t *testing.T) {
 		// CREATE
 		imageRef01Ent := client.Image(nil)
 		imageRef01Data := core.ToMapAny(vs.GetProp(
-			vs.GetPath([]any{"new", "image"}, setup.data), "image_ref01"))
+			vs.GetPath(setup.data, []any{"new", "image"}), "image_ref01"))
 		imageRef01Data["identifier"] = setup.idmap["identifier01"]
 
 		imageRef01DataResult, err := imageRef01Ent.Create(imageRef01Data, nil)
@@ -175,7 +175,7 @@ func imageBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"image01", "image02", "image03", "identifier01"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -195,7 +195,7 @@ func imageBasicSetup(extra map[string]any) *entityTestSetup {
 		"OPENVERSE_TEST_IMAGE_ENTID": idmap,
 		"OPENVERSE_TEST_LIVE":      "FALSE",
 		"OPENVERSE_TEST_EXPLAIN":   "FALSE",
-		"OPENVERSE_APIKEY":         "NONE",
+		"OPENVERSE_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["OPENVERSE_TEST_IMAGE_ENTID"])
@@ -204,11 +204,23 @@ func imageBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["OPENVERSE_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 				"apikey": env["OPENVERSE_APIKEY"],
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewOpenverseSDK(core.ToMapAny(mergedOpts))
 	}

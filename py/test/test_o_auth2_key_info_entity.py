@@ -90,7 +90,7 @@ def _o_auth2_key_info_basic_setup(extra):
         "OPENVERSE_TEST_O_AUTH2_KEY_INFO_ENTID": idmap,
         "OPENVERSE_TEST_LIVE": "FALSE",
         "OPENVERSE_TEST_EXPLAIN": "FALSE",
-        "OPENVERSE_APIKEY": "NONE",
+        "OPENVERSE_APIKEY": "",
     })
 
     idmap_resolved = helpers.to_map(
@@ -100,6 +100,10 @@ def _o_auth2_key_info_basic_setup(extra):
 
     if env.get("OPENVERSE_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
+            # FIRST, so the generated fields below win: sdk-test-control.json's
+            # test.client.options adds to the live client, it does not
+            # redirect it.
+            runner.live_client_options(),
             {
                 "apikey": env.get("OPENVERSE_APIKEY"),
             },

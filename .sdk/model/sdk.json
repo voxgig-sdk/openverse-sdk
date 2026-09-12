@@ -35,6 +35,7 @@
             {
               "active": true,
               "name": "alt_files",
+              "readOnly": true,
               "req": true,
               "short": "JSON describing alternative files for this audio.",
               "type": "`$ARRAY`"
@@ -42,6 +43,7 @@
             {
               "active": true,
               "name": "attribution",
+              "readOnly": true,
               "req": true,
               "short": "Legally valid attribution for the media item in plain-text English.",
               "type": "`$STRING`"
@@ -49,6 +51,7 @@
             {
               "active": true,
               "name": "audio_set",
+              "readOnly": true,
               "req": true,
               "short": "Reference to set of which this track is a part.",
               "type": "`$ANY`"
@@ -90,7 +93,9 @@
             },
             {
               "active": true,
+              "format": "uri",
               "name": "detail_url",
+              "readOnly": true,
               "req": true,
               "short": "A direct link to the detail view of this audio file.",
               "type": "`$STRING`"
@@ -153,6 +158,7 @@
             },
             {
               "active": true,
+              "format": "uuid",
               "name": "identifier",
               "req": true,
               "short": "Our unique identifier for an open-licensed work.",
@@ -160,6 +166,7 @@
             },
             {
               "active": true,
+              "format": "date-time",
               "name": "indexed_on",
               "req": true,
               "short": "The timestamp of when the media was indexed by Openverse.",
@@ -168,6 +175,7 @@
             {
               "active": true,
               "name": "len",
+              "readOnly": true,
               "req": true,
               "type": "`$INTEGER`"
             },
@@ -181,6 +189,7 @@
             {
               "active": true,
               "name": "license_url",
+              "readOnly": true,
               "req": true,
               "short": "A direct link to the license deed or legal terms.",
               "type": "`$STRING`"
@@ -194,7 +203,9 @@
             },
             {
               "active": true,
+              "deprecated": true,
               "name": "logo_url",
+              "readOnly": true,
               "req": true,
               "short": "The URL to a logo for the source.",
               "type": "`$STRING`"
@@ -209,6 +220,7 @@
             {
               "active": true,
               "name": "media_count",
+              "readOnly": true,
               "req": true,
               "short": "The number of media items indexed from the source.",
               "type": "`$INTEGER`"
@@ -235,7 +247,9 @@
             },
             {
               "active": true,
+              "format": "uri",
               "name": "related_url",
+              "readOnly": true,
               "req": true,
               "short": "A link to an endpoint that provides similar audio files.",
               "type": "`$STRING`"
@@ -263,6 +277,7 @@
             },
             {
               "active": true,
+              "format": "uri",
               "name": "source_url",
               "req": true,
               "short": "The URL of the source, e.g.",
@@ -277,7 +292,9 @@
             },
             {
               "active": true,
+              "format": "uri",
               "name": "thumbnail",
+              "readOnly": true,
               "req": true,
               "short": "A direct link to the miniature artwork.",
               "type": "`$STRING`"
@@ -298,7 +315,9 @@
             },
             {
               "active": true,
+              "format": "uri",
               "name": "waveform",
+              "readOnly": true,
               "req": true,
               "short": "A direct link to the waveform peaks.",
               "type": "`$STRING`"
@@ -331,11 +350,19 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/v1/audio/{identifier}/report/",
-                  "parts": [
-                    "v1",
-                    "audio",
-                    "{identifier}",
-                    "report"
+                  "segments": [
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "audio"
+                    },
+                    {
+                      "var": "identifier"
+                    },
+                    {
+                      "lit": "report"
+                    }
                   ],
                   "select": {
                     "$action": "report",
@@ -557,9 +584,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v1/audio/",
-                  "parts": [
-                    "v1",
-                    "audio"
+                  "segments": [
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "audio"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -610,11 +641,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v1/audio/{identifier}/related/",
-                  "parts": [
-                    "v1",
-                    "audio",
-                    "{identifier}",
-                    "related"
+                  "segments": [
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "audio"
+                    },
+                    {
+                      "var": "identifier"
+                    },
+                    {
+                      "lit": "related"
+                    }
                   ],
                   "select": {
                     "$action": "related",
@@ -644,11 +683,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v1/audio/{identifier}/waveform/",
-                  "parts": [
-                    "v1",
-                    "audio",
-                    "{identifier}",
-                    "waveform"
+                  "segments": [
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "audio"
+                    },
+                    {
+                      "var": "identifier"
+                    },
+                    {
+                      "lit": "waveform"
+                    }
                   ],
                   "select": {
                     "$action": "waveform",
@@ -667,10 +714,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v1/audio/stats/",
-                  "parts": [
-                    "v1",
-                    "audio",
-                    "stats"
+                  "segments": [
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "audio"
+                    },
+                    {
+                      "lit": "stats"
+                    }
                   ],
                   "select": {
                     "$action": "stat"
@@ -722,11 +775,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v1/audio/{identifier}/thumb/",
-                  "parts": [
-                    "v1",
-                    "audio",
-                    "{identifier}",
-                    "thumb"
+                  "segments": [
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "audio"
+                    },
+                    {
+                      "var": "identifier"
+                    },
+                    {
+                      "lit": "thumb"
+                    }
                   ],
                   "select": {
                     "$action": "thumb",
@@ -777,11 +838,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v1/images/{identifier}/thumb/",
-                  "parts": [
-                    "v1",
-                    "images",
-                    "{identifier}",
-                    "thumb"
+                  "segments": [
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "images"
+                    },
+                    {
+                      "var": "identifier"
+                    },
+                    {
+                      "lit": "thumb"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -812,16 +881,22 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v1/audio/{identifier}/",
-                  "parts": [
-                    "v1",
-                    "audio",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "identifier": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "audio"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "id"
@@ -855,6 +930,7 @@
             {
               "active": true,
               "name": "attribution",
+              "readOnly": true,
               "req": true,
               "short": "Legally valid attribution for the media item in plain-text English.",
               "type": "`$STRING`"
@@ -868,6 +944,7 @@
             },
             {
               "active": true,
+              "format": "uri",
               "name": "author_url",
               "req": true,
               "short": "A direct link to the media creator.",
@@ -903,7 +980,9 @@
             },
             {
               "active": true,
+              "format": "uri",
               "name": "detail_url",
+              "readOnly": true,
               "req": true,
               "short": "A direct link to the detail view of this audio file.",
               "type": "`$STRING`"
@@ -952,6 +1031,7 @@
                   "type": "`$INTEGER`"
                 }
               },
+              "readOnly": true,
               "req": false,
               "short": "The height of the image in pixels.",
               "type": "`$INTEGER`"
@@ -965,6 +1045,7 @@
             },
             {
               "active": true,
+              "format": "uuid",
               "name": "identifier",
               "req": true,
               "short": "Our unique identifier for an open-licensed work.",
@@ -972,6 +1053,7 @@
             },
             {
               "active": true,
+              "format": "date-time",
               "name": "indexed_on",
               "req": true,
               "short": "The timestamp of when the media was indexed by Openverse.",
@@ -987,6 +1069,7 @@
             {
               "active": true,
               "name": "license_url",
+              "readOnly": true,
               "req": true,
               "short": "A direct link to the license deed or legal terms.",
               "type": "`$STRING`"
@@ -1000,7 +1083,9 @@
             },
             {
               "active": true,
+              "deprecated": true,
               "name": "logo_url",
+              "readOnly": true,
               "req": true,
               "short": "The URL to a logo for the source.",
               "type": "`$STRING`"
@@ -1015,6 +1100,7 @@
             {
               "active": true,
               "name": "media_count",
+              "readOnly": true,
               "req": true,
               "short": "The number of media items indexed from the source.",
               "type": "`$INTEGER`"
@@ -1035,7 +1121,9 @@
             },
             {
               "active": true,
+              "format": "uri",
               "name": "related_url",
+              "readOnly": true,
               "req": true,
               "short": "A link to an endpoint that provides similar audio files.",
               "type": "`$STRING`"
@@ -1056,6 +1144,7 @@
             },
             {
               "active": true,
+              "format": "uri",
               "name": "source_url",
               "req": true,
               "short": "The URL of the source, e.g.",
@@ -1070,7 +1159,9 @@
             },
             {
               "active": true,
+              "format": "uri",
               "name": "thumbnail",
+              "readOnly": true,
               "req": true,
               "short": "A direct link to the miniature artwork.",
               "type": "`$STRING`"
@@ -1085,6 +1176,7 @@
             {
               "active": true,
               "name": "type",
+              "readOnly": true,
               "req": true,
               "short": "The resource type, always set to 'photo' for images.",
               "type": "`$ANY`"
@@ -1099,6 +1191,7 @@
             {
               "active": true,
               "name": "version",
+              "readOnly": true,
               "req": true,
               "short": "The oEmbed version number, always set to 1.0.",
               "type": "`$ANY`"
@@ -1112,6 +1205,7 @@
                   "type": "`$INTEGER`"
                 }
               },
+              "readOnly": true,
               "req": false,
               "short": "The width of the image in pixels.",
               "type": "`$INTEGER`"
@@ -1144,11 +1238,19 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/v1/images/{identifier}/report/",
-                  "parts": [
-                    "v1",
-                    "images",
-                    "{identifier}",
-                    "report"
+                  "segments": [
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "images"
+                    },
+                    {
+                      "var": "identifier"
+                    },
+                    {
+                      "lit": "report"
+                    }
                   ],
                   "select": {
                     "$action": "report",
@@ -1369,9 +1471,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v1/images/",
-                  "parts": [
-                    "v1",
-                    "images"
+                  "segments": [
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "images"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -1422,11 +1528,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v1/images/{identifier}/related/",
-                  "parts": [
-                    "v1",
-                    "images",
-                    "{identifier}",
-                    "related"
+                  "segments": [
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "images"
+                    },
+                    {
+                      "var": "identifier"
+                    },
+                    {
+                      "lit": "related"
+                    }
                   ],
                   "select": {
                     "$action": "related",
@@ -1445,10 +1559,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v1/images/stats/",
-                  "parts": [
-                    "v1",
-                    "images",
-                    "stats"
+                  "segments": [
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "images"
+                    },
+                    {
+                      "lit": "stats"
+                    }
                   ],
                   "select": {
                     "$action": "stat"
@@ -1481,16 +1601,22 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v1/images/{identifier}/",
-                  "parts": [
-                    "v1",
-                    "images",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "identifier": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "images"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "id"
@@ -1518,10 +1644,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v1/images/oembed/",
-                  "parts": [
-                    "v1",
-                    "images",
-                    "oembed"
+                  "segments": [
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "images"
+                    },
+                    {
+                      "lit": "oembed"
+                    }
                   ],
                   "select": {
                     "$action": "oembed",
@@ -1560,6 +1692,7 @@
             },
             {
               "active": true,
+              "format": "email",
               "name": "email",
               "req": true,
               "short": "A valid email that we can reach you at if we have any questions about your use case or data consumption.",
@@ -1585,10 +1718,16 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/v1/auth_tokens/register/",
-                  "parts": [
-                    "v1",
-                    "auth_tokens",
-                    "register"
+                  "segments": [
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "auth_tokens"
+                    },
+                    {
+                      "lit": "register"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -1650,9 +1789,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v1/rate_limit/",
-                  "parts": [
-                    "v1",
-                    "rate_limit"
+                  "segments": [
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "rate_limit"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -1714,10 +1857,16 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/v1/auth_tokens/token/",
-                  "parts": [
-                    "v1",
-                    "auth_tokens",
-                    "token"
+                  "segments": [
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "auth_tokens"
+                    },
+                    {
+                      "lit": "token"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -1797,8 +1946,11 @@
             }
           },
           "name": "test",
+          "needs": {},
           "origname": "",
           "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
           "target": {
             "go": {
               "deps": {}
@@ -2097,6 +2249,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2122,6 +2277,10 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/runner_test.go",
+            "test/struct_runner_test.go"
+          ],
           "title": "Golang"
         },
         "go-cli": {
@@ -2173,6 +2332,7 @@
               "active": false
             }
           },
+          "provides": {},
           "publish": {
             "registry": {
               "active": false,
@@ -2197,6 +2357,7 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [],
           "title": "Go CLI"
         },
         "go-mcp": {
@@ -2248,6 +2409,7 @@
               "active": false
             }
           },
+          "provides": {},
           "publish": {
             "registry": {
               "active": false,
@@ -2272,6 +2434,7 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [],
           "title": "Go MCP server"
         },
         "lua": {
@@ -2312,6 +2475,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2337,6 +2503,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.lua"
+          ],
           "title": "Lua"
         },
         "php": {
@@ -2371,6 +2540,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2396,6 +2568,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/StructRunner.php"
+          ],
           "title": "PHP"
         },
         "py": {
@@ -2436,6 +2611,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2461,6 +2639,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.py"
+          ],
           "title": "Python"
         },
         "rb": {
@@ -2506,6 +2687,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2531,6 +2715,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.rb"
+          ],
           "title": "Ruby"
         },
         "ts": {
@@ -2548,11 +2735,6 @@
               "active": true,
               "kind": "dev",
               "version": "^25.6.0"
-            },
-            "dotenv": {
-              "active": true,
-              "kind": "dev",
-              "version": "^17.4.2"
             },
             "typescript": {
               "active": true,
@@ -2581,6 +2763,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2605,6 +2790,14 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [
+            "test/runner.ts",
+            "test/vendor/omni/compat.ts",
+            "src/feature/secrets/sekreto/Providers.ts",
+            "src/feature/secrets/sekreto/Sigv4.ts",
+            "src/feature/secrets/sekreto/provider/Registry.ts",
+            "src/feature/secrets/sekreto/provider/http.ts"
+          ],
           "title": "TypeScript"
         }
       },

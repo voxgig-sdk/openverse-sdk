@@ -134,7 +134,7 @@ def audio_basic_setup(extra)
     "OPENVERSE_TEST_AUDIO_ENTID" => idmap,
     "OPENVERSE_TEST_LIVE" => "FALSE",
     "OPENVERSE_TEST_EXPLAIN" => "FALSE",
-    "OPENVERSE_APIKEY" => "NONE",
+    "OPENVERSE_APIKEY" => "",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -145,6 +145,9 @@ def audio_basic_setup(extra)
 
   if env["OPENVERSE_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
+      # FIRST, so the generated fields below win: sdk-test-control.json's
+      # test.client.options adds to the live client, it does not redirect it.
+      Runner.live_client_options,
       {
         "apikey" => env["OPENVERSE_APIKEY"],
       },

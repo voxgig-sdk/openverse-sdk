@@ -12,6 +12,7 @@ main: kit: entity: o_auth2_application: {
       type: "`$STRING`"
     }
     {
+      format: "email"
       name: "email"
       req: true
       short: "A valid email that we can reach you at if we have any questions about your use case or data consumption."
@@ -33,10 +34,16 @@ main: kit: entity: o_auth2_application: {
         {
           method: "POST"
           orig: "/v1/auth_tokens/register/"
-          parts: [
-            "v1"
-            "auth_tokens"
-            "register"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "auth_tokens"
+            }
+            {
+              lit: "register"
+            }
           ]
           transform: {
             req: "`reqdata`"

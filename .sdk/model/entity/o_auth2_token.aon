@@ -39,10 +39,16 @@ main: kit: entity: o_auth2_token: {
         {
           method: "POST"
           orig: "/v1/auth_tokens/token/"
-          parts: [
-            "v1"
-            "auth_tokens"
-            "token"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "auth_tokens"
+            }
+            {
+              lit: "token"
+            }
           ]
           transform: {
             req: "`reqdata`"

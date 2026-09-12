@@ -40,18 +40,21 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "alt_files",
+            ["readOnly"] = true,
             ["req"] = true,
             ["short"] = "JSON describing alternative files for this audio.",
             ["type"] = "`$ARRAY`",
           },
           {
             ["name"] = "attribution",
+            ["readOnly"] = true,
             ["req"] = true,
             ["short"] = "Legally valid attribution for the media item in plain-text English.",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "audio_set",
+            ["readOnly"] = true,
             ["req"] = true,
             ["short"] = "Reference to set of which this track is a part.",
             ["type"] = "`$ANY`",
@@ -82,7 +85,9 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uri",
             ["name"] = "detail_url",
+            ["readOnly"] = true,
             ["req"] = true,
             ["short"] = "A direct link to the detail view of this audio file.",
             ["type"] = "`$STRING`",
@@ -131,12 +136,14 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uuid",
             ["name"] = "identifier",
             ["req"] = true,
             ["short"] = "Our unique identifier for an open-licensed work.",
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "date-time",
             ["name"] = "indexed_on",
             ["req"] = true,
             ["short"] = "The timestamp of when the media was indexed by Openverse.",
@@ -144,6 +151,7 @@ local function make_config()
           },
           {
             ["name"] = "len",
+            ["readOnly"] = true,
             ["req"] = true,
             ["type"] = "`$INTEGER`",
           },
@@ -155,6 +163,7 @@ local function make_config()
           },
           {
             ["name"] = "license_url",
+            ["readOnly"] = true,
             ["req"] = true,
             ["short"] = "A direct link to the license deed or legal terms.",
             ["type"] = "`$STRING`",
@@ -165,7 +174,9 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["deprecated"] = true,
             ["name"] = "logo_url",
+            ["readOnly"] = true,
             ["req"] = true,
             ["short"] = "The URL to a logo for the source.",
             ["type"] = "`$STRING`",
@@ -178,6 +189,7 @@ local function make_config()
           },
           {
             ["name"] = "media_count",
+            ["readOnly"] = true,
             ["req"] = true,
             ["short"] = "The number of media items indexed from the source.",
             ["type"] = "`$INTEGER`",
@@ -199,7 +211,9 @@ local function make_config()
             ["type"] = "`$ANY`",
           },
           {
+            ["format"] = "uri",
             ["name"] = "related_url",
+            ["readOnly"] = true,
             ["req"] = true,
             ["short"] = "A link to an endpoint that provides similar audio files.",
             ["type"] = "`$STRING`",
@@ -221,6 +235,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uri",
             ["name"] = "source_url",
             ["req"] = true,
             ["short"] = "The URL of the source, e.g.",
@@ -233,7 +248,9 @@ local function make_config()
             ["type"] = "`$ARRAY`",
           },
           {
+            ["format"] = "uri",
             ["name"] = "thumbnail",
+            ["readOnly"] = true,
             ["req"] = true,
             ["short"] = "A direct link to the miniature artwork.",
             ["type"] = "`$STRING`",
@@ -249,11 +266,17 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uri",
             ["name"] = "waveform",
+            ["readOnly"] = true,
             ["req"] = true,
             ["short"] = "A direct link to the waveform peaks.",
             ["type"] = "`$STRING`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "audio",
         ["op"] = {
@@ -276,11 +299,19 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/v1/audio/{identifier}/report/",
-                ["parts"] = {
-                  "v1",
-                  "audio",
-                  "{identifier}",
-                  "report",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v1",
+                  },
+                  {
+                    ["lit"] = "audio",
+                  },
+                  {
+                    ["var"] = "identifier",
+                  },
+                  {
+                    ["lit"] = "report",
+                  },
                 },
                 ["select"] = {
                   ["$action"] = "report",
@@ -291,6 +322,12 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.reason`",
+                },
+                ["parts"] = {
+                  "v1",
+                  "audio",
+                  "{identifier}",
+                  "report",
                 },
               },
             },
@@ -455,9 +492,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v1/audio/",
-                ["parts"] = {
-                  "v1",
-                  "audio",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v1",
+                  },
+                  {
+                    ["lit"] = "audio",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -490,6 +531,10 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
+                ["parts"] = {
+                  "v1",
+                  "audio",
+                },
               },
               {
                 ["args"] = {
@@ -506,11 +551,19 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v1/audio/{identifier}/related/",
-                ["parts"] = {
-                  "v1",
-                  "audio",
-                  "{identifier}",
-                  "related",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v1",
+                  },
+                  {
+                    ["lit"] = "audio",
+                  },
+                  {
+                    ["var"] = "identifier",
+                  },
+                  {
+                    ["lit"] = "related",
+                  },
                 },
                 ["select"] = {
                   ["$action"] = "related",
@@ -521,6 +574,12 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "v1",
+                  "audio",
+                  "{identifier}",
+                  "related",
                 },
               },
               {
@@ -538,11 +597,19 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v1/audio/{identifier}/waveform/",
-                ["parts"] = {
-                  "v1",
-                  "audio",
-                  "{identifier}",
-                  "waveform",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v1",
+                  },
+                  {
+                    ["lit"] = "audio",
+                  },
+                  {
+                    ["var"] = "identifier",
+                  },
+                  {
+                    ["lit"] = "waveform",
+                  },
                 },
                 ["select"] = {
                   ["$action"] = "waveform",
@@ -554,16 +621,28 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.points`",
                 },
+                ["parts"] = {
+                  "v1",
+                  "audio",
+                  "{identifier}",
+                  "waveform",
+                },
               },
               {
                 ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v1/audio/stats/",
-                ["parts"] = {
-                  "v1",
-                  "audio",
-                  "stats",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v1",
+                  },
+                  {
+                    ["lit"] = "audio",
+                  },
+                  {
+                    ["lit"] = "stats",
+                  },
                 },
                 ["select"] = {
                   ["$action"] = "stat",
@@ -571,6 +650,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "v1",
+                  "audio",
+                  "stats",
                 },
               },
             },
@@ -609,11 +693,19 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v1/audio/{identifier}/thumb/",
-                ["parts"] = {
-                  "v1",
-                  "audio",
-                  "{identifier}",
-                  "thumb",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v1",
+                  },
+                  {
+                    ["lit"] = "audio",
+                  },
+                  {
+                    ["var"] = "identifier",
+                  },
+                  {
+                    ["lit"] = "thumb",
+                  },
                 },
                 ["select"] = {
                   ["$action"] = "thumb",
@@ -626,6 +718,12 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "v1",
+                  "audio",
+                  "{identifier}",
+                  "thumb",
                 },
               },
               {
@@ -658,11 +756,19 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v1/images/{identifier}/thumb/",
-                ["parts"] = {
-                  "v1",
-                  "images",
-                  "{identifier}",
-                  "thumb",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v1",
+                  },
+                  {
+                    ["lit"] = "images",
+                  },
+                  {
+                    ["var"] = "identifier",
+                  },
+                  {
+                    ["lit"] = "thumb",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -674,6 +780,12 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "v1",
+                  "images",
+                  "{identifier}",
+                  "thumb",
                 },
               },
               {
@@ -691,14 +803,20 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v1/audio/{identifier}/",
-                ["parts"] = {
-                  "v1",
-                  "audio",
-                  "{id}",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["identifier"] = "id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["lit"] = "v1",
+                  },
+                  {
+                    ["lit"] = "audio",
+                  },
+                  {
+                    ["var"] = "id",
                   },
                 },
                 ["select"] = {
@@ -709,6 +827,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "v1",
+                  "audio",
+                  "{id}",
                 },
               },
             },
@@ -729,6 +852,7 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "attribution",
+            ["readOnly"] = true,
             ["req"] = true,
             ["short"] = "Legally valid attribution for the media item in plain-text English.",
             ["type"] = "`$STRING`",
@@ -740,6 +864,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uri",
             ["name"] = "author_url",
             ["req"] = true,
             ["short"] = "A direct link to the media creator.",
@@ -766,7 +891,9 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uri",
             ["name"] = "detail_url",
+            ["readOnly"] = true,
             ["req"] = true,
             ["short"] = "A direct link to the detail view of this audio file.",
             ["type"] = "`$STRING`",
@@ -806,6 +933,7 @@ local function make_config()
                 ["type"] = "`$INTEGER`",
               },
             },
+            ["readOnly"] = true,
             ["short"] = "The height of the image in pixels.",
             ["type"] = "`$INTEGER`",
           },
@@ -816,12 +944,14 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uuid",
             ["name"] = "identifier",
             ["req"] = true,
             ["short"] = "Our unique identifier for an open-licensed work.",
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "date-time",
             ["name"] = "indexed_on",
             ["req"] = true,
             ["short"] = "The timestamp of when the media was indexed by Openverse.",
@@ -835,6 +965,7 @@ local function make_config()
           },
           {
             ["name"] = "license_url",
+            ["readOnly"] = true,
             ["req"] = true,
             ["short"] = "A direct link to the license deed or legal terms.",
             ["type"] = "`$STRING`",
@@ -845,7 +976,9 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["deprecated"] = true,
             ["name"] = "logo_url",
+            ["readOnly"] = true,
             ["req"] = true,
             ["short"] = "The URL to a logo for the source.",
             ["type"] = "`$STRING`",
@@ -858,6 +991,7 @@ local function make_config()
           },
           {
             ["name"] = "media_count",
+            ["readOnly"] = true,
             ["req"] = true,
             ["short"] = "The number of media items indexed from the source.",
             ["type"] = "`$INTEGER`",
@@ -874,7 +1008,9 @@ local function make_config()
             ["type"] = "`$ANY`",
           },
           {
+            ["format"] = "uri",
             ["name"] = "related_url",
+            ["readOnly"] = true,
             ["req"] = true,
             ["short"] = "A link to an endpoint that provides similar audio files.",
             ["type"] = "`$STRING`",
@@ -891,6 +1027,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uri",
             ["name"] = "source_url",
             ["req"] = true,
             ["short"] = "The URL of the source, e.g.",
@@ -903,7 +1040,9 @@ local function make_config()
             ["type"] = "`$ARRAY`",
           },
           {
+            ["format"] = "uri",
             ["name"] = "thumbnail",
+            ["readOnly"] = true,
             ["req"] = true,
             ["short"] = "A direct link to the miniature artwork.",
             ["type"] = "`$STRING`",
@@ -915,6 +1054,7 @@ local function make_config()
           },
           {
             ["name"] = "type",
+            ["readOnly"] = true,
             ["req"] = true,
             ["short"] = "The resource type, always set to 'photo' for images.",
             ["type"] = "`$ANY`",
@@ -926,6 +1066,7 @@ local function make_config()
           },
           {
             ["name"] = "version",
+            ["readOnly"] = true,
             ["req"] = true,
             ["short"] = "The oEmbed version number, always set to 1.0.",
             ["type"] = "`$ANY`",
@@ -938,9 +1079,14 @@ local function make_config()
                 ["type"] = "`$INTEGER`",
               },
             },
+            ["readOnly"] = true,
             ["short"] = "The width of the image in pixels.",
             ["type"] = "`$INTEGER`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "image",
         ["op"] = {
@@ -963,11 +1109,19 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/v1/images/{identifier}/report/",
-                ["parts"] = {
-                  "v1",
-                  "images",
-                  "{identifier}",
-                  "report",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v1",
+                  },
+                  {
+                    ["lit"] = "images",
+                  },
+                  {
+                    ["var"] = "identifier",
+                  },
+                  {
+                    ["lit"] = "report",
+                  },
                 },
                 ["select"] = {
                   ["$action"] = "report",
@@ -978,6 +1132,12 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.reason`",
+                },
+                ["parts"] = {
+                  "v1",
+                  "images",
+                  "{identifier}",
+                  "report",
                 },
               },
             },
@@ -1141,9 +1301,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v1/images/",
-                ["parts"] = {
-                  "v1",
-                  "images",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v1",
+                  },
+                  {
+                    ["lit"] = "images",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -1176,6 +1340,10 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
+                ["parts"] = {
+                  "v1",
+                  "images",
+                },
               },
               {
                 ["args"] = {
@@ -1192,11 +1360,19 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v1/images/{identifier}/related/",
-                ["parts"] = {
-                  "v1",
-                  "images",
-                  "{identifier}",
-                  "related",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v1",
+                  },
+                  {
+                    ["lit"] = "images",
+                  },
+                  {
+                    ["var"] = "identifier",
+                  },
+                  {
+                    ["lit"] = "related",
+                  },
                 },
                 ["select"] = {
                   ["$action"] = "related",
@@ -1208,16 +1384,28 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
+                ["parts"] = {
+                  "v1",
+                  "images",
+                  "{identifier}",
+                  "related",
+                },
               },
               {
                 ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v1/images/stats/",
-                ["parts"] = {
-                  "v1",
-                  "images",
-                  "stats",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v1",
+                  },
+                  {
+                    ["lit"] = "images",
+                  },
+                  {
+                    ["lit"] = "stats",
+                  },
                 },
                 ["select"] = {
                   ["$action"] = "stat",
@@ -1225,6 +1413,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "v1",
+                  "images",
+                  "stats",
                 },
               },
             },
@@ -1248,14 +1441,20 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v1/images/{identifier}/",
-                ["parts"] = {
-                  "v1",
-                  "images",
-                  "{id}",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["identifier"] = "id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["lit"] = "v1",
+                  },
+                  {
+                    ["lit"] = "images",
+                  },
+                  {
+                    ["var"] = "id",
                   },
                 },
                 ["select"] = {
@@ -1266,6 +1465,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "v1",
+                  "images",
+                  "{id}",
                 },
               },
               {
@@ -1283,10 +1487,16 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v1/images/oembed/",
-                ["parts"] = {
-                  "v1",
-                  "images",
-                  "oembed",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v1",
+                  },
+                  {
+                    ["lit"] = "images",
+                  },
+                  {
+                    ["lit"] = "oembed",
+                  },
                 },
                 ["select"] = {
                   ["$action"] = "oembed",
@@ -1297,6 +1507,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "v1",
+                  "images",
+                  "oembed",
                 },
               },
             },
@@ -1319,6 +1534,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "email",
             ["name"] = "email",
             ["req"] = true,
             ["short"] = "A valid email that we can reach you at if we have any questions about your use case or data consumption.",
@@ -1342,15 +1558,26 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/v1/auth_tokens/register/",
-                ["parts"] = {
-                  "v1",
-                  "auth_tokens",
-                  "register",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v1",
+                  },
+                  {
+                    ["lit"] = "auth_tokens",
+                  },
+                  {
+                    ["lit"] = "register",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "v1",
+                  "auth_tokens",
+                  "register",
                 },
               },
             },
@@ -1398,14 +1625,22 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v1/rate_limit/",
-                ["parts"] = {
-                  "v1",
-                  "rate_limit",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v1",
+                  },
+                  {
+                    ["lit"] = "rate_limit",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "v1",
+                  "rate_limit",
                 },
               },
             },
@@ -1453,15 +1688,26 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/v1/auth_tokens/token/",
-                ["parts"] = {
-                  "v1",
-                  "auth_tokens",
-                  "token",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v1",
+                  },
+                  {
+                    ["lit"] = "auth_tokens",
+                  },
+                  {
+                    ["lit"] = "token",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "v1",
+                  "auth_tokens",
+                  "token",
                 },
               },
             },

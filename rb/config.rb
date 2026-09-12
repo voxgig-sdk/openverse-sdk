@@ -52,18 +52,21 @@ module OpenverseConfig
           "fields" => [
             {
               "name" => "alt_files",
+              "readOnly" => true,
               "req" => true,
               "short" => "JSON describing alternative files for this audio.",
               "type" => "`$ARRAY`",
             },
             {
               "name" => "attribution",
+              "readOnly" => true,
               "req" => true,
               "short" => "Legally valid attribution for the media item in plain-text English.",
               "type" => "`$STRING`",
             },
             {
               "name" => "audio_set",
+              "readOnly" => true,
               "req" => true,
               "short" => "Reference to set of which this track is a part.",
               "type" => "`$ANY`",
@@ -94,7 +97,9 @@ module OpenverseConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "uri",
               "name" => "detail_url",
+              "readOnly" => true,
               "req" => true,
               "short" => "A direct link to the detail view of this audio file.",
               "type" => "`$STRING`",
@@ -143,12 +148,14 @@ module OpenverseConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "uuid",
               "name" => "identifier",
               "req" => true,
               "short" => "Our unique identifier for an open-licensed work.",
               "type" => "`$STRING`",
             },
             {
+              "format" => "date-time",
               "name" => "indexed_on",
               "req" => true,
               "short" => "The timestamp of when the media was indexed by Openverse.",
@@ -156,6 +163,7 @@ module OpenverseConfig
             },
             {
               "name" => "len",
+              "readOnly" => true,
               "req" => true,
               "type" => "`$INTEGER`",
             },
@@ -167,6 +175,7 @@ module OpenverseConfig
             },
             {
               "name" => "license_url",
+              "readOnly" => true,
               "req" => true,
               "short" => "A direct link to the license deed or legal terms.",
               "type" => "`$STRING`",
@@ -177,7 +186,9 @@ module OpenverseConfig
               "type" => "`$STRING`",
             },
             {
+              "deprecated" => true,
               "name" => "logo_url",
+              "readOnly" => true,
               "req" => true,
               "short" => "The URL to a logo for the source.",
               "type" => "`$STRING`",
@@ -190,6 +201,7 @@ module OpenverseConfig
             },
             {
               "name" => "media_count",
+              "readOnly" => true,
               "req" => true,
               "short" => "The number of media items indexed from the source.",
               "type" => "`$INTEGER`",
@@ -211,7 +223,9 @@ module OpenverseConfig
               "type" => "`$ANY`",
             },
             {
+              "format" => "uri",
               "name" => "related_url",
+              "readOnly" => true,
               "req" => true,
               "short" => "A link to an endpoint that provides similar audio files.",
               "type" => "`$STRING`",
@@ -233,6 +247,7 @@ module OpenverseConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "uri",
               "name" => "source_url",
               "req" => true,
               "short" => "The URL of the source, e.g.",
@@ -245,7 +260,9 @@ module OpenverseConfig
               "type" => "`$ARRAY`",
             },
             {
+              "format" => "uri",
               "name" => "thumbnail",
+              "readOnly" => true,
               "req" => true,
               "short" => "A direct link to the miniature artwork.",
               "type" => "`$STRING`",
@@ -261,12 +278,18 @@ module OpenverseConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "uri",
               "name" => "waveform",
+              "readOnly" => true,
               "req" => true,
               "short" => "A direct link to the waveform peaks.",
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "audio",
           "op" => {
             "create" => {
@@ -288,11 +311,19 @@ module OpenverseConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/v1/audio/{identifier}/report/",
-                  "parts" => [
-                    "v1",
-                    "audio",
-                    "{identifier}",
-                    "report",
+                  "segments" => [
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "audio",
+                    },
+                    {
+                      "var" => "identifier",
+                    },
+                    {
+                      "lit" => "report",
+                    },
                   ],
                   "select" => {
                     "$action" => "report",
@@ -304,6 +335,12 @@ module OpenverseConfig
                     "req" => "`reqdata`",
                     "res" => "`body.reason`",
                   },
+                  "parts" => [
+                    "v1",
+                    "audio",
+                    "{identifier}",
+                    "report",
+                  ],
                 },
               ],
             },
@@ -467,9 +504,13 @@ module OpenverseConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/v1/audio/",
-                  "parts" => [
-                    "v1",
-                    "audio",
+                  "segments" => [
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "audio",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -502,6 +543,10 @@ module OpenverseConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "v1",
+                    "audio",
+                  ],
                 },
                 {
                   "args" => {
@@ -518,11 +563,19 @@ module OpenverseConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/v1/audio/{identifier}/related/",
-                  "parts" => [
-                    "v1",
-                    "audio",
-                    "{identifier}",
-                    "related",
+                  "segments" => [
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "audio",
+                    },
+                    {
+                      "var" => "identifier",
+                    },
+                    {
+                      "lit" => "related",
+                    },
                   ],
                   "select" => {
                     "$action" => "related",
@@ -534,6 +587,12 @@ module OpenverseConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "v1",
+                    "audio",
+                    "{identifier}",
+                    "related",
+                  ],
                 },
                 {
                   "args" => {
@@ -550,11 +609,19 @@ module OpenverseConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/v1/audio/{identifier}/waveform/",
-                  "parts" => [
-                    "v1",
-                    "audio",
-                    "{identifier}",
-                    "waveform",
+                  "segments" => [
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "audio",
+                    },
+                    {
+                      "var" => "identifier",
+                    },
+                    {
+                      "lit" => "waveform",
+                    },
                   ],
                   "select" => {
                     "$action" => "waveform",
@@ -566,16 +633,28 @@ module OpenverseConfig
                     "req" => "`reqdata`",
                     "res" => "`body.points`",
                   },
+                  "parts" => [
+                    "v1",
+                    "audio",
+                    "{identifier}",
+                    "waveform",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/v1/audio/stats/",
-                  "parts" => [
-                    "v1",
-                    "audio",
-                    "stats",
+                  "segments" => [
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "audio",
+                    },
+                    {
+                      "lit" => "stats",
+                    },
                   ],
                   "select" => {
                     "$action" => "stat",
@@ -584,6 +663,11 @@ module OpenverseConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "v1",
+                    "audio",
+                    "stats",
+                  ],
                 },
               ],
             },
@@ -621,11 +705,19 @@ module OpenverseConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/v1/audio/{identifier}/thumb/",
-                  "parts" => [
-                    "v1",
-                    "audio",
-                    "{identifier}",
-                    "thumb",
+                  "segments" => [
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "audio",
+                    },
+                    {
+                      "var" => "identifier",
+                    },
+                    {
+                      "lit" => "thumb",
+                    },
                   ],
                   "select" => {
                     "$action" => "thumb",
@@ -639,6 +731,12 @@ module OpenverseConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "v1",
+                    "audio",
+                    "{identifier}",
+                    "thumb",
+                  ],
                 },
                 {
                   "args" => {
@@ -670,11 +768,19 @@ module OpenverseConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/v1/images/{identifier}/thumb/",
-                  "parts" => [
-                    "v1",
-                    "images",
-                    "{identifier}",
-                    "thumb",
+                  "segments" => [
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "images",
+                    },
+                    {
+                      "var" => "identifier",
+                    },
+                    {
+                      "lit" => "thumb",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -687,6 +793,12 @@ module OpenverseConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "v1",
+                    "images",
+                    "{identifier}",
+                    "thumb",
+                  ],
                 },
                 {
                   "args" => {
@@ -703,16 +815,22 @@ module OpenverseConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/v1/audio/{identifier}/",
-                  "parts" => [
-                    "v1",
-                    "audio",
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "identifier" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "audio",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "id",
@@ -722,6 +840,11 @@ module OpenverseConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "v1",
+                    "audio",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -741,6 +864,7 @@ module OpenverseConfig
           "fields" => [
             {
               "name" => "attribution",
+              "readOnly" => true,
               "req" => true,
               "short" => "Legally valid attribution for the media item in plain-text English.",
               "type" => "`$STRING`",
@@ -752,6 +876,7 @@ module OpenverseConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "uri",
               "name" => "author_url",
               "req" => true,
               "short" => "A direct link to the media creator.",
@@ -778,7 +903,9 @@ module OpenverseConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "uri",
               "name" => "detail_url",
+              "readOnly" => true,
               "req" => true,
               "short" => "A direct link to the detail view of this audio file.",
               "type" => "`$STRING`",
@@ -818,6 +945,7 @@ module OpenverseConfig
                   "type" => "`$INTEGER`",
                 },
               },
+              "readOnly" => true,
               "short" => "The height of the image in pixels.",
               "type" => "`$INTEGER`",
             },
@@ -828,12 +956,14 @@ module OpenverseConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "uuid",
               "name" => "identifier",
               "req" => true,
               "short" => "Our unique identifier for an open-licensed work.",
               "type" => "`$STRING`",
             },
             {
+              "format" => "date-time",
               "name" => "indexed_on",
               "req" => true,
               "short" => "The timestamp of when the media was indexed by Openverse.",
@@ -847,6 +977,7 @@ module OpenverseConfig
             },
             {
               "name" => "license_url",
+              "readOnly" => true,
               "req" => true,
               "short" => "A direct link to the license deed or legal terms.",
               "type" => "`$STRING`",
@@ -857,7 +988,9 @@ module OpenverseConfig
               "type" => "`$STRING`",
             },
             {
+              "deprecated" => true,
               "name" => "logo_url",
+              "readOnly" => true,
               "req" => true,
               "short" => "The URL to a logo for the source.",
               "type" => "`$STRING`",
@@ -870,6 +1003,7 @@ module OpenverseConfig
             },
             {
               "name" => "media_count",
+              "readOnly" => true,
               "req" => true,
               "short" => "The number of media items indexed from the source.",
               "type" => "`$INTEGER`",
@@ -886,7 +1020,9 @@ module OpenverseConfig
               "type" => "`$ANY`",
             },
             {
+              "format" => "uri",
               "name" => "related_url",
+              "readOnly" => true,
               "req" => true,
               "short" => "A link to an endpoint that provides similar audio files.",
               "type" => "`$STRING`",
@@ -903,6 +1039,7 @@ module OpenverseConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "uri",
               "name" => "source_url",
               "req" => true,
               "short" => "The URL of the source, e.g.",
@@ -915,7 +1052,9 @@ module OpenverseConfig
               "type" => "`$ARRAY`",
             },
             {
+              "format" => "uri",
               "name" => "thumbnail",
+              "readOnly" => true,
               "req" => true,
               "short" => "A direct link to the miniature artwork.",
               "type" => "`$STRING`",
@@ -927,6 +1066,7 @@ module OpenverseConfig
             },
             {
               "name" => "type",
+              "readOnly" => true,
               "req" => true,
               "short" => "The resource type, always set to 'photo' for images.",
               "type" => "`$ANY`",
@@ -938,6 +1078,7 @@ module OpenverseConfig
             },
             {
               "name" => "version",
+              "readOnly" => true,
               "req" => true,
               "short" => "The oEmbed version number, always set to 1.0.",
               "type" => "`$ANY`",
@@ -950,10 +1091,15 @@ module OpenverseConfig
                   "type" => "`$INTEGER`",
                 },
               },
+              "readOnly" => true,
               "short" => "The width of the image in pixels.",
               "type" => "`$INTEGER`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "image",
           "op" => {
             "create" => {
@@ -975,11 +1121,19 @@ module OpenverseConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/v1/images/{identifier}/report/",
-                  "parts" => [
-                    "v1",
-                    "images",
-                    "{identifier}",
-                    "report",
+                  "segments" => [
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "images",
+                    },
+                    {
+                      "var" => "identifier",
+                    },
+                    {
+                      "lit" => "report",
+                    },
                   ],
                   "select" => {
                     "$action" => "report",
@@ -991,6 +1145,12 @@ module OpenverseConfig
                     "req" => "`reqdata`",
                     "res" => "`body.reason`",
                   },
+                  "parts" => [
+                    "v1",
+                    "images",
+                    "{identifier}",
+                    "report",
+                  ],
                 },
               ],
             },
@@ -1153,9 +1313,13 @@ module OpenverseConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/v1/images/",
-                  "parts" => [
-                    "v1",
-                    "images",
+                  "segments" => [
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "images",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -1188,6 +1352,10 @@ module OpenverseConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "v1",
+                    "images",
+                  ],
                 },
                 {
                   "args" => {
@@ -1204,11 +1372,19 @@ module OpenverseConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/v1/images/{identifier}/related/",
-                  "parts" => [
-                    "v1",
-                    "images",
-                    "{identifier}",
-                    "related",
+                  "segments" => [
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "images",
+                    },
+                    {
+                      "var" => "identifier",
+                    },
+                    {
+                      "lit" => "related",
+                    },
                   ],
                   "select" => {
                     "$action" => "related",
@@ -1220,16 +1396,28 @@ module OpenverseConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "v1",
+                    "images",
+                    "{identifier}",
+                    "related",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/v1/images/stats/",
-                  "parts" => [
-                    "v1",
-                    "images",
-                    "stats",
+                  "segments" => [
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "images",
+                    },
+                    {
+                      "lit" => "stats",
+                    },
                   ],
                   "select" => {
                     "$action" => "stat",
@@ -1238,6 +1426,11 @@ module OpenverseConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "v1",
+                    "images",
+                    "stats",
+                  ],
                 },
               ],
             },
@@ -1260,16 +1453,22 @@ module OpenverseConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/v1/images/{identifier}/",
-                  "parts" => [
-                    "v1",
-                    "images",
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "identifier" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "images",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "id",
@@ -1279,6 +1478,11 @@ module OpenverseConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "v1",
+                    "images",
+                    "{id}",
+                  ],
                 },
                 {
                   "args" => {
@@ -1295,10 +1499,16 @@ module OpenverseConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/v1/images/oembed/",
-                  "parts" => [
-                    "v1",
-                    "images",
-                    "oembed",
+                  "segments" => [
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "images",
+                    },
+                    {
+                      "lit" => "oembed",
+                    },
                   ],
                   "select" => {
                     "$action" => "oembed",
@@ -1310,6 +1520,11 @@ module OpenverseConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "v1",
+                    "images",
+                    "oembed",
+                  ],
                 },
               ],
             },
@@ -1331,6 +1546,7 @@ module OpenverseConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "email",
               "name" => "email",
               "req" => true,
               "short" => "A valid email that we can reach you at if we have any questions about your use case or data consumption.",
@@ -1354,16 +1570,27 @@ module OpenverseConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/v1/auth_tokens/register/",
-                  "parts" => [
-                    "v1",
-                    "auth_tokens",
-                    "register",
+                  "segments" => [
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "auth_tokens",
+                    },
+                    {
+                      "lit" => "register",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "v1",
+                    "auth_tokens",
+                    "register",
+                  ],
                 },
               ],
             },
@@ -1410,15 +1637,23 @@ module OpenverseConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/v1/rate_limit/",
-                  "parts" => [
-                    "v1",
-                    "rate_limit",
+                  "segments" => [
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "rate_limit",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "v1",
+                    "rate_limit",
+                  ],
                 },
               ],
             },
@@ -1465,16 +1700,27 @@ module OpenverseConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/v1/auth_tokens/token/",
-                  "parts" => [
-                    "v1",
-                    "auth_tokens",
-                    "token",
+                  "segments" => [
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "auth_tokens",
+                    },
+                    {
+                      "lit" => "token",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "v1",
+                    "auth_tokens",
+                    "token",
+                  ],
                 },
               ],
             },
