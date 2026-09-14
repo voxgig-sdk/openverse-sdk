@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { OpenverseSDK } from '@voxgig-sdk/openverse'
+import { OpenverseSDK } from '@voxgig-sdk/openverse-sdk'
 
 const client = new OpenverseSDK({
   apikey: process.env.OPENVERSE_APIKEY,
@@ -839,7 +839,7 @@ openverse/
 Import the SDK from the package root:
 
 ```ts
-import { OpenverseSDK } from '@voxgig-sdk/openverse'
+import { OpenverseSDK } from '@voxgig-sdk/openverse-sdk'
 ```
 
 ### Entity state

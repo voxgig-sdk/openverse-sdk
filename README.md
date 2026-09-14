@@ -105,7 +105,7 @@ local results, err = client:Image():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/openverse` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openverse-sdk/releases) |
+| TypeScript | `@voxgig-sdk/openverse-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openverse-sdk/releases) |
 | Python | `voxgig-sdk-openverse` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openverse-sdk/releases) |
 | PHP | `voxgig-sdk/openverse` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openverse-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/openverse-sdk/go` | `go get github.com/voxgig-sdk/openverse-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:Image():list()
 ### TypeScript
 
 ```ts
-import { OpenverseSDK } from '@voxgig-sdk/openverse'
+import { OpenverseSDK } from '@voxgig-sdk/openverse-sdk'
 
 const client = new OpenverseSDK({
   apikey: process.env.OPENVERSE_APIKEY,
