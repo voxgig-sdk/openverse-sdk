@@ -24,7 +24,71 @@
         "repr": "auto"
       },
       "contributor": {},
-      "docs": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
       "entity": {
         "audio": {
           "active": true,
@@ -347,6 +411,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "POST /v1/audio/{identifier}/report/",
+                    "json": "{\"operationId\":\"audio_report\",\"parameters\":[{\"in\":\"path\",\"name\":\"identifier\",\"required\":true,\"schema\":{\"format\":\"uuid\",\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"description\":{\"description\":\"The explanation on why media is being reported.\",\"maxLength\":500,\"nullable\":true,\"type\":\"string\"},\"identifier\":{\"description\":\"Our unique identifier for an open-licensed work.\",\"format\":\"uuid\",\"type\":\"string\"},\"reason\":{\"allOf\":[{\"description\":\"* `mature` - mature\\n* `dmca` - dmca\\n* `other` - other\",\"enum\":[\"mature\",\"dmca\",\"other\"],\"type\":\"string\"}],\"description\":\"The reason to report media to Openverse.\\n\\n* `mature` - mature\\n* `dmca` - dmca\\n* `other` - other\"}},\"required\":[\"identifier\",\"reason\"],\"type\":\"object\"}},\"application/x-www-form-urlencoded\":{\"schema\":{\"properties\":{\"description\":{\"description\":\"The explanation on why media is being reported.\",\"maxLength\":500,\"nullable\":true,\"type\":\"string\"},\"identifier\":{\"description\":\"Our unique identifier for an open-licensed work.\",\"format\":\"uuid\",\"type\":\"string\"},\"reason\":{\"allOf\":[{\"description\":\"* `mature` - mature\\n* `dmca` - dmca\\n* `other` - other\",\"enum\":[\"mature\",\"dmca\",\"other\"],\"type\":\"string\"}],\"description\":\"The reason to report media to Openverse.\\n\\n* `mature` - mature\\n* `dmca` - dmca\\n* `other` - other\"}},\"required\":[\"identifier\",\"reason\"],\"type\":\"object\"}},\"multipart/form-data\":{\"schema\":{\"properties\":{\"description\":{\"description\":\"The explanation on why media is being reported.\",\"maxLength\":500,\"nullable\":true,\"type\":\"string\"},\"identifier\":{\"description\":\"Our unique identifier for an open-licensed work.\",\"format\":\"uuid\",\"type\":\"string\"},\"reason\":{\"allOf\":[{\"description\":\"* `mature` - mature\\n* `dmca` - dmca\\n* `other` - other\",\"enum\":[\"mature\",\"dmca\",\"other\"],\"type\":\"string\"}],\"description\":\"The reason to report media to Openverse.\\n\\n* `mature` - mature\\n* `dmca` - dmca\\n* `other` - other\"}},\"required\":[\"identifier\",\"reason\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"201\":{\"content\":{\"application/json\":{\"examples\":{\"Created\":{\"value\":{\"description\":\"This audio contains sensitive content\",\"identifier\":\"8624ba61-57f1-4f98-8a85-ece206c319cf\",\"reason\":\"mature\"}}},\"schema\":{\"properties\":{\"description\":{\"description\":\"The explanation on why media is being reported.\",\"maxLength\":500,\"nullable\":true,\"type\":\"string\"},\"identifier\":{\"description\":\"Our unique identifier for an open-licensed work.\",\"format\":\"uuid\",\"type\":\"string\"},\"reason\":{\"allOf\":[{\"description\":\"* `mature` - mature\\n* `dmca` - dmca\\n* `other` - other\",\"enum\":[\"mature\",\"dmca\",\"other\"],\"type\":\"string\"}],\"description\":\"The reason to report media to Openverse.\\n\\n* `mature` - mature\\n* `dmca` - dmca\\n* `other` - other\"}},\"required\":[\"identifier\",\"reason\"],\"type\":\"object\"}}},\"description\":\"Created\"},\"400\":{\"content\":{\"application/json\":{\"examples\":{\"BadRequest\":{\"summary\":\"Bad Request\",\"value\":{\"detail\":{\"<request parameter>\":\"<error details>\"}}}},\"schema\":{\"properties\":{\"detail\":{\"oneOf\":[{\"description\":\"A description of what went wrong.\",\"type\":\"string\"},{\"additionalProperties\":true,\"type\":\"object\"}]}},\"title\":\"ValidationError\",\"type\":\"object\"}}},\"description\":\"Bad Request\"},\"401\":{\"content\":{\"application/json\":{\"examples\":{\"Unauthorized\":{\"value\":{\"detail\":\"Incorrect authentication credentials.\"}}},\"schema\":{\"properties\":{\"detail\":{\"description\":\"A description of what went wrong.\",\"type\":\"string\"}},\"title\":\"AuthenticationFailed\",\"type\":\"object\"}}},\"description\":\"Unauthorized\"},\"404\":{\"content\":{\"application/json\":{\"examples\":{\"NotFound\":{\"summary\":\"Not Found\",\"value\":{\"detail\":\"Not found.\"}}},\"schema\":{\"properties\":{\"detail\":{\"description\":\"A description of what went wrong.\",\"type\":\"string\"}},\"title\":\"NotFound\",\"type\":\"object\"}}},\"description\":\"Not Found\"}},\"security\":[{\"Openverse API Token\":[]},{}],\"securitySchemes\":{\"Openverse API Token\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "POST",
                   "orig": "/v1/audio/{identifier}/report/",
@@ -581,6 +651,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /v1/audio/",
+                    "json": "{\"operationId\":\"audio_search\",\"parameters\":[{\"description\":\"The page of results to retrieve. This parameter is subject to limitations based on authentication and access level. For details, refer to [the authentication documentation](#tag/auth).\",\"in\":\"query\",\"name\":\"page\",\"schema\":{\"default\":1,\"minimum\":1,\"type\":\"integer\"}},{\"description\":\"Number of results to return per page. This parameter is subject to limitations based on authentication and access level. For details, refer to [the authentication documentation](#tag/auth).\",\"in\":\"query\",\"name\":\"page_size\",\"schema\":{\"default\":20,\"minimum\":1,\"type\":\"integer\"}},{\"description\":\"A query string that should not exceed 200 characters in length\",\"in\":\"query\",\"name\":\"q\",\"schema\":{\"minLength\":1,\"title\":\"query\",\"type\":\"string\"}},{\"description\":\"\\nFor default search, a comma separated list of data sources.\\nWhen the `unstable__collection` parameter is used, this parameter only accepts a single source.\\n\\nValid values are `source_name`s from the stats endpoint: https://api.openverse.org/v1/audio/stats/.\\n\",\"in\":\"query\",\"name\":\"source\",\"schema\":{\"minLength\":1,\"title\":\"provider\",\"type\":\"string\"}},{\"description\":\"\\nA comma separated list of data sources to exclude from the search.\\nValid values are `source_name`s from the stats endpoint: https://api.openverse.org/v1/audio/stats/.\\n\",\"in\":\"query\",\"name\":\"excluded_source\",\"schema\":{\"minLength\":1,\"title\":\"excluded_provider\",\"type\":\"string\"}},{\"description\":\"Search by tag only. Cannot be used with `q`. The search is fuzzy, so `tags=cat` will match any value that includes the word `cat`. If the value contains space, items that contain any of the words in the value will match. To search for several values, join them with a comma.\",\"in\":\"query\",\"name\":\"tags\",\"schema\":{\"maxLength\":200,\"minLength\":1,\"type\":\"string\"}},{\"description\":\"Search by title only. Cannot be used with `q`. The search is fuzzy, so `title=photo` will match any value that includes the word `photo`. If the value contains space, items that contain any of the words in the value will match. To search for several values, join them with a comma.\",\"in\":\"query\",\"name\":\"title\",\"schema\":{\"maxLength\":200,\"minLength\":1,\"type\":\"string\"}},{\"description\":\"\\n_When `q` parameter is present, `creator` parameter is ignored._\\n\\n**Creator collection**\\nWhen used with `unstable__collection=creator&source=sourceName`, returns the collection of media\\nby the specified creator. Notice that a single creator's media items\\ncan be found on several sources, but this collection only returns the\\nitems from the specified source.\\nThis is why for this collection, both the creator and the source\\nparameters are required, and matched exactly. For a fuzzy creator search,\\nuse the default search without the `unstable__collection` parameter.\\n\\n**Creator search**\\nWhen used without the `unstable__collection` parameter, will search in the creator field only.\\nThe search is fuzzy, so `creator=john` will match any value that includes the\\nword `john`. If the value contains space, items that contain any of\\nthe words in the value will match. To search for several values,\\njoin them with a comma.\\n\",\"in\":\"query\",\"name\":\"creator\",\"schema\":{\"maxLength\":200,\"minLength\":1,\"type\":\"string\"}},{\"description\":\"\\n\\n\\n\\n_Caution: Parameters prefixed with `unstable__` are experimental and\\nmay change or be removed without notice in future updates. Use them\\nwith caution as they are not covered by our API versioning policy._\\n\\n\\n\\nThe kind of media collection to return.\\n\\nMust be used with `unstable__tag`, `source` or `creator`+`source`\\n\\n* `tag` - tag\\n* `source` - source\\n* `creator` - creator\",\"in\":\"query\",\"name\":\"unstable__collection\",\"schema\":{\"enum\":[\"tag\",\"source\",\"creator\"],\"minLength\":1,\"title\":\"collection\",\"type\":\"string\"}},{\"description\":\"\\n\\n\\n\\n_Caution: Parameters prefixed with `unstable__` are experimental and\\nmay change or be removed without notice in future updates. Use them\\nwith caution as they are not covered by our API versioning policy._\\n\\n\\n\\n_Must be used with `unstable__collection=tag`_\\n\\nGet the collection of media with a specific tag. Returns the collection of media\\nthat has the specified tag, matching exactly and entirely.\\n\\nDifferences that will cause tags to not match are:\\n- upper and lower case letters\\n- diacritical marks\\n- hyphenation\\n- spacing\\n- multi-word tags where the query is only one of the words in the tag\\n- multi-word tags where the words are in a different order.\\n\\nExamples of tags that **do not** match:\\n- \\\"Low-Quality\\\" and \\\"low-quality\\\"\\n- \\\"jalapeño\\\" and \\\"jalapeno\\\"\\n- \\\"Saint Pierre des Champs\\\" and \\\"Saint-Pierre-des-Champs\\\"\\n- \\\"dog walking\\\" and \\\"dog  walking\\\" (where the latter has two spaces between the\\nlast two words, as in a typographical error)\\n- \\\"runner\\\" and \\\"marathon runner\\\"\\n- \\\"exclaiming loudly\\\" and \\\"loudly exclaiming\\\"\\n\\nFor non-exact or multi-tag matching, using the `tags` query parameter.\\n\",\"in\":\"query\",\"name\":\"unstable__tag\",\"schema\":{\"maxLength\":200,\"minLength\":1,\"title\":\"tag\",\"type\":\"string\"}},{\"description\":\"A comma separated list of licenses; available licenses include: `by`, `by-nc`, `by-nc-nd`, `by-nc-sa`, `by-nd`, `by-sa`, `cc0`, `nc-sampling+`, `pdm`, and `sampling+`.\",\"in\":\"query\",\"name\":\"license\",\"schema\":{\"minLength\":1,\"title\":\"licenses\",\"type\":\"string\"}},{\"description\":\"A comma separated list of license types; available license types include: `all`, `all-cc`, `commercial`, and `modification`.\",\"in\":\"query\",\"name\":\"license_type\",\"schema\":{\"minLength\":1,\"type\":\"string\"}},{\"description\":\"Control whether 404 links are filtered out.\",\"in\":\"query\",\"name\":\"filter_dead\",\"schema\":{\"default\":true,\"type\":\"boolean\"}},{\"description\":\"A comma separated list of desired file extensions.\",\"in\":\"query\",\"name\":\"extension\",\"schema\":{\"minLength\":1,\"type\":\"string\"}},{\"description\":\"Whether to include sensitive content.\",\"in\":\"query\",\"name\":\"mature\",\"schema\":{\"default\":false,\"type\":\"boolean\"}},{\"description\":\"\\n\\n\\n_Caution: Parameters prefixed with `unstable__` are experimental and\\nmay change or be removed without notice in future updates. Use them\\nwith caution as they are not covered by our API versioning policy._\\n\\n\\nThe field which should be the basis for sorting results.\\n\\n* `relevance` - Relevance\\n* `indexed_on` - Indexing date\",\"in\":\"query\",\"name\":\"unstable__sort_by\",\"schema\":{\"default\":\"relevance\",\"enum\":[\"relevance\",\"indexed_on\"],\"minLength\":1,\"type\":\"string\"}},{\"description\":\"\\n\\n\\n_Caution: Parameters prefixed with `unstable__` are experimental and\\nmay change or be removed without notice in future updates. Use them\\nwith caution as they are not covered by our API versioning policy._\\n\\n\\nThe direction of sorting. Cannot be applied when sorting by `relevance`.\\n\\n* `desc` - Descending\\n* `asc` - Ascending\",\"in\":\"query\",\"name\":\"unstable__sort_dir\",\"schema\":{\"default\":\"desc\",\"enum\":[\"desc\",\"asc\"],\"minLength\":1,\"type\":\"string\"}},{\"description\":\"\\n\\n\\n_Caution: Parameters prefixed with `unstable__` are experimental and\\nmay change or be removed without notice in future updates. Use them\\nwith caution as they are not covered by our API versioning policy._\\n\\n\\nIf enabled, the search will add a boost to results that are from authoritative sources.\",\"in\":\"query\",\"name\":\"unstable__authority\",\"schema\":{\"default\":false,\"title\":\"authority\",\"type\":\"boolean\"}},{\"description\":\"\\n\\n\\n_Caution: Parameters prefixed with `unstable__` are experimental and\\nmay change or be removed without notice in future updates. Use them\\nwith caution as they are not covered by our API versioning policy._\\n\\n\\nThe boost coefficient to apply to authoritative sources, multiplied with the popularity boost.\",\"in\":\"query\",\"name\":\"unstable__authority_boost\",\"schema\":{\"default\":1,\"format\":\"double\",\"maximum\":10,\"minimum\":0,\"title\":\"authority_boost\",\"type\":\"number\"}},{\"description\":\"\\n\\n\\n_Caution: Parameters prefixed with `unstable__` are experimental and\\nmay change or be removed without notice in future updates. Use them\\nwith caution as they are not covered by our API versioning policy._\\n\\n\\nWhether to include results considered sensitive.\",\"in\":\"query\",\"name\":\"unstable__include_sensitive_results\",\"schema\":{\"default\":false,\"title\":\"include_sensitive_results\",\"type\":\"boolean\"}},{\"description\":\"A comma separated list of categories; available categories include: `audiobook`, `music`, `news`, `podcast`, `pronunciation`, and `sound_effect`.\",\"in\":\"query\",\"name\":\"category\",\"schema\":{\"minLength\":1,\"type\":\"string\"}},{\"description\":\"A comma separated list of lengths; available lengths include: `long`, `medium`, `short`, and `shortest`.\",\"in\":\"query\",\"name\":\"length\",\"schema\":{\"minLength\":1,\"type\":\"string\"}},{\"description\":\"Whether to include the waveform peaks or not\",\"in\":\"query\",\"name\":\"peaks\",\"schema\":{\"default\":false,\"type\":\"boolean\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"OK\":{\"value\":{\"page\":1,\"page_count\":20,\"page_size\":20,\"result_count\":10000,\"results\":[{\"alt_files\":null,\"attribution\":\"\\\"Wish You Were Here\\\" by The.madpix.project is licensed under CC BY-NC-SA 3.0. To view a copy of this license, visit https://creativecommons.org/licenses/by-nc-sa/3.0/.\",\"audio_set\":{\"creator\":\"The.madpix.project\",\"creator_url\":\"https://www.jamendo.com/artist/441585/the.madpix.project\",\"filesize\":null,\"filetype\":null,\"foreign_landing_url\":\"https://www.jamendo.com/album/145774/wish-you-were-here\",\"title\":\"Wish You Were Here\",\"url\":\"https://usercontent.jamendo.com?type=album&id=145774&width=200\"},\"bit_rate\":128000,\"category\":\"music\",\"creator\":\"The.madpix.project\",\"creator_url\":\"https://www.jamendo.com/artist/441585/the.madpix.project\",\"detail_url\":\"https://api.openverse.org/v1/audio/8624ba61-57f1-4f98-8a85-ece206c319cf/\",\"duration\":270000,\"fields_matched\":[\"title\"],\"filesize\":7139840,\"filetype\":\"mp3\",\"foreign_landing_url\":\"https://www.jamendo.com/track/1214935\",\"genres\":[\"dance\",\"electronic\",\"house\"],\"id\":\"8624ba61-57f1-4f98-8a85-ece206c319cf\",\"indexed_on\":\"2022-12-06T06:54:25Z\",\"license\":\"by-nc-sa\",\"license_url\":\"https://creativecommons.org/licenses/by-nc-sa/3.0/\",\"license_version\":\"3.0\",\"mature\":false,\"provider\":\"jamendo\",\"related_url\":\"https://api.openverse.org/v1/audio/8624ba61-57f1-4f98-8a85-ece206c319cf/related/\",\"sample_rate\":44100,\"source\":\"jamendo\",\"tags\":[{\"accuracy\":null,\"name\":\"vocal\",\"unstable__provider\":\"jamendo\"},{\"accuracy\":null,\"name\":\"female\",\"unstable__provider\":\"jamendo\"},{\"accuracy\":null,\"name\":\"speed_medium\",\"unstable__provider\":\"jamendo\"},{\"accuracy\":null,\"name\":\"guitar\",\"unstable__provider\":\"jamendo\"},{\"accuracy\":null,\"name\":\"strings\",\"unstable__provider\":\"jamendo\"},{\"accuracy\":null,\"name\":\"energetic\",\"unstable__provider\":\"jamendo\"},{\"accuracy\":null,\"name\":\"acoustic\",\"unstable__provider\":\"jamendo\"},{\"accuracy\":null,\"name\":\"vocal\",\"unstable__provider\":\"jamendo\"},{\"accuracy\":null,\"name\":\"voice\",\"unstable__provider\":\"jamendo\"},{\"accuracy\":null,\"name\":\"funkyhouse\",\"unstable__provider\":\"jamendo\"}],\"thumbnail\":\"https://api.openverse.org/v1/audio/8624ba61-57f1-4f98-8a85-ece206c319cf/thumb/\",\"title\":\"Wish You Were Here\",\"unstable__sensitivity\":[],\"url\":\"https://mp3d.jamendo.com/download/track/1214935/mp32\",\"waveform\":\"https://api.openverse.org/v1/audio/8624ba61-57f1-4f98-8a85-ece206c319cf/waveform/\"}],\"warnings\":[{\"code\":\"partially invalid request parameter\",\"message\":\"Some of the request parameters were bad, but we were able to process the request. Here's some information that might help you fix the problem for future requests.\"}]}}},\"schema\":{\"properties\":{\"page\":{\"description\":\"The current page number returned in the response.\",\"example\":1,\"type\":\"integer\"},\"page_count\":{\"description\":\"The total number of pages returned by search result.\",\"example\":20,\"type\":\"integer\"},\"page_size\":{\"description\":\"The number of items per page.\",\"example\":20,\"type\":\"integer\"},\"result_count\":{\"description\":\"The total number of items returned by search result.\",\"example\":10000,\"type\":\"integer\"},\"results\":{\"items\":{\"description\":\"A single audio file. Used in search results.\",\"properties\":{\"alt_files\":{\"description\":\"JSON describing alternative files for this audio.\",\"items\":{\"description\":\"A set of alternative files for a single audio object,\\nrendered as a part of the ``AudioSerializer`` output.\",\"properties\":{\"bit_rate\":{\"description\":\"Bit rate of the alternative file.\",\"minimum\":0,\"type\":\"integer\"},\"filesize\":{\"description\":\"Size of the alternative file in bytes.\",\"minimum\":0,\"type\":\"integer\"},\"filetype\":{\"description\":\"File type of the alternative file.\",\"type\":\"string\"},\"sample_rate\":{\"description\":\"Sample rate of the alternative file.\",\"minimum\":0,\"type\":\"integer\"},\"url\":{\"description\":\"URL of the alternative file.\",\"format\":\"uri\",\"type\":\"string\"}},\"required\":[\"filetype\",\"url\"],\"type\":\"object\"},\"nullable\":true,\"readOnly\":true,\"type\":\"array\"},\"attribution\":{\"description\":\"Legally valid attribution for the media item in plain-text English.\",\"nullable\":true,\"readOnly\":true,\"type\":\"string\"},\"audio_set\":{\"allOf\":[{\"description\":\"An audio set, rendered as a part of the ``AudioSerializer`` output.\",\"properties\":{\"creator\":{\"description\":\"The name of the media creator.\",\"nullable\":true,\"type\":\"string\"},\"creator_url\":{\"description\":\"A direct link to the media creator.\",\"maxLength\":2000,\"nullable\":true,\"type\":\"string\"},\"filesize\":{\"description\":\"Number in bytes, e.g. 1024.\",\"maximum\":2147483647,\"minimum\":-2147483648,\"nullable\":true,\"type\":\"integer\"},\"filetype\":{\"description\":\"The type of the file, related to the file extension.\",\"maxLength\":80,\"nullable\":true,\"type\":\"string\"},\"foreign_landing_url\":{\"description\":\"The landing page of the work.\",\"nullable\":true,\"type\":\"string\"},\"title\":{\"description\":\"The name of the media.\",\"nullable\":true,\"type\":\"string\"},\"url\":{\"description\":\"The actual URL to the media file.\",\"maxLength\":1000,\"nullable\":true,\"type\":\"string\"}},\"type\":\"object\"}],\"description\":\"Reference to set of which this track is a part.\",\"nullable\":true,\"readOnly\":true},\"bit_rate\":{\"description\":\"Number in bits per second, eg. 128000.\",\"maximum\":2147483647,\"minimum\":-2147483648,\"nullable\":true,\"type\":\"integer\"},\"category\":{\"description\":\"The top-level classification of this media file.\",\"maxLength\":80,\"nullable\":true,\"type\":\"string\"},\"creator\":{\"description\":\"The name of the media creator.\",\"nullable\":true,\"type\":\"string\"},\"creator_url\":{\"description\":\"A direct link to the media creator.\",\"maxLength\":2000,\"nullable\":true,\"type\":\"string\"},\"detail_url\":{\"description\":\"A direct link to the detail view of this audio file.\",\"format\":\"uri\",\"readOnly\":true,\"type\":\"string\"},\"duration\":{\"description\":\"The time length of the audio file in milliseconds.\",\"maximum\":2147483647,\"minimum\":-2147483648,\"nullable\":true,\"type\":\"integer\"},\"fields_matched\":{\"description\":\"List the fields that matched the query for this result.\",\"items\":{},\"nullable\":true,\"type\":\"array\"},\"filesize\":{\"description\":\"Number in bytes, e.g. 1024.\",\"maximum\":2147483647,\"minimum\":-2147483648,\"nullable\":true,\"type\":\"integer\"},\"filetype\":{\"description\":\"The type of the file, related to the file extension.\",\"maxLength\":80,\"nullable\":true,\"type\":\"string\"},\"foreign_landing_url\":{\"description\":\"The landing page of the work.\",\"nullable\":true,\"type\":\"string\"},\"genres\":{\"description\":\"An array of audio genres such as `rock`, `electronic` for `music` category, or `politics`, `sport`, `education` for `podcast` category\",\"items\":{\"maxLength\":80,\"type\":\"string\"},\"nullable\":true,\"type\":\"array\"},\"id\":{\"description\":\"Our unique identifier for an open-licensed work.\",\"type\":\"string\"},\"indexed_on\":{\"description\":\"The timestamp of when the media was indexed by Openverse.\",\"format\":\"date-time\",\"type\":\"string\"},\"license\":{\"description\":\"The name of license for the media.\",\"maxLength\":50,\"type\":\"string\"},\"license_url\":{\"description\":\"A direct link to the license deed or legal terms.\",\"nullable\":true,\"readOnly\":true,\"type\":\"string\"},\"license_version\":{\"description\":\"The version of the media license.\",\"maxLength\":25,\"nullable\":true,\"type\":\"string\"},\"mature\":{\"description\":\"Whether the media item is marked as mature\",\"type\":\"boolean\"},\"provider\":{\"description\":\"The content provider, e.g. Flickr, Jamendo...\",\"maxLength\":80,\"nullable\":true,\"type\":\"string\"},\"related_url\":{\"description\":\"A link to an endpoint that provides similar audio files.\",\"format\":\"uri\",\"readOnly\":true,\"type\":\"string\"},\"sample_rate\":{\"description\":\"Number in hertz, eg. 44100.\",\"maximum\":2147483647,\"minimum\":-2147483648,\"nullable\":true,\"type\":\"integer\"},\"source\":{\"description\":\"The source of the data, meaning a particular dataset. Source and provider can be different. Eg: the Google Open Images dataset is source=openimages, but provider=flickr.\",\"maxLength\":80,\"nullable\":true,\"type\":\"string\"},\"tags\":{\"description\":\"Tags with detailed metadata, such as accuracy.\",\"items\":{\"description\":\"This output serializer serializes a singular tag.\",\"properties\":{\"accuracy\":{\"description\":\"The accuracy of a machine-generated tag. Human-generated tags have a null accuracy field.\",\"format\":\"double\",\"nullable\":true,\"type\":\"number\"},\"name\":{\"description\":\"The name of a detailed tag.\",\"type\":\"string\"},\"unstable__provider\":{\"description\":\"The source of the tag. When this field matches the provider for the record, the tag originated from the upstream provider. Otherwise, the tag was added with an external machine-generated labeling processes.\",\"nullable\":true,\"title\":\"provider\",\"type\":\"string\"}},\"required\":[\"name\",\"unstable__provider\"],\"type\":\"object\"},\"nullable\":true,\"type\":\"array\"},\"thumbnail\":{\"description\":\"A direct link to the miniature artwork.\",\"format\":\"uri\",\"nullable\":true,\"readOnly\":true,\"type\":\"string\"},\"title\":{\"description\":\"The name of the media.\",\"nullable\":true,\"type\":\"string\"},\"url\":{\"description\":\"The actual URL to the media file.\",\"maxLength\":1000,\"nullable\":true,\"type\":\"string\"},\"waveform\":{\"description\":\"A direct link to the waveform peaks.\",\"format\":\"uri\",\"readOnly\":true,\"type\":\"string\"}},\"required\":[\"alt_files\",\"attribution\",\"audio_set\",\"detail_url\",\"fields_matched\",\"id\",\"indexed_on\",\"license\",\"license_url\",\"mature\",\"related_url\",\"tags\",\"thumbnail\",\"waveform\"],\"type\":\"object\"},\"type\":\"array\"},\"warnings\":{\"description\":\"Warnings pertinent to the request. If there are no warnings, this property will not be present on the response. Warnings are non-critical problems with the request. Responses with warnings should be treated as unstable. Warning descriptions must not be treated as machine readable and their schema can change at any time.\",\"example\":[{\"code\":\"partially invalid request parameter\",\"message\":\"Some of the request parameters were bad, but we were able to process the request. Here's some information that might help you fix the problem for future requests.\"}],\"items\":{\"type\":\"object\"},\"type\":\"array\"}},\"required\":[\"result_count\",\"page_size\",\"results\",\"page_count\",\"page\"],\"type\":\"object\"}}},\"description\":\"OK\"},\"400\":{\"content\":{\"application/json\":{\"examples\":{\"BadRequest\":{\"summary\":\"Bad Request\",\"value\":{\"detail\":\"Invalid input given for fields. 'license' -> License 'PDMNBCG' does not exist.\",\"error\":\"InputError\",\"fields\":[\"license\"]}}},\"schema\":{\"properties\":{\"detail\":{\"oneOf\":[{\"description\":\"A description of what went wrong.\",\"type\":\"string\"},{\"additionalProperties\":true,\"type\":\"object\"}]}},\"title\":\"ValidationError\",\"type\":\"object\"}}},\"description\":\"Bad Request\"},\"401\":{\"content\":{\"application/json\":{\"examples\":{\"Unauthorized\":{\"value\":{\"detail\":\"Authentication credentials were not provided.\"}}},\"schema\":{\"properties\":{\"detail\":{\"description\":\"A description of what went wrong.\",\"type\":\"string\"}},\"title\":\"NotAuthenticated\",\"type\":\"object\"}}},\"description\":\"Unauthorized\"}},\"security\":[{\"Openverse API Token\":[]},{}],\"securitySchemes\":{\"Openverse API Token\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v1/audio/",
@@ -638,6 +714,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /v1/audio/{identifier}/related/",
+                    "json": "{\"operationId\":\"audio_related\",\"parameters\":[{\"in\":\"path\",\"name\":\"identifier\",\"required\":true,\"schema\":{\"format\":\"uuid\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"OK\":{\"value\":{\"page\":1,\"page_count\":20,\"page_size\":20,\"result_count\":10000,\"results\":[{\"creator\":\"Wolfgang Amadeus Mozart\",\"creator_url\":\"https://en.wikipedia.org/wiki/Wolfgang_Amadeus_Mozart\",\"detail_url\":\"https://api.openverse.org/v1/audio/36537842-b067-4ca0-ad67-e00ff2e06b2e\",\"fields_matched\":[\"description\",\"title\"],\"foreign_landing_url\":\"https://commons.wikimedia.org/w/index.php?curid=3536953\",\"id\":\"36537842-b067-4ca0-ad67-e00ff2e06b2e\",\"license\":\"by-sa\",\"license_url\":\"https://creativecommons.org/licenses/by-sa/2.0/\",\"license_version\":\"2.0\",\"provider\":\"wikimedia\",\"related_url\":\"https://api.openverse.org/v1/recommendations/audio/36537842-b067-4ca0-ad67-e00ff2e06b2e\",\"source\":\"wikimedia\",\"tags\":[{\"name\":\"exam\"},{\"name\":\"tactics\"}],\"title\":\"File:Mozart - Eine kleine Nachtmusik - 1. Allegro.ogg\",\"url\":\"https://upload.wikimedia.org/wikipedia/commons/2/24/Mozart_-_Eine_kleine_Nachtmusik_-_1._Allegro.ogg\"}],\"warnings\":[{\"code\":\"partially invalid request parameter\",\"message\":\"Some of the request parameters were bad, but we were able to process the request. Here's some information that might help you fix the problem for future requests.\"}]}}},\"schema\":{\"properties\":{\"page\":{\"description\":\"The current page number returned in the response.\",\"example\":1,\"type\":\"integer\"},\"page_count\":{\"description\":\"The total number of pages returned by search result.\",\"example\":20,\"type\":\"integer\"},\"page_size\":{\"description\":\"The number of items per page.\",\"example\":20,\"type\":\"integer\"},\"result_count\":{\"description\":\"The total number of items returned by search result.\",\"example\":10000,\"type\":\"integer\"},\"results\":{\"items\":{\"description\":\"A single audio file. Used in search results.\",\"properties\":{\"alt_files\":{\"description\":\"JSON describing alternative files for this audio.\",\"items\":{\"description\":\"A set of alternative files for a single audio object,\\nrendered as a part of the ``AudioSerializer`` output.\",\"properties\":{\"bit_rate\":{\"description\":\"Bit rate of the alternative file.\",\"minimum\":0,\"type\":\"integer\"},\"filesize\":{\"description\":\"Size of the alternative file in bytes.\",\"minimum\":0,\"type\":\"integer\"},\"filetype\":{\"description\":\"File type of the alternative file.\",\"type\":\"string\"},\"sample_rate\":{\"description\":\"Sample rate of the alternative file.\",\"minimum\":0,\"type\":\"integer\"},\"url\":{\"description\":\"URL of the alternative file.\",\"format\":\"uri\",\"type\":\"string\"}},\"required\":[\"filetype\",\"url\"],\"type\":\"object\"},\"nullable\":true,\"readOnly\":true,\"type\":\"array\"},\"attribution\":{\"description\":\"Legally valid attribution for the media item in plain-text English.\",\"nullable\":true,\"readOnly\":true,\"type\":\"string\"},\"audio_set\":{\"allOf\":[{\"description\":\"An audio set, rendered as a part of the ``AudioSerializer`` output.\",\"properties\":{\"creator\":{\"description\":\"The name of the media creator.\",\"nullable\":true,\"type\":\"string\"},\"creator_url\":{\"description\":\"A direct link to the media creator.\",\"maxLength\":2000,\"nullable\":true,\"type\":\"string\"},\"filesize\":{\"description\":\"Number in bytes, e.g. 1024.\",\"maximum\":2147483647,\"minimum\":-2147483648,\"nullable\":true,\"type\":\"integer\"},\"filetype\":{\"description\":\"The type of the file, related to the file extension.\",\"maxLength\":80,\"nullable\":true,\"type\":\"string\"},\"foreign_landing_url\":{\"description\":\"The landing page of the work.\",\"nullable\":true,\"type\":\"string\"},\"title\":{\"description\":\"The name of the media.\",\"nullable\":true,\"type\":\"string\"},\"url\":{\"description\":\"The actual URL to the media file.\",\"maxLength\":1000,\"nullable\":true,\"type\":\"string\"}},\"type\":\"object\"}],\"description\":\"Reference to set of which this track is a part.\",\"nullable\":true,\"readOnly\":true},\"bit_rate\":{\"description\":\"Number in bits per second, eg. 128000.\",\"maximum\":2147483647,\"minimum\":-2147483648,\"nullable\":true,\"type\":\"integer\"},\"category\":{\"description\":\"The top-level classification of this media file.\",\"maxLength\":80,\"nullable\":true,\"type\":\"string\"},\"creator\":{\"description\":\"The name of the media creator.\",\"nullable\":true,\"type\":\"string\"},\"creator_url\":{\"description\":\"A direct link to the media creator.\",\"maxLength\":2000,\"nullable\":true,\"type\":\"string\"},\"detail_url\":{\"description\":\"A direct link to the detail view of this audio file.\",\"format\":\"uri\",\"readOnly\":true,\"type\":\"string\"},\"duration\":{\"description\":\"The time length of the audio file in milliseconds.\",\"maximum\":2147483647,\"minimum\":-2147483648,\"nullable\":true,\"type\":\"integer\"},\"fields_matched\":{\"description\":\"List the fields that matched the query for this result.\",\"items\":{},\"nullable\":true,\"type\":\"array\"},\"filesize\":{\"description\":\"Number in bytes, e.g. 1024.\",\"maximum\":2147483647,\"minimum\":-2147483648,\"nullable\":true,\"type\":\"integer\"},\"filetype\":{\"description\":\"The type of the file, related to the file extension.\",\"maxLength\":80,\"nullable\":true,\"type\":\"string\"},\"foreign_landing_url\":{\"description\":\"The landing page of the work.\",\"nullable\":true,\"type\":\"string\"},\"genres\":{\"description\":\"An array of audio genres such as `rock`, `electronic` for `music` category, or `politics`, `sport`, `education` for `podcast` category\",\"items\":{\"maxLength\":80,\"type\":\"string\"},\"nullable\":true,\"type\":\"array\"},\"id\":{\"description\":\"Our unique identifier for an open-licensed work.\",\"type\":\"string\"},\"indexed_on\":{\"description\":\"The timestamp of when the media was indexed by Openverse.\",\"format\":\"date-time\",\"type\":\"string\"},\"license\":{\"description\":\"The name of license for the media.\",\"maxLength\":50,\"type\":\"string\"},\"license_url\":{\"description\":\"A direct link to the license deed or legal terms.\",\"nullable\":true,\"readOnly\":true,\"type\":\"string\"},\"license_version\":{\"description\":\"The version of the media license.\",\"maxLength\":25,\"nullable\":true,\"type\":\"string\"},\"mature\":{\"description\":\"Whether the media item is marked as mature\",\"type\":\"boolean\"},\"provider\":{\"description\":\"The content provider, e.g. Flickr, Jamendo...\",\"maxLength\":80,\"nullable\":true,\"type\":\"string\"},\"related_url\":{\"description\":\"A link to an endpoint that provides similar audio files.\",\"format\":\"uri\",\"readOnly\":true,\"type\":\"string\"},\"sample_rate\":{\"description\":\"Number in hertz, eg. 44100.\",\"maximum\":2147483647,\"minimum\":-2147483648,\"nullable\":true,\"type\":\"integer\"},\"source\":{\"description\":\"The source of the data, meaning a particular dataset. Source and provider can be different. Eg: the Google Open Images dataset is source=openimages, but provider=flickr.\",\"maxLength\":80,\"nullable\":true,\"type\":\"string\"},\"tags\":{\"description\":\"Tags with detailed metadata, such as accuracy.\",\"items\":{\"description\":\"This output serializer serializes a singular tag.\",\"properties\":{\"accuracy\":{\"description\":\"The accuracy of a machine-generated tag. Human-generated tags have a null accuracy field.\",\"format\":\"double\",\"nullable\":true,\"type\":\"number\"},\"name\":{\"description\":\"The name of a detailed tag.\",\"type\":\"string\"},\"unstable__provider\":{\"description\":\"The source of the tag. When this field matches the provider for the record, the tag originated from the upstream provider. Otherwise, the tag was added with an external machine-generated labeling processes.\",\"nullable\":true,\"title\":\"provider\",\"type\":\"string\"}},\"required\":[\"name\",\"unstable__provider\"],\"type\":\"object\"},\"nullable\":true,\"type\":\"array\"},\"thumbnail\":{\"description\":\"A direct link to the miniature artwork.\",\"format\":\"uri\",\"nullable\":true,\"readOnly\":true,\"type\":\"string\"},\"title\":{\"description\":\"The name of the media.\",\"nullable\":true,\"type\":\"string\"},\"url\":{\"description\":\"The actual URL to the media file.\",\"maxLength\":1000,\"nullable\":true,\"type\":\"string\"},\"waveform\":{\"description\":\"A direct link to the waveform peaks.\",\"format\":\"uri\",\"readOnly\":true,\"type\":\"string\"}},\"required\":[\"alt_files\",\"attribution\",\"audio_set\",\"detail_url\",\"fields_matched\",\"id\",\"indexed_on\",\"license\",\"license_url\",\"mature\",\"related_url\",\"tags\",\"thumbnail\",\"waveform\"],\"type\":\"object\"},\"type\":\"array\"},\"warnings\":{\"description\":\"Warnings pertinent to the request. If there are no warnings, this property will not be present on the response. Warnings are non-critical problems with the request. Responses with warnings should be treated as unstable. Warning descriptions must not be treated as machine readable and their schema can change at any time.\",\"example\":[{\"code\":\"partially invalid request parameter\",\"message\":\"Some of the request parameters were bad, but we were able to process the request. Here's some information that might help you fix the problem for future requests.\"}],\"items\":{\"type\":\"object\"},\"type\":\"array\"}},\"required\":[\"result_count\",\"page_size\",\"results\",\"page_count\",\"page\"],\"type\":\"object\"}}},\"description\":\"OK\"},\"401\":{\"content\":{\"application/json\":{\"examples\":{\"Unauthorized\":{\"value\":{\"detail\":\"Incorrect authentication credentials.\"}}},\"schema\":{\"properties\":{\"detail\":{\"description\":\"A description of what went wrong.\",\"type\":\"string\"}},\"title\":\"AuthenticationFailed\",\"type\":\"object\"}}},\"description\":\"Unauthorized\"},\"404\":{\"content\":{\"application/json\":{\"examples\":{\"NotFound\":{\"summary\":\"Not Found\",\"value\":{\"detail\":\"An internal server error occurred.\"}}},\"schema\":{\"properties\":{\"detail\":{\"description\":\"A description of what went wrong.\",\"type\":\"string\"}},\"title\":\"NotFound\",\"type\":\"object\"}}},\"description\":\"Not Found\"}},\"security\":[{\"Openverse API Token\":[]},{}],\"securitySchemes\":{\"Openverse API Token\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v1/audio/{identifier}/related/",
@@ -680,6 +762,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /v1/audio/{identifier}/waveform/",
+                    "json": "{\"operationId\":\"audio_waveform\",\"parameters\":[{\"in\":\"path\",\"name\":\"identifier\",\"required\":true,\"schema\":{\"format\":\"uuid\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"OK\":{\"value\":{\"len\":1083,\"points\":[0.61275,0.19593,0.74023,0.00089,0.00043,0.00049]}}},\"schema\":{\"properties\":{\"len\":{\"readOnly\":true,\"type\":\"integer\"},\"points\":{\"items\":{\"format\":\"double\",\"maximum\":1,\"minimum\":0,\"type\":\"number\"},\"type\":\"array\"}},\"required\":[\"len\",\"points\"],\"type\":\"object\"}}},\"description\":\"OK\"},\"401\":{\"content\":{\"application/json\":{\"examples\":{\"Unauthorized\":{\"value\":{\"detail\":\"Incorrect authentication credentials.\"}}},\"schema\":{\"properties\":{\"detail\":{\"description\":\"A description of what went wrong.\",\"type\":\"string\"}},\"title\":\"AuthenticationFailed\",\"type\":\"object\"}}},\"description\":\"Unauthorized\"},\"404\":{\"content\":{\"application/json\":{\"examples\":{\"NotFound\":{\"summary\":\"Not Found\",\"value\":{\"detail\":\"An internal server error occurred.\"}}},\"schema\":{\"properties\":{\"detail\":{\"description\":\"A description of what went wrong.\",\"type\":\"string\"}},\"title\":\"NotFound\",\"type\":\"object\"}}},\"description\":\"Not Found\"}},\"security\":[{\"Openverse API Token\":[]},{}],\"securitySchemes\":{\"Openverse API Token\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v1/audio/{identifier}/waveform/",
@@ -711,6 +799,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "GET /v1/audio/stats/",
+                    "json": "{\"operationId\":\"audio_stats\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"OK\":{\"value\":[{\"display_name\":\"Freesound\",\"logo_url\":null,\"media_count\":827,\"source_name\":\"freesound\",\"source_url\":\"https://freesound.org/\"}]}},\"schema\":{\"items\":{\"properties\":{\"display_name\":{\"description\":\"The name of content source, e.g. Flickr\",\"type\":\"string\"},\"logo_url\":{\"deprecated\":true,\"description\":\"The URL to a logo for the source.\",\"nullable\":true,\"readOnly\":true,\"type\":\"string\"},\"media_count\":{\"description\":\"The number of media items indexed from the source.\",\"readOnly\":true,\"type\":\"integer\"},\"source_name\":{\"description\":\"The source of the media, e.g. flickr\",\"type\":\"string\"},\"source_url\":{\"description\":\"The URL of the source, e.g. https://www.flickr.com\",\"format\":\"uri\",\"type\":\"string\"}},\"required\":[\"display_name\",\"logo_url\",\"media_count\",\"source_name\",\"source_url\"],\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"OK\"},\"401\":{\"content\":{\"application/json\":{\"examples\":{\"Unauthorized\":{\"value\":{\"detail\":\"Incorrect authentication credentials.\"}}},\"schema\":{\"properties\":{\"detail\":{\"description\":\"A description of what went wrong.\",\"type\":\"string\"}},\"title\":\"AuthenticationFailed\",\"type\":\"object\"}}},\"description\":\"Unauthorized\"}},\"security\":[{\"Openverse API Token\":[]},{}],\"securitySchemes\":{\"Openverse API Token\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v1/audio/stats/",
@@ -771,6 +865,12 @@
                         "type": "`$BOOLEAN`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /v1/audio/{identifier}/thumb/",
+                    "json": "{\"operationId\":\"audio_thumb\",\"parameters\":[{\"in\":\"path\",\"name\":\"identifier\",\"required\":true,\"schema\":{\"format\":\"uuid\",\"type\":\"string\"}},{\"description\":\"whether to render the actual image and not a thumbnail version\",\"in\":\"query\",\"name\":\"full_size\",\"schema\":{\"default\":false,\"nullable\":true,\"type\":\"boolean\"}},{\"description\":\"whether to compress the output image to reduce file size,defaults to opposite of `full_size`\",\"in\":\"query\",\"name\":\"compressed\",\"schema\":{\"nullable\":true,\"type\":\"boolean\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Thumbnail image\"},\"401\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"detail\":{\"description\":\"A description of what went wrong.\",\"type\":\"string\"}},\"title\":\"AuthenticationFailed\",\"type\":\"object\"}}},\"description\":\"\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"detail\":{\"description\":\"A description of what went wrong.\",\"type\":\"string\"}},\"title\":\"NotFound\",\"type\":\"object\"}}},\"description\":\"\"}},\"security\":[{\"Openverse API Token\":[]},{}],\"securitySchemes\":{\"Openverse API Token\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -835,6 +935,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /v1/images/{identifier}/thumb/",
+                    "json": "{\"operationId\":\"images_thumb\",\"parameters\":[{\"in\":\"path\",\"name\":\"identifier\",\"required\":true,\"schema\":{\"format\":\"uuid\",\"type\":\"string\"}},{\"description\":\"whether to render the actual image and not a thumbnail version\",\"in\":\"query\",\"name\":\"full_size\",\"schema\":{\"default\":false,\"nullable\":true,\"type\":\"boolean\"}},{\"description\":\"whether to compress the output image to reduce file size,defaults to opposite of `full_size`\",\"in\":\"query\",\"name\":\"compressed\",\"schema\":{\"nullable\":true,\"type\":\"boolean\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Thumbnail image\"},\"401\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"detail\":{\"description\":\"A description of what went wrong.\",\"type\":\"string\"}},\"title\":\"AuthenticationFailed\",\"type\":\"object\"}}},\"description\":\"\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"detail\":{\"description\":\"A description of what went wrong.\",\"type\":\"string\"}},\"title\":\"NotFound\",\"type\":\"object\"}}},\"description\":\"\"}},\"security\":[{\"Openverse API Token\":[]},{}],\"securitySchemes\":{\"Openverse API Token\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v1/images/{identifier}/thumb/",
@@ -877,6 +983,12 @@
                         "type": "`$STRING`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /v1/audio/{identifier}/",
+                    "json": "{\"operationId\":\"audio_detail\",\"parameters\":[{\"in\":\"path\",\"name\":\"identifier\",\"required\":true,\"schema\":{\"format\":\"uuid\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"OK\":{\"value\":{\"alt_files\":null,\"attribution\":\"\\\"Wish You Were Here\\\" by The.madpix.project is licensed under CC BY-NC-SA 3.0. To view a copy of this license, visit https://creativecommons.org/licenses/by-nc-sa/3.0/.\",\"audio_set\":{\"creator\":\"The.madpix.project\",\"creator_url\":\"https://www.jamendo.com/artist/441585/the.madpix.project\",\"filesize\":null,\"filetype\":null,\"foreign_landing_url\":\"https://www.jamendo.com/album/145774/wish-you-were-here\",\"title\":\"Wish You Were Here\",\"url\":\"https://usercontent.jamendo.com?type=album&id=145774&width=200\"},\"bit_rate\":128000,\"category\":\"music\",\"creator\":\"The.madpix.project\",\"creator_url\":\"https://www.jamendo.com/artist/441585/the.madpix.project\",\"detail_url\":\"https://api.openverse.org/v1/audio/8624ba61-57f1-4f98-8a85-ece206c319cf/\",\"duration\":270000,\"fields_matched\":[],\"filesize\":7139840,\"filetype\":\"mp3\",\"foreign_landing_url\":\"https://www.jamendo.com/track/1214935\",\"genres\":[\"dance\",\"electronic\",\"house\"],\"id\":\"8624ba61-57f1-4f98-8a85-ece206c319cf\",\"indexed_on\":\"2022-12-06T06:54:25Z\",\"license\":\"by-nc-sa\",\"license_url\":\"https://creativecommons.org/licenses/by-nc-sa/3.0/\",\"license_version\":\"3.0\",\"mature\":false,\"provider\":\"jamendo\",\"related_url\":\"https://api.openverse.org/v1/audio/8624ba61-57f1-4f98-8a85-ece206c319cf/related/\",\"sample_rate\":44100,\"source\":\"jamendo\",\"tags\":[{\"accuracy\":null,\"name\":\"vocal\",\"unstable__provider\":\"jamendo\"},{\"accuracy\":null,\"name\":\"female\",\"unstable__provider\":\"jamendo\"},{\"accuracy\":null,\"name\":\"speed_medium\",\"unstable__provider\":\"jamendo\"},{\"accuracy\":null,\"name\":\"guitar\",\"unstable__provider\":\"jamendo\"},{\"accuracy\":null,\"name\":\"strings\",\"unstable__provider\":\"jamendo\"},{\"accuracy\":null,\"name\":\"energetic\",\"unstable__provider\":\"jamendo\"},{\"accuracy\":null,\"name\":\"acoustic\",\"unstable__provider\":\"jamendo\"},{\"accuracy\":null,\"name\":\"vocal\",\"unstable__provider\":\"jamendo\"},{\"accuracy\":null,\"name\":\"voice\",\"unstable__provider\":\"jamendo\"},{\"accuracy\":null,\"name\":\"funkyhouse\",\"unstable__provider\":\"jamendo\"}],\"thumbnail\":\"https://api.openverse.org/v1/audio/8624ba61-57f1-4f98-8a85-ece206c319cf/thumb/\",\"title\":\"Wish You Were Here\",\"unstable__sensitivity\":[],\"url\":\"https://mp3d.jamendo.com/download/track/1214935/mp32\",\"waveform\":\"https://api.openverse.org/v1/audio/8624ba61-57f1-4f98-8a85-ece206c319cf/waveform/\"}}},\"schema\":{\"description\":\"A single audio file. Used in search results.\",\"properties\":{\"alt_files\":{\"description\":\"JSON describing alternative files for this audio.\",\"items\":{\"description\":\"A set of alternative files for a single audio object,\\nrendered as a part of the ``AudioSerializer`` output.\",\"properties\":{\"bit_rate\":{\"description\":\"Bit rate of the alternative file.\",\"minimum\":0,\"type\":\"integer\"},\"filesize\":{\"description\":\"Size of the alternative file in bytes.\",\"minimum\":0,\"type\":\"integer\"},\"filetype\":{\"description\":\"File type of the alternative file.\",\"type\":\"string\"},\"sample_rate\":{\"description\":\"Sample rate of the alternative file.\",\"minimum\":0,\"type\":\"integer\"},\"url\":{\"description\":\"URL of the alternative file.\",\"format\":\"uri\",\"type\":\"string\"}},\"required\":[\"filetype\",\"url\"],\"type\":\"object\"},\"nullable\":true,\"readOnly\":true,\"type\":\"array\"},\"attribution\":{\"description\":\"Legally valid attribution for the media item in plain-text English.\",\"nullable\":true,\"readOnly\":true,\"type\":\"string\"},\"audio_set\":{\"allOf\":[{\"description\":\"An audio set, rendered as a part of the ``AudioSerializer`` output.\",\"properties\":{\"creator\":{\"description\":\"The name of the media creator.\",\"nullable\":true,\"type\":\"string\"},\"creator_url\":{\"description\":\"A direct link to the media creator.\",\"maxLength\":2000,\"nullable\":true,\"type\":\"string\"},\"filesize\":{\"description\":\"Number in bytes, e.g. 1024.\",\"maximum\":2147483647,\"minimum\":-2147483648,\"nullable\":true,\"type\":\"integer\"},\"filetype\":{\"description\":\"The type of the file, related to the file extension.\",\"maxLength\":80,\"nullable\":true,\"type\":\"string\"},\"foreign_landing_url\":{\"description\":\"The landing page of the work.\",\"nullable\":true,\"type\":\"string\"},\"title\":{\"description\":\"The name of the media.\",\"nullable\":true,\"type\":\"string\"},\"url\":{\"description\":\"The actual URL to the media file.\",\"maxLength\":1000,\"nullable\":true,\"type\":\"string\"}},\"type\":\"object\"}],\"description\":\"Reference to set of which this track is a part.\",\"nullable\":true,\"readOnly\":true},\"bit_rate\":{\"description\":\"Number in bits per second, eg. 128000.\",\"maximum\":2147483647,\"minimum\":-2147483648,\"nullable\":true,\"type\":\"integer\"},\"category\":{\"description\":\"The top-level classification of this media file.\",\"maxLength\":80,\"nullable\":true,\"type\":\"string\"},\"creator\":{\"description\":\"The name of the media creator.\",\"nullable\":true,\"type\":\"string\"},\"creator_url\":{\"description\":\"A direct link to the media creator.\",\"maxLength\":2000,\"nullable\":true,\"type\":\"string\"},\"detail_url\":{\"description\":\"A direct link to the detail view of this audio file.\",\"format\":\"uri\",\"readOnly\":true,\"type\":\"string\"},\"duration\":{\"description\":\"The time length of the audio file in milliseconds.\",\"maximum\":2147483647,\"minimum\":-2147483648,\"nullable\":true,\"type\":\"integer\"},\"fields_matched\":{\"description\":\"List the fields that matched the query for this result.\",\"items\":{},\"nullable\":true,\"type\":\"array\"},\"filesize\":{\"description\":\"Number in bytes, e.g. 1024.\",\"maximum\":2147483647,\"minimum\":-2147483648,\"nullable\":true,\"type\":\"integer\"},\"filetype\":{\"description\":\"The type of the file, related to the file extension.\",\"maxLength\":80,\"nullable\":true,\"type\":\"string\"},\"foreign_landing_url\":{\"description\":\"The landing page of the work.\",\"nullable\":true,\"type\":\"string\"},\"genres\":{\"description\":\"An array of audio genres such as `rock`, `electronic` for `music` category, or `politics`, `sport`, `education` for `podcast` category\",\"items\":{\"maxLength\":80,\"type\":\"string\"},\"nullable\":true,\"type\":\"array\"},\"id\":{\"description\":\"Our unique identifier for an open-licensed work.\",\"type\":\"string\"},\"indexed_on\":{\"description\":\"The timestamp of when the media was indexed by Openverse.\",\"format\":\"date-time\",\"type\":\"string\"},\"license\":{\"description\":\"The name of license for the media.\",\"maxLength\":50,\"type\":\"string\"},\"license_url\":{\"description\":\"A direct link to the license deed or legal terms.\",\"nullable\":true,\"readOnly\":true,\"type\":\"string\"},\"license_version\":{\"description\":\"The version of the media license.\",\"maxLength\":25,\"nullable\":true,\"type\":\"string\"},\"mature\":{\"description\":\"Whether the media item is marked as mature\",\"type\":\"boolean\"},\"provider\":{\"description\":\"The content provider, e.g. Flickr, Jamendo...\",\"maxLength\":80,\"nullable\":true,\"type\":\"string\"},\"related_url\":{\"description\":\"A link to an endpoint that provides similar audio files.\",\"format\":\"uri\",\"readOnly\":true,\"type\":\"string\"},\"sample_rate\":{\"description\":\"Number in hertz, eg. 44100.\",\"maximum\":2147483647,\"minimum\":-2147483648,\"nullable\":true,\"type\":\"integer\"},\"source\":{\"description\":\"The source of the data, meaning a particular dataset. Source and provider can be different. Eg: the Google Open Images dataset is source=openimages, but provider=flickr.\",\"maxLength\":80,\"nullable\":true,\"type\":\"string\"},\"tags\":{\"description\":\"Tags with detailed metadata, such as accuracy.\",\"items\":{\"description\":\"This output serializer serializes a singular tag.\",\"properties\":{\"accuracy\":{\"description\":\"The accuracy of a machine-generated tag. Human-generated tags have a null accuracy field.\",\"format\":\"double\",\"nullable\":true,\"type\":\"number\"},\"name\":{\"description\":\"The name of a detailed tag.\",\"type\":\"string\"},\"unstable__provider\":{\"description\":\"The source of the tag. When this field matches the provider for the record, the tag originated from the upstream provider. Otherwise, the tag was added with an external machine-generated labeling processes.\",\"nullable\":true,\"title\":\"provider\",\"type\":\"string\"}},\"required\":[\"name\",\"unstable__provider\"],\"type\":\"object\"},\"nullable\":true,\"type\":\"array\"},\"thumbnail\":{\"description\":\"A direct link to the miniature artwork.\",\"format\":\"uri\",\"nullable\":true,\"readOnly\":true,\"type\":\"string\"},\"title\":{\"description\":\"The name of the media.\",\"nullable\":true,\"type\":\"string\"},\"url\":{\"description\":\"The actual URL to the media file.\",\"maxLength\":1000,\"nullable\":true,\"type\":\"string\"},\"waveform\":{\"description\":\"A direct link to the waveform peaks.\",\"format\":\"uri\",\"readOnly\":true,\"type\":\"string\"}},\"required\":[\"alt_files\",\"attribution\",\"audio_set\",\"detail_url\",\"fields_matched\",\"id\",\"indexed_on\",\"license\",\"license_url\",\"mature\",\"related_url\",\"tags\",\"thumbnail\",\"waveform\"],\"type\":\"object\"}}},\"description\":\"OK\"},\"401\":{\"content\":{\"application/json\":{\"examples\":{\"Unauthorized\":{\"value\":{\"detail\":\"Incorrect authentication credentials.\"}}},\"schema\":{\"properties\":{\"detail\":{\"description\":\"A description of what went wrong.\",\"type\":\"string\"}},\"title\":\"AuthenticationFailed\",\"type\":\"object\"}}},\"description\":\"Unauthorized\"},\"404\":{\"content\":{\"application/json\":{\"examples\":{\"NotFound\":{\"summary\":\"Not Found\",\"value\":{\"detail\":\"Not found.\"}}},\"schema\":{\"properties\":{\"detail\":{\"description\":\"A description of what went wrong.\",\"type\":\"string\"}},\"title\":\"NotFound\",\"type\":\"object\"}}},\"description\":\"Not Found\"}},\"security\":[{\"Openverse API Token\":[]},{}],\"securitySchemes\":{\"Openverse API Token\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -1235,6 +1347,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "POST /v1/images/{identifier}/report/",
+                    "json": "{\"operationId\":\"images_report\",\"parameters\":[{\"in\":\"path\",\"name\":\"identifier\",\"required\":true,\"schema\":{\"format\":\"uuid\",\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"description\":{\"description\":\"The explanation on why media is being reported.\",\"maxLength\":500,\"nullable\":true,\"type\":\"string\"},\"identifier\":{\"description\":\"Our unique identifier for an open-licensed work.\",\"format\":\"uuid\",\"type\":\"string\"},\"reason\":{\"allOf\":[{\"description\":\"* `mature` - mature\\n* `dmca` - dmca\\n* `other` - other\",\"enum\":[\"mature\",\"dmca\",\"other\"],\"type\":\"string\"}],\"description\":\"The reason to report media to Openverse.\\n\\n* `mature` - mature\\n* `dmca` - dmca\\n* `other` - other\"}},\"required\":[\"identifier\",\"reason\"],\"type\":\"object\"}},\"application/x-www-form-urlencoded\":{\"schema\":{\"properties\":{\"description\":{\"description\":\"The explanation on why media is being reported.\",\"maxLength\":500,\"nullable\":true,\"type\":\"string\"},\"identifier\":{\"description\":\"Our unique identifier for an open-licensed work.\",\"format\":\"uuid\",\"type\":\"string\"},\"reason\":{\"allOf\":[{\"description\":\"* `mature` - mature\\n* `dmca` - dmca\\n* `other` - other\",\"enum\":[\"mature\",\"dmca\",\"other\"],\"type\":\"string\"}],\"description\":\"The reason to report media to Openverse.\\n\\n* `mature` - mature\\n* `dmca` - dmca\\n* `other` - other\"}},\"required\":[\"identifier\",\"reason\"],\"type\":\"object\"}},\"multipart/form-data\":{\"schema\":{\"properties\":{\"description\":{\"description\":\"The explanation on why media is being reported.\",\"maxLength\":500,\"nullable\":true,\"type\":\"string\"},\"identifier\":{\"description\":\"Our unique identifier for an open-licensed work.\",\"format\":\"uuid\",\"type\":\"string\"},\"reason\":{\"allOf\":[{\"description\":\"* `mature` - mature\\n* `dmca` - dmca\\n* `other` - other\",\"enum\":[\"mature\",\"dmca\",\"other\"],\"type\":\"string\"}],\"description\":\"The reason to report media to Openverse.\\n\\n* `mature` - mature\\n* `dmca` - dmca\\n* `other` - other\"}},\"required\":[\"identifier\",\"reason\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"201\":{\"content\":{\"application/json\":{\"examples\":{\"Created\":{\"value\":{\"description\":\"Image contains sensitive content\",\"identifier\":\"4bc43a04-ef46-4544-a0c1-63c63f56e276\",\"reason\":\"mature\"}}},\"schema\":{\"properties\":{\"description\":{\"description\":\"The explanation on why media is being reported.\",\"maxLength\":500,\"nullable\":true,\"type\":\"string\"},\"identifier\":{\"description\":\"Our unique identifier for an open-licensed work.\",\"format\":\"uuid\",\"type\":\"string\"},\"reason\":{\"allOf\":[{\"description\":\"* `mature` - mature\\n* `dmca` - dmca\\n* `other` - other\",\"enum\":[\"mature\",\"dmca\",\"other\"],\"type\":\"string\"}],\"description\":\"The reason to report media to Openverse.\\n\\n* `mature` - mature\\n* `dmca` - dmca\\n* `other` - other\"}},\"required\":[\"identifier\",\"reason\"],\"type\":\"object\"}}},\"description\":\"Created\"},\"400\":{\"content\":{\"application/json\":{\"examples\":{\"BadRequest\":{\"summary\":\"Bad Request\",\"value\":{\"detail\":{\"<request parameter>\":\"<error details>\"}}}},\"schema\":{\"properties\":{\"detail\":{\"oneOf\":[{\"description\":\"A description of what went wrong.\",\"type\":\"string\"},{\"additionalProperties\":true,\"type\":\"object\"}]}},\"title\":\"ValidationError\",\"type\":\"object\"}}},\"description\":\"Bad Request\"},\"401\":{\"content\":{\"application/json\":{\"examples\":{\"Unauthorized\":{\"value\":{\"detail\":\"Incorrect authentication credentials.\"}}},\"schema\":{\"properties\":{\"detail\":{\"description\":\"A description of what went wrong.\",\"type\":\"string\"}},\"title\":\"AuthenticationFailed\",\"type\":\"object\"}}},\"description\":\"Unauthorized\"},\"404\":{\"content\":{\"application/json\":{\"examples\":{\"NotFound\":{\"summary\":\"Not Found\",\"value\":{\"detail\":\"Not found.\"}}},\"schema\":{\"properties\":{\"detail\":{\"description\":\"A description of what went wrong.\",\"type\":\"string\"}},\"title\":\"NotFound\",\"type\":\"object\"}}},\"description\":\"Not Found\"}},\"security\":[{\"Openverse API Token\":[]},{}],\"securitySchemes\":{\"Openverse API Token\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "POST",
                   "orig": "/v1/images/{identifier}/report/",
@@ -1468,6 +1586,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /v1/images/",
+                    "json": "{\"operationId\":\"images_search\",\"parameters\":[{\"description\":\"The page of results to retrieve. This parameter is subject to limitations based on authentication and access level. For details, refer to [the authentication documentation](#tag/auth).\",\"in\":\"query\",\"name\":\"page\",\"schema\":{\"default\":1,\"minimum\":1,\"type\":\"integer\"}},{\"description\":\"Number of results to return per page. This parameter is subject to limitations based on authentication and access level. For details, refer to [the authentication documentation](#tag/auth).\",\"in\":\"query\",\"name\":\"page_size\",\"schema\":{\"default\":20,\"minimum\":1,\"type\":\"integer\"}},{\"description\":\"A query string that should not exceed 200 characters in length\",\"in\":\"query\",\"name\":\"q\",\"schema\":{\"minLength\":1,\"title\":\"query\",\"type\":\"string\"}},{\"description\":\"\\nFor default search, a comma separated list of data sources.\\nWhen the `unstable__collection` parameter is used, this parameter only accepts a single source.\\n\\nValid values are `source_name`s from the stats endpoint: https://api.openverse.org/v1/images/stats/.\\n\",\"in\":\"query\",\"name\":\"source\",\"schema\":{\"minLength\":1,\"title\":\"provider\",\"type\":\"string\"}},{\"description\":\"\\nA comma separated list of data sources to exclude from the search.\\nValid values are `source_name`s from the stats endpoint: https://api.openverse.org/v1/images/stats/.\\n\",\"in\":\"query\",\"name\":\"excluded_source\",\"schema\":{\"minLength\":1,\"title\":\"excluded_provider\",\"type\":\"string\"}},{\"description\":\"Search by tag only. Cannot be used with `q`. The search is fuzzy, so `tags=cat` will match any value that includes the word `cat`. If the value contains space, items that contain any of the words in the value will match. To search for several values, join them with a comma.\",\"in\":\"query\",\"name\":\"tags\",\"schema\":{\"maxLength\":200,\"minLength\":1,\"type\":\"string\"}},{\"description\":\"Search by title only. Cannot be used with `q`. The search is fuzzy, so `title=photo` will match any value that includes the word `photo`. If the value contains space, items that contain any of the words in the value will match. To search for several values, join them with a comma.\",\"in\":\"query\",\"name\":\"title\",\"schema\":{\"maxLength\":200,\"minLength\":1,\"type\":\"string\"}},{\"description\":\"\\n_When `q` parameter is present, `creator` parameter is ignored._\\n\\n**Creator collection**\\nWhen used with `unstable__collection=creator&source=sourceName`, returns the collection of media\\nby the specified creator. Notice that a single creator's media items\\ncan be found on several sources, but this collection only returns the\\nitems from the specified source.\\nThis is why for this collection, both the creator and the source\\nparameters are required, and matched exactly. For a fuzzy creator search,\\nuse the default search without the `unstable__collection` parameter.\\n\\n**Creator search**\\nWhen used without the `unstable__collection` parameter, will search in the creator field only.\\nThe search is fuzzy, so `creator=john` will match any value that includes the\\nword `john`. If the value contains space, items that contain any of\\nthe words in the value will match. To search for several values,\\njoin them with a comma.\\n\",\"in\":\"query\",\"name\":\"creator\",\"schema\":{\"maxLength\":200,\"minLength\":1,\"type\":\"string\"}},{\"description\":\"\\n\\n\\n\\n_Caution: Parameters prefixed with `unstable__` are experimental and\\nmay change or be removed without notice in future updates. Use them\\nwith caution as they are not covered by our API versioning policy._\\n\\n\\n\\nThe kind of media collection to return.\\n\\nMust be used with `unstable__tag`, `source` or `creator`+`source`\\n\\n* `tag` - tag\\n* `source` - source\\n* `creator` - creator\",\"in\":\"query\",\"name\":\"unstable__collection\",\"schema\":{\"enum\":[\"tag\",\"source\",\"creator\"],\"minLength\":1,\"title\":\"collection\",\"type\":\"string\"}},{\"description\":\"\\n\\n\\n\\n_Caution: Parameters prefixed with `unstable__` are experimental and\\nmay change or be removed without notice in future updates. Use them\\nwith caution as they are not covered by our API versioning policy._\\n\\n\\n\\n_Must be used with `unstable__collection=tag`_\\n\\nGet the collection of media with a specific tag. Returns the collection of media\\nthat has the specified tag, matching exactly and entirely.\\n\\nDifferences that will cause tags to not match are:\\n- upper and lower case letters\\n- diacritical marks\\n- hyphenation\\n- spacing\\n- multi-word tags where the query is only one of the words in the tag\\n- multi-word tags where the words are in a different order.\\n\\nExamples of tags that **do not** match:\\n- \\\"Low-Quality\\\" and \\\"low-quality\\\"\\n- \\\"jalapeño\\\" and \\\"jalapeno\\\"\\n- \\\"Saint Pierre des Champs\\\" and \\\"Saint-Pierre-des-Champs\\\"\\n- \\\"dog walking\\\" and \\\"dog  walking\\\" (where the latter has two spaces between the\\nlast two words, as in a typographical error)\\n- \\\"runner\\\" and \\\"marathon runner\\\"\\n- \\\"exclaiming loudly\\\" and \\\"loudly exclaiming\\\"\\n\\nFor non-exact or multi-tag matching, using the `tags` query parameter.\\n\",\"in\":\"query\",\"name\":\"unstable__tag\",\"schema\":{\"maxLength\":200,\"minLength\":1,\"title\":\"tag\",\"type\":\"string\"}},{\"description\":\"A comma separated list of licenses; available licenses include: `by`, `by-nc`, `by-nc-nd`, `by-nc-sa`, `by-nd`, `by-sa`, `cc0`, `nc-sampling+`, `pdm`, and `sampling+`.\",\"in\":\"query\",\"name\":\"license\",\"schema\":{\"minLength\":1,\"title\":\"licenses\",\"type\":\"string\"}},{\"description\":\"A comma separated list of license types; available license types include: `all`, `all-cc`, `commercial`, and `modification`.\",\"in\":\"query\",\"name\":\"license_type\",\"schema\":{\"minLength\":1,\"type\":\"string\"}},{\"description\":\"Control whether 404 links are filtered out.\",\"in\":\"query\",\"name\":\"filter_dead\",\"schema\":{\"default\":true,\"type\":\"boolean\"}},{\"description\":\"A comma separated list of desired file extensions.\",\"in\":\"query\",\"name\":\"extension\",\"schema\":{\"minLength\":1,\"type\":\"string\"}},{\"description\":\"Whether to include sensitive content.\",\"in\":\"query\",\"name\":\"mature\",\"schema\":{\"default\":false,\"type\":\"boolean\"}},{\"description\":\"\\n\\n\\n_Caution: Parameters prefixed with `unstable__` are experimental and\\nmay change or be removed without notice in future updates. Use them\\nwith caution as they are not covered by our API versioning policy._\\n\\n\\nThe field which should be the basis for sorting results.\\n\\n* `relevance` - Relevance\\n* `indexed_on` - Indexing date\",\"in\":\"query\",\"name\":\"unstable__sort_by\",\"schema\":{\"default\":\"relevance\",\"enum\":[\"relevance\",\"indexed_on\"],\"minLength\":1,\"type\":\"string\"}},{\"description\":\"\\n\\n\\n_Caution: Parameters prefixed with `unstable__` are experimental and\\nmay change or be removed without notice in future updates. Use them\\nwith caution as they are not covered by our API versioning policy._\\n\\n\\nThe direction of sorting. Cannot be applied when sorting by `relevance`.\\n\\n* `desc` - Descending\\n* `asc` - Ascending\",\"in\":\"query\",\"name\":\"unstable__sort_dir\",\"schema\":{\"default\":\"desc\",\"enum\":[\"desc\",\"asc\"],\"minLength\":1,\"type\":\"string\"}},{\"description\":\"\\n\\n\\n_Caution: Parameters prefixed with `unstable__` are experimental and\\nmay change or be removed without notice in future updates. Use them\\nwith caution as they are not covered by our API versioning policy._\\n\\n\\nIf enabled, the search will add a boost to results that are from authoritative sources.\",\"in\":\"query\",\"name\":\"unstable__authority\",\"schema\":{\"default\":false,\"title\":\"authority\",\"type\":\"boolean\"}},{\"description\":\"\\n\\n\\n_Caution: Parameters prefixed with `unstable__` are experimental and\\nmay change or be removed without notice in future updates. Use them\\nwith caution as they are not covered by our API versioning policy._\\n\\n\\nThe boost coefficient to apply to authoritative sources, multiplied with the popularity boost.\",\"in\":\"query\",\"name\":\"unstable__authority_boost\",\"schema\":{\"default\":1,\"format\":\"double\",\"maximum\":10,\"minimum\":0,\"title\":\"authority_boost\",\"type\":\"number\"}},{\"description\":\"\\n\\n\\n_Caution: Parameters prefixed with `unstable__` are experimental and\\nmay change or be removed without notice in future updates. Use them\\nwith caution as they are not covered by our API versioning policy._\\n\\n\\nWhether to include results considered sensitive.\",\"in\":\"query\",\"name\":\"unstable__include_sensitive_results\",\"schema\":{\"default\":false,\"title\":\"include_sensitive_results\",\"type\":\"boolean\"}},{\"description\":\"A comma separated list of categories; available categories include: `digitized_artwork`, `illustration`, and `photograph`.\",\"in\":\"query\",\"name\":\"category\",\"schema\":{\"minLength\":1,\"type\":\"string\"}},{\"description\":\"A comma separated list of aspect ratios; available aspect ratios include: `square`, `tall`, and `wide`.\",\"in\":\"query\",\"name\":\"aspect_ratio\",\"schema\":{\"minLength\":1,\"type\":\"string\"}},{\"description\":\"A comma separated list of image sizes; available image sizes include: `large`, `medium`, and `small`.\",\"in\":\"query\",\"name\":\"size\",\"schema\":{\"minLength\":1,\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"OK\":{\"value\":{\"page\":1,\"page_count\":20,\"page_size\":20,\"result_count\":10000,\"results\":[{\"attribution\":\"\\\"Tree Bark Photo\\\" by Tim Sullivan is marked with CC0 1.0. To view the terms, visit https://creativecommons.org/publicdomain/zero/1.0/.\",\"category\":\"photograph\",\"creator\":\"Tim Sullivan\",\"creator_url\":\"https://www.secretagencygroup.com\",\"detail_url\":\"https://api.openverse.org/v1/images/4bc43a04-ef46-4544-a0c1-63c63f56e276/\",\"fields_matched\":[\"title\"],\"filesize\":896128,\"filetype\":\"jpg\",\"foreign_landing_url\":\"https://stocksnap.io/photo/XNVBVXO3B7\",\"height\":4016,\"id\":\"4bc43a04-ef46-4544-a0c1-63c63f56e276\",\"indexed_on\":\"2022-08-27T17:39:48Z\",\"license\":\"cc0\",\"license_url\":\"https://creativecommons.org/publicdomain/zero/1.0/\",\"license_version\":\"1.0\",\"mature\":false,\"provider\":\"stocksnap\",\"related_url\":\"https://api.openverse.org/v1/images/4bc43a04-ef46-4544-a0c1-63c63f56e276/related/\",\"source\":\"stocksnap\",\"tags\":[{\"accuracy\":null,\"name\":\"tree\",\"unstable__provider\":\"stocksnap\"},{\"accuracy\":null,\"name\":\"bark\",\"unstable__provider\":\"stocksnap\"},{\"accuracy\":null,\"name\":\"texture\",\"unstable__provider\":\"stocksnap\"},{\"accuracy\":null,\"name\":\"wood\",\"unstable__provider\":\"stocksnap\"},{\"accuracy\":null,\"name\":\"nature\",\"unstable__provider\":\"stocksnap\"},{\"accuracy\":null,\"name\":\"pattern\",\"unstable__provider\":\"stocksnap\"},{\"accuracy\":null,\"name\":\"rough\",\"unstable__provider\":\"stocksnap\"},{\"accuracy\":null,\"name\":\"surface\",\"unstable__provider\":\"stocksnap\"},{\"accuracy\":null,\"name\":\"brown\",\"unstable__provider\":\"stocksnap\"},{\"accuracy\":null,\"name\":\"old\",\"unstable__provider\":\"stocksnap\"},{\"accuracy\":null,\"name\":\"background\",\"unstable__provider\":\"stocksnap\"},{\"accuracy\":null,\"name\":\"trunk\",\"unstable__provider\":\"stocksnap\"},{\"accuracy\":null,\"name\":\"natural\",\"unstable__provider\":\"stocksnap\"},{\"accuracy\":null,\"name\":\"forest\",\"unstable__provider\":\"stocksnap\"},{\"accuracy\":null,\"name\":\"detail\",\"unstable__provider\":\"stocksnap\"},{\"accuracy\":null,\"name\":\"lumber\",\"unstable__provider\":\"stocksnap\"},{\"accuracy\":null,\"name\":\"weathered\",\"unstable__provider\":\"stocksnap\"},{\"accuracy\":null,\"name\":\"timber\",\"unstable__provider\":\"stocksnap\"},{\"accuracy\":null,\"name\":\"stump\",\"unstable__provider\":\"stocksnap\"},{\"accuracy\":null,\"name\":\"closeup\",\"unstable__provider\":\"stocksnap\"},{\"accuracy\":null,\"name\":\"root\",\"unstable__provider\":\"stocksnap\"},{\"accuracy\":0.95,\"name\":\"tree\",\"unstable__provider\":\"machine_example\"},{\"accuracy\":0.9,\"name\":\"bark\",\"unstable__provider\":\"machine_example\"},{\"accuracy\":0.98,\"name\":\"plant\",\"unstable__provider\":\"machine_example\"}],\"thumbnail\":\"https://api.openverse.org/v1/images/4bc43a04-ef46-4544-a0c1-63c63f56e276/thumb/\",\"title\":\"Tree Bark Photo\",\"unstable__sensitivity\":[],\"url\":\"https://cdn.stocksnap.io/img-thumbs/960w/XNVBVXO3B7.jpg\",\"width\":6016}],\"warnings\":[{\"code\":\"partially invalid request parameter\",\"message\":\"Some of the request parameters were bad, but we were able to process the request. Here's some information that might help you fix the problem for future requests.\"}]}}},\"schema\":{\"properties\":{\"page\":{\"description\":\"The current page number returned in the response.\",\"example\":1,\"type\":\"integer\"},\"page_count\":{\"description\":\"The total number of pages returned by search result.\",\"example\":20,\"type\":\"integer\"},\"page_size\":{\"description\":\"The number of items per page.\",\"example\":20,\"type\":\"integer\"},\"result_count\":{\"description\":\"The total number of items returned by search result.\",\"example\":10000,\"type\":\"integer\"},\"results\":{\"items\":{\"description\":\"A single image. Used in search results.\",\"properties\":{\"attribution\":{\"description\":\"Legally valid attribution for the media item in plain-text English.\",\"nullable\":true,\"readOnly\":true,\"type\":\"string\"},\"category\":{\"description\":\"The top-level classification of this media file.\",\"maxLength\":80,\"nullable\":true,\"type\":\"string\"},\"creator\":{\"description\":\"The name of the media creator.\",\"nullable\":true,\"type\":\"string\"},\"creator_url\":{\"description\":\"A direct link to the media creator.\",\"maxLength\":2000,\"nullable\":true,\"type\":\"string\"},\"detail_url\":{\"description\":\"A direct link to the detail view of this audio file.\",\"format\":\"uri\",\"readOnly\":true,\"type\":\"string\"},\"fields_matched\":{\"description\":\"List the fields that matched the query for this result.\",\"items\":{},\"nullable\":true,\"type\":\"array\"},\"filesize\":{\"description\":\"Number in bytes, e.g. 1024.\",\"maximum\":2147483647,\"minimum\":-2147483648,\"nullable\":true,\"type\":\"integer\"},\"filetype\":{\"description\":\"The type of the file, related to the file extension.\",\"maxLength\":80,\"nullable\":true,\"type\":\"string\"},\"foreign_landing_url\":{\"description\":\"The landing page of the work.\",\"nullable\":true,\"type\":\"string\"},\"height\":{\"description\":\"The height of the image in pixels. Not always available.\",\"maximum\":2147483647,\"minimum\":-2147483648,\"nullable\":true,\"type\":\"integer\"},\"id\":{\"description\":\"Our unique identifier for an open-licensed work.\",\"type\":\"string\"},\"indexed_on\":{\"description\":\"The timestamp of when the media was indexed by Openverse.\",\"format\":\"date-time\",\"type\":\"string\"},\"license\":{\"description\":\"The name of license for the media.\",\"maxLength\":50,\"type\":\"string\"},\"license_url\":{\"description\":\"A direct link to the license deed or legal terms.\",\"nullable\":true,\"readOnly\":true,\"type\":\"string\"},\"license_version\":{\"description\":\"The version of the media license.\",\"maxLength\":25,\"nullable\":true,\"type\":\"string\"},\"mature\":{\"description\":\"Whether the media item is marked as mature\",\"type\":\"boolean\"},\"provider\":{\"description\":\"The content provider, e.g. Flickr, Jamendo...\",\"maxLength\":80,\"nullable\":true,\"type\":\"string\"},\"related_url\":{\"description\":\"A link to an endpoint that provides similar audio files.\",\"format\":\"uri\",\"readOnly\":true,\"type\":\"string\"},\"source\":{\"description\":\"The source of the data, meaning a particular dataset. Source and provider can be different. Eg: the Google Open Images dataset is source=openimages, but provider=flickr.\",\"maxLength\":80,\"nullable\":true,\"type\":\"string\"},\"tags\":{\"description\":\"Tags with detailed metadata, such as accuracy.\",\"items\":{\"description\":\"This output serializer serializes a singular tag.\",\"properties\":{\"accuracy\":{\"description\":\"The accuracy of a machine-generated tag. Human-generated tags have a null accuracy field.\",\"format\":\"double\",\"nullable\":true,\"type\":\"number\"},\"name\":{\"description\":\"The name of a detailed tag.\",\"type\":\"string\"},\"unstable__provider\":{\"description\":\"The source of the tag. When this field matches the provider for the record, the tag originated from the upstream provider. Otherwise, the tag was added with an external machine-generated labeling processes.\",\"nullable\":true,\"title\":\"provider\",\"type\":\"string\"}},\"required\":[\"name\",\"unstable__provider\"],\"type\":\"object\"},\"nullable\":true,\"type\":\"array\"},\"thumbnail\":{\"description\":\"A direct link to the miniature artwork.\",\"format\":\"uri\",\"readOnly\":true,\"type\":\"string\"},\"title\":{\"description\":\"The name of the media.\",\"nullable\":true,\"type\":\"string\"},\"url\":{\"description\":\"The actual URL to the media file.\",\"maxLength\":1000,\"nullable\":true,\"type\":\"string\"},\"width\":{\"description\":\"The width of the image in pixels. Not always available.\",\"maximum\":2147483647,\"minimum\":-2147483648,\"nullable\":true,\"type\":\"integer\"}},\"required\":[\"attribution\",\"detail_url\",\"fields_matched\",\"id\",\"indexed_on\",\"license\",\"license_url\",\"mature\",\"related_url\",\"tags\",\"thumbnail\"],\"type\":\"object\"},\"type\":\"array\"},\"warnings\":{\"description\":\"Warnings pertinent to the request. If there are no warnings, this property will not be present on the response. Warnings are non-critical problems with the request. Responses with warnings should be treated as unstable. Warning descriptions must not be treated as machine readable and their schema can change at any time.\",\"example\":[{\"code\":\"partially invalid request parameter\",\"message\":\"Some of the request parameters were bad, but we were able to process the request. Here's some information that might help you fix the problem for future requests.\"}],\"items\":{\"type\":\"object\"},\"type\":\"array\"}},\"required\":[\"result_count\",\"page_size\",\"results\",\"page_count\",\"page\"],\"type\":\"object\"}}},\"description\":\"OK\"},\"400\":{\"content\":{\"application/json\":{\"examples\":{\"BadRequest\":{\"summary\":\"Bad Request\",\"value\":{\"detail\":\"Invalid input given for fields. 'license' -> License 'PDMNBCG' does not exist.\",\"error\":\"InputError\",\"fields\":[\"license\"]}}},\"schema\":{\"properties\":{\"detail\":{\"oneOf\":[{\"description\":\"A description of what went wrong.\",\"type\":\"string\"},{\"additionalProperties\":true,\"type\":\"object\"}]}},\"title\":\"ValidationError\",\"type\":\"object\"}}},\"description\":\"Bad Request\"},\"401\":{\"content\":{\"application/json\":{\"examples\":{\"Unauthorized\":{\"value\":{\"detail\":\"Authentication credentials were not provided.\"}}},\"schema\":{\"properties\":{\"detail\":{\"description\":\"A description of what went wrong.\",\"type\":\"string\"}},\"title\":\"NotAuthenticated\",\"type\":\"object\"}}},\"description\":\"Unauthorized\"}},\"security\":[{\"Openverse API Token\":[]},{}],\"securitySchemes\":{\"Openverse API Token\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v1/images/",
@@ -1525,6 +1649,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /v1/images/{identifier}/related/",
+                    "json": "{\"operationId\":\"images_related\",\"parameters\":[{\"in\":\"path\",\"name\":\"identifier\",\"required\":true,\"schema\":{\"format\":\"uuid\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"OK\":{\"value\":{\"page\":1,\"page_count\":20,\"page_size\":20,\"result_count\":10000,\"results\":[{\"creator\":\"Sean MacEntee\",\"creator_url\":\"https://www.flickr.com/photos/18090920@N07\",\"detail_url\":\"https://api.openverse.org/v1/images/610756ec-ae31-4d5e-8f03-8cc52f31b71d\",\"foreign_landing_url\":\"https://www.flickr.com/photos/18090920@N07/4459771899\",\"id\":\"610756ec-ae31-4d5e-8f03-8cc52f31b71d\",\"license\":\"by\",\"license_url\":\"https://creativecommons.org/licenses/by/2.0/\",\"license_version\":\"2.0\",\"provider\":\"flickr\",\"related_url\":\"https://api.openverse.org/v1/recommendations/images/610756ec-ae31-4d5e-8f03-8cc52f31b71d\",\"source\":\"flickr\",\"tags\":[{\"name\":\"exam\"},{\"name\":\"tactics\"}],\"thumbnail\":\"https://api.openverse.org/v1/thumbs/610756ec-ae31-4d5e-8f03-8cc52f31b71d\",\"title\":\"exam tactics\",\"url\":\"https://live.staticflickr.com/4065/4459771899_07595dc42e.jpg\"}],\"warnings\":[{\"code\":\"partially invalid request parameter\",\"message\":\"Some of the request parameters were bad, but we were able to process the request. Here's some information that might help you fix the problem for future requests.\"}]}}},\"schema\":{\"properties\":{\"page\":{\"description\":\"The current page number returned in the response.\",\"example\":1,\"type\":\"integer\"},\"page_count\":{\"description\":\"The total number of pages returned by search result.\",\"example\":20,\"type\":\"integer\"},\"page_size\":{\"description\":\"The number of items per page.\",\"example\":20,\"type\":\"integer\"},\"result_count\":{\"description\":\"The total number of items returned by search result.\",\"example\":10000,\"type\":\"integer\"},\"results\":{\"items\":{\"description\":\"A single image. Used in search results.\",\"properties\":{\"attribution\":{\"description\":\"Legally valid attribution for the media item in plain-text English.\",\"nullable\":true,\"readOnly\":true,\"type\":\"string\"},\"category\":{\"description\":\"The top-level classification of this media file.\",\"maxLength\":80,\"nullable\":true,\"type\":\"string\"},\"creator\":{\"description\":\"The name of the media creator.\",\"nullable\":true,\"type\":\"string\"},\"creator_url\":{\"description\":\"A direct link to the media creator.\",\"maxLength\":2000,\"nullable\":true,\"type\":\"string\"},\"detail_url\":{\"description\":\"A direct link to the detail view of this audio file.\",\"format\":\"uri\",\"readOnly\":true,\"type\":\"string\"},\"fields_matched\":{\"description\":\"List the fields that matched the query for this result.\",\"items\":{},\"nullable\":true,\"type\":\"array\"},\"filesize\":{\"description\":\"Number in bytes, e.g. 1024.\",\"maximum\":2147483647,\"minimum\":-2147483648,\"nullable\":true,\"type\":\"integer\"},\"filetype\":{\"description\":\"The type of the file, related to the file extension.\",\"maxLength\":80,\"nullable\":true,\"type\":\"string\"},\"foreign_landing_url\":{\"description\":\"The landing page of the work.\",\"nullable\":true,\"type\":\"string\"},\"height\":{\"description\":\"The height of the image in pixels. Not always available.\",\"maximum\":2147483647,\"minimum\":-2147483648,\"nullable\":true,\"type\":\"integer\"},\"id\":{\"description\":\"Our unique identifier for an open-licensed work.\",\"type\":\"string\"},\"indexed_on\":{\"description\":\"The timestamp of when the media was indexed by Openverse.\",\"format\":\"date-time\",\"type\":\"string\"},\"license\":{\"description\":\"The name of license for the media.\",\"maxLength\":50,\"type\":\"string\"},\"license_url\":{\"description\":\"A direct link to the license deed or legal terms.\",\"nullable\":true,\"readOnly\":true,\"type\":\"string\"},\"license_version\":{\"description\":\"The version of the media license.\",\"maxLength\":25,\"nullable\":true,\"type\":\"string\"},\"mature\":{\"description\":\"Whether the media item is marked as mature\",\"type\":\"boolean\"},\"provider\":{\"description\":\"The content provider, e.g. Flickr, Jamendo...\",\"maxLength\":80,\"nullable\":true,\"type\":\"string\"},\"related_url\":{\"description\":\"A link to an endpoint that provides similar audio files.\",\"format\":\"uri\",\"readOnly\":true,\"type\":\"string\"},\"source\":{\"description\":\"The source of the data, meaning a particular dataset. Source and provider can be different. Eg: the Google Open Images dataset is source=openimages, but provider=flickr.\",\"maxLength\":80,\"nullable\":true,\"type\":\"string\"},\"tags\":{\"description\":\"Tags with detailed metadata, such as accuracy.\",\"items\":{\"description\":\"This output serializer serializes a singular tag.\",\"properties\":{\"accuracy\":{\"description\":\"The accuracy of a machine-generated tag. Human-generated tags have a null accuracy field.\",\"format\":\"double\",\"nullable\":true,\"type\":\"number\"},\"name\":{\"description\":\"The name of a detailed tag.\",\"type\":\"string\"},\"unstable__provider\":{\"description\":\"The source of the tag. When this field matches the provider for the record, the tag originated from the upstream provider. Otherwise, the tag was added with an external machine-generated labeling processes.\",\"nullable\":true,\"title\":\"provider\",\"type\":\"string\"}},\"required\":[\"name\",\"unstable__provider\"],\"type\":\"object\"},\"nullable\":true,\"type\":\"array\"},\"thumbnail\":{\"description\":\"A direct link to the miniature artwork.\",\"format\":\"uri\",\"readOnly\":true,\"type\":\"string\"},\"title\":{\"description\":\"The name of the media.\",\"nullable\":true,\"type\":\"string\"},\"url\":{\"description\":\"The actual URL to the media file.\",\"maxLength\":1000,\"nullable\":true,\"type\":\"string\"},\"width\":{\"description\":\"The width of the image in pixels. Not always available.\",\"maximum\":2147483647,\"minimum\":-2147483648,\"nullable\":true,\"type\":\"integer\"}},\"required\":[\"attribution\",\"detail_url\",\"fields_matched\",\"id\",\"indexed_on\",\"license\",\"license_url\",\"mature\",\"related_url\",\"tags\",\"thumbnail\"],\"type\":\"object\"},\"type\":\"array\"},\"warnings\":{\"description\":\"Warnings pertinent to the request. If there are no warnings, this property will not be present on the response. Warnings are non-critical problems with the request. Responses with warnings should be treated as unstable. Warning descriptions must not be treated as machine readable and their schema can change at any time.\",\"example\":[{\"code\":\"partially invalid request parameter\",\"message\":\"Some of the request parameters were bad, but we were able to process the request. Here's some information that might help you fix the problem for future requests.\"}],\"items\":{\"type\":\"object\"},\"type\":\"array\"}},\"required\":[\"result_count\",\"page_size\",\"results\",\"page_count\",\"page\"],\"type\":\"object\"}}},\"description\":\"OK\"},\"401\":{\"content\":{\"application/json\":{\"examples\":{\"Unauthorized\":{\"value\":{\"detail\":\"Incorrect authentication credentials.\"}}},\"schema\":{\"properties\":{\"detail\":{\"description\":\"A description of what went wrong.\",\"type\":\"string\"}},\"title\":\"AuthenticationFailed\",\"type\":\"object\"}}},\"description\":\"Unauthorized\"},\"404\":{\"content\":{\"application/json\":{\"examples\":{\"NotFound\":{\"summary\":\"Not Found\",\"value\":{\"detail\":\"Not found.\"}}},\"schema\":{\"properties\":{\"detail\":{\"description\":\"A description of what went wrong.\",\"type\":\"string\"}},\"title\":\"NotFound\",\"type\":\"object\"}}},\"description\":\"Not Found\"}},\"security\":[{\"Openverse API Token\":[]},{}],\"securitySchemes\":{\"Openverse API Token\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v1/images/{identifier}/related/",
@@ -1556,6 +1686,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "GET /v1/images/stats/",
+                    "json": "{\"operationId\":\"images_stats\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"OK\":{\"value\":[{\"display_name\":\"Flickr\",\"logo_url\":null,\"media_count\":2500,\"source_name\":\"flickr\",\"source_url\":\"https://www.flickr.com\"}]}},\"schema\":{\"items\":{\"properties\":{\"display_name\":{\"description\":\"The name of content source, e.g. Flickr\",\"type\":\"string\"},\"logo_url\":{\"deprecated\":true,\"description\":\"The URL to a logo for the source.\",\"nullable\":true,\"readOnly\":true,\"type\":\"string\"},\"media_count\":{\"description\":\"The number of media items indexed from the source.\",\"readOnly\":true,\"type\":\"integer\"},\"source_name\":{\"description\":\"The source of the media, e.g. flickr\",\"type\":\"string\"},\"source_url\":{\"description\":\"The URL of the source, e.g. https://www.flickr.com\",\"format\":\"uri\",\"type\":\"string\"}},\"required\":[\"display_name\",\"logo_url\",\"media_count\",\"source_name\",\"source_url\"],\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"OK\"},\"401\":{\"content\":{\"application/json\":{\"examples\":{\"Unauthorized\":{\"value\":{\"detail\":\"Incorrect authentication credentials.\"}}},\"schema\":{\"properties\":{\"detail\":{\"description\":\"A description of what went wrong.\",\"type\":\"string\"}},\"title\":\"AuthenticationFailed\",\"type\":\"object\"}}},\"description\":\"Unauthorized\"}},\"security\":[{\"Openverse API Token\":[]},{}],\"securitySchemes\":{\"Openverse API Token\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v1/images/stats/",
@@ -1597,6 +1733,12 @@
                         "type": "`$STRING`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /v1/images/{identifier}/",
+                    "json": "{\"operationId\":\"images_detail\",\"parameters\":[{\"in\":\"path\",\"name\":\"identifier\",\"required\":true,\"schema\":{\"format\":\"uuid\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"OK\":{\"value\":{\"attribution\":\"\\\"Tree Bark Photo\\\" by Tim Sullivan is marked with CC0 1.0. To view the terms, visit https://creativecommons.org/publicdomain/zero/1.0/.\",\"category\":\"photograph\",\"creator\":\"Tim Sullivan\",\"creator_url\":\"https://www.secretagencygroup.com\",\"detail_url\":\"https://api.openverse.org/v1/images/4bc43a04-ef46-4544-a0c1-63c63f56e276/\",\"fields_matched\":[],\"filesize\":896128,\"filetype\":\"jpg\",\"foreign_landing_url\":\"https://stocksnap.io/photo/XNVBVXO3B7\",\"height\":4016,\"id\":\"4bc43a04-ef46-4544-a0c1-63c63f56e276\",\"indexed_on\":\"2022-08-27T17:39:48Z\",\"license\":\"cc0\",\"license_url\":\"https://creativecommons.org/publicdomain/zero/1.0/\",\"license_version\":\"1.0\",\"mature\":false,\"provider\":\"stocksnap\",\"related_url\":\"https://api.openverse.org/v1/images/4bc43a04-ef46-4544-a0c1-63c63f56e276/related/\",\"source\":\"stocksnap\",\"tags\":[{\"accuracy\":null,\"name\":\"tree\",\"unstable__provider\":\"stocksnap\"},{\"accuracy\":null,\"name\":\"bark\",\"unstable__provider\":\"stocksnap\"},{\"accuracy\":null,\"name\":\"texture\",\"unstable__provider\":\"stocksnap\"},{\"accuracy\":null,\"name\":\"wood\",\"unstable__provider\":\"stocksnap\"},{\"accuracy\":null,\"name\":\"nature\",\"unstable__provider\":\"stocksnap\"},{\"accuracy\":null,\"name\":\"pattern\",\"unstable__provider\":\"stocksnap\"},{\"accuracy\":null,\"name\":\"rough\",\"unstable__provider\":\"stocksnap\"},{\"accuracy\":null,\"name\":\"surface\",\"unstable__provider\":\"stocksnap\"},{\"accuracy\":null,\"name\":\"brown\",\"unstable__provider\":\"stocksnap\"},{\"accuracy\":null,\"name\":\"old\",\"unstable__provider\":\"stocksnap\"},{\"accuracy\":null,\"name\":\"background\",\"unstable__provider\":\"stocksnap\"},{\"accuracy\":null,\"name\":\"trunk\",\"unstable__provider\":\"stocksnap\"},{\"accuracy\":null,\"name\":\"natural\",\"unstable__provider\":\"stocksnap\"},{\"accuracy\":null,\"name\":\"forest\",\"unstable__provider\":\"stocksnap\"},{\"accuracy\":null,\"name\":\"detail\",\"unstable__provider\":\"stocksnap\"},{\"accuracy\":null,\"name\":\"lumber\",\"unstable__provider\":\"stocksnap\"},{\"accuracy\":null,\"name\":\"weathered\",\"unstable__provider\":\"stocksnap\"},{\"accuracy\":null,\"name\":\"timber\",\"unstable__provider\":\"stocksnap\"},{\"accuracy\":null,\"name\":\"stump\",\"unstable__provider\":\"stocksnap\"},{\"accuracy\":null,\"name\":\"closeup\",\"unstable__provider\":\"stocksnap\"},{\"accuracy\":null,\"name\":\"root\",\"unstable__provider\":\"stocksnap\"},{\"accuracy\":0.95,\"name\":\"tree\",\"unstable__provider\":\"machine_example\"},{\"accuracy\":0.9,\"name\":\"bark\",\"unstable__provider\":\"machine_example\"},{\"accuracy\":0.98,\"name\":\"plant\",\"unstable__provider\":\"machine_example\"}],\"thumbnail\":\"https://api.openverse.org/v1/images/4bc43a04-ef46-4544-a0c1-63c63f56e276/thumb/\",\"title\":\"Tree Bark Photo\",\"unstable__sensitivity\":[],\"url\":\"https://cdn.stocksnap.io/img-thumbs/960w/XNVBVXO3B7.jpg\",\"width\":6016}}},\"schema\":{\"description\":\"A single image. Used in search results.\",\"properties\":{\"attribution\":{\"description\":\"Legally valid attribution for the media item in plain-text English.\",\"nullable\":true,\"readOnly\":true,\"type\":\"string\"},\"category\":{\"description\":\"The top-level classification of this media file.\",\"maxLength\":80,\"nullable\":true,\"type\":\"string\"},\"creator\":{\"description\":\"The name of the media creator.\",\"nullable\":true,\"type\":\"string\"},\"creator_url\":{\"description\":\"A direct link to the media creator.\",\"maxLength\":2000,\"nullable\":true,\"type\":\"string\"},\"detail_url\":{\"description\":\"A direct link to the detail view of this audio file.\",\"format\":\"uri\",\"readOnly\":true,\"type\":\"string\"},\"fields_matched\":{\"description\":\"List the fields that matched the query for this result.\",\"items\":{},\"nullable\":true,\"type\":\"array\"},\"filesize\":{\"description\":\"Number in bytes, e.g. 1024.\",\"maximum\":2147483647,\"minimum\":-2147483648,\"nullable\":true,\"type\":\"integer\"},\"filetype\":{\"description\":\"The type of the file, related to the file extension.\",\"maxLength\":80,\"nullable\":true,\"type\":\"string\"},\"foreign_landing_url\":{\"description\":\"The landing page of the work.\",\"nullable\":true,\"type\":\"string\"},\"height\":{\"description\":\"The height of the image in pixels. Not always available.\",\"maximum\":2147483647,\"minimum\":-2147483648,\"nullable\":true,\"type\":\"integer\"},\"id\":{\"description\":\"Our unique identifier for an open-licensed work.\",\"type\":\"string\"},\"indexed_on\":{\"description\":\"The timestamp of when the media was indexed by Openverse.\",\"format\":\"date-time\",\"type\":\"string\"},\"license\":{\"description\":\"The name of license for the media.\",\"maxLength\":50,\"type\":\"string\"},\"license_url\":{\"description\":\"A direct link to the license deed or legal terms.\",\"nullable\":true,\"readOnly\":true,\"type\":\"string\"},\"license_version\":{\"description\":\"The version of the media license.\",\"maxLength\":25,\"nullable\":true,\"type\":\"string\"},\"mature\":{\"description\":\"Whether the media item is marked as mature\",\"type\":\"boolean\"},\"provider\":{\"description\":\"The content provider, e.g. Flickr, Jamendo...\",\"maxLength\":80,\"nullable\":true,\"type\":\"string\"},\"related_url\":{\"description\":\"A link to an endpoint that provides similar audio files.\",\"format\":\"uri\",\"readOnly\":true,\"type\":\"string\"},\"source\":{\"description\":\"The source of the data, meaning a particular dataset. Source and provider can be different. Eg: the Google Open Images dataset is source=openimages, but provider=flickr.\",\"maxLength\":80,\"nullable\":true,\"type\":\"string\"},\"tags\":{\"description\":\"Tags with detailed metadata, such as accuracy.\",\"items\":{\"description\":\"This output serializer serializes a singular tag.\",\"properties\":{\"accuracy\":{\"description\":\"The accuracy of a machine-generated tag. Human-generated tags have a null accuracy field.\",\"format\":\"double\",\"nullable\":true,\"type\":\"number\"},\"name\":{\"description\":\"The name of a detailed tag.\",\"type\":\"string\"},\"unstable__provider\":{\"description\":\"The source of the tag. When this field matches the provider for the record, the tag originated from the upstream provider. Otherwise, the tag was added with an external machine-generated labeling processes.\",\"nullable\":true,\"title\":\"provider\",\"type\":\"string\"}},\"required\":[\"name\",\"unstable__provider\"],\"type\":\"object\"},\"nullable\":true,\"type\":\"array\"},\"thumbnail\":{\"description\":\"A direct link to the miniature artwork.\",\"format\":\"uri\",\"readOnly\":true,\"type\":\"string\"},\"title\":{\"description\":\"The name of the media.\",\"nullable\":true,\"type\":\"string\"},\"url\":{\"description\":\"The actual URL to the media file.\",\"maxLength\":1000,\"nullable\":true,\"type\":\"string\"},\"width\":{\"description\":\"The width of the image in pixels. Not always available.\",\"maximum\":2147483647,\"minimum\":-2147483648,\"nullable\":true,\"type\":\"integer\"}},\"required\":[\"attribution\",\"detail_url\",\"fields_matched\",\"id\",\"indexed_on\",\"license\",\"license_url\",\"mature\",\"related_url\",\"tags\",\"thumbnail\"],\"type\":\"object\"}}},\"description\":\"OK\"},\"401\":{\"content\":{\"application/json\":{\"examples\":{\"Unauthorized\":{\"value\":{\"detail\":\"Incorrect authentication credentials.\"}}},\"schema\":{\"properties\":{\"detail\":{\"description\":\"A description of what went wrong.\",\"type\":\"string\"}},\"title\":\"AuthenticationFailed\",\"type\":\"object\"}}},\"description\":\"Unauthorized\"},\"404\":{\"content\":{\"application/json\":{\"examples\":{\"NotFound\":{\"summary\":\"Not Found\",\"value\":{\"detail\":\"Not found.\"}}},\"schema\":{\"properties\":{\"detail\":{\"description\":\"A description of what went wrong.\",\"type\":\"string\"}},\"title\":\"NotFound\",\"type\":\"object\"}}},\"description\":\"Not Found\"}},\"security\":[{\"Openverse API Token\":[]},{}],\"securitySchemes\":{\"Openverse API Token\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -1640,6 +1782,12 @@
                         "type": "`$STRING`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /v1/images/oembed/",
+                    "json": "{\"operationId\":\"images_oembed\",\"parameters\":[{\"description\":\"The link to an image present in Openverse.\",\"in\":\"query\",\"name\":\"url\",\"required\":true,\"schema\":{\"format\":\"uri\",\"minLength\":1,\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"OK\":{\"value\":{\"author_name\":\"Tim Sullivan\",\"author_url\":\"https://www.secretagencygroup.com\",\"height\":4016,\"license_url\":\"https://creativecommons.org/publicdomain/zero/1.0/\",\"title\":\"Tree Bark Photo\",\"type\":\"photo\",\"version\":\"1.0\",\"width\":6016}}},\"schema\":{\"description\":\"The embedded content from a specified image URL.\\n\\nThis is essentially an ``ImageSerializer`` with some changes to match the oEmbed\\nspec: https://oembed.com.\",\"properties\":{\"author_name\":{\"description\":\"The name of the media creator.\",\"type\":\"string\"},\"author_url\":{\"description\":\"A direct link to the media creator.\",\"format\":\"uri\",\"type\":\"string\"},\"height\":{\"description\":\"The height of the image in pixels.\",\"readOnly\":true,\"type\":\"integer\"},\"license_url\":{\"description\":\"A direct link to the license deed or legal terms.\",\"nullable\":true,\"readOnly\":true,\"type\":\"string\"},\"title\":{\"description\":\"The name of the media.\",\"nullable\":true,\"type\":\"string\"},\"type\":{\"allOf\":[{\"enum\":[\"photo\"],\"type\":\"string\"}],\"description\":\"The resource type, always set to 'photo' for images.\",\"readOnly\":true},\"version\":{\"allOf\":[{\"enum\":[\"1.0\"],\"type\":\"string\"}],\"description\":\"The oEmbed version number, always set to 1.0.\",\"readOnly\":true},\"width\":{\"description\":\"The width of the image in pixels.\",\"readOnly\":true,\"type\":\"integer\"}},\"required\":[\"author_name\",\"author_url\",\"height\",\"license_url\",\"type\",\"version\",\"width\"],\"type\":\"object\"}}},\"description\":\"OK\"},\"400\":{\"content\":{\"application/json\":{\"examples\":{\"BadRequest\":{\"summary\":\"Bad Request\",\"value\":{\"detail\":{\"url\":[\"Could not parse identifier from URL.\"]}}}},\"schema\":{\"properties\":{\"detail\":{\"oneOf\":[{\"description\":\"A description of what went wrong.\",\"type\":\"string\"},{\"additionalProperties\":true,\"type\":\"object\"}]}},\"title\":\"ValidationError\",\"type\":\"object\"}}},\"description\":\"Bad Request\"},\"401\":{\"content\":{\"application/json\":{\"examples\":{\"Unauthorized\":{\"value\":{\"detail\":\"Incorrect authentication credentials.\"}}},\"schema\":{\"properties\":{\"detail\":{\"description\":\"A description of what went wrong.\",\"type\":\"string\"}},\"title\":\"AuthenticationFailed\",\"type\":\"object\"}}},\"description\":\"Unauthorized\"},\"404\":{\"content\":{\"application/json\":{\"examples\":{\"NotFound\":{\"summary\":\"Not Found\",\"value\":{\"detail\":\"Not found.\"}}},\"schema\":{\"properties\":{\"detail\":{\"description\":\"A description of what went wrong.\",\"type\":\"string\"}},\"title\":\"NotFound\",\"type\":\"object\"}}},\"description\":\"Not Found\"}},\"security\":[{\"Openverse API Token\":[]},{}],\"securitySchemes\":{\"Openverse API Token\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -1715,6 +1863,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "POST /v1/auth_tokens/register/",
+                    "json": "{\"operationId\":\"register\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"description\":{\"description\":\"A description of what you are trying to achieve with your project using the API. Please provide as much detail as possible!\",\"maxLength\":10000,\"type\":\"string\"},\"email\":{\"description\":\"A valid email that we can reach you at if we have any questions about your use case or data consumption.\",\"format\":\"email\",\"maxLength\":254,\"type\":\"string\"},\"name\":{\"description\":\"A unique human-readable name for your application or project requiring access to the Openverse API.\",\"maxLength\":150,\"type\":\"string\"}},\"required\":[\"description\",\"email\",\"name\"],\"type\":\"object\"}},\"application/x-www-form-urlencoded\":{\"schema\":{\"properties\":{\"description\":{\"description\":\"A description of what you are trying to achieve with your project using the API. Please provide as much detail as possible!\",\"maxLength\":10000,\"type\":\"string\"},\"email\":{\"description\":\"A valid email that we can reach you at if we have any questions about your use case or data consumption.\",\"format\":\"email\",\"maxLength\":254,\"type\":\"string\"},\"name\":{\"description\":\"A unique human-readable name for your application or project requiring access to the Openverse API.\",\"maxLength\":150,\"type\":\"string\"}},\"required\":[\"description\",\"email\",\"name\"],\"type\":\"object\"}},\"multipart/form-data\":{\"schema\":{\"properties\":{\"description\":{\"description\":\"A description of what you are trying to achieve with your project using the API. Please provide as much detail as possible!\",\"maxLength\":10000,\"type\":\"string\"},\"email\":{\"description\":\"A valid email that we can reach you at if we have any questions about your use case or data consumption.\",\"format\":\"email\",\"maxLength\":254,\"type\":\"string\"},\"name\":{\"description\":\"A unique human-readable name for your application or project requiring access to the Openverse API.\",\"maxLength\":150,\"type\":\"string\"}},\"required\":[\"description\",\"email\",\"name\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"201\":{\"content\":{\"application/json\":{\"examples\":{\"Created\":{\"value\":{\"client_id\":\"<Openverse API client ID>\",\"client_secret\":\"<Openverse API client secret>\",\"name\":\"My amazing project\"}}},\"schema\":{\"properties\":{\"client_id\":{\"description\":\"The unique, public identifier of your application.\",\"type\":\"string\"},\"client_secret\":{\"description\":\"The secret key used to authenticate your application.\",\"type\":\"string\"},\"msg\":{\"description\":\"Some additional information about the application.\",\"type\":\"string\"},\"name\":{\"description\":\"The name of your application or project.\",\"type\":\"string\"}},\"required\":[\"client_id\",\"client_secret\",\"msg\",\"name\"],\"type\":\"object\"}}},\"description\":\"Created\"},\"400\":{\"content\":{\"application/json\":{\"examples\":{\"BadRequest\":{\"summary\":\"Bad Request\",\"value\":{\"detail\":{\"<request parameter>\":\"<error details>\"}}}},\"schema\":{\"properties\":{\"detail\":{\"oneOf\":[{\"description\":\"A description of what went wrong.\",\"type\":\"string\"},{\"additionalProperties\":true,\"type\":\"object\"}]}},\"title\":\"ValidationError\",\"type\":\"object\"}}},\"description\":\"Bad Request\"},\"401\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Unauthorized\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"detail\":{\"description\":\"A description of what went wrong.\",\"type\":\"string\"}},\"title\":\"APIException\",\"type\":\"object\"}}},\"description\":\"Too Many Requests\"}},\"security\":[{}],\"securitySchemes\":{\"Openverse API Token\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "POST",
                   "orig": "/v1/auth_tokens/register/",
@@ -1786,6 +1940,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "GET /v1/rate_limit/",
+                    "json": "{\"operationId\":\"key_info\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"OK\":{\"value\":{\"rate_limit_model\":\"enhanced\",\"requests_this_minute\":2,\"requests_today\":40}}},\"schema\":{\"properties\":{\"rate_limit_model\":{\"description\":\"The type of rate limit applied to your key. Can be 'standard' or 'enhanced'; enhanced users enjoy higher rate limits than their standard key counterparts. Contact Openverse if you need a higher rate limit.\",\"type\":\"string\"},\"requests_this_minute\":{\"description\":\"The number of requests your key has performed in the last minute.\",\"nullable\":true,\"type\":\"integer\"},\"requests_today\":{\"description\":\"The number of requests your key has performed in the last day.\",\"nullable\":true,\"type\":\"integer\"},\"verified\":{\"description\":\"Whether the application has verified the submitted email address.\",\"type\":\"boolean\"}},\"required\":[\"rate_limit_model\",\"requests_this_minute\",\"requests_today\",\"verified\"],\"type\":\"object\"}}},\"description\":\"OK\"},\"401\":{\"content\":{\"application/json\":{\"examples\":{\"Unauthorized\":{\"value\":{\"detail\":\"Authentication credentials were not provided.\"}}},\"schema\":{\"properties\":{\"detail\":{\"description\":\"A description of what went wrong.\",\"type\":\"string\"}},\"title\":\"NotAuthenticated\",\"type\":\"object\"}}},\"description\":\"Unauthorized\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"detail\":{\"description\":\"A description of what went wrong.\",\"type\":\"string\"}},\"title\":\"APIException\",\"type\":\"object\"}}},\"description\":\"Too Many Requests\"},\"500\":{\"content\":{\"application/json\":{\"examples\":{\"InternalServerError\":{\"summary\":\"Internal Server Error\",\"value\":{\"detail\":\"A server error occurred.\"}}},\"schema\":{\"properties\":{\"detail\":{\"description\":\"A description of what went wrong.\",\"type\":\"string\"}},\"title\":\"APIException\",\"type\":\"object\"}}},\"description\":\"Internal Server Error\"}},\"security\":[{\"Openverse API Token\":[]}],\"securitySchemes\":{\"Openverse API Token\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v1/rate_limit/",
@@ -1854,6 +2014,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "POST /v1/auth_tokens/token/",
+                    "json": "{\"operationId\":\"token\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/x-www-form-urlencoded\":{\"schema\":{\"description\":\"Serializes a request for an access token.\\n\\nThis is a dummy serializer for OpenAPI and is not actually used.\",\"properties\":{\"client_id\":{\"description\":\"The unique, public identifier of your application.\",\"type\":\"string\"},\"client_secret\":{\"description\":\"The secret key used to authenticate your application.\",\"type\":\"string\"},\"grant_type\":{\"description\":\"* `client_credentials` - client_credentials\",\"enum\":[\"client_credentials\"],\"type\":\"string\"}},\"required\":[\"client_id\",\"client_secret\",\"grant_type\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"OK\":{\"value\":{\"access_token\":\"<Openverse API token>\",\"expires_in\":36000,\"scope\":\"read write groups\",\"token_type\":\"Bearer\"}}},\"schema\":{\"description\":\"Serializes the response for an access token.\\n\\nThis is a dummy serializer for OpenAPI and is not actually used.\",\"properties\":{\"access_token\":{\"description\":\"The access token that can be used to authenticate requests.\",\"type\":\"string\"},\"expires_in\":{\"description\":\"The number of seconds until the token expires.\",\"type\":\"integer\"},\"scope\":{\"description\":\"The scope of the token.\",\"type\":\"string\"},\"token_type\":{\"description\":\"The type of token. This will always be 'Bearer'.\",\"type\":\"string\"}},\"required\":[\"access_token\",\"expires_in\",\"scope\",\"token_type\"],\"type\":\"object\"}}},\"description\":\"OK\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"detail\":{\"description\":\"A description of what went wrong.\",\"type\":\"string\"}},\"title\":\"APIException\",\"type\":\"object\"}}},\"description\":\"Bad Request\"},\"401\":{\"content\":{\"application/json\":{\"examples\":{\"Unauthorized\":{\"value\":{\"detail\":\"Authentication credentials were not provided.\"}}},\"schema\":{\"properties\":{\"detail\":{\"description\":\"A description of what went wrong.\",\"type\":\"string\"}},\"title\":\"NotAuthenticated\",\"type\":\"object\"}}},\"description\":\"Unauthorized\"}},\"securitySchemes\":{\"Openverse API Token\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "POST",
                   "orig": "/v1/auth_tokens/token/",
@@ -1883,13 +2049,223 @@
         }
       },
       "feature": {
+        "ratelimit": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "burst": 5,
+              "rate": 5
+            },
+            "optspec": {
+              "now": "`$FUNCTION`",
+              "sleep": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "ratelimit",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Client-side rate limiting via a token bucket",
+          "transport": "wrap",
+          "version": "0.0.1"
+        },
+        "retry": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "factor": 2,
+              "maxDelay": 2000,
+              "minDelay": 50,
+              "retries": 2,
+              "statuses": [
+                408,
+                425,
+                429,
+                500,
+                502,
+                503,
+                504
+              ]
+            },
+            "optspec": {
+              "jitter": "`$BOOLEAN`",
+              "sleep": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "retry",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Automatic retry of transient failures with exponential backoff",
+          "transport": "wrap",
+          "version": "0.0.1"
+        },
         "test": {
           "active": true,
           "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "config": {
             "options": {
               "active": false
-            }
+            },
+            "optspec": {
+              "entity": "`$MAP`",
+              "net": "`$MAP`"
+            },
+            "strict": false
           },
           "hook": {
             "GetData": {
@@ -1979,6 +2355,102 @@
           },
           "title": "In-memory mock transport for testing without a live server",
           "transport": "base",
+          "version": "0.0.1"
+        },
+        "timeout": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "ms": 30000
+            },
+            "optspec": {
+              "clearTimer": "`$FUNCTION`",
+              "setTimer": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "timeout",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Per-request timeout with transport abort",
+          "transport": "wrap",
           "version": "0.0.1"
         }
       },
@@ -2210,6 +2682,48 @@
         }
       },
       "option": {},
+      "optspec": {
+        "allow": {
+          "method": "GET,PUT,POST,PATCH,DELETE,OPTIONS",
+          "op": "create,update,load,list,remove,command,direct,graphql"
+        },
+        "apikey": "",
+        "auth": {
+          "basic": false,
+          "prefix": ""
+        },
+        "base": "http://localhost:8000",
+        "clean": {
+          "keys": "key,token,id"
+        },
+        "entity": {
+          "`$CHILD`": {
+            "`$OPEN`": true,
+            "active": false,
+            "alias": {}
+          }
+        },
+        "extend": "`$ANY`",
+        "headers": {
+          "`$CHILD`": "`$STRING`"
+        },
+        "prefix": "",
+        "secret": "",
+        "server": {
+          "`$CHILD`": ""
+        },
+        "suffix": "",
+        "system": {
+          "fetch": "`$ANY`"
+        },
+        "test": {
+          "active": false,
+          "entity": {
+            "`$OPEN`": true
+          }
+        },
+        "utility": {}
+      },
       "repo": {
         "host": "github.com",
         "path": ""
@@ -2764,6 +3278,7 @@
           },
           "package": "@voxgig/sdkgen",
           "provides": {
+            "schema": true,
             "sekreto": true
           },
           "publish": {
@@ -2805,7 +3320,7 @@
         "live": {
           "app": false,
           "base": "",
-          "strict": false
+          "strict": true
         }
       }
     }

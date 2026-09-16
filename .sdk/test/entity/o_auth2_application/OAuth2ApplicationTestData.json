@@ -29,5 +29,226 @@
         "name": "s7a"
       }
     }
+  },
+  "requests": {
+    "POST /v1/auth_tokens/register/": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "register",
+        "parameters": [],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "description": {
+                    "description": "A description of what you are trying to achieve with your project using the API. Please provide as much detail as possible!",
+                    "maxLength": 10000,
+                    "type": "string"
+                  },
+                  "email": {
+                    "description": "A valid email that we can reach you at if we have any questions about your use case or data consumption.",
+                    "format": "email",
+                    "maxLength": 254,
+                    "type": "string"
+                  },
+                  "name": {
+                    "description": "A unique human-readable name for your application or project requiring access to the Openverse API.",
+                    "maxLength": 150,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "description",
+                  "email",
+                  "name"
+                ],
+                "type": "object"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "properties": {
+                  "description": {
+                    "description": "A description of what you are trying to achieve with your project using the API. Please provide as much detail as possible!",
+                    "maxLength": 10000,
+                    "type": "string"
+                  },
+                  "email": {
+                    "description": "A valid email that we can reach you at if we have any questions about your use case or data consumption.",
+                    "format": "email",
+                    "maxLength": 254,
+                    "type": "string"
+                  },
+                  "name": {
+                    "description": "A unique human-readable name for your application or project requiring access to the Openverse API.",
+                    "maxLength": 150,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "description",
+                  "email",
+                  "name"
+                ],
+                "type": "object"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "properties": {
+                  "description": {
+                    "description": "A description of what you are trying to achieve with your project using the API. Please provide as much detail as possible!",
+                    "maxLength": 10000,
+                    "type": "string"
+                  },
+                  "email": {
+                    "description": "A valid email that we can reach you at if we have any questions about your use case or data consumption.",
+                    "format": "email",
+                    "maxLength": 254,
+                    "type": "string"
+                  },
+                  "name": {
+                    "description": "A unique human-readable name for your application or project requiring access to the Openverse API.",
+                    "maxLength": 150,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "description",
+                  "email",
+                  "name"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Created": {
+                    "value": {
+                      "client_id": "<Openverse API client ID>",
+                      "client_secret": "<Openverse API client secret>",
+                      "name": "My amazing project"
+                    }
+                  }
+                },
+                "schema": {
+                  "properties": {
+                    "client_id": {
+                      "description": "The unique, public identifier of your application.",
+                      "type": "string"
+                    },
+                    "client_secret": {
+                      "description": "The secret key used to authenticate your application.",
+                      "type": "string"
+                    },
+                    "msg": {
+                      "description": "Some additional information about the application.",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "The name of your application or project.",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "client_id",
+                    "client_secret",
+                    "msg",
+                    "name"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Created"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "BadRequest": {
+                    "summary": "Bad Request",
+                    "value": {
+                      "detail": {
+                        "<request parameter>": "<error details>"
+                      }
+                    }
+                  }
+                },
+                "schema": {
+                  "properties": {
+                    "detail": {
+                      "oneOf": [
+                        {
+                          "description": "A description of what went wrong.",
+                          "type": "string"
+                        },
+                        {
+                          "additionalProperties": true,
+                          "type": "object"
+                        }
+                      ]
+                    }
+                  },
+                  "title": "ValidationError",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "detail": {
+                      "description": "A description of what went wrong.",
+                      "type": "string"
+                    }
+                  },
+                  "title": "APIException",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          }
+        },
+        "security": [
+          {}
+        ],
+        "securitySchemes": {
+          "Openverse API Token": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "operation"
+      }
+    }
   }
 }

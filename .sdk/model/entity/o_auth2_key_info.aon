@@ -37,6 +37,12 @@ main: kit: entity: o_auth2_key_info: {
       name: "load"
       points: [
         {
+          contract: {
+            id: "GET /v1/rate_limit/"
+            json: "{\"operationId\":\"key_info\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"OK\":{\"value\":{\"rate_limit_model\":\"enhanced\",\"requests_this_minute\":2,\"requests_today\":40}}},\"schema\":{\"properties\":{\"rate_limit_model\":{\"description\":\"The type of rate limit applied to your key. Can be 'standard' or 'enhanced'; enhanced users enjoy higher rate limits than their standard key counterparts. Contact Openverse if you need a higher rate limit.\",\"type\":\"string\"},\"requests_this_minute\":{\"description\":\"The number of requests your key has performed in the last minute.\",\"nullable\":true,\"type\":\"integer\"},\"requests_today\":{\"description\":\"The number of requests your key has performed in the last day.\",\"nullable\":true,\"type\":\"integer\"},\"verified\":{\"description\":\"Whether the application has verified the submitted email address.\",\"type\":\"boolean\"}},\"required\":[\"rate_limit_model\",\"requests_this_minute\",\"requests_today\",\"verified\"],\"type\":\"object\"}}},\"description\":\"OK\"},\"401\":{\"content\":{\"application/json\":{\"examples\":{\"Unauthorized\":{\"value\":{\"detail\":\"Authentication credentials were not provided.\"}}},\"schema\":{\"properties\":{\"detail\":{\"description\":\"A description of what went wrong.\",\"type\":\"string\"}},\"title\":\"NotAuthenticated\",\"type\":\"object\"}}},\"description\":\"Unauthorized\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"detail\":{\"description\":\"A description of what went wrong.\",\"type\":\"string\"}},\"title\":\"APIException\",\"type\":\"object\"}}},\"description\":\"Too Many Requests\"},\"500\":{\"content\":{\"application/json\":{\"examples\":{\"InternalServerError\":{\"summary\":\"Internal Server Error\",\"value\":{\"detail\":\"A server error occurred.\"}}},\"schema\":{\"properties\":{\"detail\":{\"description\":\"A description of what went wrong.\",\"type\":\"string\"}},\"title\":\"APIException\",\"type\":\"object\"}}},\"description\":\"Internal Server Error\"}},\"security\":[{\"Openverse API Token\":[]}],\"securitySchemes\":{\"Openverse API Token\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/v1/rate_limit/"
           segments: [

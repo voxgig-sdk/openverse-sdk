@@ -3,22 +3,22 @@
     "o_auth2_key_info": {
       "O_AUTH2_KEY_INFO00": {
         "rate_limit_model": "s28",
-        "requests_this_minute": "s29",
-        "requests_today": "s2a",
+        "requests_this_minute": 41,
+        "requests_today": 42,
         "verified": false,
         "id": "O_AUTH2_KEY_INFO00"
       },
       "O_AUTH2_KEY_INFO01": {
         "rate_limit_model": "s50",
-        "requests_this_minute": "s51",
-        "requests_today": "s52",
+        "requests_this_minute": 81,
+        "requests_today": 82,
         "verified": false,
         "id": "O_AUTH2_KEY_INFO01"
       },
       "O_AUTH2_KEY_INFO02": {
         "rate_limit_model": "s78",
-        "requests_this_minute": "s79",
-        "requests_today": "s7a",
+        "requests_this_minute": 121,
+        "requests_today": 122,
         "verified": false,
         "id": "O_AUTH2_KEY_INFO02"
       }
@@ -28,9 +28,144 @@
     "o_auth2_key_info": {
       "o_auth2_key_info_ref01": {
         "rate_limit_model": "sa0",
-        "requests_this_minute": "sa1",
-        "requests_today": "sa2",
+        "requests_this_minute": 161,
+        "requests_today": 162,
         "verified": false
+      }
+    }
+  },
+  "requests": {
+    "GET /v1/rate_limit/": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "key_info",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "OK": {
+                    "value": {
+                      "rate_limit_model": "enhanced",
+                      "requests_this_minute": 2,
+                      "requests_today": 40
+                    }
+                  }
+                },
+                "schema": {
+                  "properties": {
+                    "rate_limit_model": {
+                      "description": "The type of rate limit applied to your key. Can be 'standard' or 'enhanced'; enhanced users enjoy higher rate limits than their standard key counterparts. Contact Openverse if you need a higher rate limit.",
+                      "type": "string"
+                    },
+                    "requests_this_minute": {
+                      "description": "The number of requests your key has performed in the last minute.",
+                      "nullable": true,
+                      "type": "integer"
+                    },
+                    "requests_today": {
+                      "description": "The number of requests your key has performed in the last day.",
+                      "nullable": true,
+                      "type": "integer"
+                    },
+                    "verified": {
+                      "description": "Whether the application has verified the submitted email address.",
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "rate_limit_model",
+                    "requests_this_minute",
+                    "requests_today",
+                    "verified"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "value": {
+                      "detail": "Authentication credentials were not provided."
+                    }
+                  }
+                },
+                "schema": {
+                  "properties": {
+                    "detail": {
+                      "description": "A description of what went wrong.",
+                      "type": "string"
+                    }
+                  },
+                  "title": "NotAuthenticated",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "detail": {
+                      "description": "A description of what went wrong.",
+                      "type": "string"
+                    }
+                  },
+                  "title": "APIException",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "InternalServerError": {
+                    "summary": "Internal Server Error",
+                    "value": {
+                      "detail": "A server error occurred."
+                    }
+                  }
+                },
+                "schema": {
+                  "properties": {
+                    "detail": {
+                      "description": "A description of what went wrong.",
+                      "type": "string"
+                    }
+                  },
+                  "title": "APIException",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "Openverse API Token": []
+          }
+        ],
+        "securitySchemes": {
+          "Openverse API Token": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "operation"
       }
     }
   }

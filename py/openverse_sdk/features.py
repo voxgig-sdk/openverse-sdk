@@ -1,12 +1,18 @@
 # Openverse SDK feature factory
 
 from openverse_sdk.feature.base_feature import OpenverseBaseFeature
+from openverse_sdk.feature.ratelimit_feature import OpenverseRatelimitFeature
+from openverse_sdk.feature.retry_feature import OpenverseRetryFeature
 from openverse_sdk.feature.test_feature import OpenverseTestFeature
+from openverse_sdk.feature.timeout_feature import OpenverseTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: OpenverseBaseFeature(),
+    "ratelimit": lambda: OpenverseRatelimitFeature(),
+    "retry": lambda: OpenverseRetryFeature(),
     "test": lambda: OpenverseTestFeature(),
+    "timeout": lambda: OpenverseTimeoutFeature(),
 }
 
 
