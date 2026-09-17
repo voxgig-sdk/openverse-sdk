@@ -24,71 +24,6 @@
         "repr": "auto"
       },
       "contributor": {},
-      "doc": {
-        "active": true,
-        "assets": {
-          "path": ".sdk/doc/assets"
-        },
-        "brand": {
-          "label": "",
-          "notice": "",
-          "shortNotice": "",
-          "url": ""
-        },
-        "ci": {
-          "active": true,
-          "branch": "main"
-        },
-        "content": {
-          "path": ".sdk/doc/content"
-        },
-        "edition": {
-          "summary": {
-            "active": true,
-            "base": "node_modules/@voxgig/docgen/project/.sdk",
-            "brand": {},
-            "filter": {
-              "entities": [],
-              "features": [],
-              "targets": []
-            },
-            "kind": "summary",
-            "name": "summary",
-            "origname": "",
-            "output": {
-              "path": "SUMMARY.md"
-            },
-            "package": "@voxgig/docgen",
-            "site": {
-              "active": true
-            },
-            "style": {},
-            "title": ""
-          }
-        },
-        "qa": {
-          "vocabulary": []
-        },
-        "style": {
-          "color": {
-            "accent": "#00c6d8",
-            "background": "#f5f5f9",
-            "darkBackground": "#0f1117",
-            "darkText": "#e6edf3",
-            "primary": "#e70042",
-            "text": "#0a0a0a"
-          },
-          "font": "Nunito, system-ui, sans-serif",
-          "fontFile": "",
-          "headingFont": "Nunito, system-ui, sans-serif",
-          "headingFontFile": "",
-          "logo": "",
-          "mode": "light",
-          "mono": "ui-monospace, monospace",
-          "monoFile": ""
-        },
-        "target": {}
-      },
       "entity": {
         "audio": {
           "active": true,
@@ -150,25 +85,11 @@
             },
             {
               "active": true,
-              "name": "description",
-              "req": false,
-              "short": "The explanation on why media is being reported.",
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
               "format": "uri",
               "name": "detail_url",
               "readOnly": true,
               "req": true,
               "short": "A direct link to the detail view of this audio file.",
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "display_name",
-              "req": true,
-              "short": "The name of content source, e.g.",
               "type": "`$STRING`"
             },
             {
@@ -222,26 +143,11 @@
             },
             {
               "active": true,
-              "format": "uuid",
-              "name": "identifier",
-              "req": true,
-              "short": "Our unique identifier for an open-licensed work.",
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
               "format": "date-time",
               "name": "indexed_on",
               "req": true,
               "short": "The timestamp of when the media was indexed by Openverse.",
               "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "len",
-              "readOnly": true,
-              "req": true,
-              "type": "`$INTEGER`"
             },
             {
               "active": true,
@@ -267,15 +173,6 @@
             },
             {
               "active": true,
-              "deprecated": true,
-              "name": "logo_url",
-              "readOnly": true,
-              "req": true,
-              "short": "The URL to a logo for the source.",
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
               "name": "mature",
               "req": true,
               "short": "Whether the media item is marked as mature",
@@ -283,31 +180,10 @@
             },
             {
               "active": true,
-              "name": "media_count",
-              "readOnly": true,
-              "req": true,
-              "short": "The number of media items indexed from the source.",
-              "type": "`$INTEGER`"
-            },
-            {
-              "active": true,
-              "name": "points",
-              "req": true,
-              "type": "`$ARRAY`"
-            },
-            {
-              "active": true,
               "name": "provider",
               "req": false,
               "short": "The content provider, e.g.",
               "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "reason",
-              "req": true,
-              "short": "The reason to report media to Openverse.",
-              "type": "`$ANY`"
             },
             {
               "active": true,
@@ -330,21 +206,6 @@
               "name": "source",
               "req": false,
               "short": "The source of the data, meaning a particular dataset.",
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "source_name",
-              "req": true,
-              "short": "The source of the media, e.g.",
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "source_url",
-              "req": true,
-              "short": "The URL of the source, e.g.",
               "type": "`$STRING`"
             },
             {
@@ -1049,21 +910,6 @@
             },
             {
               "active": true,
-              "name": "author_name",
-              "req": true,
-              "short": "The name of the media creator.",
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "author_url",
-              "req": true,
-              "short": "A direct link to the media creator.",
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
               "name": "category",
               "req": false,
               "short": "The top-level classification of this media file.",
@@ -1085,25 +931,11 @@
             },
             {
               "active": true,
-              "name": "description",
-              "req": false,
-              "short": "The explanation on why media is being reported.",
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
               "format": "uri",
               "name": "detail_url",
               "readOnly": true,
               "req": true,
               "short": "A direct link to the detail view of this audio file.",
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "display_name",
-              "req": true,
-              "short": "The name of content source, e.g.",
               "type": "`$STRING`"
             },
             {
@@ -1137,13 +969,6 @@
             {
               "active": true,
               "name": "height",
-              "op": {
-                "load": {
-                  "req": true,
-                  "type": "`$INTEGER`"
-                }
-              },
-              "readOnly": true,
               "req": false,
               "short": "The height of the image in pixels.",
               "type": "`$INTEGER`"
@@ -1151,14 +976,6 @@
             {
               "active": true,
               "name": "id",
-              "req": true,
-              "short": "Our unique identifier for an open-licensed work.",
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "format": "uuid",
-              "name": "identifier",
               "req": true,
               "short": "Our unique identifier for an open-licensed work.",
               "type": "`$STRING`"
@@ -1195,15 +1012,6 @@
             },
             {
               "active": true,
-              "deprecated": true,
-              "name": "logo_url",
-              "readOnly": true,
-              "req": true,
-              "short": "The URL to a logo for the source.",
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
               "name": "mature",
               "req": true,
               "short": "Whether the media item is marked as mature",
@@ -1211,25 +1019,10 @@
             },
             {
               "active": true,
-              "name": "media_count",
-              "readOnly": true,
-              "req": true,
-              "short": "The number of media items indexed from the source.",
-              "type": "`$INTEGER`"
-            },
-            {
-              "active": true,
               "name": "provider",
               "req": false,
               "short": "The content provider, e.g.",
               "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "reason",
-              "req": true,
-              "short": "The reason to report media to Openverse.",
-              "type": "`$ANY`"
             },
             {
               "active": true,
@@ -1245,21 +1038,6 @@
               "name": "source",
               "req": false,
               "short": "The source of the data, meaning a particular dataset.",
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "source_name",
-              "req": true,
-              "short": "The source of the media, e.g.",
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "source_url",
-              "req": true,
-              "short": "The URL of the source, e.g.",
               "type": "`$STRING`"
             },
             {
@@ -1287,14 +1065,6 @@
             },
             {
               "active": true,
-              "name": "type",
-              "readOnly": true,
-              "req": true,
-              "short": "The resource type, always set to 'photo' for images.",
-              "type": "`$ANY`"
-            },
-            {
-              "active": true,
               "name": "url",
               "req": false,
               "short": "The actual URL to the media file.",
@@ -1302,22 +1072,7 @@
             },
             {
               "active": true,
-              "name": "version",
-              "readOnly": true,
-              "req": true,
-              "short": "The oEmbed version number, always set to 1.0.",
-              "type": "`$ANY`"
-            },
-            {
-              "active": true,
               "name": "width",
-              "op": {
-                "load": {
-                  "req": true,
-                  "type": "`$INTEGER`"
-                }
-              },
-              "readOnly": true,
               "req": false,
               "short": "The width of the image in pixels.",
               "type": "`$INTEGER`"
@@ -2690,6 +2445,8 @@
         "apikey": "",
         "auth": {
           "basic": false,
+          "in": "",
+          "name": "",
           "prefix": ""
         },
         "base": "http://localhost:8000",
@@ -2764,6 +2521,7 @@
           },
           "package": "@voxgig/sdkgen",
           "provides": {
+            "schema": true,
             "sekreto": true
           },
           "publish": {
@@ -2990,6 +2748,7 @@
           },
           "package": "@voxgig/sdkgen",
           "provides": {
+            "schema": true,
             "sekreto": true
           },
           "publish": {
@@ -3055,6 +2814,7 @@
           },
           "package": "@voxgig/sdkgen",
           "provides": {
+            "schema": true,
             "sekreto": true
           },
           "publish": {
@@ -3126,6 +2886,7 @@
           },
           "package": "@voxgig/sdkgen",
           "provides": {
+            "schema": true,
             "sekreto": true
           },
           "publish": {
@@ -3202,6 +2963,7 @@
           },
           "package": "@voxgig/sdkgen",
           "provides": {
+            "schema": true,
             "sekreto": true
           },
           "publish": {

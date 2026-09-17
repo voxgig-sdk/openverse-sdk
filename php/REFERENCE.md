@@ -116,9 +116,7 @@ $audio = $client->Audio();
 | `category` | `string` | No | The top-level classification of this media file. |
 | `creator` | `string` | No | The name of the media creator. |
 | `creator_url` | `string` | No | A direct link to the media creator. |
-| `description` | `string` | No | The explanation on why media is being reported. |
 | `detail_url` | `string` | Yes | A direct link to the detail view of this audio file. |
-| `display_name` | `string` | Yes | The name of content source, e.g. |
 | `duration` | `int` | No | The time length of the audio file in milliseconds. |
 | `fields_matched` | `array` | Yes | List the fields that matched the query for this result. |
 | `filesize` | `int` | No | Number in bytes, e.g. |
@@ -126,23 +124,15 @@ $audio = $client->Audio();
 | `foreign_landing_url` | `string` | No | The landing page of the work. |
 | `genres` | `array` | No | An array of audio genres such as `rock`, `electronic` for `music` category, or `politics`, `sport`, `education` for `podcast` category |
 | `id` | `string` | Yes | Our unique identifier for an open-licensed work. |
-| `identifier` | `string` | Yes | Our unique identifier for an open-licensed work. |
 | `indexed_on` | `string` | Yes | The timestamp of when the media was indexed by Openverse. |
-| `len` | `int` | Yes |  |
 | `license` | `string` | Yes | The name of license for the media. |
 | `license_url` | `string` | Yes | A direct link to the license deed or legal terms. |
 | `license_version` | `string` | No | The version of the media license. |
-| `logo_url` | `string` | Yes | The URL to a logo for the source. |
 | `mature` | `bool` | Yes | Whether the media item is marked as mature |
-| `media_count` | `int` | Yes | The number of media items indexed from the source. |
-| `points` | `array` | Yes |  |
 | `provider` | `string` | No | The content provider, e.g. |
-| `reason` | `mixed` | Yes | The reason to report media to Openverse. |
 | `related_url` | `string` | Yes | A link to an endpoint that provides similar audio files. |
 | `sample_rate` | `int` | No | Number in hertz, eg. |
 | `source` | `string` | No | The source of the data, meaning a particular dataset. |
-| `source_name` | `string` | Yes | The source of the media, e.g. |
-| `source_url` | `string` | Yes | The URL of the source, e.g. |
 | `tags` | `array` | Yes | Tags with detailed metadata, such as accuracy. |
 | `thumbnail` | `string` | Yes | A direct link to the miniature artwork. |
 | `title` | `string` | No | The name of the media. |
@@ -162,21 +152,13 @@ $result = $client->Audio()->create([
   "attribution" => null, // string
   "audio_set" => null, // mixed
   "detail_url" => null, // string
-  "display_name" => null, // string
   "fields_matched" => null, // array
   "id" => null, // string
   "indexed_on" => null, // string
-  "len" => null, // int
   "license" => null, // string
   "license_url" => null, // string
-  "logo_url" => null, // string
   "mature" => null, // bool
-  "media_count" => null, // int
-  "points" => null, // array
-  "reason" => null, // mixed
   "related_url" => null, // string
-  "source_name" => null, // string
-  "source_url" => null, // string
   "tags" => null, // array
   "thumbnail" => null, // string
   "waveform" => null, // string
@@ -240,82 +222,29 @@ $image = $client->Image();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `attribution` | `string` | Yes | Legally valid attribution for the media item in plain-text English. |
-| `author_name` | `string` | Yes | The name of the media creator. |
-| `author_url` | `string` | Yes | A direct link to the media creator. |
 | `category` | `string` | No | The top-level classification of this media file. |
 | `creator` | `string` | No | The name of the media creator. |
 | `creator_url` | `string` | No | A direct link to the media creator. |
-| `description` | `string` | No | The explanation on why media is being reported. |
 | `detail_url` | `string` | Yes | A direct link to the detail view of this audio file. |
-| `display_name` | `string` | Yes | The name of content source, e.g. |
 | `fields_matched` | `array` | Yes | List the fields that matched the query for this result. |
 | `filesize` | `int` | No | Number in bytes, e.g. |
 | `filetype` | `string` | No | The type of the file, related to the file extension. |
 | `foreign_landing_url` | `string` | No | The landing page of the work. |
 | `height` | `int` | No | The height of the image in pixels. |
 | `id` | `string` | Yes | Our unique identifier for an open-licensed work. |
-| `identifier` | `string` | Yes | Our unique identifier for an open-licensed work. |
 | `indexed_on` | `string` | Yes | The timestamp of when the media was indexed by Openverse. |
 | `license` | `string` | Yes | The name of license for the media. |
 | `license_url` | `string` | Yes | A direct link to the license deed or legal terms. |
 | `license_version` | `string` | No | The version of the media license. |
-| `logo_url` | `string` | Yes | The URL to a logo for the source. |
 | `mature` | `bool` | Yes | Whether the media item is marked as mature |
-| `media_count` | `int` | Yes | The number of media items indexed from the source. |
 | `provider` | `string` | No | The content provider, e.g. |
-| `reason` | `mixed` | Yes | The reason to report media to Openverse. |
 | `related_url` | `string` | Yes | A link to an endpoint that provides similar audio files. |
 | `source` | `string` | No | The source of the data, meaning a particular dataset. |
-| `source_name` | `string` | Yes | The source of the media, e.g. |
-| `source_url` | `string` | Yes | The URL of the source, e.g. |
 | `tags` | `array` | Yes | Tags with detailed metadata, such as accuracy. |
 | `thumbnail` | `string` | Yes | A direct link to the miniature artwork. |
 | `title` | `string` | No | The name of the media. |
-| `type` | `mixed` | Yes | The resource type, always set to 'photo' for images. |
 | `url` | `string` | No | The actual URL to the media file. |
-| `version` | `mixed` | Yes | The oEmbed version number, always set to 1.0. |
 | `width` | `int` | No | The width of the image in pixels. |
-
-### Field Usage by Operation
-
-| Field | load | list | create |
-| --- | --- | --- | --- |
-| `attribution` | - | - | - |
-| `author_name` | - | - | - |
-| `author_url` | - | - | - |
-| `category` | - | - | - |
-| `creator` | - | - | - |
-| `creator_url` | - | - | - |
-| `description` | - | - | - |
-| `detail_url` | - | - | - |
-| `display_name` | - | - | - |
-| `fields_matched` | - | - | - |
-| `filesize` | - | - | - |
-| `filetype` | - | - | - |
-| `foreign_landing_url` | - | - | - |
-| `height` | Yes | - | - |
-| `id` | - | - | - |
-| `identifier` | - | - | - |
-| `indexed_on` | - | - | - |
-| `license` | - | - | - |
-| `license_url` | - | - | - |
-| `license_version` | - | - | - |
-| `logo_url` | - | - | - |
-| `mature` | - | - | - |
-| `media_count` | - | - | - |
-| `provider` | - | - | - |
-| `reason` | - | - | - |
-| `related_url` | - | - | - |
-| `source` | - | - | - |
-| `source_name` | - | - | - |
-| `source_url` | - | - | - |
-| `tags` | - | - | - |
-| `thumbnail` | - | - | - |
-| `title` | - | - | - |
-| `type` | - | - | - |
-| `url` | - | - | - |
-| `version` | - | - | - |
-| `width` | Yes | - | - |
 
 ### Operations
 
@@ -327,26 +256,16 @@ Create a new entity with the given data. Throws on error.
 $result = $client->Image()->create([
   "identifier" => null, // string
   "attribution" => null, // string
-  "author_name" => null, // string
-  "author_url" => null, // string
   "detail_url" => null, // string
-  "display_name" => null, // string
   "fields_matched" => null, // array
   "id" => null, // string
   "indexed_on" => null, // string
   "license" => null, // string
   "license_url" => null, // string
-  "logo_url" => null, // string
   "mature" => null, // bool
-  "media_count" => null, // int
-  "reason" => null, // mixed
   "related_url" => null, // string
-  "source_name" => null, // string
-  "source_url" => null, // string
   "tags" => null, // array
   "thumbnail" => null, // string
-  "type" => null, // mixed
-  "version" => null, // mixed
 ]);
 ```
 

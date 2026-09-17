@@ -31,13 +31,7 @@
 # @!attribute [rw] creator_url
 #   @return [String, nil]
 #
-# @!attribute [rw] description
-#   @return [String, nil]
-#
 # @!attribute [rw] detail_url
-#   @return [String]
-#
-# @!attribute [rw] display_name
 #   @return [String]
 #
 # @!attribute [rw] duration
@@ -61,14 +55,8 @@
 # @!attribute [rw] id
 #   @return [String]
 #
-# @!attribute [rw] identifier
-#   @return [String]
-#
 # @!attribute [rw] indexed_on
 #   @return [String]
-#
-# @!attribute [rw] len
-#   @return [Integer]
 #
 # @!attribute [rw] license
 #   @return [String]
@@ -79,23 +67,11 @@
 # @!attribute [rw] license_version
 #   @return [String, nil]
 #
-# @!attribute [rw] logo_url
-#   @return [String]
-#
 # @!attribute [rw] mature
 #   @return [Boolean]
 #
-# @!attribute [rw] media_count
-#   @return [Integer]
-#
-# @!attribute [rw] points
-#   @return [Array]
-#
 # @!attribute [rw] provider
 #   @return [String, nil]
-#
-# @!attribute [rw] reason
-#   @return [Object]
 #
 # @!attribute [rw] related_url
 #   @return [String]
@@ -105,12 +81,6 @@
 #
 # @!attribute [rw] source
 #   @return [String, nil]
-#
-# @!attribute [rw] source_name
-#   @return [String]
-#
-# @!attribute [rw] source_url
-#   @return [String]
 #
 # @!attribute [rw] tags
 #   @return [Array]
@@ -134,9 +104,7 @@ Audio = Struct.new(
   :category,
   :creator,
   :creator_url,
-  :description,
   :detail_url,
-  :display_name,
   :duration,
   :fields_matched,
   :filesize,
@@ -144,23 +112,15 @@ Audio = Struct.new(
   :foreign_landing_url,
   :genres,
   :id,
-  :identifier,
   :indexed_on,
-  :len,
   :license,
   :license_url,
   :license_version,
-  :logo_url,
   :mature,
-  :media_count,
-  :points,
   :provider,
-  :reason,
   :related_url,
   :sample_rate,
   :source,
-  :source_name,
-  :source_url,
   :tags,
   :thumbnail,
   :title,
@@ -301,13 +261,7 @@ AudioListMatch = Struct.new(
 # @!attribute [rw] creator_url
 #   @return [String, nil]
 #
-# @!attribute [rw] description
-#   @return [String, nil]
-#
 # @!attribute [rw] detail_url
-#   @return [String]
-#
-# @!attribute [rw] display_name
 #   @return [String]
 #
 # @!attribute [rw] duration
@@ -334,9 +288,6 @@ AudioListMatch = Struct.new(
 # @!attribute [rw] indexed_on
 #   @return [String]
 #
-# @!attribute [rw] len
-#   @return [Integer]
-#
 # @!attribute [rw] license
 #   @return [String]
 #
@@ -346,23 +297,11 @@ AudioListMatch = Struct.new(
 # @!attribute [rw] license_version
 #   @return [String, nil]
 #
-# @!attribute [rw] logo_url
-#   @return [String]
-#
 # @!attribute [rw] mature
 #   @return [Boolean]
 #
-# @!attribute [rw] media_count
-#   @return [Integer]
-#
-# @!attribute [rw] points
-#   @return [Array]
-#
 # @!attribute [rw] provider
 #   @return [String, nil]
-#
-# @!attribute [rw] reason
-#   @return [Object]
 #
 # @!attribute [rw] related_url
 #   @return [String]
@@ -372,12 +311,6 @@ AudioListMatch = Struct.new(
 #
 # @!attribute [rw] source
 #   @return [String, nil]
-#
-# @!attribute [rw] source_name
-#   @return [String]
-#
-# @!attribute [rw] source_url
-#   @return [String]
 #
 # @!attribute [rw] tags
 #   @return [Array]
@@ -402,9 +335,7 @@ AudioCreateData = Struct.new(
   :category,
   :creator,
   :creator_url,
-  :description,
   :detail_url,
-  :display_name,
   :duration,
   :fields_matched,
   :filesize,
@@ -413,21 +344,14 @@ AudioCreateData = Struct.new(
   :genres,
   :id,
   :indexed_on,
-  :len,
   :license,
   :license_url,
   :license_version,
-  :logo_url,
   :mature,
-  :media_count,
-  :points,
   :provider,
-  :reason,
   :related_url,
   :sample_rate,
   :source,
-  :source_name,
-  :source_url,
   :tags,
   :thumbnail,
   :title,
@@ -441,12 +365,6 @@ AudioCreateData = Struct.new(
 # @!attribute [rw] attribution
 #   @return [String]
 #
-# @!attribute [rw] author_name
-#   @return [String]
-#
-# @!attribute [rw] author_url
-#   @return [String]
-#
 # @!attribute [rw] category
 #   @return [String, nil]
 #
@@ -456,13 +374,7 @@ AudioCreateData = Struct.new(
 # @!attribute [rw] creator_url
 #   @return [String, nil]
 #
-# @!attribute [rw] description
-#   @return [String, nil]
-#
 # @!attribute [rw] detail_url
-#   @return [String]
-#
-# @!attribute [rw] display_name
 #   @return [String]
 #
 # @!attribute [rw] fields_matched
@@ -483,9 +395,6 @@ AudioCreateData = Struct.new(
 # @!attribute [rw] id
 #   @return [String]
 #
-# @!attribute [rw] identifier
-#   @return [String]
-#
 # @!attribute [rw] indexed_on
 #   @return [String]
 #
@@ -498,32 +407,17 @@ AudioCreateData = Struct.new(
 # @!attribute [rw] license_version
 #   @return [String, nil]
 #
-# @!attribute [rw] logo_url
-#   @return [String]
-#
 # @!attribute [rw] mature
 #   @return [Boolean]
 #
-# @!attribute [rw] media_count
-#   @return [Integer]
-#
 # @!attribute [rw] provider
 #   @return [String, nil]
-#
-# @!attribute [rw] reason
-#   @return [Object]
 #
 # @!attribute [rw] related_url
 #   @return [String]
 #
 # @!attribute [rw] source
 #   @return [String, nil]
-#
-# @!attribute [rw] source_name
-#   @return [String]
-#
-# @!attribute [rw] source_url
-#   @return [String]
 #
 # @!attribute [rw] tags
 #   @return [Array]
@@ -534,53 +428,35 @@ AudioCreateData = Struct.new(
 # @!attribute [rw] title
 #   @return [String, nil]
 #
-# @!attribute [rw] type
-#   @return [Object]
-#
 # @!attribute [rw] url
 #   @return [String, nil]
-#
-# @!attribute [rw] version
-#   @return [Object]
 #
 # @!attribute [rw] width
 #   @return [Integer, nil]
 Image = Struct.new(
   :attribution,
-  :author_name,
-  :author_url,
   :category,
   :creator,
   :creator_url,
-  :description,
   :detail_url,
-  :display_name,
   :fields_matched,
   :filesize,
   :filetype,
   :foreign_landing_url,
   :height,
   :id,
-  :identifier,
   :indexed_on,
   :license,
   :license_url,
   :license_version,
-  :logo_url,
   :mature,
-  :media_count,
   :provider,
-  :reason,
   :related_url,
   :source,
-  :source_name,
-  :source_url,
   :tags,
   :thumbnail,
   :title,
-  :type,
   :url,
-  :version,
   :width,
   keyword_init: true
 )
@@ -699,12 +575,6 @@ ImageListMatch = Struct.new(
 # @!attribute [rw] attribution
 #   @return [String]
 #
-# @!attribute [rw] author_name
-#   @return [String]
-#
-# @!attribute [rw] author_url
-#   @return [String]
-#
 # @!attribute [rw] category
 #   @return [String, nil]
 #
@@ -714,13 +584,7 @@ ImageListMatch = Struct.new(
 # @!attribute [rw] creator_url
 #   @return [String, nil]
 #
-# @!attribute [rw] description
-#   @return [String, nil]
-#
 # @!attribute [rw] detail_url
-#   @return [String]
-#
-# @!attribute [rw] display_name
 #   @return [String]
 #
 # @!attribute [rw] fields_matched
@@ -753,32 +617,17 @@ ImageListMatch = Struct.new(
 # @!attribute [rw] license_version
 #   @return [String, nil]
 #
-# @!attribute [rw] logo_url
-#   @return [String]
-#
 # @!attribute [rw] mature
 #   @return [Boolean]
 #
-# @!attribute [rw] media_count
-#   @return [Integer]
-#
 # @!attribute [rw] provider
 #   @return [String, nil]
-#
-# @!attribute [rw] reason
-#   @return [Object]
 #
 # @!attribute [rw] related_url
 #   @return [String]
 #
 # @!attribute [rw] source
 #   @return [String, nil]
-#
-# @!attribute [rw] source_name
-#   @return [String]
-#
-# @!attribute [rw] source_url
-#   @return [String]
 #
 # @!attribute [rw] tags
 #   @return [Array]
@@ -789,28 +638,18 @@ ImageListMatch = Struct.new(
 # @!attribute [rw] title
 #   @return [String, nil]
 #
-# @!attribute [rw] type
-#   @return [Object]
-#
 # @!attribute [rw] url
 #   @return [String, nil]
-#
-# @!attribute [rw] version
-#   @return [Object]
 #
 # @!attribute [rw] width
 #   @return [Integer, nil]
 ImageCreateData = Struct.new(
   :identifier,
   :attribution,
-  :author_name,
-  :author_url,
   :category,
   :creator,
   :creator_url,
-  :description,
   :detail_url,
-  :display_name,
   :fields_matched,
   :filesize,
   :filetype,
@@ -821,21 +660,14 @@ ImageCreateData = Struct.new(
   :license,
   :license_url,
   :license_version,
-  :logo_url,
   :mature,
-  :media_count,
   :provider,
-  :reason,
   :related_url,
   :source,
-  :source_name,
-  :source_url,
   :tags,
   :thumbnail,
   :title,
-  :type,
   :url,
-  :version,
   :width,
   keyword_init: true
 )

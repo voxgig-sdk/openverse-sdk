@@ -21,22 +21,13 @@ class AudioRequired(TypedDict):
     attribution: str
     audio_set: Any
     detail_url: str
-    display_name: str
     fields_matched: list
     id: str
-    identifier: str
     indexed_on: str
-    len: int
     license: str
     license_url: str
-    logo_url: str
     mature: bool
-    media_count: int
-    points: list
-    reason: Any
     related_url: str
-    source_name: str
-    source_url: str
     tags: list
     thumbnail: str
     waveform: str
@@ -47,7 +38,6 @@ class Audio(AudioRequired, total=False):
     category: str
     creator: str
     creator_url: str
-    description: str
     duration: int
     filesize: int
     filetype: str
@@ -97,21 +87,13 @@ class AudioCreateDataRequired(TypedDict):
     attribution: str
     audio_set: Any
     detail_url: str
-    display_name: str
     fields_matched: list
     id: str
     indexed_on: str
-    len: int
     license: str
     license_url: str
-    logo_url: str
     mature: bool
-    media_count: int
-    points: list
-    reason: Any
     related_url: str
-    source_name: str
-    source_url: str
     tags: list
     thumbnail: str
     waveform: str
@@ -122,7 +104,6 @@ class AudioCreateData(AudioCreateDataRequired, total=False):
     category: str
     creator: str
     creator_url: str
-    description: str
     duration: int
     filesize: int
     filetype: str
@@ -138,34 +119,22 @@ class AudioCreateData(AudioCreateDataRequired, total=False):
 
 class ImageRequired(TypedDict):
     attribution: str
-    author_name: str
-    author_url: str
     detail_url: str
-    display_name: str
     fields_matched: list
     id: str
-    identifier: str
     indexed_on: str
     license: str
     license_url: str
-    logo_url: str
     mature: bool
-    media_count: int
-    reason: Any
     related_url: str
-    source_name: str
-    source_url: str
     tags: list
     thumbnail: str
-    type: Any
-    version: Any
 
 
 class Image(ImageRequired, total=False):
     category: str
     creator: str
     creator_url: str
-    description: str
     filesize: int
     filetype: str
     foreign_landing_url: str
@@ -211,33 +180,22 @@ class ImageListMatch(TypedDict, total=False):
 class ImageCreateDataRequired(TypedDict):
     identifier: str
     attribution: str
-    author_name: str
-    author_url: str
     detail_url: str
-    display_name: str
     fields_matched: list
     id: str
     indexed_on: str
     license: str
     license_url: str
-    logo_url: str
     mature: bool
-    media_count: int
-    reason: Any
     related_url: str
-    source_name: str
-    source_url: str
     tags: list
     thumbnail: str
-    type: Any
-    version: Any
 
 
 class ImageCreateData(ImageCreateDataRequired, total=False):
     category: str
     creator: str
     creator_url: str
-    description: str
     filesize: int
     filetype: str
     foreign_landing_url: str

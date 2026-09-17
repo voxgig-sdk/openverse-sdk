@@ -47,7 +47,7 @@ network, and no credentials:
 const client = OpenverseSDK.test({
   entity: {
     image: {
-      test01: { id: 'test01', identifier: 'example_identifier', attribution: 'example_attribution', author_name: 'example_author_name' },
+      test01: { id: 'test01', identifier: 'example_identifier', attribution: 'example_attribution', detail_url: 'example_detail_url' },
     },
   },
 })
@@ -105,12 +105,12 @@ local results, err = client:Image():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/openverse-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openverse-sdk/releases) |
-| Python | `voxgig-sdk-openverse` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openverse-sdk/releases) |
-| PHP | `voxgig-sdk/openverse` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openverse-sdk/releases) |
+| TypeScript | `@voxgig-sdk/openverse-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openverse-sdk/tags) |
+| Python | `voxgig-sdk-openverse` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openverse-sdk/tags) |
+| PHP | `voxgig-sdk/openverse` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openverse-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/openverse-sdk/go` | `go get github.com/voxgig-sdk/openverse-sdk/go@latest` |
-| Ruby | `voxgig-sdk-openverse` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openverse-sdk/releases) |
-| Lua | `voxgig-sdk-openverse` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openverse-sdk/releases) |
+| Ruby | `voxgig-sdk-openverse` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openverse-sdk/tags) |
+| Lua | `voxgig-sdk-openverse` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openverse-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/openverse-sdk/go-cli` | `go install github.com/voxgig-sdk/openverse-sdk/go-cli/cmd/openverse@latest` |
 | Go MCP server | `github.com/voxgig-sdk/openverse-sdk/go-mcp` | `go get github.com/voxgig-sdk/openverse-sdk/go-mcp@latest` |
 

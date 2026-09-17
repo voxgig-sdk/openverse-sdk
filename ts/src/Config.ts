@@ -131,21 +131,21 @@ class Config {
 
     entity: {
       
-      audio: {
-      },
-
-      image: {
-      },
-
-      o_auth2_application: {
-      },
-
-      o_auth2_key_info: {
-      },
-
-      o_auth2_token: {
-      },
-
+        audio: {
+        },
+  
+        image: {
+        },
+  
+        o_auth2_application: {
+        },
+  
+        o_auth2_key_info: {
+        },
+  
+        o_auth2_token: {
+        },
+  
     }
   }
 
@@ -195,22 +195,11 @@ class Config {
           "type": "`$STRING`"
         },
         {
-          "name": "description",
-          "short": "The explanation on why media is being reported.",
-          "type": "`$STRING`"
-        },
-        {
           "format": "uri",
           "name": "detail_url",
           "readOnly": true,
           "req": true,
           "short": "A direct link to the detail view of this audio file.",
-          "type": "`$STRING`"
-        },
-        {
-          "name": "display_name",
-          "req": true,
-          "short": "The name of content source, e.g.",
           "type": "`$STRING`"
         },
         {
@@ -251,24 +240,11 @@ class Config {
           "type": "`$STRING`"
         },
         {
-          "format": "uuid",
-          "name": "identifier",
-          "req": true,
-          "short": "Our unique identifier for an open-licensed work.",
-          "type": "`$STRING`"
-        },
-        {
           "format": "date-time",
           "name": "indexed_on",
           "req": true,
           "short": "The timestamp of when the media was indexed by Openverse.",
           "type": "`$STRING`"
-        },
-        {
-          "name": "len",
-          "readOnly": true,
-          "req": true,
-          "type": "`$INTEGER`"
         },
         {
           "name": "license",
@@ -289,41 +265,15 @@ class Config {
           "type": "`$STRING`"
         },
         {
-          "deprecated": true,
-          "name": "logo_url",
-          "readOnly": true,
-          "req": true,
-          "short": "The URL to a logo for the source.",
-          "type": "`$STRING`"
-        },
-        {
           "name": "mature",
           "req": true,
           "short": "Whether the media item is marked as mature",
           "type": "`$BOOLEAN`"
         },
         {
-          "name": "media_count",
-          "readOnly": true,
-          "req": true,
-          "short": "The number of media items indexed from the source.",
-          "type": "`$INTEGER`"
-        },
-        {
-          "name": "points",
-          "req": true,
-          "type": "`$ARRAY`"
-        },
-        {
           "name": "provider",
           "short": "The content provider, e.g.",
           "type": "`$STRING`"
-        },
-        {
-          "name": "reason",
-          "req": true,
-          "short": "The reason to report media to Openverse.",
-          "type": "`$ANY`"
         },
         {
           "format": "uri",
@@ -341,19 +291,6 @@ class Config {
         {
           "name": "source",
           "short": "The source of the data, meaning a particular dataset.",
-          "type": "`$STRING`"
-        },
-        {
-          "name": "source_name",
-          "req": true,
-          "short": "The source of the media, e.g.",
-          "type": "`$STRING`"
-        },
-        {
-          "format": "uri",
-          "name": "source_url",
-          "req": true,
-          "short": "The URL of the source, e.g.",
           "type": "`$STRING`"
         },
         {
@@ -973,19 +910,6 @@ class Config {
           "type": "`$STRING`"
         },
         {
-          "name": "author_name",
-          "req": true,
-          "short": "The name of the media creator.",
-          "type": "`$STRING`"
-        },
-        {
-          "format": "uri",
-          "name": "author_url",
-          "req": true,
-          "short": "A direct link to the media creator.",
-          "type": "`$STRING`"
-        },
-        {
           "name": "category",
           "short": "The top-level classification of this media file.",
           "type": "`$STRING`"
@@ -1001,22 +925,11 @@ class Config {
           "type": "`$STRING`"
         },
         {
-          "name": "description",
-          "short": "The explanation on why media is being reported.",
-          "type": "`$STRING`"
-        },
-        {
           "format": "uri",
           "name": "detail_url",
           "readOnly": true,
           "req": true,
           "short": "A direct link to the detail view of this audio file.",
-          "type": "`$STRING`"
-        },
-        {
-          "name": "display_name",
-          "req": true,
-          "short": "The name of content source, e.g.",
           "type": "`$STRING`"
         },
         {
@@ -1042,25 +955,11 @@ class Config {
         },
         {
           "name": "height",
-          "op": {
-            "load": {
-              "req": true,
-              "type": "`$INTEGER`"
-            }
-          },
-          "readOnly": true,
           "short": "The height of the image in pixels.",
           "type": "`$INTEGER`"
         },
         {
           "name": "id",
-          "req": true,
-          "short": "Our unique identifier for an open-licensed work.",
-          "type": "`$STRING`"
-        },
-        {
-          "format": "uuid",
-          "name": "identifier",
           "req": true,
           "short": "Our unique identifier for an open-licensed work.",
           "type": "`$STRING`"
@@ -1091,36 +990,15 @@ class Config {
           "type": "`$STRING`"
         },
         {
-          "deprecated": true,
-          "name": "logo_url",
-          "readOnly": true,
-          "req": true,
-          "short": "The URL to a logo for the source.",
-          "type": "`$STRING`"
-        },
-        {
           "name": "mature",
           "req": true,
           "short": "Whether the media item is marked as mature",
           "type": "`$BOOLEAN`"
         },
         {
-          "name": "media_count",
-          "readOnly": true,
-          "req": true,
-          "short": "The number of media items indexed from the source.",
-          "type": "`$INTEGER`"
-        },
-        {
           "name": "provider",
           "short": "The content provider, e.g.",
           "type": "`$STRING`"
-        },
-        {
-          "name": "reason",
-          "req": true,
-          "short": "The reason to report media to Openverse.",
-          "type": "`$ANY`"
         },
         {
           "format": "uri",
@@ -1133,19 +1011,6 @@ class Config {
         {
           "name": "source",
           "short": "The source of the data, meaning a particular dataset.",
-          "type": "`$STRING`"
-        },
-        {
-          "name": "source_name",
-          "req": true,
-          "short": "The source of the media, e.g.",
-          "type": "`$STRING`"
-        },
-        {
-          "format": "uri",
-          "name": "source_url",
-          "req": true,
-          "short": "The URL of the source, e.g.",
           "type": "`$STRING`"
         },
         {
@@ -1168,33 +1033,12 @@ class Config {
           "type": "`$STRING`"
         },
         {
-          "name": "type",
-          "readOnly": true,
-          "req": true,
-          "short": "The resource type, always set to 'photo' for images.",
-          "type": "`$ANY`"
-        },
-        {
           "name": "url",
           "short": "The actual URL to the media file.",
           "type": "`$STRING`"
         },
         {
-          "name": "version",
-          "readOnly": true,
-          "req": true,
-          "short": "The oEmbed version number, always set to 1.0.",
-          "type": "`$ANY`"
-        },
-        {
           "name": "width",
-          "op": {
-            "load": {
-              "req": true,
-              "type": "`$INTEGER`"
-            }
-          },
-          "readOnly": true,
           "short": "The width of the image in pixels.",
           "type": "`$INTEGER`"
         }

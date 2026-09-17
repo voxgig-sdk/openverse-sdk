@@ -51,23 +51,11 @@ main: kit: entity: audio: {
       type: "`$STRING`"
     }
     {
-      name: "description"
-      req: false
-      short: "The explanation on why media is being reported."
-      type: "`$STRING`"
-    }
-    {
       format: "uri"
       name: "detail_url"
       readOnly: true
       req: true
       short: "A direct link to the detail view of this audio file."
-      type: "`$STRING`"
-    }
-    {
-      name: "display_name"
-      req: true
-      short: "The name of content source, e.g."
       type: "`$STRING`"
     }
     {
@@ -113,24 +101,11 @@ main: kit: entity: audio: {
       type: "`$STRING`"
     }
     {
-      format: "uuid"
-      name: "identifier"
-      req: true
-      short: "Our unique identifier for an open-licensed work."
-      type: "`$STRING`"
-    }
-    {
       format: "date-time"
       name: "indexed_on"
       req: true
       short: "The timestamp of when the media was indexed by Openverse."
       type: "`$STRING`"
-    }
-    {
-      name: "len"
-      readOnly: true
-      req: true
-      type: "`$INTEGER`"
     }
     {
       name: "license"
@@ -152,42 +127,16 @@ main: kit: entity: audio: {
       type: "`$STRING`"
     }
     {
-      deprecated: true
-      name: "logo_url"
-      readOnly: true
-      req: true
-      short: "The URL to a logo for the source."
-      type: "`$STRING`"
-    }
-    {
       name: "mature"
       req: true
       short: "Whether the media item is marked as mature"
       type: "`$BOOLEAN`"
     }
     {
-      name: "media_count"
-      readOnly: true
-      req: true
-      short: "The number of media items indexed from the source."
-      type: "`$INTEGER`"
-    }
-    {
-      name: "points"
-      req: true
-      type: "`$ARRAY`"
-    }
-    {
       name: "provider"
       req: false
       short: "The content provider, e.g."
       type: "`$STRING`"
-    }
-    {
-      name: "reason"
-      req: true
-      short: "The reason to report media to Openverse."
-      type: "`$ANY`"
     }
     {
       format: "uri"
@@ -207,19 +156,6 @@ main: kit: entity: audio: {
       name: "source"
       req: false
       short: "The source of the data, meaning a particular dataset."
-      type: "`$STRING`"
-    }
-    {
-      name: "source_name"
-      req: true
-      short: "The source of the media, e.g."
-      type: "`$STRING`"
-    }
-    {
-      format: "uri"
-      name: "source_url"
-      req: true
-      short: "The URL of the source, e.g."
       type: "`$STRING`"
     }
     {

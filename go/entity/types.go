@@ -21,9 +21,7 @@ type Audio struct {
 	Category *string `json:"category,omitempty"`
 	Creator *string `json:"creator,omitempty"`
 	CreatorUrl *string `json:"creator_url,omitempty"`
-	Description *string `json:"description,omitempty"`
 	DetailUrl string `json:"detail_url"`
-	DisplayName string `json:"display_name"`
 	Duration *int `json:"duration,omitempty"`
 	FieldsMatched []any `json:"fields_matched"`
 	Filesize *int `json:"filesize,omitempty"`
@@ -31,23 +29,15 @@ type Audio struct {
 	ForeignLandingUrl *string `json:"foreign_landing_url,omitempty"`
 	Genres *[]any `json:"genres,omitempty"`
 	Id string `json:"id"`
-	Identifier string `json:"identifier"`
 	IndexedOn string `json:"indexed_on"`
-	Len int `json:"len"`
 	License string `json:"license"`
 	LicenseUrl string `json:"license_url"`
 	LicenseVersion *string `json:"license_version,omitempty"`
-	LogoUrl string `json:"logo_url"`
 	Mature bool `json:"mature"`
-	MediaCount int `json:"media_count"`
-	Points []any `json:"points"`
 	Provider *string `json:"provider,omitempty"`
-	Reason any `json:"reason"`
 	RelatedUrl string `json:"related_url"`
 	SampleRate *int `json:"sample_rate,omitempty"`
 	Source *string `json:"source,omitempty"`
-	SourceName string `json:"source_name"`
-	SourceUrl string `json:"source_url"`
 	Tags []any `json:"tags"`
 	Thumbnail string `json:"thumbnail"`
 	Title *string `json:"title,omitempty"`
@@ -97,9 +87,7 @@ type AudioCreateData struct {
 	Category *string `json:"category,omitempty"`
 	Creator *string `json:"creator,omitempty"`
 	CreatorUrl *string `json:"creator_url,omitempty"`
-	Description *string `json:"description,omitempty"`
 	DetailUrl string `json:"detail_url"`
-	DisplayName string `json:"display_name"`
 	Duration *int `json:"duration,omitempty"`
 	FieldsMatched []any `json:"fields_matched"`
 	Filesize *int `json:"filesize,omitempty"`
@@ -108,21 +96,14 @@ type AudioCreateData struct {
 	Genres *[]any `json:"genres,omitempty"`
 	Id string `json:"id"`
 	IndexedOn string `json:"indexed_on"`
-	Len int `json:"len"`
 	License string `json:"license"`
 	LicenseUrl string `json:"license_url"`
 	LicenseVersion *string `json:"license_version,omitempty"`
-	LogoUrl string `json:"logo_url"`
 	Mature bool `json:"mature"`
-	MediaCount int `json:"media_count"`
-	Points []any `json:"points"`
 	Provider *string `json:"provider,omitempty"`
-	Reason any `json:"reason"`
 	RelatedUrl string `json:"related_url"`
 	SampleRate *int `json:"sample_rate,omitempty"`
 	Source *string `json:"source,omitempty"`
-	SourceName string `json:"source_name"`
-	SourceUrl string `json:"source_url"`
 	Tags []any `json:"tags"`
 	Thumbnail string `json:"thumbnail"`
 	Title *string `json:"title,omitempty"`
@@ -133,40 +114,28 @@ type AudioCreateData struct {
 // Image is the typed data model for the image entity.
 type Image struct {
 	Attribution string `json:"attribution"`
-	AuthorName string `json:"author_name"`
-	AuthorUrl string `json:"author_url"`
 	Category *string `json:"category,omitempty"`
 	Creator *string `json:"creator,omitempty"`
 	CreatorUrl *string `json:"creator_url,omitempty"`
-	Description *string `json:"description,omitempty"`
 	DetailUrl string `json:"detail_url"`
-	DisplayName string `json:"display_name"`
 	FieldsMatched []any `json:"fields_matched"`
 	Filesize *int `json:"filesize,omitempty"`
 	Filetype *string `json:"filetype,omitempty"`
 	ForeignLandingUrl *string `json:"foreign_landing_url,omitempty"`
 	Height *int `json:"height,omitempty"`
 	Id string `json:"id"`
-	Identifier string `json:"identifier"`
 	IndexedOn string `json:"indexed_on"`
 	License string `json:"license"`
 	LicenseUrl string `json:"license_url"`
 	LicenseVersion *string `json:"license_version,omitempty"`
-	LogoUrl string `json:"logo_url"`
 	Mature bool `json:"mature"`
-	MediaCount int `json:"media_count"`
 	Provider *string `json:"provider,omitempty"`
-	Reason any `json:"reason"`
 	RelatedUrl string `json:"related_url"`
 	Source *string `json:"source,omitempty"`
-	SourceName string `json:"source_name"`
-	SourceUrl string `json:"source_url"`
 	Tags []any `json:"tags"`
 	Thumbnail string `json:"thumbnail"`
 	Title *string `json:"title,omitempty"`
-	Type any `json:"type"`
 	Url *string `json:"url,omitempty"`
-	Version any `json:"version"`
 	Width *int `json:"width,omitempty"`
 }
 
@@ -206,14 +175,10 @@ type ImageListMatch struct {
 type ImageCreateData struct {
 	Identifier string `json:"identifier"`
 	Attribution string `json:"attribution"`
-	AuthorName string `json:"author_name"`
-	AuthorUrl string `json:"author_url"`
 	Category *string `json:"category,omitempty"`
 	Creator *string `json:"creator,omitempty"`
 	CreatorUrl *string `json:"creator_url,omitempty"`
-	Description *string `json:"description,omitempty"`
 	DetailUrl string `json:"detail_url"`
-	DisplayName string `json:"display_name"`
 	FieldsMatched []any `json:"fields_matched"`
 	Filesize *int `json:"filesize,omitempty"`
 	Filetype *string `json:"filetype,omitempty"`
@@ -224,21 +189,14 @@ type ImageCreateData struct {
 	License string `json:"license"`
 	LicenseUrl string `json:"license_url"`
 	LicenseVersion *string `json:"license_version,omitempty"`
-	LogoUrl string `json:"logo_url"`
 	Mature bool `json:"mature"`
-	MediaCount int `json:"media_count"`
 	Provider *string `json:"provider,omitempty"`
-	Reason any `json:"reason"`
 	RelatedUrl string `json:"related_url"`
 	Source *string `json:"source,omitempty"`
-	SourceName string `json:"source_name"`
-	SourceUrl string `json:"source_url"`
 	Tags []any `json:"tags"`
 	Thumbnail string `json:"thumbnail"`
 	Title *string `json:"title,omitempty"`
-	Type any `json:"type"`
 	Url *string `json:"url,omitempty"`
-	Version any `json:"version"`
 	Width *int `json:"width,omitempty"`
 }
 

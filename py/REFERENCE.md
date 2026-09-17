@@ -111,9 +111,7 @@ audio = client.Audio()
 | `category` | `str` | No | The top-level classification of this media file. |
 | `creator` | `str` | No | The name of the media creator. |
 | `creator_url` | `str` | No | A direct link to the media creator. |
-| `description` | `str` | No | The explanation on why media is being reported. |
 | `detail_url` | `str` | Yes | A direct link to the detail view of this audio file. |
-| `display_name` | `str` | Yes | The name of content source, e.g. |
 | `duration` | `int` | No | The time length of the audio file in milliseconds. |
 | `fields_matched` | `list` | Yes | List the fields that matched the query for this result. |
 | `filesize` | `int` | No | Number in bytes, e.g. |
@@ -121,23 +119,15 @@ audio = client.Audio()
 | `foreign_landing_url` | `str` | No | The landing page of the work. |
 | `genres` | `list` | No | An array of audio genres such as `rock`, `electronic` for `music` category, or `politics`, `sport`, `education` for `podcast` category |
 | `id` | `str` | Yes | Our unique identifier for an open-licensed work. |
-| `identifier` | `str` | Yes | Our unique identifier for an open-licensed work. |
 | `indexed_on` | `str` | Yes | The timestamp of when the media was indexed by Openverse. |
-| `len` | `int` | Yes |  |
 | `license` | `str` | Yes | The name of license for the media. |
 | `license_url` | `str` | Yes | A direct link to the license deed or legal terms. |
 | `license_version` | `str` | No | The version of the media license. |
-| `logo_url` | `str` | Yes | The URL to a logo for the source. |
 | `mature` | `bool` | Yes | Whether the media item is marked as mature |
-| `media_count` | `int` | Yes | The number of media items indexed from the source. |
-| `points` | `list` | Yes |  |
 | `provider` | `str` | No | The content provider, e.g. |
-| `reason` | `Any` | Yes | The reason to report media to Openverse. |
 | `related_url` | `str` | Yes | A link to an endpoint that provides similar audio files. |
 | `sample_rate` | `int` | No | Number in hertz, eg. |
 | `source` | `str` | No | The source of the data, meaning a particular dataset. |
-| `source_name` | `str` | Yes | The source of the media, e.g. |
-| `source_url` | `str` | Yes | The URL of the source, e.g. |
 | `tags` | `list` | Yes | Tags with detailed metadata, such as accuracy. |
 | `thumbnail` | `str` | Yes | A direct link to the miniature artwork. |
 | `title` | `str` | No | The name of the media. |
@@ -157,21 +147,13 @@ result = client.Audio().create({
     "attribution": "example_attribution",  # str
     "audio_set": "example_audio_set",  # Any
     "detail_url": "example_detail_url",  # str
-    "display_name": "example_display_name",  # str
     "fields_matched": [],  # list
     "id": "example_id",  # str
     "indexed_on": "example_indexed_on",  # str
-    "len": 1,  # int
     "license": "example_license",  # str
     "license_url": "example_license_url",  # str
-    "logo_url": "example_logo_url",  # str
     "mature": True,  # bool
-    "media_count": 1,  # int
-    "points": [],  # list
-    "reason": "example_reason",  # Any
     "related_url": "example_related_url",  # str
-    "source_name": "example_source_name",  # str
-    "source_url": "example_source_url",  # str
     "tags": [],  # list
     "thumbnail": "example_thumbnail",  # str
     "waveform": "example_waveform",  # str
@@ -236,82 +218,29 @@ image = client.Image()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `attribution` | `str` | Yes | Legally valid attribution for the media item in plain-text English. |
-| `author_name` | `str` | Yes | The name of the media creator. |
-| `author_url` | `str` | Yes | A direct link to the media creator. |
 | `category` | `str` | No | The top-level classification of this media file. |
 | `creator` | `str` | No | The name of the media creator. |
 | `creator_url` | `str` | No | A direct link to the media creator. |
-| `description` | `str` | No | The explanation on why media is being reported. |
 | `detail_url` | `str` | Yes | A direct link to the detail view of this audio file. |
-| `display_name` | `str` | Yes | The name of content source, e.g. |
 | `fields_matched` | `list` | Yes | List the fields that matched the query for this result. |
 | `filesize` | `int` | No | Number in bytes, e.g. |
 | `filetype` | `str` | No | The type of the file, related to the file extension. |
 | `foreign_landing_url` | `str` | No | The landing page of the work. |
 | `height` | `int` | No | The height of the image in pixels. |
 | `id` | `str` | Yes | Our unique identifier for an open-licensed work. |
-| `identifier` | `str` | Yes | Our unique identifier for an open-licensed work. |
 | `indexed_on` | `str` | Yes | The timestamp of when the media was indexed by Openverse. |
 | `license` | `str` | Yes | The name of license for the media. |
 | `license_url` | `str` | Yes | A direct link to the license deed or legal terms. |
 | `license_version` | `str` | No | The version of the media license. |
-| `logo_url` | `str` | Yes | The URL to a logo for the source. |
 | `mature` | `bool` | Yes | Whether the media item is marked as mature |
-| `media_count` | `int` | Yes | The number of media items indexed from the source. |
 | `provider` | `str` | No | The content provider, e.g. |
-| `reason` | `Any` | Yes | The reason to report media to Openverse. |
 | `related_url` | `str` | Yes | A link to an endpoint that provides similar audio files. |
 | `source` | `str` | No | The source of the data, meaning a particular dataset. |
-| `source_name` | `str` | Yes | The source of the media, e.g. |
-| `source_url` | `str` | Yes | The URL of the source, e.g. |
 | `tags` | `list` | Yes | Tags with detailed metadata, such as accuracy. |
 | `thumbnail` | `str` | Yes | A direct link to the miniature artwork. |
 | `title` | `str` | No | The name of the media. |
-| `type` | `Any` | Yes | The resource type, always set to 'photo' for images. |
 | `url` | `str` | No | The actual URL to the media file. |
-| `version` | `Any` | Yes | The oEmbed version number, always set to 1.0. |
 | `width` | `int` | No | The width of the image in pixels. |
-
-### Field Usage by Operation
-
-| Field | load | list | create |
-| --- | --- | --- | --- |
-| `attribution` | - | - | - |
-| `author_name` | - | - | - |
-| `author_url` | - | - | - |
-| `category` | - | - | - |
-| `creator` | - | - | - |
-| `creator_url` | - | - | - |
-| `description` | - | - | - |
-| `detail_url` | - | - | - |
-| `display_name` | - | - | - |
-| `fields_matched` | - | - | - |
-| `filesize` | - | - | - |
-| `filetype` | - | - | - |
-| `foreign_landing_url` | - | - | - |
-| `height` | Yes | - | - |
-| `id` | - | - | - |
-| `identifier` | - | - | - |
-| `indexed_on` | - | - | - |
-| `license` | - | - | - |
-| `license_url` | - | - | - |
-| `license_version` | - | - | - |
-| `logo_url` | - | - | - |
-| `mature` | - | - | - |
-| `media_count` | - | - | - |
-| `provider` | - | - | - |
-| `reason` | - | - | - |
-| `related_url` | - | - | - |
-| `source` | - | - | - |
-| `source_name` | - | - | - |
-| `source_url` | - | - | - |
-| `tags` | - | - | - |
-| `thumbnail` | - | - | - |
-| `title` | - | - | - |
-| `type` | - | - | - |
-| `url` | - | - | - |
-| `version` | - | - | - |
-| `width` | Yes | - | - |
 
 ### Operations
 
@@ -323,26 +252,16 @@ Create a new entity with the given data. Returns the created entity data and rai
 result = client.Image().create({
     "identifier": "example_identifier",  # str
     "attribution": "example_attribution",  # str
-    "author_name": "example_author_name",  # str
-    "author_url": "example_author_url",  # str
     "detail_url": "example_detail_url",  # str
-    "display_name": "example_display_name",  # str
     "fields_matched": [],  # list
     "id": "example_id",  # str
     "indexed_on": "example_indexed_on",  # str
     "license": "example_license",  # str
     "license_url": "example_license_url",  # str
-    "logo_url": "example_logo_url",  # str
     "mature": True,  # bool
-    "media_count": 1,  # int
-    "reason": "example_reason",  # Any
     "related_url": "example_related_url",  # str
-    "source_name": "example_source_name",  # str
-    "source_url": "example_source_url",  # str
     "tags": [],  # list
     "thumbnail": "example_thumbnail",  # str
-    "type": "example_type",  # Any
-    "version": "example_version",  # Any
 })
 ```
 

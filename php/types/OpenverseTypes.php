@@ -22,9 +22,7 @@ class Audio
     public ?string $category = null;
     public ?string $creator = null;
     public ?string $creator_url = null;
-    public ?string $description = null;
     public string $detail_url;
-    public string $display_name;
     public ?int $duration = null;
     public array $fields_matched;
     public ?int $filesize = null;
@@ -32,23 +30,15 @@ class Audio
     public ?string $foreign_landing_url = null;
     public ?array $genres = null;
     public string $id;
-    public string $identifier;
     public string $indexed_on;
-    public int $len;
     public string $license;
     public string $license_url;
     public ?string $license_version = null;
-    public string $logo_url;
     public bool $mature;
-    public int $media_count;
-    public array $points;
     public ?string $provider = null;
-    public mixed $reason;
     public string $related_url;
     public ?int $sample_rate = null;
     public ?string $source = null;
-    public string $source_name;
-    public string $source_url;
     public array $tags;
     public string $thumbnail;
     public ?string $title = null;
@@ -101,9 +91,7 @@ class AudioCreateData
     public ?string $category = null;
     public ?string $creator = null;
     public ?string $creator_url = null;
-    public ?string $description = null;
     public string $detail_url;
-    public string $display_name;
     public ?int $duration = null;
     public array $fields_matched;
     public ?int $filesize = null;
@@ -112,21 +100,14 @@ class AudioCreateData
     public ?array $genres = null;
     public string $id;
     public string $indexed_on;
-    public int $len;
     public string $license;
     public string $license_url;
     public ?string $license_version = null;
-    public string $logo_url;
     public bool $mature;
-    public int $media_count;
-    public array $points;
     public ?string $provider = null;
-    public mixed $reason;
     public string $related_url;
     public ?int $sample_rate = null;
     public ?string $source = null;
-    public string $source_name;
-    public string $source_url;
     public array $tags;
     public string $thumbnail;
     public ?string $title = null;
@@ -138,40 +119,28 @@ class AudioCreateData
 class Image
 {
     public string $attribution;
-    public string $author_name;
-    public string $author_url;
     public ?string $category = null;
     public ?string $creator = null;
     public ?string $creator_url = null;
-    public ?string $description = null;
     public string $detail_url;
-    public string $display_name;
     public array $fields_matched;
     public ?int $filesize = null;
     public ?string $filetype = null;
     public ?string $foreign_landing_url = null;
     public ?int $height = null;
     public string $id;
-    public string $identifier;
     public string $indexed_on;
     public string $license;
     public string $license_url;
     public ?string $license_version = null;
-    public string $logo_url;
     public bool $mature;
-    public int $media_count;
     public ?string $provider = null;
-    public mixed $reason;
     public string $related_url;
     public ?string $source = null;
-    public string $source_name;
-    public string $source_url;
     public array $tags;
     public string $thumbnail;
     public ?string $title = null;
-    public mixed $type;
     public ?string $url = null;
-    public mixed $version;
     public ?int $width = null;
 }
 
@@ -214,14 +183,10 @@ class ImageCreateData
 {
     public string $identifier;
     public string $attribution;
-    public string $author_name;
-    public string $author_url;
     public ?string $category = null;
     public ?string $creator = null;
     public ?string $creator_url = null;
-    public ?string $description = null;
     public string $detail_url;
-    public string $display_name;
     public array $fields_matched;
     public ?int $filesize = null;
     public ?string $filetype = null;
@@ -232,21 +197,14 @@ class ImageCreateData
     public string $license;
     public string $license_url;
     public ?string $license_version = null;
-    public string $logo_url;
     public bool $mature;
-    public int $media_count;
     public ?string $provider = null;
-    public mixed $reason;
     public string $related_url;
     public ?string $source = null;
-    public string $source_name;
-    public string $source_url;
     public array $tags;
     public string $thumbnail;
     public ?string $title = null;
-    public mixed $type;
     public ?string $url = null;
-    public mixed $version;
     public ?int $width = null;
 }
 

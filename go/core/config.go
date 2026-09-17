@@ -138,22 +138,11 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
-						"name": "description",
-						"short": "The explanation on why media is being reported.",
-						"type": "`$STRING`",
-					},
-					map[string]any{
 						"format": "uri",
 						"name": "detail_url",
 						"readOnly": true,
 						"req": true,
 						"short": "A direct link to the detail view of this audio file.",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "display_name",
-						"req": true,
-						"short": "The name of content source, e.g.",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -194,24 +183,11 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
-						"format": "uuid",
-						"name": "identifier",
-						"req": true,
-						"short": "Our unique identifier for an open-licensed work.",
-						"type": "`$STRING`",
-					},
-					map[string]any{
 						"format": "date-time",
 						"name": "indexed_on",
 						"req": true,
 						"short": "The timestamp of when the media was indexed by Openverse.",
 						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "len",
-						"readOnly": true,
-						"req": true,
-						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "license",
@@ -232,41 +208,15 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
-						"deprecated": true,
-						"name": "logo_url",
-						"readOnly": true,
-						"req": true,
-						"short": "The URL to a logo for the source.",
-						"type": "`$STRING`",
-					},
-					map[string]any{
 						"name": "mature",
 						"req": true,
 						"short": "Whether the media item is marked as mature",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
-						"name": "media_count",
-						"readOnly": true,
-						"req": true,
-						"short": "The number of media items indexed from the source.",
-						"type": "`$INTEGER`",
-					},
-					map[string]any{
-						"name": "points",
-						"req": true,
-						"type": "`$ARRAY`",
-					},
-					map[string]any{
 						"name": "provider",
 						"short": "The content provider, e.g.",
 						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "reason",
-						"req": true,
-						"short": "The reason to report media to Openverse.",
-						"type": "`$ANY`",
 					},
 					map[string]any{
 						"format": "uri",
@@ -284,19 +234,6 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "source",
 						"short": "The source of the data, meaning a particular dataset.",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "source_name",
-						"req": true,
-						"short": "The source of the media, e.g.",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"format": "uri",
-						"name": "source_url",
-						"req": true,
-						"short": "The URL of the source, e.g.",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -916,19 +853,6 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
-						"name": "author_name",
-						"req": true,
-						"short": "The name of the media creator.",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"format": "uri",
-						"name": "author_url",
-						"req": true,
-						"short": "A direct link to the media creator.",
-						"type": "`$STRING`",
-					},
-					map[string]any{
 						"name": "category",
 						"short": "The top-level classification of this media file.",
 						"type": "`$STRING`",
@@ -944,22 +868,11 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
-						"name": "description",
-						"short": "The explanation on why media is being reported.",
-						"type": "`$STRING`",
-					},
-					map[string]any{
 						"format": "uri",
 						"name": "detail_url",
 						"readOnly": true,
 						"req": true,
 						"short": "A direct link to the detail view of this audio file.",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "display_name",
-						"req": true,
-						"short": "The name of content source, e.g.",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -985,25 +898,11 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "height",
-						"op": map[string]any{
-							"load": map[string]any{
-								"req": true,
-								"type": "`$INTEGER`",
-							},
-						},
-						"readOnly": true,
 						"short": "The height of the image in pixels.",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "id",
-						"req": true,
-						"short": "Our unique identifier for an open-licensed work.",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"format": "uuid",
-						"name": "identifier",
 						"req": true,
 						"short": "Our unique identifier for an open-licensed work.",
 						"type": "`$STRING`",
@@ -1034,36 +933,15 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
-						"deprecated": true,
-						"name": "logo_url",
-						"readOnly": true,
-						"req": true,
-						"short": "The URL to a logo for the source.",
-						"type": "`$STRING`",
-					},
-					map[string]any{
 						"name": "mature",
 						"req": true,
 						"short": "Whether the media item is marked as mature",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
-						"name": "media_count",
-						"readOnly": true,
-						"req": true,
-						"short": "The number of media items indexed from the source.",
-						"type": "`$INTEGER`",
-					},
-					map[string]any{
 						"name": "provider",
 						"short": "The content provider, e.g.",
 						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "reason",
-						"req": true,
-						"short": "The reason to report media to Openverse.",
-						"type": "`$ANY`",
 					},
 					map[string]any{
 						"format": "uri",
@@ -1076,19 +954,6 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "source",
 						"short": "The source of the data, meaning a particular dataset.",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "source_name",
-						"req": true,
-						"short": "The source of the media, e.g.",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"format": "uri",
-						"name": "source_url",
-						"req": true,
-						"short": "The URL of the source, e.g.",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -1111,33 +976,12 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
-						"name": "type",
-						"readOnly": true,
-						"req": true,
-						"short": "The resource type, always set to 'photo' for images.",
-						"type": "`$ANY`",
-					},
-					map[string]any{
 						"name": "url",
 						"short": "The actual URL to the media file.",
 						"type": "`$STRING`",
 					},
 					map[string]any{
-						"name": "version",
-						"readOnly": true,
-						"req": true,
-						"short": "The oEmbed version number, always set to 1.0.",
-						"type": "`$ANY`",
-					},
-					map[string]any{
 						"name": "width",
-						"op": map[string]any{
-							"load": map[string]any{
-								"req": true,
-								"type": "`$INTEGER`",
-							},
-						},
-						"readOnly": true,
 						"short": "The width of the image in pixels.",
 						"type": "`$INTEGER`",
 					},

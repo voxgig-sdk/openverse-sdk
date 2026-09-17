@@ -88,7 +88,6 @@ declare class Config {
                 short: string;
                 type: string;
                 format?: undefined;
-                deprecated?: undefined;
             } | {
                 name: string;
                 short: string;
@@ -96,7 +95,6 @@ declare class Config {
                 readOnly?: undefined;
                 req?: undefined;
                 format?: undefined;
-                deprecated?: undefined;
             } | {
                 format: string;
                 name: string;
@@ -104,7 +102,6 @@ declare class Config {
                 req: boolean;
                 short: string;
                 type: string;
-                deprecated?: undefined;
             } | {
                 name: string;
                 req: boolean;
@@ -112,7 +109,6 @@ declare class Config {
                 type: string;
                 readOnly?: undefined;
                 format?: undefined;
-                deprecated?: undefined;
             } | {
                 format: string;
                 name: string;
@@ -120,31 +116,6 @@ declare class Config {
                 short: string;
                 type: string;
                 readOnly?: undefined;
-                deprecated?: undefined;
-            } | {
-                name: string;
-                readOnly: boolean;
-                req: boolean;
-                type: string;
-                short?: undefined;
-                format?: undefined;
-                deprecated?: undefined;
-            } | {
-                deprecated: boolean;
-                name: string;
-                readOnly: boolean;
-                req: boolean;
-                short: string;
-                type: string;
-                format?: undefined;
-            } | {
-                name: string;
-                req: boolean;
-                type: string;
-                readOnly?: undefined;
-                short?: undefined;
-                format?: undefined;
-                deprecated?: undefined;
             })[];
             id: {
                 field: string;
@@ -424,26 +395,6 @@ declare class Config {
                 short: string;
                 type: string;
                 format?: undefined;
-                op?: undefined;
-                deprecated?: undefined;
-            } | {
-                name: string;
-                req: boolean;
-                short: string;
-                type: string;
-                readOnly?: undefined;
-                format?: undefined;
-                op?: undefined;
-                deprecated?: undefined;
-            } | {
-                format: string;
-                name: string;
-                req: boolean;
-                short: string;
-                type: string;
-                readOnly?: undefined;
-                op?: undefined;
-                deprecated?: undefined;
             } | {
                 name: string;
                 short: string;
@@ -451,8 +402,6 @@ declare class Config {
                 readOnly?: undefined;
                 req?: undefined;
                 format?: undefined;
-                op?: undefined;
-                deprecated?: undefined;
             } | {
                 format: string;
                 name: string;
@@ -460,31 +409,20 @@ declare class Config {
                 req: boolean;
                 short: string;
                 type: string;
-                op?: undefined;
-                deprecated?: undefined;
             } | {
                 name: string;
-                op: {
-                    load: {
-                        req: boolean;
-                        type: string;
-                    };
-                };
-                readOnly: boolean;
-                short: string;
-                type: string;
-                req?: undefined;
-                format?: undefined;
-                deprecated?: undefined;
-            } | {
-                deprecated: boolean;
-                name: string;
-                readOnly: boolean;
                 req: boolean;
                 short: string;
                 type: string;
+                readOnly?: undefined;
                 format?: undefined;
-                op?: undefined;
+            } | {
+                format: string;
+                name: string;
+                req: boolean;
+                short: string;
+                type: string;
+                readOnly?: undefined;
             })[];
             id: {
                 field: string;

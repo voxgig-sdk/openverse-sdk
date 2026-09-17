@@ -62,7 +62,7 @@ end
 
 ```ruby
 # create returns the ENTITY — call data_get for the created Audio record.
-created = client.Audio.create({ "identifier" => "example_identifier", "alt_files" => [], "attribution" => "example_attribution", "audio_set" => "example_audio_set", "detail_url" => "example_detail_url", "display_name" => "example_display_name", "fields_matched" => [], "id" => "example_id", "indexed_on" => "example_indexed_on", "len" => 1, "license" => "example_license", "license_url" => "example_license_url", "logo_url" => "example_logo_url", "mature" => true, "media_count" => 1, "points" => [], "reason" => "example_reason", "related_url" => "example_related_url", "source_name" => "example_source_name", "source_url" => "example_source_url", "tags" => [], "thumbnail" => "example_thumbnail", "waveform" => "example_waveform" })
+created = client.Audio.create({ "identifier" => "example_identifier", "alt_files" => [], "attribution" => "example_attribution", "audio_set" => "example_audio_set", "detail_url" => "example_detail_url", "fields_matched" => [], "id" => "example_id", "indexed_on" => "example_indexed_on", "license" => "example_license", "license_url" => "example_license_url", "mature" => true, "related_url" => "example_related_url", "tags" => [], "thumbnail" => "example_thumbnail", "waveform" => "example_waveform" })
 
 ```
 
@@ -277,9 +277,7 @@ returns a result `Hash` with these keys:
 | `category` | The top-level classification of this media file. |
 | `creator` | The name of the media creator. |
 | `creator_url` | A direct link to the media creator. |
-| `description` | The explanation on why media is being reported. |
 | `detail_url` | A direct link to the detail view of this audio file. |
-| `display_name` | The name of content source, e.g. |
 | `duration` | The time length of the audio file in milliseconds. |
 | `fields_matched` | List the fields that matched the query for this result. |
 | `filesize` | Number in bytes, e.g. |
@@ -287,23 +285,15 @@ returns a result `Hash` with these keys:
 | `foreign_landing_url` | The landing page of the work. |
 | `genres` | An array of audio genres such as `rock`, `electronic` for `music` category, or `politics`, `sport`, `education` for `podcast` category |
 | `id` | Our unique identifier for an open-licensed work. |
-| `identifier` | Our unique identifier for an open-licensed work. |
 | `indexed_on` | The timestamp of when the media was indexed by Openverse. |
-| `len` |  |
 | `license` | The name of license for the media. |
 | `license_url` | A direct link to the license deed or legal terms. |
 | `license_version` | The version of the media license. |
-| `logo_url` | The URL to a logo for the source. |
 | `mature` | Whether the media item is marked as mature |
-| `media_count` | The number of media items indexed from the source. |
-| `points` |  |
 | `provider` | The content provider, e.g. |
-| `reason` | The reason to report media to Openverse. |
 | `related_url` | A link to an endpoint that provides similar audio files. |
 | `sample_rate` | Number in hertz, eg. |
 | `source` | The source of the data, meaning a particular dataset. |
-| `source_name` | The source of the media, e.g. |
-| `source_url` | The URL of the source, e.g. |
 | `tags` | Tags with detailed metadata, such as accuracy. |
 | `thumbnail` | A direct link to the miniature artwork. |
 | `title` | The name of the media. |
@@ -319,40 +309,28 @@ API path: `/v1/audio/{identifier}/report/`
 | Field | Description |
 | --- | --- |
 | `attribution` | Legally valid attribution for the media item in plain-text English. |
-| `author_name` | The name of the media creator. |
-| `author_url` | A direct link to the media creator. |
 | `category` | The top-level classification of this media file. |
 | `creator` | The name of the media creator. |
 | `creator_url` | A direct link to the media creator. |
-| `description` | The explanation on why media is being reported. |
 | `detail_url` | A direct link to the detail view of this audio file. |
-| `display_name` | The name of content source, e.g. |
 | `fields_matched` | List the fields that matched the query for this result. |
 | `filesize` | Number in bytes, e.g. |
 | `filetype` | The type of the file, related to the file extension. |
 | `foreign_landing_url` | The landing page of the work. |
 | `height` | The height of the image in pixels. |
 | `id` | Our unique identifier for an open-licensed work. |
-| `identifier` | Our unique identifier for an open-licensed work. |
 | `indexed_on` | The timestamp of when the media was indexed by Openverse. |
 | `license` | The name of license for the media. |
 | `license_url` | A direct link to the license deed or legal terms. |
 | `license_version` | The version of the media license. |
-| `logo_url` | The URL to a logo for the source. |
 | `mature` | Whether the media item is marked as mature |
-| `media_count` | The number of media items indexed from the source. |
 | `provider` | The content provider, e.g. |
-| `reason` | The reason to report media to Openverse. |
 | `related_url` | A link to an endpoint that provides similar audio files. |
 | `source` | The source of the data, meaning a particular dataset. |
-| `source_name` | The source of the media, e.g. |
-| `source_url` | The URL of the source, e.g. |
 | `tags` | Tags with detailed metadata, such as accuracy. |
 | `thumbnail` | A direct link to the miniature artwork. |
 | `title` | The name of the media. |
-| `type` | The resource type, always set to 'photo' for images. |
 | `url` | The actual URL to the media file. |
-| `version` | The oEmbed version number, always set to 1.0. |
 | `width` | The width of the image in pixels. |
 
 Operations: Create, List, Load.
@@ -425,9 +403,7 @@ Create an instance: `audio = client.Audio`
 | `category` | `String` | The top-level classification of this media file. |
 | `creator` | `String` | The name of the media creator. |
 | `creator_url` | `String` | A direct link to the media creator. |
-| `description` | `String` | The explanation on why media is being reported. |
 | `detail_url` | `String` | A direct link to the detail view of this audio file. |
-| `display_name` | `String` | The name of content source, e.g. |
 | `duration` | `Integer` | The time length of the audio file in milliseconds. |
 | `fields_matched` | `Array` | List the fields that matched the query for this result. |
 | `filesize` | `Integer` | Number in bytes, e.g. |
@@ -435,23 +411,15 @@ Create an instance: `audio = client.Audio`
 | `foreign_landing_url` | `String` | The landing page of the work. |
 | `genres` | `Array` | An array of audio genres such as `rock`, `electronic` for `music` category, or `politics`, `sport`, `education` for `podcast` category |
 | `id` | `String` | Our unique identifier for an open-licensed work. |
-| `identifier` | `String` | Our unique identifier for an open-licensed work. |
 | `indexed_on` | `String` | The timestamp of when the media was indexed by Openverse. |
-| `len` | `Integer` |  |
 | `license` | `String` | The name of license for the media. |
 | `license_url` | `String` | A direct link to the license deed or legal terms. |
 | `license_version` | `String` | The version of the media license. |
-| `logo_url` | `String` | The URL to a logo for the source. |
 | `mature` | `Boolean` | Whether the media item is marked as mature |
-| `media_count` | `Integer` | The number of media items indexed from the source. |
-| `points` | `Array` |  |
 | `provider` | `String` | The content provider, e.g. |
-| `reason` | `Object` | The reason to report media to Openverse. |
 | `related_url` | `String` | A link to an endpoint that provides similar audio files. |
 | `sample_rate` | `Integer` | Number in hertz, eg. |
 | `source` | `String` | The source of the data, meaning a particular dataset. |
-| `source_name` | `String` | The source of the media, e.g. |
-| `source_url` | `String` | The URL of the source, e.g. |
 | `tags` | `Array` | Tags with detailed metadata, such as accuracy. |
 | `thumbnail` | `String` | A direct link to the miniature artwork. |
 | `title` | `String` | The name of the media. |
@@ -481,21 +449,13 @@ audio = client.Audio.create({
   "attribution" => "example_attribution", # String
   "audio_set" => "example_audio_set", # Object
   "detail_url" => "example_detail_url", # String
-  "display_name" => "example_display_name", # String
   "fields_matched" => [], # Array
   "id" => "example_id", # String
   "indexed_on" => "example_indexed_on", # String
-  "len" => 1, # Integer
   "license" => "example_license", # String
   "license_url" => "example_license_url", # String
-  "logo_url" => "example_logo_url", # String
   "mature" => true, # Boolean
-  "media_count" => 1, # Integer
-  "points" => [], # Array
-  "reason" => "example_reason", # Object
   "related_url" => "example_related_url", # String
-  "source_name" => "example_source_name", # String
-  "source_url" => "example_source_url", # String
   "tags" => [], # Array
   "thumbnail" => "example_thumbnail", # String
   "waveform" => "example_waveform", # String
@@ -520,40 +480,28 @@ Create an instance: `image = client.Image`
 | Field | Type | Description |
 | --- | --- | --- |
 | `attribution` | `String` | Legally valid attribution for the media item in plain-text English. |
-| `author_name` | `String` | The name of the media creator. |
-| `author_url` | `String` | A direct link to the media creator. |
 | `category` | `String` | The top-level classification of this media file. |
 | `creator` | `String` | The name of the media creator. |
 | `creator_url` | `String` | A direct link to the media creator. |
-| `description` | `String` | The explanation on why media is being reported. |
 | `detail_url` | `String` | A direct link to the detail view of this audio file. |
-| `display_name` | `String` | The name of content source, e.g. |
 | `fields_matched` | `Array` | List the fields that matched the query for this result. |
 | `filesize` | `Integer` | Number in bytes, e.g. |
 | `filetype` | `String` | The type of the file, related to the file extension. |
 | `foreign_landing_url` | `String` | The landing page of the work. |
 | `height` | `Integer` | The height of the image in pixels. |
 | `id` | `String` | Our unique identifier for an open-licensed work. |
-| `identifier` | `String` | Our unique identifier for an open-licensed work. |
 | `indexed_on` | `String` | The timestamp of when the media was indexed by Openverse. |
 | `license` | `String` | The name of license for the media. |
 | `license_url` | `String` | A direct link to the license deed or legal terms. |
 | `license_version` | `String` | The version of the media license. |
-| `logo_url` | `String` | The URL to a logo for the source. |
 | `mature` | `Boolean` | Whether the media item is marked as mature |
-| `media_count` | `Integer` | The number of media items indexed from the source. |
 | `provider` | `String` | The content provider, e.g. |
-| `reason` | `Object` | The reason to report media to Openverse. |
 | `related_url` | `String` | A link to an endpoint that provides similar audio files. |
 | `source` | `String` | The source of the data, meaning a particular dataset. |
-| `source_name` | `String` | The source of the media, e.g. |
-| `source_url` | `String` | The URL of the source, e.g. |
 | `tags` | `Array` | Tags with detailed metadata, such as accuracy. |
 | `thumbnail` | `String` | A direct link to the miniature artwork. |
 | `title` | `String` | The name of the media. |
-| `type` | `Object` | The resource type, always set to 'photo' for images. |
 | `url` | `String` | The actual URL to the media file. |
-| `version` | `Object` | The oEmbed version number, always set to 1.0. |
 | `width` | `Integer` | The width of the image in pixels. |
 
 #### Example: Load
@@ -576,26 +524,16 @@ images = client.Image.list
 image = client.Image.create({
   "identifier" => "example_identifier", # String
   "attribution" => "example_attribution", # String
-  "author_name" => "example_author_name", # String
-  "author_url" => "example_author_url", # String
   "detail_url" => "example_detail_url", # String
-  "display_name" => "example_display_name", # String
   "fields_matched" => [], # Array
   "id" => "example_id", # String
   "indexed_on" => "example_indexed_on", # String
   "license" => "example_license", # String
   "license_url" => "example_license_url", # String
-  "logo_url" => "example_logo_url", # String
   "mature" => true, # Boolean
-  "media_count" => 1, # Integer
-  "reason" => "example_reason", # Object
   "related_url" => "example_related_url", # String
-  "source_name" => "example_source_name", # String
-  "source_url" => "example_source_url", # String
   "tags" => [], # Array
   "thumbnail" => "example_thumbnail", # String
-  "type" => "example_type", # Object
-  "version" => "example_version", # Object
 })
 ```
 
@@ -829,6 +767,7 @@ Use `Helpers.to_map()` to safely validate that a value is a hash.
 rb/
 ├── Openverse_sdk.rb       -- Main SDK module
 ├── config.rb                  -- Configuration
+├── schema.rb                  -- Generated option + entity specs
 ├── features.rb                -- Feature factory
 ├── core/                      -- Core types and context
 ├── entity/                    -- Entity implementations

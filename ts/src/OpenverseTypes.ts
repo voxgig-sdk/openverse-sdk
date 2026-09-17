@@ -13,9 +13,7 @@ export interface Audio {
   category?: string
   creator?: string
   creator_url?: string
-  description?: string
   detail_url: string
-  display_name: string
   duration?: number
   fields_matched: any[]
   filesize?: number
@@ -23,23 +21,15 @@ export interface Audio {
   foreign_landing_url?: string
   genres?: any[]
   id: string
-  identifier: string
   indexed_on: string
-  len: number
   license: string
   license_url: string
   license_version?: string
-  logo_url: string
   mature: boolean
-  media_count: number
-  points: any[]
   provider?: string
-  reason: any
   related_url: string
   sample_rate?: number
   source?: string
-  source_name: string
-  source_url: string
   tags: any[]
   thumbnail: string
   title?: string
@@ -98,9 +88,7 @@ export interface AudioCreateData {
   category?: string
   creator?: string
   creator_url?: string
-  description?: string
   detail_url: string
-  display_name: string
   duration?: number
   fields_matched: any[]
   filesize?: number
@@ -109,21 +97,14 @@ export interface AudioCreateData {
   genres?: any[]
   id: string
   indexed_on: string
-  len: number
   license: string
   license_url: string
   license_version?: string
-  logo_url: string
   mature: boolean
-  media_count: number
-  points: any[]
   provider?: string
-  reason: any
   related_url: string
   sample_rate?: number
   source?: string
-  source_name: string
-  source_url: string
   tags: any[]
   thumbnail: string
   title?: string
@@ -139,40 +120,28 @@ export interface AudioCreateData {
 
 export interface Image {
   attribution: string
-  author_name: string
-  author_url: string
   category?: string
   creator?: string
   creator_url?: string
-  description?: string
   detail_url: string
-  display_name: string
   fields_matched: any[]
   filesize?: number
   filetype?: string
   foreign_landing_url?: string
   height?: number
   id: string
-  identifier: string
   indexed_on: string
   license: string
   license_url: string
   license_version?: string
-  logo_url: string
   mature: boolean
-  media_count: number
   provider?: string
-  reason: any
   related_url: string
   source?: string
-  source_name: string
-  source_url: string
   tags: any[]
   thumbnail: string
   title?: string
-  type: any
   url?: string
-  version: any
   width?: number
 }
 
@@ -221,14 +190,10 @@ export interface ImageListMatch {
 export interface ImageCreateData {
   identifier: string
   attribution: string
-  author_name: string
-  author_url: string
   category?: string
   creator?: string
   creator_url?: string
-  description?: string
   detail_url: string
-  display_name: string
   fields_matched: any[]
   filesize?: number
   filetype?: string
@@ -239,21 +204,14 @@ export interface ImageCreateData {
   license: string
   license_url: string
   license_version?: string
-  logo_url: string
   mature: boolean
-  media_count: number
   provider?: string
-  reason: any
   related_url: string
   source?: string
-  source_name: string
-  source_url: string
   tags: any[]
   thumbnail: string
   title?: string
-  type: any
   url?: string
-  version: any
   width?: number
 
   // Selects a custom action instead of the plain create:

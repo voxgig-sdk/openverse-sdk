@@ -70,7 +70,7 @@ func main() {
     fmt.Println(audio)
 
     // Create a audio.
-    created, err := client.Audio(nil).Create(map[string]any{"identifier": "example_identifier", "alt_files": []any{}, "attribution": "example_attribution", "audio_set": "example_audio_set", "detail_url": "example_detail_url", "display_name": "example_display_name", "fields_matched": []any{}, "id": "example_id", "indexed_on": "example_indexed_on", "len": 1, "license": "example_license", "license_url": "example_license_url", "logo_url": "example_logo_url", "mature": true, "media_count": 1, "points": []any{}, "reason": "example_reason", "related_url": "example_related_url", "source_name": "example_source_name", "source_url": "example_source_url", "tags": []any{}, "thumbnail": "example_thumbnail", "waveform": "example_waveform"}, nil)
+    created, err := client.Audio(nil).Create(map[string]any{"identifier": "example_identifier", "alt_files": []any{}, "attribution": "example_attribution", "audio_set": "example_audio_set", "detail_url": "example_detail_url", "fields_matched": []any{}, "id": "example_id", "indexed_on": "example_indexed_on", "license": "example_license", "license_url": "example_license_url", "mature": true, "related_url": "example_related_url", "tags": []any{}, "thumbnail": "example_thumbnail", "waveform": "example_waveform"}, nil)
     if err != nil {
         panic(err)
     }
@@ -293,9 +293,7 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 | `"category"` | The top-level classification of this media file. |
 | `"creator"` | The name of the media creator. |
 | `"creator_url"` | A direct link to the media creator. |
-| `"description"` | The explanation on why media is being reported. |
 | `"detail_url"` | A direct link to the detail view of this audio file. |
-| `"display_name"` | The name of content source, e.g. |
 | `"duration"` | The time length of the audio file in milliseconds. |
 | `"fields_matched"` | List the fields that matched the query for this result. |
 | `"filesize"` | Number in bytes, e.g. |
@@ -303,23 +301,15 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 | `"foreign_landing_url"` | The landing page of the work. |
 | `"genres"` | An array of audio genres such as `rock`, `electronic` for `music` category, or `politics`, `sport`, `education` for `podcast` category |
 | `"id"` | Our unique identifier for an open-licensed work. |
-| `"identifier"` | Our unique identifier for an open-licensed work. |
 | `"indexed_on"` | The timestamp of when the media was indexed by Openverse. |
-| `"len"` |  |
 | `"license"` | The name of license for the media. |
 | `"license_url"` | A direct link to the license deed or legal terms. |
 | `"license_version"` | The version of the media license. |
-| `"logo_url"` | The URL to a logo for the source. |
 | `"mature"` | Whether the media item is marked as mature |
-| `"media_count"` | The number of media items indexed from the source. |
-| `"points"` |  |
 | `"provider"` | The content provider, e.g. |
-| `"reason"` | The reason to report media to Openverse. |
 | `"related_url"` | A link to an endpoint that provides similar audio files. |
 | `"sample_rate"` | Number in hertz, eg. |
 | `"source"` | The source of the data, meaning a particular dataset. |
-| `"source_name"` | The source of the media, e.g. |
-| `"source_url"` | The URL of the source, e.g. |
 | `"tags"` | Tags with detailed metadata, such as accuracy. |
 | `"thumbnail"` | A direct link to the miniature artwork. |
 | `"title"` | The name of the media. |
@@ -335,40 +325,28 @@ API path: `/v1/audio/{identifier}/report/`
 | Field | Description |
 | --- | --- |
 | `"attribution"` | Legally valid attribution for the media item in plain-text English. |
-| `"author_name"` | The name of the media creator. |
-| `"author_url"` | A direct link to the media creator. |
 | `"category"` | The top-level classification of this media file. |
 | `"creator"` | The name of the media creator. |
 | `"creator_url"` | A direct link to the media creator. |
-| `"description"` | The explanation on why media is being reported. |
 | `"detail_url"` | A direct link to the detail view of this audio file. |
-| `"display_name"` | The name of content source, e.g. |
 | `"fields_matched"` | List the fields that matched the query for this result. |
 | `"filesize"` | Number in bytes, e.g. |
 | `"filetype"` | The type of the file, related to the file extension. |
 | `"foreign_landing_url"` | The landing page of the work. |
 | `"height"` | The height of the image in pixels. |
 | `"id"` | Our unique identifier for an open-licensed work. |
-| `"identifier"` | Our unique identifier for an open-licensed work. |
 | `"indexed_on"` | The timestamp of when the media was indexed by Openverse. |
 | `"license"` | The name of license for the media. |
 | `"license_url"` | A direct link to the license deed or legal terms. |
 | `"license_version"` | The version of the media license. |
-| `"logo_url"` | The URL to a logo for the source. |
 | `"mature"` | Whether the media item is marked as mature |
-| `"media_count"` | The number of media items indexed from the source. |
 | `"provider"` | The content provider, e.g. |
-| `"reason"` | The reason to report media to Openverse. |
 | `"related_url"` | A link to an endpoint that provides similar audio files. |
 | `"source"` | The source of the data, meaning a particular dataset. |
-| `"source_name"` | The source of the media, e.g. |
-| `"source_url"` | The URL of the source, e.g. |
 | `"tags"` | Tags with detailed metadata, such as accuracy. |
 | `"thumbnail"` | A direct link to the miniature artwork. |
 | `"title"` | The name of the media. |
-| `"type"` | The resource type, always set to 'photo' for images. |
 | `"url"` | The actual URL to the media file. |
-| `"version"` | The oEmbed version number, always set to 1.0. |
 | `"width"` | The width of the image in pixels. |
 
 Operations: Create, List, Load.
@@ -441,9 +419,7 @@ Create an instance: `audio := client.Audio(nil)`
 | `category` | `string` | The top-level classification of this media file. |
 | `creator` | `string` | The name of the media creator. |
 | `creator_url` | `string` | A direct link to the media creator. |
-| `description` | `string` | The explanation on why media is being reported. |
 | `detail_url` | `string` | A direct link to the detail view of this audio file. |
-| `display_name` | `string` | The name of content source, e.g. |
 | `duration` | `int` | The time length of the audio file in milliseconds. |
 | `fields_matched` | `[]any` | List the fields that matched the query for this result. |
 | `filesize` | `int` | Number in bytes, e.g. |
@@ -451,23 +427,15 @@ Create an instance: `audio := client.Audio(nil)`
 | `foreign_landing_url` | `string` | The landing page of the work. |
 | `genres` | `[]any` | An array of audio genres such as `rock`, `electronic` for `music` category, or `politics`, `sport`, `education` for `podcast` category |
 | `id` | `string` | Our unique identifier for an open-licensed work. |
-| `identifier` | `string` | Our unique identifier for an open-licensed work. |
 | `indexed_on` | `string` | The timestamp of when the media was indexed by Openverse. |
-| `len` | `int` |  |
 | `license` | `string` | The name of license for the media. |
 | `license_url` | `string` | A direct link to the license deed or legal terms. |
 | `license_version` | `string` | The version of the media license. |
-| `logo_url` | `string` | The URL to a logo for the source. |
 | `mature` | `bool` | Whether the media item is marked as mature |
-| `media_count` | `int` | The number of media items indexed from the source. |
-| `points` | `[]any` |  |
 | `provider` | `string` | The content provider, e.g. |
-| `reason` | `any` | The reason to report media to Openverse. |
 | `related_url` | `string` | A link to an endpoint that provides similar audio files. |
 | `sample_rate` | `int` | Number in hertz, eg. |
 | `source` | `string` | The source of the data, meaning a particular dataset. |
-| `source_name` | `string` | The source of the media, e.g. |
-| `source_url` | `string` | The URL of the source, e.g. |
 | `tags` | `[]any` | Tags with detailed metadata, such as accuracy. |
 | `thumbnail` | `string` | A direct link to the miniature artwork. |
 | `title` | `string` | The name of the media. |
@@ -503,21 +471,13 @@ result, err := client.Audio(nil).Create(map[string]any{
     "attribution": "example_attribution",
     "audio_set": "example_audio_set",
     "detail_url": "example_detail_url",
-    "display_name": "example_display_name",
     "fields_matched": []any{},
     "id": "example_id",
     "indexed_on": "example_indexed_on",
-    "len": 1,
     "license": "example_license",
     "license_url": "example_license_url",
-    "logo_url": "example_logo_url",
     "mature": true,
-    "media_count": 1,
-    "points": []any{},
-    "reason": "example_reason",
     "related_url": "example_related_url",
-    "source_name": "example_source_name",
-    "source_url": "example_source_url",
     "tags": []any{},
     "thumbnail": "example_thumbnail",
     "waveform": "example_waveform",
@@ -546,40 +506,28 @@ Create an instance: `image := client.Image(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `attribution` | `string` | Legally valid attribution for the media item in plain-text English. |
-| `author_name` | `string` | The name of the media creator. |
-| `author_url` | `string` | A direct link to the media creator. |
 | `category` | `string` | The top-level classification of this media file. |
 | `creator` | `string` | The name of the media creator. |
 | `creator_url` | `string` | A direct link to the media creator. |
-| `description` | `string` | The explanation on why media is being reported. |
 | `detail_url` | `string` | A direct link to the detail view of this audio file. |
-| `display_name` | `string` | The name of content source, e.g. |
 | `fields_matched` | `[]any` | List the fields that matched the query for this result. |
 | `filesize` | `int` | Number in bytes, e.g. |
 | `filetype` | `string` | The type of the file, related to the file extension. |
 | `foreign_landing_url` | `string` | The landing page of the work. |
 | `height` | `int` | The height of the image in pixels. |
 | `id` | `string` | Our unique identifier for an open-licensed work. |
-| `identifier` | `string` | Our unique identifier for an open-licensed work. |
 | `indexed_on` | `string` | The timestamp of when the media was indexed by Openverse. |
 | `license` | `string` | The name of license for the media. |
 | `license_url` | `string` | A direct link to the license deed or legal terms. |
 | `license_version` | `string` | The version of the media license. |
-| `logo_url` | `string` | The URL to a logo for the source. |
 | `mature` | `bool` | Whether the media item is marked as mature |
-| `media_count` | `int` | The number of media items indexed from the source. |
 | `provider` | `string` | The content provider, e.g. |
-| `reason` | `any` | The reason to report media to Openverse. |
 | `related_url` | `string` | A link to an endpoint that provides similar audio files. |
 | `source` | `string` | The source of the data, meaning a particular dataset. |
-| `source_name` | `string` | The source of the media, e.g. |
-| `source_url` | `string` | The URL of the source, e.g. |
 | `tags` | `[]any` | Tags with detailed metadata, such as accuracy. |
 | `thumbnail` | `string` | A direct link to the miniature artwork. |
 | `title` | `string` | The name of the media. |
-| `type` | `any` | The resource type, always set to 'photo' for images. |
 | `url` | `string` | The actual URL to the media file. |
-| `version` | `any` | The oEmbed version number, always set to 1.0. |
 | `width` | `int` | The width of the image in pixels. |
 
 #### Example: Load
@@ -608,26 +556,16 @@ fmt.Println(images) // the array of records
 result, err := client.Image(nil).Create(map[string]any{
     "identifier": "example_identifier",
     "attribution": "example_attribution",
-    "author_name": "example_author_name",
-    "author_url": "example_author_url",
     "detail_url": "example_detail_url",
-    "display_name": "example_display_name",
     "fields_matched": []any{},
     "id": "example_id",
     "indexed_on": "example_indexed_on",
     "license": "example_license",
     "license_url": "example_license_url",
-    "logo_url": "example_logo_url",
     "mature": true,
-    "media_count": 1,
-    "reason": "example_reason",
     "related_url": "example_related_url",
-    "source_name": "example_source_name",
-    "source_url": "example_source_url",
     "tags": []any{},
     "thumbnail": "example_thumbnail",
-    "type": "example_type",
-    "version": "example_version",
 }, nil)
 if err != nil {
     panic(err)

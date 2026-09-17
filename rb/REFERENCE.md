@@ -117,9 +117,7 @@ audio = client.Audio
 | `category` | `String` | No | The top-level classification of this media file. |
 | `creator` | `String` | No | The name of the media creator. |
 | `creator_url` | `String` | No | A direct link to the media creator. |
-| `description` | `String` | No | The explanation on why media is being reported. |
 | `detail_url` | `String` | Yes | A direct link to the detail view of this audio file. |
-| `display_name` | `String` | Yes | The name of content source, e.g. |
 | `duration` | `Integer` | No | The time length of the audio file in milliseconds. |
 | `fields_matched` | `Array` | Yes | List the fields that matched the query for this result. |
 | `filesize` | `Integer` | No | Number in bytes, e.g. |
@@ -127,23 +125,15 @@ audio = client.Audio
 | `foreign_landing_url` | `String` | No | The landing page of the work. |
 | `genres` | `Array` | No | An array of audio genres such as `rock`, `electronic` for `music` category, or `politics`, `sport`, `education` for `podcast` category |
 | `id` | `String` | Yes | Our unique identifier for an open-licensed work. |
-| `identifier` | `String` | Yes | Our unique identifier for an open-licensed work. |
 | `indexed_on` | `String` | Yes | The timestamp of when the media was indexed by Openverse. |
-| `len` | `Integer` | Yes |  |
 | `license` | `String` | Yes | The name of license for the media. |
 | `license_url` | `String` | Yes | A direct link to the license deed or legal terms. |
 | `license_version` | `String` | No | The version of the media license. |
-| `logo_url` | `String` | Yes | The URL to a logo for the source. |
 | `mature` | `Boolean` | Yes | Whether the media item is marked as mature |
-| `media_count` | `Integer` | Yes | The number of media items indexed from the source. |
-| `points` | `Array` | Yes |  |
 | `provider` | `String` | No | The content provider, e.g. |
-| `reason` | `Object` | Yes | The reason to report media to Openverse. |
 | `related_url` | `String` | Yes | A link to an endpoint that provides similar audio files. |
 | `sample_rate` | `Integer` | No | Number in hertz, eg. |
 | `source` | `String` | No | The source of the data, meaning a particular dataset. |
-| `source_name` | `String` | Yes | The source of the media, e.g. |
-| `source_url` | `String` | Yes | The URL of the source, e.g. |
 | `tags` | `Array` | Yes | Tags with detailed metadata, such as accuracy. |
 | `thumbnail` | `String` | Yes | A direct link to the miniature artwork. |
 | `title` | `String` | No | The name of the media. |
@@ -163,21 +153,13 @@ result = client.Audio.create({
   "attribution" => "example_attribution", # String
   "audio_set" => "example_audio_set", # Object
   "detail_url" => "example_detail_url", # String
-  "display_name" => "example_display_name", # String
   "fields_matched" => [], # Array
   "id" => "example_id", # String
   "indexed_on" => "example_indexed_on", # String
-  "len" => 1, # Integer
   "license" => "example_license", # String
   "license_url" => "example_license_url", # String
-  "logo_url" => "example_logo_url", # String
   "mature" => true, # Boolean
-  "media_count" => 1, # Integer
-  "points" => [], # Array
-  "reason" => "example_reason", # Object
   "related_url" => "example_related_url", # String
-  "source_name" => "example_source_name", # String
-  "source_url" => "example_source_url", # String
   "tags" => [], # Array
   "thumbnail" => "example_thumbnail", # String
   "waveform" => "example_waveform", # String
@@ -241,82 +223,29 @@ image = client.Image
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `attribution` | `String` | Yes | Legally valid attribution for the media item in plain-text English. |
-| `author_name` | `String` | Yes | The name of the media creator. |
-| `author_url` | `String` | Yes | A direct link to the media creator. |
 | `category` | `String` | No | The top-level classification of this media file. |
 | `creator` | `String` | No | The name of the media creator. |
 | `creator_url` | `String` | No | A direct link to the media creator. |
-| `description` | `String` | No | The explanation on why media is being reported. |
 | `detail_url` | `String` | Yes | A direct link to the detail view of this audio file. |
-| `display_name` | `String` | Yes | The name of content source, e.g. |
 | `fields_matched` | `Array` | Yes | List the fields that matched the query for this result. |
 | `filesize` | `Integer` | No | Number in bytes, e.g. |
 | `filetype` | `String` | No | The type of the file, related to the file extension. |
 | `foreign_landing_url` | `String` | No | The landing page of the work. |
 | `height` | `Integer` | No | The height of the image in pixels. |
 | `id` | `String` | Yes | Our unique identifier for an open-licensed work. |
-| `identifier` | `String` | Yes | Our unique identifier for an open-licensed work. |
 | `indexed_on` | `String` | Yes | The timestamp of when the media was indexed by Openverse. |
 | `license` | `String` | Yes | The name of license for the media. |
 | `license_url` | `String` | Yes | A direct link to the license deed or legal terms. |
 | `license_version` | `String` | No | The version of the media license. |
-| `logo_url` | `String` | Yes | The URL to a logo for the source. |
 | `mature` | `Boolean` | Yes | Whether the media item is marked as mature |
-| `media_count` | `Integer` | Yes | The number of media items indexed from the source. |
 | `provider` | `String` | No | The content provider, e.g. |
-| `reason` | `Object` | Yes | The reason to report media to Openverse. |
 | `related_url` | `String` | Yes | A link to an endpoint that provides similar audio files. |
 | `source` | `String` | No | The source of the data, meaning a particular dataset. |
-| `source_name` | `String` | Yes | The source of the media, e.g. |
-| `source_url` | `String` | Yes | The URL of the source, e.g. |
 | `tags` | `Array` | Yes | Tags with detailed metadata, such as accuracy. |
 | `thumbnail` | `String` | Yes | A direct link to the miniature artwork. |
 | `title` | `String` | No | The name of the media. |
-| `type` | `Object` | Yes | The resource type, always set to 'photo' for images. |
 | `url` | `String` | No | The actual URL to the media file. |
-| `version` | `Object` | Yes | The oEmbed version number, always set to 1.0. |
 | `width` | `Integer` | No | The width of the image in pixels. |
-
-### Field Usage by Operation
-
-| Field | load | list | create |
-| --- | --- | --- | --- |
-| `attribution` | - | - | - |
-| `author_name` | - | - | - |
-| `author_url` | - | - | - |
-| `category` | - | - | - |
-| `creator` | - | - | - |
-| `creator_url` | - | - | - |
-| `description` | - | - | - |
-| `detail_url` | - | - | - |
-| `display_name` | - | - | - |
-| `fields_matched` | - | - | - |
-| `filesize` | - | - | - |
-| `filetype` | - | - | - |
-| `foreign_landing_url` | - | - | - |
-| `height` | Yes | - | - |
-| `id` | - | - | - |
-| `identifier` | - | - | - |
-| `indexed_on` | - | - | - |
-| `license` | - | - | - |
-| `license_url` | - | - | - |
-| `license_version` | - | - | - |
-| `logo_url` | - | - | - |
-| `mature` | - | - | - |
-| `media_count` | - | - | - |
-| `provider` | - | - | - |
-| `reason` | - | - | - |
-| `related_url` | - | - | - |
-| `source` | - | - | - |
-| `source_name` | - | - | - |
-| `source_url` | - | - | - |
-| `tags` | - | - | - |
-| `thumbnail` | - | - | - |
-| `title` | - | - | - |
-| `type` | - | - | - |
-| `url` | - | - | - |
-| `version` | - | - | - |
-| `width` | Yes | - | - |
 
 ### Operations
 
@@ -328,26 +257,16 @@ Create a new entity with the given data. Raises on error.
 result = client.Image.create({
   "identifier" => "example_identifier", # String
   "attribution" => "example_attribution", # String
-  "author_name" => "example_author_name", # String
-  "author_url" => "example_author_url", # String
   "detail_url" => "example_detail_url", # String
-  "display_name" => "example_display_name", # String
   "fields_matched" => [], # Array
   "id" => "example_id", # String
   "indexed_on" => "example_indexed_on", # String
   "license" => "example_license", # String
   "license_url" => "example_license_url", # String
-  "logo_url" => "example_logo_url", # String
   "mature" => true, # Boolean
-  "media_count" => 1, # Integer
-  "reason" => "example_reason", # Object
   "related_url" => "example_related_url", # String
-  "source_name" => "example_source_name", # String
-  "source_url" => "example_source_url", # String
   "tags" => [], # Array
   "thumbnail" => "example_thumbnail", # String
-  "type" => "example_type", # Object
-  "version" => "example_version", # Object
 })
 ```
 
